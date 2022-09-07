@@ -29,9 +29,12 @@ def news(news_urls):
         driver.get(url_no)
 
         pyautogui.hotkey('shift', 'F10')
-        for i in range(8):
-            pyautogui.hotkey('down')
-        pyautogui.hotkey('enter')
+        # for i in range(8):
+        #     pyautogui.hotkey('down')
+        # pyautogui.hotkey('enter')
+        pyautogui.keyDown('t')
+        pyautogui.keyUp('t')
+
 
         time.sleep(1)
 

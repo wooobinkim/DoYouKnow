@@ -71,8 +71,8 @@ def np_tag(text):
 
 
 def Url(search):
-    url_temp = 'https://www.google.com/search?q={search}&tbm=nws'.format(search=search)
-    for pageNo in range(1,9,10):
+    url_temp = 'https://www.google.com/search?q={search}&tbm=nws&tbs=cdr%3A1%2Ccd_min%3A9%2F1%2F2022%2Ccd_max%3A9%2F2%2F2022'.format(search=search)
+    for pageNo in range(0,8,10):
         url = url_temp + "&start={pageNo}".format(pageNo=pageNo)
         driver.get(url)
 
