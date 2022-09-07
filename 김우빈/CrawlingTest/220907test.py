@@ -17,15 +17,17 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
-def news(news_urls):
+def news(news_url):
     translator = googletrans.Translator()
-    for url_no in news_urls:
+    for url_no in news_url:
         driver.get(url_no)
 
         pyautogui.hotkey('shift', 'F10')
-        for i in range(8):
-            pyautogui.hotkey('down')
-        pyautogui.hotkey('enter')
+        # for i in range(8):
+        #     pyautogui.hotkey('down')
+        # pyautogui.hotkey('enter')
+        pyautogui.keyDown('t')
+        pyautogui.keyUp('t')
 
         time.sleep(1)
 
@@ -47,7 +49,9 @@ def news(news_urls):
             result += str
             str = ""
 
-        return result
+        np_tag(result)
+
+    return
 
 
 
@@ -60,19 +64,15 @@ def np_tag(text):
     doc = hannanum.nouns(text)
     news_desc = '\n'.join(doc)
 
-    print(news_desc)
+    global whole_text
+    whole_text += news_desc
+    # print(whole_text)
     return news_desc
 
 
-
-driver = webdriver.Chrome()
-
-search = 'korean dramas'
-Url(search)
-
 def Url(search):
     url_temp = 'https://www.google.com/search?q={search}&tbm=nws'.format(search=search)
-    for pageNo in range(1,300,10):
+    for pageNo in range(1,9,10):
         url = url_temp + "&start={pageNo}".format(pageNo=pageNo)
         driver.get(url)
 
@@ -86,33 +86,33 @@ def Url(search):
             print("no articles")
             break
 
+            
+
         for i in list:
             if i.select_one('div>a>div>div:nth-child(2)>div:nth-child(2)'):
                 news_urls.append(i.select_one(".WlydOe").get("href"))
             else:
                 print("no texts")
-                
-        print(news_urls)
 
-        for url_no in news_urls:
-            np_tag(news(news_no))
+        # print(news_urls)
+        # np_tag(news(news_urls))
+        news(news_urls)
 
-# testnews = ['https://www.football.london/tottenham-hotspur-fc/transfer-news/tottenham-son-conte-ndombele-transfer-24937341']
-# wl =np_tag(news(testnews))
 
-# testnews = ['https://news.yahoo.co.jp/articles/45e111649f3f3c7029f0276d90fef6f49631a5fc']
-# wl =np_tag(news(testnews))
 
-# testnews = ['https://www.kdramastars.com/articles/126325/20220820/k-dramas-north-south-korea-money-heist-korea-crash-landing-on-you.htm']
-# wl =np_tag(news(testnews))
+driver = webdriver.Chrome()
+
+search = 'korean dramas'
+whole_text = ""
+Url(search)
 
 driver.quit()
 
-#testmemo =""
-# f = open("C:/Users/multicampus/Desktop/test/test.txt", 'w', encoding='utf-8')
+f = open("C:/Users/Kim/Desktop/특화프로젝트/Sub2/S07P22B208/김우빈/Crawilng_Keyword_Data/korean_drama.txt", 'w', encoding='utf-8')
+f.write(whole_text)
 # for no_capital in no_capitals:
 #     no_stops = [word for word in no_capital if not word in stops]
 #     for tmp in no_stops:
 #         #testmemo=testmemo+tmp+'\n'
 #         f.write(tmp+'\n')
-# f.close()
+f.close()
