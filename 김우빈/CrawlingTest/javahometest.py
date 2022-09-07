@@ -67,7 +67,11 @@ def news(news_urls):
 def np_tag(text):
     #text = re.sub('[^a-zA-Z]', ' ', text)
     #text = text.lower()
-    
+    hangul = re.compile('[^ ㄱ-ㅣ가-힣]+')
+    text = hangul.sub('', text)
+
+    print("text :" + text)
+
     hannanum = Okt()
     df = pd.DataFrame(columns = ['CHUNK'])
     doc = hannanum.nouns(text)
@@ -84,6 +88,14 @@ def np_tag(text):
 
 driver = webdriver.Chrome()
 # driver.get("https://www.teamtalk.com/tottenham-hotspur/son-heung-min-not-taken-richarlison-arrival-well-pundit-antonio-conte-big-problem")
+testnews = ['https://www.football.london/tottenham-hotspur-fc/transfer-news/tottenham-son-conte-ndombele-transfer-24937341']
+wl =np_tag(news(testnews))
+#wl=np_tag("Actors and actresses who are the “leading actors” are absolutely indispensable in Korean dramas.")
+#print(no_capitals)
+#stops = set(stopwords.words('english'))
+#print(no_capitals)
+
+# print(wl)
 
 testnews = ['https://news.yahoo.co.jp/articles/45e111649f3f3c7029f0276d90fef6f49631a5fc']
 wl =np_tag(news(testnews))
@@ -107,14 +119,6 @@ wl =np_tag(news(testnews))
 # print(wl)
 
 
-testnews = ['https://www.football.london/tottenham-hotspur-fc/transfer-news/tottenham-son-conte-ndombele-transfer-24937341']
-wl =np_tag(news(testnews))
-#wl=np_tag("Actors and actresses who are the “leading actors” are absolutely indispensable in Korean dramas.")
-#print(no_capitals)
-#stops = set(stopwords.words('english'))
-#print(no_capitals)
-
-# print(wl)
 
 driver.quit()
 

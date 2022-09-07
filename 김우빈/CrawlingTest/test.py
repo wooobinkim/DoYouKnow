@@ -49,5 +49,5 @@ def news(news_urls):
         test = test.replace('</p>',"")
         print(test)   
         
-search = '김우빈'
+search = 'korean dramas'
 Url(search)
