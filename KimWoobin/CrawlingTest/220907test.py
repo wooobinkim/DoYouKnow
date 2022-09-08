@@ -71,8 +71,21 @@ def np_tag(text):
 
 
 def Url(search):
-    url_temp = 'https://www.google.com/search?q={search}&tbm=nws&tbs=cdr%3A1%2Ccd_min%3A9%2F1%2F2022%2Ccd_max%3A9%2F2%2F2022'.format(search=search)
-    for pageNo in range(0,8,10):
+    start_year=2022
+    start_month=9
+    start_day=1
+    end_year=2022
+    end_month=9
+    end_day=1
+    url_temp = 'https://www.google.com/search?q={search}&tbm=nws'.format(search=search)
+    url_temp = url_temp + "&tbs=cdr%3A1%2Ccd_min%3A{start_month}".format(start_month=start_month)
+    url_temp = url_temp + "%2F{start_day}".format(start_day=start_day)
+    url_temp = url_temp + "%2F{start_year}".format(start_year=start_year)
+    url_temp = url_temp + "%2Ccd_max%3A{end_month}".format(end_month=end_month)
+    url_temp = url_temp + "%2F{end_day}".format(end_day=end_day)
+    url_temp = url_temp + "%2F{end_year}".format(end_year=end_year)
+    print(url_temp)
+    for pageNo in range(0,9,10):
         url = url_temp + "&start={pageNo}".format(pageNo=pageNo)
         driver.get(url)
 
