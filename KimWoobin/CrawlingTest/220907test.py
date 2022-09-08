@@ -71,12 +71,12 @@ def np_tag(text):
 
 
 def Url(search):
-    start_year=2022
-    start_month=9
-    start_day=1
-    end_year=2022
-    end_month=9
-    end_day=1
+    global start_year
+    global start_month
+    global start_day
+    global end_year
+    global end_month
+    global end_day
     url_temp = 'https://www.google.com/search?q={search}&tbm=nws'.format(search=search)
     url_temp = url_temp + "&tbs=cdr%3A1%2Ccd_min%3A{start_month}".format(start_month=start_month)
     url_temp = url_temp + "%2F{start_day}".format(start_day=start_day)
@@ -84,7 +84,6 @@ def Url(search):
     url_temp = url_temp + "%2Ccd_max%3A{end_month}".format(end_month=end_month)
     url_temp = url_temp + "%2F{end_day}".format(end_day=end_day)
     url_temp = url_temp + "%2F{end_year}".format(end_year=end_year)
-    print(url_temp)
     for pageNo in range(0,9,10):
         url = url_temp + "&start={pageNo}".format(pageNo=pageNo)
         driver.get(url)
@@ -113,15 +112,25 @@ def Url(search):
 
 
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome("/home/hadoop/pythontest/chromedriver")
+#driver = webdriver.Chrome("/usr/local/bin/chromedriver")
 
 search = 'korean dramas'
+start_year=2022
+start_month=9
+start_day=1
+end_year=start_year
+end_month=start_month
+end_day=start_day
 whole_text = ""
+textname = "/home/hadoop/Project/data/{search}_".format(search=search.replace(" ","_"))
+textname += str(start_year).zfill(2)+str(start_month).zfill(2)+str(start_day).zfill(2)+".txt"
 Url(search)
 
 driver.quit()
 
-f = open("C:/Users/Kim/Desktop/특화프로젝트/Sub2/S07P22B208/김우빈/Crawilng_Keyword_Data/korean_drama.txt", 'w', encoding='utf-8')
+print(whole_text)
+f = open(textname, 'w', encoding='utf-8')
 f.write(whole_text)
 # for no_capital in no_capitals:
 #     no_stops = [word for word in no_capital if not word in stops]
