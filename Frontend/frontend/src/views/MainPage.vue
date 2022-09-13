@@ -1,9 +1,17 @@
 <template>
-  <div>MainPage</div>
+  <IntroDataLab/>
+  <IntroAwards/>
+  <IntroGame/>
 </template>
 
-<script>
-export default {};
+<script setup>
+import IntroDataLab from '@/components/Main/IntroDataLab.vue'
+import IntroAwards from '@/components/Main/IntroAwards.vue'
+import IntroGame from '@/components/Main/IntroGame.vue'
 </script>
 
-<style></style>
+<style>
+body {
+  margin: 0;
+}
+</style>

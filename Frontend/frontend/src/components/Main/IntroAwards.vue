@@ -1,11 +1,11 @@
 <template>
-  <div>
-    지구에오~
-  </div>
+  <div>intro awards</div>
 </template>
 
 <script>
+export default {
 
+}
 </script>
 
 <style>
