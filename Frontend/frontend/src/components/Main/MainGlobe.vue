@@ -1,9 +1,13 @@
 <template>
-  <h2>mainglobe</h2>
+  <div>
+    지구에오~
+  </div>
 </template>
 
 <script>
-export default {};
+
 </script>
 
-<style></style>
+<style>
+
+</style>
