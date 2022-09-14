@@ -2,6 +2,7 @@
   <div class="cavas-container">
     <!-- <div class="moon-background"></div>
     <div class="sun-background"></div> -->
+    <iframe width="352" height="626" src="https://www.youtube.com/embed/ybF20JAGL-g" title="월급날 듣는 노래 #shorts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </template>
 
