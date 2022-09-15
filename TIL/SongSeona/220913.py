@@ -4,25 +4,21 @@ from nltk import Tree
 import nltk
 import re
 import pandas as pd
-import spacy
 from konlpy.tag import Okt
 from nltk.corpus import stopwords
 from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import googletrans
 import pyautogui
 import time
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from konlpy.tag import Mecab
-from webdriver_manager.chrome import ChromeDriverManager
 
 global whole_text
 
 def news(news_url):
-    translator = googletrans.Translator()
     whole_text = ""
     for url_no in news_url:
         driver.get(url_no)
@@ -126,7 +122,7 @@ def Url(search):
 
 
 # driver = webdriver.Chrome("ChromeDriverManager().install()")
-driver = webdriver.Chrome("/home/ubuntu/pythontest/chromedriver")
+driver = webdriver.Chrome("/home/hadoop/S07P22B208/TIL/SongSeona/chromedriver")
 #driver = webdriver.Chrome("/usr/local/bin/chromedriver")
 
 search = 'korean dramas'
@@ -137,7 +133,7 @@ end_year=start_year
 end_month=start_month
 end_day=start_day
 whole_text = ""
-textname = "/home/ubuntu/pythontest/{search}_".format(search=search.replace(" ","_"))
+textname = "/home/hadoop/Project/data/{search}_".format(search=search.replace(" ","_"))
 textname += str(start_year).zfill(2)+str(start_month).zfill(2)+str(start_day).zfill(2)+".txt"
 whole_text = Url(search)
 
