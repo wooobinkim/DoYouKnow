@@ -9,7 +9,7 @@ ENTRYPOINT pwd
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 ENTRYPOINT echo "COPY HTML"
 ENTRYPOINT pwd
-COPY --from=build-stage /app/nginx/default.conf /etc/nginx/sites-available/default.conf
+COPY --from=build-stage /app/nginx/default.conf /etc/nginx/sites-available/default
 ENTRYPOINT echo "COPY CONF"
 EXPOSE 80
 CMD ["nginx", "-g","daemon off;"]
