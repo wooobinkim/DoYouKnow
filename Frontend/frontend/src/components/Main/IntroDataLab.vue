@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Do You Know??!!</h1>
+    <h1>Do You Know??!???????????????!</h1>
     <img class="photo" src="https://previews.123rf.com/images/joinanita/joinanita1510/joinanita151000054/46090289-%EC%A7%80%EA%B5%AC%EB%B3%B8-%EC%95%84%EC%9D%B4%EC%BD%98.jpg" alt="">
   </section>
 </template>
