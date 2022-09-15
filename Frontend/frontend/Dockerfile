@@ -2,6 +2,7 @@ FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+RUN npm install @vue/cli@3.7.0 -g
 COPY . .
 RUN npm run build
 
