@@ -8,6 +8,6 @@ FROM nginx:stable-alpine as production-stage
 
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-COPY --from=build-stage /app/nginx/deploy.conf /etc/nginx/sites-available/default.conf
+COPY --from=build-stage /app/nginx/default.conf /etc/nginx/sites-available/default.conf
 EXPOSE 80
 CMD ["nginx", "-g","daemon off;"]
