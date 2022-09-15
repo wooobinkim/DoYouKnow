@@ -5,9 +5,10 @@ RUN npm install
 COPY . .
 RUN npm run build
 FROM nginx:stable-alpine as production-stage
-
+ENTRYPOINT pwd
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 ENTRYPOINT echo "COPY HTML"
+ENTRYPOINT pwd
 COPY --from=build-stage /app/nginx/default.conf /etc/nginx/sites-available/default.conf
 ENTRYPOINT echo "COPY CONF"
 EXPOSE 80
