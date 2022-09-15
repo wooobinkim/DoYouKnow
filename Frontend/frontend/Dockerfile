@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 
 FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY --from=build-stage ./app/dist /usr/share/nginx/html
 
 # COPY --from=build-stage /var/jenkins_home/workspace/deploytest/Frontend/frontend/deploy_conf/nginx.conf /etc/nginx/conf.d/default.conf
 
