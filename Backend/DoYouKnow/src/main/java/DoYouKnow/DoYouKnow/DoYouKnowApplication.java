@@ -1,13 +1,13 @@
-package com.example.demo;
+package DoYouKnow.DoYouKnow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class DoYouKnowApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(DoYouKnowApplication.class, args);
 	}
 
 }
