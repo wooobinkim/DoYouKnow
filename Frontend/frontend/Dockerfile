@@ -12,5 +12,4 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 # COPY --from=build-stage /var/jenkins_home/workspace/deploytest/Frontend/frontend/deploy_conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-# CMD ["nginx", "-g","daemon off;"]
-CMD ["npm", "run", "serve"]
+CMD ["nginx", "-g","daemon off;"]
