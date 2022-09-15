@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MainPage from "../views/MainPage.vue";
 import DatalabPage from "../views/DatalabPage.vue";
+import GamePage from "../views/GamePage.vue";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/datalab",
     name: "DatalabPage",
     component: DatalabPage,
+  },
+  {
+    path: "/game",
+    name: "GamePage",
+    component: GamePage,
   },
 ];
 
