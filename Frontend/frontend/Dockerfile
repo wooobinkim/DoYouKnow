@@ -10,5 +10,5 @@ COPY --from=build-stage /var/jenkins_home/workspace/deploytest/Frontend/frontend
 
 #COPY --from=build-stage /var/jenkins_home/workspace/deploytest/Frontend/frontend/deploy_conf/nginx.conf /etc/nginx/sites-available/default.conf
 
-EXPOSE 443
+EXPOSE 80
 CMD ["nginx", "-g","daemon off;"]
