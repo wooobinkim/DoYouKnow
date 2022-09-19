@@ -2,13 +2,13 @@
 
 #### 인트로 페이지
 
-- 백그라운드
-  - 비디오 loop 사용해서 백그라운에서 계속 재생 -> **video 태그** [공식문서](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Video)
+- ~~백그라운드~~
+  - ~~비디오 loop 사용해서 백그라운에서 계속 재생 -> **video 태그** [공식문서](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Video)~~
 - title 
   - 이쁜 폰트 사용(fontawesome, googlefont 사용)
-- 메인 페이지 진입하는 버튼
-  - 버튼 이미지 입체적인 트로피 
-  - 마우스 호버 효과
+- ~~메인 페이지 진입하는 버튼~~
+  - ~~버튼 이미지 입체적인 트로피~~ 
+  - ~~마우스 호버 효과~~
 
 #### 메인 페이지
 
