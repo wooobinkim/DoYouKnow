@@ -78,7 +78,12 @@ def news(news_url):
             print("nononono")
             os.system("pkill chrome")
             cnt += 1
-            driver = webdriver.Chrome("/home/hadoop/Sub2/S07P22B208/TIL/SongSeona/chromedriver")
+            chrome_options = webdriver.ChromeOptions()
+            # chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument('--disable-dev-shm-usage')
+            driver = webdriver.Chrome(executable_path="/home/hadoop/S07P22B208/TIL/SongSeona/chromedriver",chrome_options=chrome_options)
+    
             print("nononono3")
             continue
         html = driver.page_source
@@ -156,7 +161,12 @@ start_year=2022
 start_month=8
 
 for i in range(10,12):
-    driver = webdriver.Chrome("/home/hadoop/Sub2/S07P22B208/TIL/SongSeona/chromedriver")
+    chrome_options = webdriver.ChromeOptions()
+    # chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(executable_path="/home/hadoop/S07P22B208/TIL/SongSeona/chromedriver",chrome_options=chrome_options)
+    
     print(i)
     start_day=i
     end_year=start_year
