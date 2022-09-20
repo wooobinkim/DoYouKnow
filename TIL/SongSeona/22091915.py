@@ -107,7 +107,7 @@ def np_tag(text):
     for doc in list:
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
         if doc[1] == 'NNP':
-            val = (doc[0].replace(" ", "_"),date_time_obj,3,2)
+            val = (doc[0].replace(" ", "_"),date_time_obj,1,2)
             cursor.execute(sql,val)
             DoYouKnow_db.commit()
             news_desc += doc[0].replace(" ", "_") + '\n'
@@ -122,7 +122,7 @@ def Url(search):
     global end_year
     global end_month
     global end_day
-    url_temp = 'https://www.google.co.jp/search?gl=jp&hl=jp&q={search}&tbm=nws'.format(search=search)
+    url_temp = 'https://www.google.com/search?gl=us&hl=en&q={search}&tbm=nws'.format(search=search)
     url_temp = url_temp + "&tbs=cdr%3A1%2Ccd_min%3A{start_month}".format(start_month=start_month)
     url_temp = url_temp + "%2F{start_day}".format(start_day=start_day)
     url_temp = url_temp + "%2F{start_year}".format(start_year=start_year)
@@ -155,7 +155,7 @@ def Url(search):
 
 cnt = 0
 start = time.time()
-search = '韓国ドラマ'
+search = 'korean drama'
 start_year=2022
 start_month=8
 
