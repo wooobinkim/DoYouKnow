@@ -1,5 +1,5 @@
 <template>
-  <MainGlobe />
+  <!-- <MainGlobe /> -->
   <IntroDataLab />
   <IntroAwards />
   <IntroGame />
@@ -9,7 +9,7 @@
 import IntroDataLab from "@/components/Main/IntroDataLab.vue";
 import IntroAwards from "@/components/Main/IntroAwards.vue";
 import IntroGame from "@/components/Main/IntroGame.vue";
-import MainGlobe from "@/components/Main/MainGlobe.vue";
+// import MainGlobe from "@/components/Main/MainGlobe.vue";
 </script>
 
 <style>
