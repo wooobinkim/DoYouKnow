@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 유저 모델 정의.
@@ -19,7 +21,7 @@ import java.time.LocalDate;
 public class Keyword extends BaseEntity {
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    private Date date;
     private String count;
 
     @ManyToOne(fetch = FetchType.LAZY)
