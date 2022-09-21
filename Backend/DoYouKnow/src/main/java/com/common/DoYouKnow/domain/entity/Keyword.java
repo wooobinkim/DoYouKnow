@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @Builder
 @ToString
 public class Keyword extends BaseEntity {
-    @Column(unique = true)
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
