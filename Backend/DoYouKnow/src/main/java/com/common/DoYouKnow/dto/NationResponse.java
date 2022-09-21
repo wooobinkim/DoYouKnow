@@ -17,7 +17,7 @@ public class NationResponse {
     private String language;
     private String twitter_code;
 
-    private static NationResponse response(Nation nation){
+    public static NationResponse response(Nation nation){
         return NationResponse.builder()
                 .id(nation.getId())
                 .name(nation.getName())

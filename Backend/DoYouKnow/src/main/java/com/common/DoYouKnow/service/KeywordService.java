@@ -1,6 +1,9 @@
 package com.common.DoYouKnow.service;
 
+import com.common.DoYouKnow.dto.CategoryResponse;
+import com.common.DoYouKnow.dto.KeywordDataResponse;
 import com.common.DoYouKnow.dto.KeywordResponse;
+import com.common.DoYouKnow.dto.NationResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,14 +13,14 @@ import java.util.List;
 public interface KeywordService {
     List<KeywordResponse> getlist();
 
-//    //국가 리스트
-//    public ResponseEntity<?> getNations();
-//
-//    //카테고리 리스트
-//    public ResponseEntity<?> getCategories();
-//
-//    //국가별 카테고리별 주간키워드
-//    public ResponseEntity<?> getWeekKeyword(Long nation_id,Long category_id);
+    //국가 리스트
+    List<NationResponse> getNations();
+
+    //카테고리 리스트
+    List<CategoryResponse> getCategories();
+
+    //국가별 카테고리별 주간키워드
+    List<KeywordDataResponse> getPeriodKeyword(Long nation_id, Long category_id, Long period);
 //
 //    //국가별 카테고리별 1달키워드
 //    public ResponseEntity<?> getOneMonthKeyword(Long nation_id,Long category_id);
