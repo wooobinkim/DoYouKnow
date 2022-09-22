@@ -7,6 +7,9 @@ import com.common.DoYouKnow.domain.repository.KeywordRepository;
 import com.common.DoYouKnow.domain.repository.NationRepository;
 import com.common.DoYouKnow.dto.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -46,22 +49,42 @@ public class KeywordServiceImpl implements KeywordService {
 
         LocalDateTime now =LocalDateTime.now();
         LocalDate endDate = now.toLocalDate();
-        System.out.println("nowDate = " + endDate);
         Date ndate = java.sql.Date.valueOf(endDate);
-        LocalDateTime before = now.minusMonths(period);
-        LocalDate startDate = before.toLocalDate();
-        System.out.println("startDate = " + startDate);
-        Date sdate = java.sql.Date.valueOf(startDate);
-        //List<Keyword> keywords = keywordRepository.priodKeyword(sdate,ndate);
-        //return keywords.stream().map(k->KeywordResponse.response(k)).collect(Collectors.toList());
+        Date sdate = getSdate(now,period);
         List<KeywordDataResponse> keywordDataResponses = new ArrayList<>();
-        List<KeywordDataInter> keywordDataInters = keywordRepository.priodKeyword(sdate, ndate);
+        List<KeywordDataInter> keywordDataInters = keywordRepository.periodKeyword(sdate, ndate ,PageRequest.of(0,5));
         keywordDataInters.forEach((keywordData)->{
             KeywordDataResponse keywordDataResponse = KeywordDataResponse.builder().name(keywordData.getName()).count(keywordData.getCount()).build();
             keywordDataResponses.add(keywordDataResponse);
         });
         return keywordDataResponses;
     }
+    @Override
+    public List<KeywordResponse> getPeriodGraph(String keyword, Long nation_id, Long category_id, Long period) {
+        LocalDateTime now =LocalDateTime.now();
+        LocalDate endDate = now.toLocalDate();
+        Date ndate = java.sql.Date.valueOf(endDate);
+        Date sdate = getSdate(now,period);
+        List<Keyword> keywords = keywordRepository.PeriodGraph(keyword,sdate,ndate);
+
+        return keywords.stream().map(k-> KeywordResponse.response(k)).collect(Collectors.toList());
+    }
+
+    private Date getSdate(LocalDateTime now, Long period) {
+        if(period==0){
+            LocalDateTime before = now.minusDays(7);
+            LocalDate startDate = before.toLocalDate();
+            return java.sql.Date.valueOf(startDate);
+        }
+        else if(period!=0) {
+            LocalDateTime before = now.minusMonths(period);
+            LocalDate startDate = before.toLocalDate();
+            return java.sql.Date.valueOf(startDate);
+        }
+        return null;
+    }
+
+
 
 
 }
