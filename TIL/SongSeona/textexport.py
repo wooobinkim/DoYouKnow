@@ -35,9 +35,9 @@ for i in range(1,31):
     # Fetch all the rows in a list of lists.
             results = cursor.fetchall()
             # print(results)
-            path = "/home/hadoop/Project/data/"+str(date)+"_"+str(nation_id)+"_"+str(category_id)+".txt"
+            # path = "/home/hadoop/Project/data/"+str(date)+"_"+str(nation_id)+"_"+str(category_id)+".txt"
             if results:
-                newfile = open(path,"a+", encoding='utf-8')
+                newfile = open("/home/hadoop/Project/data/DYKRawData.txt","a+", encoding='utf-8')
 
             for index in results:
                 ltr=[]
