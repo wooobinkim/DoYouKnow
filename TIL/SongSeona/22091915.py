@@ -26,7 +26,7 @@ DoYouKnow_db= pymysql.connect(
     user='b208', 
     passwd='b208root', 
     host='43.201.37.208', 
-    db='DoYouKnow', 
+    db='RawData', 
     charset='utf8'
 )
 cursor = DoYouKnow_db.cursor(pymysql.cursors.DictCursor)
@@ -59,7 +59,7 @@ def chromeTest(url):
     pyautogui.hotkey('shift', 'F10')
     pyautogui.keyDown('t')
     pyautogui.keyUp('t')
-    # time.sleep(20)
+    time.sleep(1)
     for c in range(0,5):
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
@@ -105,10 +105,9 @@ def np_tag(text):
     date_time_str = str(start_year).zfill(2)+"-"+str(start_month).zfill(2)+"-"+str(start_day).zfill(2)
     date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d')
     for doc in list:
-        if doc[1] == 'NNP' or doc[1] == 'NNG':
-            print("thisthisthishtishi:")
-            print(doc[0].replace(" ", "_"))
-            val = (doc[0].replace(" ", "_"),date_time_obj,1,1)
+        #if doc[1] == 'NNP' or doc[1] == 'NNG':
+        if doc[1] == 'NNP':
+            val = (doc[0].replace(" ", "_"),date_time_obj,,2)
             cursor.execute(sql,val)
             DoYouKnow_db.commit()
             news_desc += doc[0].replace(" ", "_") + '\n'
@@ -123,7 +122,7 @@ def Url(search):
     global end_year
     global end_month
     global end_day
-    url_temp = 'https://www.google.com/search?q={search}&tbm=nws'.format(search=search)
+    url_temp = 'https://www.google.com/search?gl=us&hl=en&q={search}&tbm=nws'.format(search=search)
     url_temp = url_temp + "&tbs=cdr%3A1%2Ccd_min%3A{start_month}".format(start_month=start_month)
     url_temp = url_temp + "%2F{start_day}".format(start_day=start_day)
     url_temp = url_temp + "%2F{start_year}".format(start_year=start_year)
@@ -156,16 +155,16 @@ def Url(search):
 
 cnt = 0
 start = time.time()
-search = 'korean dramas'
+search = 'korean drama'
 start_year=2022
 start_month=8
 
-for i in range(10,12):
+for i in range(11,30):
     chrome_options = webdriver.ChromeOptions()
     # chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(executable_path="/home/hadoop/S07P22B208/TIL/SongSeona/chromedriver",chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path="/home/hadoop/Sub2/S07P22B208/TIL/SongSeona/chromedriver",chrome_options=chrome_options)
     
     print(i)
     start_day=i
@@ -183,9 +182,9 @@ for i in range(10,12):
         print("timeout")
         continue
     finally:
-        f = open(textname, 'w', encoding='utf-8')
-        f.write(whole_text)
-        f.close()
+        # f = open(textname, 'w', encoding='utf-8')
+        # f.write(whole_text)
+        # f.close()
         cnt =0
         driver.quit()
         print("============")
