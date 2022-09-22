@@ -2,7 +2,13 @@ import pymysql.cursors
 import pymysql
 import sys
 import os
+from datetime import datetime
 
+date="2022-08-01"
+nation_id=1
+category_id=2
+
+date_obj = datetime.strptime(date,"%Y-%m-%d")
 # Open database connection
 connection = pymysql.connect(
     user='b208', 
@@ -17,19 +23,26 @@ with connection.cursor() as cursor:
 # Prepare SQL query to select a record into the database.
     try:
 
-        sql = "SELECT name FROM rawdata"
+        sql = "SELECT * FROM rawdata where data_date=%s and nation_id = %s and category_id = %s"
 # Execute the SQL command
-        cursor.execute(sql)
+        val = (date_obj,nation_id,category_id)
+        cursor.execute(sql,val)
 # Fetch all the rows in a list of lists.
         results = cursor.fetchall()
         # print(results)
+        path = "/home/hadoop/Project/data/"+str(date)+"_"+str(nation_id)+"_"+str(category_id)+".txt"
         if results:
-            newfile = open("/home/hadoop/rawdata.txt","a+", encoding='utf-8')
-            newfile.write('name'+"\n")
+            newfile = open(path,"a+", encoding='utf-8')
 
         for index in results:
             ltr=[]
             ltr.append(index['name'])
+            ltr.append(',')
+            ltr.append(index['data_date'])
+            ltr.append(',')
+            ltr.append(index['nation_id'])
+            ltr.append(',')
+            ltr.append(index['category_id'])
             lenltr=len(ltr)
             for i in range(lenltr):
                 newfile.write('{}'.format(ltr[i]))
