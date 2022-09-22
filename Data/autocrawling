@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# search_array, search_category_id, month, nation_id
+
+python3 -c 'import test; test.cawrling_category(["Olahraga Korea","sepak bola korea","pemain korea"], [1,1,1], 8, 5)'
+
+# python3 -c 'import test; test.cawrling_month("film korea", 3, 5)'
+exit 0
