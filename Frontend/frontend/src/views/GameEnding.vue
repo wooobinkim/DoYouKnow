@@ -1,19 +1,20 @@
 <template>
-  <div class="game-background">
+  <div class="ending-background">
     <img @click="gohome" src="@/assets/logo.png" alt="logo" class="logo" />
-    <div class="game-container">
-      <img class="game-logo" src="@/assets/hilow.png" alt="game-logo" />
-      <div class="intro-container">
-        <div class="sub-intro">
-          <h3>(그런데 국뽕을 곁들인)</h3>
+    <div class="ending-container">
+      <img
+        class="ending-img"
+        :src="require(`@/assets/ending-img${randomint}.jpg`)"
+        alt=""
+      />
+      <div class="ending-info">
+        <h2 style="color: white">🎯당신의 점수는🎯</h2>
+        <h1 class="score">1점 !</h1>
+        <h3 style="color: white">아이쿠 손이 미끄러졌네~~🔨</h3>
+        <h3 style="margin-top: 0rem">유저 평균 점수 6.3점</h3>
+        <div class="button-container">
+          <button class="w-btn-neon2" @click="gamestart">다시할래</button>
         </div>
-        <div class="main-intro">
-          <h1>어떤 키워드들이 더 많이 검색됐을까?</h1>
-          <h2 class="intro-h2">Google 검색량 2022년 9월 기준</h2>
-        </div>
-      </div>
-      <div class="button-container">
-        <button class="w-btn-neon2" @click="gamestart">시이작 !</button>
       </div>
     </div>
   </div>
@@ -21,18 +22,21 @@
 
 <script>
 import { useRouter } from "vue-router";
-
 export default {
   setup() {
     const router = useRouter();
-    const gamestart = function () {
-      router.push({ name: "GamePlay" });
-    };
+
+    let randomint = Math.ceil(Math.random() * 3).toString();
+
     const gohome = function () {
       router.push({ name: "MainPage" });
     };
+    const gamestart = function () {
+      router.push({ name: "GamePage" });
+    };
 
     return {
+      randomint,
       gamestart,
       gohome,
     };
@@ -41,7 +45,7 @@ export default {
 </script>
 
 <style scoped>
-.game-background {
+.ending-background {
   background-color: rgba(137, 156, 255, 75%);
   height: 100%;
   width: 100%;
@@ -49,42 +53,36 @@ export default {
 .logo {
   width: 100px;
   height: 100px;
+  z-index: 2;
 }
-.game-container {
+.ending-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+  z-index: 2;
+}
+.ending-img {
+  width: 100%;
+  height: 600px;
+  opacity: 70%;
+  margin-top: -8rem;
+  margin-bottom: 3.1rem;
+}
+.score {
+  color: yellow;
+  font-size: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.ending-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -3rem;
-}
-.game-logo {
-  height: 700px;
-  width: 700px;
-  margin-top: -7rem;
-}
-.intro-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: -15rem;
-}
-.sub-intro {
-  color: white;
-  margin-left: 20rem;
-  margin-top: -2rem;
-}
-.main-intro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.intro-h2 {
-  color: #909090;
-  margin-top: -1rem;
+  position: absolute;
 }
 .button-container {
-  height: 6.3rem;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
+  display: flex;
+  margin-top: 2.5rem;
 }
 @keyframes ring {
   0% {
