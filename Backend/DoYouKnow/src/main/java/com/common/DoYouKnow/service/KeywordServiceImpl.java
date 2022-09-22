@@ -9,6 +9,9 @@ import com.common.DoYouKnow.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,6 +26,10 @@ public class KeywordServiceImpl implements KeywordService {
     private final KeywordRepository keywordRepository;
     private final NationRepository nationRepository;
     private final CategoryRepository categoryRepository;
+
+    @PersistenceContext
+    EntityManager em;
+
     @Override
     public List<KeywordResponse> getlist() {
         List<Keyword> keywords = keywordRepository.findAll();
@@ -46,11 +53,11 @@ public class KeywordServiceImpl implements KeywordService {
 
         LocalDateTime now =LocalDateTime.now();
         LocalDate endDate = now.toLocalDate();
-        System.out.println("nowDate = " + endDate);
+
         Date ndate = java.sql.Date.valueOf(endDate);
         LocalDateTime before = now.minusMonths(period);
         LocalDate startDate = before.toLocalDate();
-        System.out.println("startDate = " + startDate);
+
         Date sdate = java.sql.Date.valueOf(startDate);
         //List<Keyword> keywords = keywordRepository.priodKeyword(sdate,ndate);
         //return keywords.stream().map(k->KeywordResponse.response(k)).collect(Collectors.toList());
