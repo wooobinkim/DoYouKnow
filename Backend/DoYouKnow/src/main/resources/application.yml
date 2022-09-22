@@ -11,9 +11,17 @@ spring:
   # TODO : PUSH 하기 전에 다시 한번 확인할 것.
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/jmark?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: root
+    url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: b208
+    password: b208root
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    hibernate:
+      format_sql: true
+      ddl-auto: none
+      show-sql: true
 
 logging:
   level:
@@ -29,10 +37,3 @@ logging:
         util:
           EC2MetadataUtils: error
 
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    open-in-view: false
-    show-sql: true
-    hibernate:
-      format_sql: true
-      ddl-auto: none
