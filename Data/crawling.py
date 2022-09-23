@@ -1,17 +1,8 @@
-from nltk import word_tokenize, pos_tag, ne_chunk
-from nltk import RegexpParser
-from nltk import Tree
-import nltk
 import re
-import pandas as pd
-from konlpy.tag import Okt
-from nltk.corpus import stopwords
-from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import pyautogui
 import time
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from konlpy.tag import Mecab
@@ -21,6 +12,7 @@ import os
 import signal
 import pymysql
 from datetime import datetime
+from webdriver_manager.chrome import ChromeDriverManager
 
 DoYouKnow_db= pymysql.connect(
     user='b208', 
@@ -31,6 +23,13 @@ DoYouKnow_db= pymysql.connect(
 )
 cursor = DoYouKnow_db.cursor(pymysql.cursors.DictCursor)
 sql = "insert into rawdata (name,data_date,nation_id,category_id) values (%s,%s,%s,%s)"
+
+File = open("/home/hadoop/S07P22B208/Data/exceptkeyword.txt", encoding='utf-8')
+exceptkeyword = []
+while True : 
+    line = File.readline().strip()
+    if not line : break
+    exceptkeyword.append(line)
 
 class TimeoutError(Exception):
     pass
@@ -59,7 +58,7 @@ def chromeTest(url):
     pyautogui.hotkey('shift', 'F10')
     pyautogui.keyDown('t')
     pyautogui.keyUp('t')
-    time.sleep(1)
+    time.sleep(2)
     for c in range(0,5):
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
@@ -82,7 +81,8 @@ def news(news_url):
             # chrome_options.add_argument('--headless')
             chrome_options.add_argument('--no-sandbox')
             chrome_options.add_argument('--disable-dev-shm-usage')
-            driver = webdriver.Chrome(executable_path="/home/hadoop/S07P22B208/TIL/SongSeona/chromedriver",chrome_options=chrome_options)
+            # driver = webdriver.Chrome(executable_path="/home/hadoop/S07P22B208/Data/chromedriver",chrome_options=chrome_options)
+            driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=chrome_options)
     
             print("nononono3")
             continue
@@ -99,15 +99,24 @@ def news(news_url):
 def np_tag(text):
     hangul = re.compile('[^ ㄱ-ㅣ가-힣]+')
     text = hangul.sub('', text)
+    date_time_str = str(start_year).zfill(2)+"-"+str(start_month).zfill(2)+"-"+str(start_day).zfill(2)
+    date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d')
+    nospacetext = text.replace(" ","")
+
+    for i in range(len(exceptkeyword)):
+        if exceptkeyword[i] in nospacetext :
+            val = (exceptkeyword[i],date_time_obj,1,2)
+            for i in range(25):
+                cursor.execute(sql,val)
+                DoYouKnow_db.commit()
+
     m = Mecab()
     list = m.pos(text)
     news_desc = ""
-    date_time_str = str(start_year).zfill(2)+"-"+str(start_month).zfill(2)+"-"+str(start_day).zfill(2)
-    date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d')
     for doc in list:
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
         if doc[1] == 'NNP':
-            val = (doc[0].replace(" ", "_"),date_time_obj,4,2)
+            val = (doc[0].replace(" ", ""),date_time_obj,1,2)
             cursor.execute(sql,val)
             DoYouKnow_db.commit()
             news_desc += doc[0].replace(" ", "_") + '\n'
@@ -122,7 +131,7 @@ def Url(search):
     global end_year
     global end_month
     global end_day
-    url_temp = 'https://www.google.com.hk/search?gl=hk&hl=zh-CN&q={search}&tbm=nws'.format(search=search)
+    url_temp = 'https://www.google.com/search?gl=us&hl=en&q={search}&tbm=nws'.format(search=search)
     url_temp = url_temp + "&tbs=cdr%3A1%2Ccd_min%3A{start_month}".format(start_month=start_month)
     url_temp = url_temp + "%2F{start_day}".format(start_day=start_day)
     url_temp = url_temp + "%2F{start_year}".format(start_year=start_year)
@@ -155,7 +164,7 @@ def Url(search):
 
 cnt = 0
 start = time.time()
-search = '韩剧'
+search = 'korean drama'
 start_year=2022
 start_month=8
 
@@ -164,7 +173,8 @@ for i in range(1,31):
     # chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(executable_path="/home/hadoop/Sub2/S07P22B208/TIL/SongSeona/chromedriver",chrome_options=chrome_options)
+    # driver = webdriver.Chrome(executable_path="/home/hadoop/S07P22B208/Data/chromedriver",chrome_options=chrome_options)
+    driver = webdriver.Chrome(ChromeDriverManager().install(),chrome_options=chrome_options)
     
     print(i)
     start_day=i
@@ -189,5 +199,6 @@ for i in range(1,31):
         driver.quit()
         print("============")
         
+exceptkeyword.close()
 driver.quit()
 print("time!!!!!!!!!!!!!!!!!!!!! :", time.time() - start)
