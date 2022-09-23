@@ -14,6 +14,11 @@ group = 'com.common'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+	queryDslVersion = "5.0.0"
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
