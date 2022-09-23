@@ -5,6 +5,11 @@ plugins {
 	id 'java'
 }
 
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+	queryDslVersion = "5.0.0"
+}
+
 group = 'com.common'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
