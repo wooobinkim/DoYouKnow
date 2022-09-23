@@ -2,19 +2,21 @@ package com.common.DoYouKnow.service;
 import com.common.DoYouKnow.domain.entity.Category;
 import com.common.DoYouKnow.domain.entity.Keyword;
 import com.common.DoYouKnow.domain.entity.Nation;
+//import com.common.DoYouKnow.domain.entity.QKeyword;
 import com.common.DoYouKnow.domain.repository.CategoryRepository;
+import com.common.DoYouKnow.domain.repository.KeywordCustomRepository;
 import com.common.DoYouKnow.domain.repository.KeywordRepository;
 import com.common.DoYouKnow.domain.repository.NationRepository;
 import com.common.DoYouKnow.dto.*;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,11 +26,11 @@ import java.util.stream.Collectors;
 public class KeywordServiceImpl implements KeywordService {
 
     private final KeywordRepository keywordRepository;
+    private final KeywordCustomRepository keywordCustomRepository;
     private final NationRepository nationRepository;
     private final CategoryRepository categoryRepository;
 
-    @PersistenceContext
-    EntityManager em;
+
 
     @Override
     public List<KeywordResponse> getlist() {
@@ -50,25 +52,43 @@ public class KeywordServiceImpl implements KeywordService {
 
     @Override
     public List<KeywordDataResponse> getPeriodKeyword(Long nation_id, Long category_id, Long period) {
-
         LocalDateTime now =LocalDateTime.now();
         LocalDate endDate = now.toLocalDate();
-
         Date ndate = java.sql.Date.valueOf(endDate);
-        LocalDateTime before = now.minusMonths(period);
-        LocalDate startDate = before.toLocalDate();
-
-        Date sdate = java.sql.Date.valueOf(startDate);
-        //List<Keyword> keywords = keywordRepository.priodKeyword(sdate,ndate);
-        //return keywords.stream().map(k->KeywordResponse.response(k)).collect(Collectors.toList());
-        List<KeywordDataResponse> keywordDataResponses = new ArrayList<>();
-        List<KeywordDataInter> keywordDataInters = keywordRepository.priodKeyword(sdate, ndate);
-        keywordDataInters.forEach((keywordData)->{
-            KeywordDataResponse keywordDataResponse = KeywordDataResponse.builder().name(keywordData.getName()).count(keywordData.getCount()).build();
-            keywordDataResponses.add(keywordDataResponse);
-        });
-        return keywordDataResponses;
+        Date sdate = getSdate(now,period);
+        return keywordCustomRepository.periodKeyword(sdate,ndate,nation_id, category_id);
     }
+    @Override
+    public List<KeywordResponse> getPeriodGraph(String keyword, Long nation_id, Long category_id, Long period) {
+        LocalDateTime now =LocalDateTime.now();
+        LocalDate endDate = now.toLocalDate();
+        Date ndate = java.sql.Date.valueOf(endDate);
+        Date sdate = getSdate(now,period);
+        List<Keyword> keywords = keywordCustomRepository.PeriodGraph(sdate,ndate,nation_id,category_id,keyword);
+
+        return keywords.stream().map(k-> KeywordResponse.response(k)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Long getTotalCount(Long nation_id, Long category_id) {
+        return keywordCustomRepository.SearchCount(nation_id,category_id);
+    }
+
+
+    private Date getSdate(LocalDateTime now, Long period) {
+        if(period==0){
+            LocalDateTime before = now.minusDays(7);
+            LocalDate startDate = before.toLocalDate();
+            return java.sql.Date.valueOf(startDate);
+        }
+        else if(period!=0) {
+            LocalDateTime before = now.minusMonths(period);
+            LocalDate startDate = before.toLocalDate();
+            return java.sql.Date.valueOf(startDate);
+        }
+        return null;
+    }
+
 
 
 }

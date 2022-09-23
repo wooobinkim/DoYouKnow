@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# def crawling_daily(searches, category_id, nation_id)
+# python3 -c 'import dailycrawling; dailycrawling.crawling_daily(["Olahraga Korea","sepak bola korea","pemain korea", "penyanyi korea", "Drama Korea", "film korea"], [1,1,1,4,5,2,3], 5)'
+
+python3 /home/hadoop/dailycrawling.py
+exit 0

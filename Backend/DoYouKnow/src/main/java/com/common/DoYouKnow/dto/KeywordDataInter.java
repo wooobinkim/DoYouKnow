@@ -3,7 +3,7 @@ public interface KeywordDataInter {
 
     String getName();
 
-    String getCount();
+    int getCount();
 
 
 }
