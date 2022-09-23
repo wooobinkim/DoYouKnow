@@ -60,7 +60,7 @@ def news(news_url):
     whole_text = ""
     global driver
     for url_no in news_url:
-        # print(url_no)
+        print(url_no)
         try:
             chromeTest(url_no)
         except TimeoutError as e:
@@ -98,7 +98,7 @@ def np_tag(text):
     for doc in list:
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
         if doc[1] == 'NNP':
-            val = (doc[0].replace(" ", "_"),date_time_obj,nation,category)
+            val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
             cursor.execute(sql,val)
             DoYouKnow_db.commit()
             news_desc += doc[0].replace(" ", "_") + '\n'
@@ -121,7 +121,7 @@ def Url(search):
     url_temp = url_temp + "%2Ccd_max%3A{end_month}".format(end_month=end_month)
     url_temp = url_temp + "%2F{end_day}".format(end_day=end_day)
     url_temp = url_temp + "%2F{end_year}".format(end_year=end_year)
-    for pageNo in range(0,10,10):
+    for pageNo in range(0,300,10):
         url = url_temp + "&start={pageNo}".format(pageNo=pageNo)
         driver.get(url)
 
@@ -140,7 +140,7 @@ def Url(search):
             else:
                 print("no texts")
 
-        print(news_urls)
+        # print(news_urls)
         result += news(news_urls)
     return result
 
@@ -154,7 +154,7 @@ end_day=start_day
 category = 0
 nation = 0
 
-def cawrling_category(searches, category_id, month, nation_id):
+def crawling_category(searches, category_id, month, nation_id):
     global start_year
     global start_month
     global start_day
@@ -180,6 +180,7 @@ def cawrling_category(searches, category_id, month, nation_id):
         category = category_id[cnt]
     
         for i in range(1,day[month-1]):
+        # for i in range(1,2):
             chrome_options = webdriver.ChromeOptions()
             # chrome_options.add_argument('--headless')
             chrome_options.add_argument('--no-sandbox')
@@ -188,11 +189,10 @@ def cawrling_category(searches, category_id, month, nation_id):
             
             start_day=i
             end_day=start_day
-            whole_text = ""
+
             try:
-                whole_text = Url(searches[cnt])
+                Url(searches[cnt])
             except Exception as e:
-                print(e)
                 print("timeout")
                 continue
             finally:
@@ -200,7 +200,7 @@ def cawrling_category(searches, category_id, month, nation_id):
                 print("============")
                 
         driver.quit()
-        print("time!!!!!!!!!!!!!!!!!!!!! :", time.time() - start)
+    print("time!!!!!!!!!!!!!!!!!!!!! :", time.time() - start)
 
 
 def cawrling_month(search, category_id, nation_id):
@@ -228,7 +228,6 @@ def cawrling_month(search, category_id, nation_id):
             start_day=day
             end_day=start_day
             try:
-                time.sleep(1)
                 Url(search)
             except Exception as e:
                 print("timeout")
