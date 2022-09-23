@@ -9,7 +9,7 @@
       /> -->
       <div class="ending-info">
         <h2 style="color: white">🎯당신의 점수는🎯</h2>
-        <h1 class="score">1점 !</h1>
+        <h1 class="score">{{ score }}점 !</h1>
         <h3 style="color: white">아이쿠 손이 미끄러졌네~~🔨</h3>
         <h3 style="margin-top: 0rem">유저 평균 점수 6.3점</h3>
         <div class="button-container">
@@ -28,6 +28,15 @@ export default {
 
     let randomint = Math.ceil(Math.random() * 3).toString();
 
+    // 점수가져오기
+    let score = 0;
+    let getScore = function () {
+      score = window.localStorage.getItem("korea-score");
+      window.localStorage.removeItem("korea-score");
+      console.log(window.localStorage);
+    };
+    getScore();
+
     const gohome = function () {
       router.push({ name: "MainPage" });
     };
@@ -39,6 +48,7 @@ export default {
       randomint,
       gamestart,
       gohome,
+      score,
     };
   },
 };

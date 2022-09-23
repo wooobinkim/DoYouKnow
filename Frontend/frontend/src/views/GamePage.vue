@@ -92,6 +92,7 @@ export default {
   height: 6.3rem;
   margin-top: 2rem;
   margin-bottom: 4rem;
+  z-index: 1;
 }
 button {
   padding: 13px;
