@@ -11,7 +11,8 @@ spring:
   # TODO : PUSH 하기 전에 다시 한번 확인할 것.
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serverTimezone=UTC&characterEncoding=UTF-8
+    #url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: b208
     password: b208root
 
