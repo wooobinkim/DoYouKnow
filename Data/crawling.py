@@ -24,12 +24,21 @@ DoYouKnow_db= pymysql.connect(
 cursor = DoYouKnow_db.cursor(pymysql.cursors.DictCursor)
 sql = "insert into rawdata (name,data_date,nation_id,category_id) values (%s,%s,%s,%s)"
 
-File = open("/home/hadoop/S07P22B208/Data/exceptkeyword.txt", encoding='utf-8')
+File = open("/home/hadoop/S07P22B208/Data/dramaexcept.txt", encoding='utf-8')
+# File = open("/home/hadoop/S07P22B208/Data/movieexcept.txt", encoding='utf-8')
 exceptkeyword = []
+
 while True : 
     line = File.readline().strip()
     if not line : break
     exceptkeyword.append(line)
+
+File2 = open("/home/hadoop/S07P22B208/Data/removekeyword.txt", encoding='utf-8')
+removekeyword = []
+while True : 
+    line = File2.readline().strip()
+    if not line : break
+    removekeyword.append(line)
 
 class TimeoutError(Exception):
     pass
@@ -106,7 +115,7 @@ def np_tag(text):
     for i in range(len(exceptkeyword)):
         if exceptkeyword[i] in nospacetext :
             val = (exceptkeyword[i],date_time_obj,1,2)
-            for i in range(25):
+            for i in range(10):
                 cursor.execute(sql,val)
                 DoYouKnow_db.commit()
 
@@ -115,11 +124,18 @@ def np_tag(text):
     news_desc = ""
     for doc in list:
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
+        flag = True
         if doc[1] == 'NNP':
-            val = (doc[0].replace(" ", ""),date_time_obj,1,2)
-            cursor.execute(sql,val)
-            DoYouKnow_db.commit()
-            news_desc += doc[0].replace(" ", "_") + '\n'
+            for i in range(len(removekeyword)):
+                if removekeyword[i] in doc[0].replace(" ",""): 
+                    flag = False
+                    break
+
+            if(flag) : 
+                val = (doc[0].replace(" ", ""),date_time_obj,1,2)
+                cursor.execute(sql,val)
+                DoYouKnow_db.commit()
+                news_desc += doc[0].replace(" ", "_") + '\n'
     return news_desc
 
 
@@ -198,7 +214,8 @@ for i in range(1,31):
         cnt =0
         driver.quit()
         print("============")
-        
-exceptkeyword.close()
+
+File.close()
+File2.close()
 driver.quit()
 print("time!!!!!!!!!!!!!!!!!!!!! :", time.time() - start)

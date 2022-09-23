@@ -5,6 +5,7 @@ import pyautogui
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from konlpy.tag import Mecab
 from functools import wraps
 import errno
@@ -14,6 +15,9 @@ import pymysql
 from datetime import datetime
 from webdriver_manager.chrome import ChromeDriverManager
 
+caps = DesiredCapabilities().CHROME
+caps["pageLoadStrategy"] = "none"
+
 DoYouKnow_db= pymysql.connect(
     user='b208', 
     passwd='b208root', 
@@ -22,7 +26,7 @@ DoYouKnow_db= pymysql.connect(
     charset='utf8'
 )
 cursor = DoYouKnow_db.cursor(pymysql.cursors.DictCursor)
-sql = "insert into rawdatatest (name,data_date,nation_id,category_id) values (%s,%s,%s,%s)"
+sql = "insert into rawdata (name,data_date,nation_id,category_id) values (%s,%s,%s,%s)"
 
 class TimeoutError(Exception):
     pass
@@ -88,6 +92,9 @@ def np_tag(text):
     global start_year
     global start_month
     global start_day
+    global exceptkeyword
+    global removekeyword
+
     hangul = re.compile('[^ ㄱ-ㅣ가-힣]+')
     text = hangul.sub('', text)
     m = Mecab()
@@ -95,13 +102,30 @@ def np_tag(text):
     news_desc = ""
     date_time_str = str(start_year).zfill(2)+"-"+str(start_month).zfill(2)+"-"+str(start_day).zfill(2)
     date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d')
+
     for doc in list:
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
+        flag = True
         if doc[1] == 'NNP':
-            val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
-            cursor.execute(sql,val)
-            DoYouKnow_db.commit()
-            news_desc += doc[0].replace(" ", "_") + '\n'
+            for i in range(len(removekeyword)):
+                if removekeyword[i] in doc[0].replace(" ",""): 
+                    flag = False
+                    break
+            if(flag) :
+                print(doc[0])
+                val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
+                cursor.execute(sql,val)
+                DoYouKnow_db.commit()
+                news_desc += doc[0].replace(" ", "_") + '\n'
+
+    nospacetext = text.replace(" ","")
+    for i in range(len(exceptkeyword)):
+        if exceptkeyword[i] in nospacetext :
+            val = (exceptkeyword[i],date_time_obj,1,2)
+            for i in range(5):
+                cursor.execute(sql,val)
+                DoYouKnow_db.commit()
+
     return news_desc
 
 
@@ -121,7 +145,7 @@ def Url(search):
     url_temp = url_temp + "%2Ccd_max%3A{end_month}".format(end_month=end_month)
     url_temp = url_temp + "%2F{end_day}".format(end_day=end_day)
     url_temp = url_temp + "%2F{end_year}".format(end_year=end_year)
-    for pageNo in range(0,300,10):
+    for pageNo in range(0,10,10):
         url = url_temp + "&start={pageNo}".format(pageNo=pageNo)
         driver.get(url)
 
@@ -154,6 +178,8 @@ end_day=start_day
 category = 0
 nation = 0
 
+removekeyword=[]
+exceptkeyword=[]
 def crawling_category(searches, category_id, month, nation_id):
     global start_year
     global start_month
@@ -164,6 +190,8 @@ def crawling_category(searches, category_id, month, nation_id):
     global driver
     global category
     global nation
+    global removekeyword
+    global exceptkeyword
 
     print(searches, category_id, month, nation_id)
     day =[32, 29, 32, 31, 32, 31, 32, 32, 25, 32, 31, 32]
@@ -174,10 +202,44 @@ def crawling_category(searches, category_id, month, nation_id):
     end_year=start_year
     end_month=month
     nation = nation_id
-    
+
+    #keyword remove start
+    File2 = open("/home/hadoop/S07P22B208/Data/removekeyword.txt", encoding='utf-8')
+    # removekeyword = []
+    while True : 
+        line = File2.readline().strip()
+        if not line : break
+        removekeyword.append(line)
+    #keyword remove end
+
     for cnt in range(len(searches)):
         print(searches[cnt], category_id[cnt])
         category = category_id[cnt]
+
+        # File=None
+        # exceptkeyword = []
+        #keyword weight start
+        if category==2 :
+            print("are you comein222222222222@@??????")
+            File = open("/home/hadoop/S07P22B208/Data/dramaexcept.txt", encoding='utf-8')
+            while True : 
+                line = File.readline().strip()
+                if not line : break
+                exceptkeyword.append(line)
+        elif category==3 :
+            File = open("/home/hadoop/S07P22B208/Data/movieexcept.txt", encoding='utf-8')
+            while True : 
+                line = File.readline().strip()
+                if not line : break
+                exceptkeyword.append(line)
+        
+
+        # while True : 
+        #     line = File.readline().strip()
+        #     if not line : break
+        #     exceptkeyword.append(line)
+
+        #keyword weight end
     
         for i in range(1,day[month-1]):
         # for i in range(1,2):
@@ -190,14 +252,15 @@ def crawling_category(searches, category_id, month, nation_id):
             start_day=i
             end_day=start_day
 
-            try:
-                Url(searches[cnt])
-            except Exception as e:
-                print("timeout")
-                continue
-            finally:
-                driver.quit()
-                print("============")
+            Url(searches[cnt])
+            # try:
+            #     Url(searches[cnt])
+            # except Exception as e:
+            #     print("timeout")
+            #     continue
+            # finally:
+            #     driver.quit()
+            #     print("============")
                 
         driver.quit()
     print("time!!!!!!!!!!!!!!!!!!!!! :", time.time() - start)
