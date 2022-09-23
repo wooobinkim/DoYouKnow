@@ -2,11 +2,13 @@
   <div class="game-background">
     <div class="game-container">
       <div class="card-left">
-        <img class="card-img" id="url-img" :src="game.left.imgUrl" alt="" />
+        <div class="img-container">
+          <img class="card-img" id="url-img" :src="game.left.imgUrl" alt="" />
+        </div>
         <div class="ans-container">
           <h2 id="name-h2">{{ game.left.name }}</h2>
           <h2 style="font-size: 2rem" id="count-h2">
-            {{ game.left.count }} 회
+            {{ game.left.count.toLocaleString("ko-KR") }} 회
           </h2>
         </div>
       </div>
@@ -14,7 +16,9 @@
         <img class="icon-img" src="@/assets/vs.png" alt="" />
       </div>
       <div class="card-right">
-        <img class="card-img" id="url1-img" :src="game.right.imgUrl" alt="" />
+        <div class="img-container">
+          <img class="card-img" id="url1-img" :src="game.right.imgUrl" alt="" />
+        </div>
         <div class="qus-container" id="qus-container">
           <h2 id="name1-h2">{{ game.right.name }}</h2>
           <div id="button-container">
@@ -138,29 +142,32 @@ export default {
     const checkHigher = function () {
       //TODO: 숫자보여주기
       removeBtn();
-      if (game.left.count <= game.right.count) {
-        data.score++;
-        //TODO: 중앙버튼 바뀌기
-        //TODO: 슬라이드 밀기
+      // if (game.left.count <= game.right.count) {
+      //   data.score++;
+      //   //TODO: 중앙버튼 바뀌기
+      //   //TODO: 슬라이드 밀기
 
-        setTimeout(() => {
-          // 오른쪽 데이터를 왼쪽으로 보내기
-          document.getElementById("name-h2").innerText = game.right.name;
-          document.getElementById("count-h2").innerText = game.right.count;
-          document.getElementById("url-img").src = game.right.imgUrl;
+      //   setTimeout(() => {
+      //     // 오른쪽 데이터를 왼쪽으로 보내기
+      //     document.getElementById("name-h2").innerText = game.right.name;
+      //     document.getElementById("count-h2").innerText =
+      //       game.right.count.toLocaleString("ko-KR") + "회";
+      //     document.getElementById("url-img").src = game.right.imgUrl;
 
-          // 오른쪽에 새로운 데이터 받기
-          game.right = randomData();
-          document.getElementById("url1-img").src = game.right.imgUrl;
-          document.getElementById("name1-h2").innerText = game.right.name;
-          document.getElementById("button-container").style.display = "";
-          document.getElementById("newDiv").remove();
-        }, 1000);
-      } else {
-        //TODO: 중앙버튼 바뀌기
-        //TODO: socre parmas 넘겨주기
-        router.push({ name: "GameEnding" });
-      }
+      //     // 오른쪽에 새로운 데이터 받기
+      //     game.right = randomData();
+      //     document.getElementById("url1-img").src = game.right.imgUrl;
+      //     document.getElementById("name1-h2").innerText = game.right.name;
+      //     document.getElementById("button-container").style.display = "";
+      //     document.getElementById("newDiv").remove();
+      //   }, 2000);
+      // } else {
+      //   //TODO: 중앙버튼 바뀌기
+      //   //TODO: socre parmas 넘겨주기
+      //   setTimeout(() => {
+      //     router.push({ name: "GameEnding" });
+      //   }, 2000);
+      // }
     };
 
     // 더적게버튼
@@ -190,7 +197,9 @@ export default {
       } else {
         //TODO: 중앙버튼 바뀌기
         //TODO: socre 넘겨주기
-        router.push({ name: "GameEnding" });
+        setTimeout(() => {
+          router.push({ name: "GameEnding" });
+        }, 2000);
       }
     };
 
@@ -199,11 +208,18 @@ export default {
       document.getElementById("button-container").style.display = "none";
       // TODO: 숫자 애니메이션 보여주기
       const newDiv = document.createElement("div");
-      const newText = document.createTextNode(game.right.count);
-      newDiv.appendChild(newText);
+      const newH2 = document.createElement("h2");
+      const newText = document.createTextNode(
+        game.right.count.toLocaleString("ko-KR") + " 회"
+      );
+      newH2.appendChild(newText);
+      newDiv.appendChild(newH2);
       document.getElementById("qus-container").appendChild(newDiv);
-
       newDiv.id = "newDiv";
+      newH2.id = "ans-count";
+      document.getElementById("ans-count").style.fontSize = "2rem";
+      document.getElementById("ans-count").style.color = "white";
+      document.getElementById("qus-container").style.left = "69%";
     };
 
     return {
@@ -245,6 +261,11 @@ h2 {
   top: 50%;
   left: 46.8%;
 }
+.img-container {
+  margin-top: 6rem;
+  margin-right: 5rem;
+  margin-left: 9rem;
+}
 .card-img {
   margin: auto;
   margin-bottom: 20px;
@@ -257,11 +278,22 @@ h2 {
   border-radius: 20px;
   filter: drop-shadow(0 0px 5px rgba(0, 0, 0, 0.35));
 }
+.card-left {
+  background: url("@/assets/cg-0.jpg") no-repeat center center fixed;
+  background-size: cover;
+  width: 50%;
+  height: 47.1rem;
+}
+.card-right {
+  background: url("@/assets/cg-3.jpg") no-repeat center center fixed;
+  background-size: cover;
+  width: 50%;
+  height: 47.1rem;
+}
 .card-img:hover {
   transform: scale(1.05);
   filter: drop-shadow(0 0px 10px rgba(0, 0, 0, 0.5));
 }
-
 .icon-img {
   height: 100px;
   width: 100px;
@@ -269,13 +301,13 @@ h2 {
 .ans-container {
   position: absolute;
   top: 65%;
-  left: 23%;
+  left: 22.5%;
   text-align: center;
 }
 .qus-container {
   position: absolute;
   top: 65%;
-  left: 72%;
+  left: 61%;
   justify-content: center;
   text-align: center;
 }
@@ -290,8 +322,8 @@ button {
   font-size: 16pt;
   cursor: pointer;
   transition: color 0.2s, background-color 0.2s;
+  margin-left: 20px;
 }
-
 button:hover {
   color: black;
   text-shadow: 1px 2px grey;
