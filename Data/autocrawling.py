@@ -112,7 +112,7 @@ def np_tag(text):
                     flag = False
                     break
             if(flag) :
-                print(doc[0])
+                # print(doc[0])
                 val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
                 cursor.execute(sql,val)
                 DoYouKnow_db.commit()
@@ -137,7 +137,8 @@ def Url(search):
     global end_year
     global end_month
     global end_day
-    global driver
+    global driverd
+    # here
     url_temp = 'https://www.google.com/search?q={search}&tbm=nws'.format(search=search)
     url_temp = url_temp + "&tbs=cdr%3A1%2Ccd_min%3A{start_month}".format(start_month=start_month)
     url_temp = url_temp + "%2F{start_day}".format(start_day=start_day)
@@ -145,7 +146,7 @@ def Url(search):
     url_temp = url_temp + "%2Ccd_max%3A{end_month}".format(end_month=end_month)
     url_temp = url_temp + "%2F{end_day}".format(end_day=end_day)
     url_temp = url_temp + "%2F{end_year}".format(end_year=end_year)
-    for pageNo in range(0,10,10):
+    for pageNo in range(0,300,10):
         url = url_temp + "&start={pageNo}".format(pageNo=pageNo)
         driver.get(url)
 
@@ -220,7 +221,7 @@ def crawling_category(searches, category_id, month, nation_id):
         # exceptkeyword = []
         #keyword weight start
         if category==2 :
-            print("are you comein222222222222@@??????")
+            # print("are you comein222222222222@@??????")
             File = open("/home/hadoop/S07P22B208/Data/dramaexcept.txt", encoding='utf-8')
             while True : 
                 line = File.readline().strip()
@@ -276,7 +277,7 @@ def cawrling_month(search, category_id, nation_id):
     global driver
     global category
     global nation
-    days =[32, 29, 32, 31, 32, 31, 32, 32, 25, 32, 31, 32]
+    days =[32, 29, 32, 31, 32, 31, 32, 32, 24, 32, 31, 32]
     for month in range(9, 3, -1):
         start_month = month
         end_month=month
