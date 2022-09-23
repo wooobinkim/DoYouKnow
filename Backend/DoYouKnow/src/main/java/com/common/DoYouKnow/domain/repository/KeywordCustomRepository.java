@@ -18,6 +18,10 @@ public interface KeywordCustomRepository {
 //    @Query("select p from Keyword p where p.date between :start and :end and p.name = :keyword order by p.date")
 //    List<Keyword> PeriodGraph(String keyword,Date start, Date end);
 
-    List<KeywordDataResponse> periodKeyword(Long nation_id, Long category_id, Long period);
+    List<KeywordDataResponse> periodKeyword(Date sdate,Date ndate,Long nation_id, Long category_id);
+
+    List<Keyword> PeriodGraph(Date sdate,Date ndate,Long nation_id, Long category_id,String keyword);
+
+    Long SearchCount(Long nation_id,Long category_id);
 
 }

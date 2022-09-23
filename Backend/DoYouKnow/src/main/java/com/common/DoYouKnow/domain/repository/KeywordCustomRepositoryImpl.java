@@ -26,20 +26,13 @@ public class KeywordCustomRepositoryImpl implements KeywordCustomRepository {
     @PersistenceContext
     EntityManager em;
 
-    public List<KeywordDataResponse> periodKeyword(Long nation_id, Long category_id, Long period) {
+    public List<KeywordDataResponse> periodKeyword(Date sdate, Date ndate,Long nation_id, Long category_id) {
         JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
         QKeyword k = new QKeyword("k");
-
-        LocalDateTime now =LocalDateTime.now();
-        LocalDate endDate = now.toLocalDate();
-
-        Date ndate = java.sql.Date.valueOf(endDate);
-        Date sdate = getSdate(now,period);
 
         List<Tuple> fetch = jpaQueryFactory
                 .select(k.name, k.count.sum())
                 .from(k)
-//                .selectFrom(k)
                 .where(
                         k.date.between(sdate, ndate)
                                 .and(k.nation.id.eq(nation_id))
@@ -55,21 +48,67 @@ public class KeywordCustomRepositoryImpl implements KeywordCustomRepository {
                 f->KeywordDataResponse.response(f.get(k.name), f.get(k.count.sum()))
         ).collect(Collectors.toList());
 
-        System.out.println(keywordDataResponseList);
-        return null;
+
+        return keywordDataResponseList;
     }
 
-    private Date getSdate(LocalDateTime now, Long period) {
-        if(period==0){
-            LocalDateTime before = now.minusDays(7);
-            LocalDate startDate = before.toLocalDate();
-            return java.sql.Date.valueOf(startDate);
+    @Override
+    public List<Keyword> PeriodGraph(Date sdate, Date ndate, Long nation_id, Long category_id, String keyword) {
+        JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
+        QKeyword k = new QKeyword("k");
+        List<Keyword> keywords = jpaQueryFactory
+                .selectFrom(k)
+                .where(
+                        k.date.between(sdate, ndate)
+                                .and(k.nation.id.eq(nation_id))
+                                .and(k.category.id.eq(category_id))
+                                .and(k.name.eq(keyword))
+                )
+                .orderBy(k.date.asc())
+                .fetch();
+
+        return keywords;
+    }
+
+    @Override
+    public Long SearchCount(Long nation_id, Long category_id) {
+        JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
+        QKeyword k = new QKeyword("k");
+
+        //nation 전체 , 특정 카테고리만 구하고 싶을때
+        if (nation_id==0 && category_id!=0){
+            List<Integer> fetch = jpaQueryFactory
+                    .select(k.count.sum())
+                    .from(k)
+                    .where(k.category.id.eq(category_id))
+                    .fetch();
+            System.out.println("fetch = " + fetch);
         }
-        else if(period!=0) {
-            LocalDateTime before = now.minusMonths(period);
-            LocalDate startDate = before.toLocalDate();
-            return java.sql.Date.valueOf(startDate);
+        else if(nation_id!=0 && category_id!=0) {
+            List<Integer> fetch = jpaQueryFactory
+                    .select(k.count.sum())
+                    .from(k)
+                    .where(k.nation.id.eq(nation_id)
+                            .and(k.category.id.eq(category_id)))
+                    .fetch();
+            System.out.println("fetch = " + fetch);
         }
+        else if(nation_id!=0 && category_id==0) {
+            List<Integer> fetch = jpaQueryFactory
+                    .select(k.count.sum())
+                    .from(k)
+                    .where(k.nation.id.eq(nation_id))
+                    .fetch();
+            System.out.println("fetch = " + fetch);
+        }
+        else{
+            List<Integer> fetch = jpaQueryFactory
+                    .select(k.count.sum())
+                    .from(k)
+                    .fetch();
+            System.out.println("fetch = " + fetch);
+        }
+
         return null;
     }
 }
