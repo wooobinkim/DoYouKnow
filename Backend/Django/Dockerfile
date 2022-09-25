@@ -6,9 +6,9 @@ RUN apt-get -y update
 
 RUN apt-get -y install vim
 
-COPY ./ /var/jenkins_home/workspace/deploytest/Backend/Django
+COPY ./ /home/ubuntu/Django/
 
-WORKDIR /var/jenkins_home/workspace/deploytest/Backend/Django
+WORKDIR /home/ubuntu/Django/
 
 
 RUN pip3 install --upgrade pip
