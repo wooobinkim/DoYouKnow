@@ -6,6 +6,8 @@ RUN apt-get -y update
 
 RUN apt-get -y install vim
 
+COPY ./ /var/jenkins_home/workspace/deploytest/Backend/Django
+
 WORKDIR /var/jenkins_home/workspace/deploytest/Backend/Django
 
 
