@@ -25,7 +25,7 @@
     </audio>
   </div>
 
-  <div v-show="youtube===false && twitter===false">
+  <div v-show="youtube===false && twitter===false && isShowing===true"">
     <DYKCNav/>
     <div>
       <div v-show="isShowing===true">
