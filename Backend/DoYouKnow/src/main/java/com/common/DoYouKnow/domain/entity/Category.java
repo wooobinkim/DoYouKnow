@@ -26,4 +26,9 @@ public class Category extends BaseEntity{
 
     @OneToMany(mappedBy = "category")
     private List<Keyword> keywords = new ArrayList<>();
+/*
+    @OneToMany(mappedBy = "category")
+    private List<DYKClub> dykClubs = new ArrayList<>();
+
+ */
 }
