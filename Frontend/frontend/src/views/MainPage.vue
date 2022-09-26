@@ -3,9 +3,9 @@
   <swiper 
     :modules="modules" class="mySwiper" 
     :direction="'vertical'" 
-    :mousewheel="{forceToAxis : true}"
-    :pagination="{clickable: true }"
+    mousewheel
     :speed="1000"
+    :scrollbar="{hide: true,}"
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="second"><IntroDataLab /></swiper-slide>
@@ -22,8 +22,9 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/bundle";
 
+
 // import required modules
-import { Navigation, Pagination, Mousewheel } from "swiper";
+import { Navigation, Pagination, Mousewheel, Scrollbar } from "swiper";
 
 import IntroTop from '@/components/Main/IntroTop.vue'
 import IntroDataLab from '@/components/Main/IntroDataLab.vue'
@@ -43,7 +44,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Navigation, Pagination, Mousewheel],
+      modules: [Navigation, Pagination, Mousewheel, Scrollbar],
     };
   },
 };
@@ -104,9 +105,18 @@ body {
 }
 .second {
   background-color: #f5f5f5;
+  background-image: url('../assets/data-img.gif');
+  background-size: 60% 100%;
+  background-repeat: no-repeat;
 }
 .third {
-  background-color: #d4af37;
+  background-color: #d4ad37a7;
+  background-image: url('../assets/podium.jpg');
+  background-size: 60% 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+  
+
 }
 .forth {
   background-color: #899cff;
