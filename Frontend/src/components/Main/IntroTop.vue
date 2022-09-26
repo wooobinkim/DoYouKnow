@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h6>Introduce</h6>
+    <h6 id="intro">Introduce</h6>
     <h1>Do You Know</h1>
     <div class="content-msg">
       <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! Do You Know를 아시나요?</p>

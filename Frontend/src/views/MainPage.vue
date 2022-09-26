@@ -8,10 +8,11 @@
     :pagination="{ clickable: true }"
     :speed="1000"
   >
-    <swiper-slide class="first"><IntroTop /></swiper-slide>
+    <swiper-slide class="first"><IntroTop/></swiper-slide>
     <swiper-slide class="second"><IntroDataLab /></swiper-slide>
     <swiper-slide class="third"><IntroAwards /></swiper-slide>
     <swiper-slide class="forth"><IntroGame /></swiper-slide>
+
   </swiper>
 </template>
 
