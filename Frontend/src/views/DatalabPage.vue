@@ -1,5 +1,7 @@
 <template>
-  <div>data</div>
+  <h1>DataLab</h1>
+  <router-link to="/">홈</router-link> 
+     
 </template>
 
 <script>

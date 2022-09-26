@@ -20,7 +20,7 @@
   </video>
 
   <div v-if="youtube===false && twitter===false && isShowing===true">
-    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.6">
+    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.4">
       <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
     </audio>
   </div>
@@ -253,8 +253,8 @@ export default {
     font-weight: bold;
     font-size: 3.5rem;
     color: white;
-    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(230, 29, 230, 0.712),
-    0 0 82px rgba(230, 29, 230, 0.712), 0 0 92px rgb(230, 29, 230, 0.712), 0 0 102px rgb(230, 29, 230, 0.712), 0 0 151px rgb(230, 29, 230, 0.712);
+    /* text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(230, 29, 230, 0.712),
+    0 0 82px rgba(230, 29, 230, 0.712), 0 0 92px rgb(230, 29, 230, 0.712), 0 0 102px rgb(230, 29, 230, 0.712), 0 0 151px rgb(230, 29, 230, 0.712); */
   }
 
  * {
@@ -295,11 +295,11 @@ export default {
   }
 
   .card {
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 1s, box-shadow .4s;
-      box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
-      border-radius: 10px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s, box-shadow .4s;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
+    border-radius: 10px;
   }
    .card-photo {
     object-fit: fill;

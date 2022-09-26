@@ -49,8 +49,10 @@ export default {
   width: 100%;
 }
 .logo {
-  width: 100px;
-  height: 100px;
+  border: 0;
+  width: 5vw;
+  height: auto;
+  margin: 10px 0 0 10px;
 }
 
 .game-container {

@@ -5,8 +5,8 @@
     </router-link>
     <div class="nav-menu">
       <router-link to="/" class="nav-menu-item">홈</router-link> 
-      <router-link to="/about" class="nav-menu-item">데이터랩</router-link>
-      <router-link to="/about" class="nav-menu-item">더 많이 더 적게</router-link>
+      <router-link to="/datalab" class="nav-menu-item">데이터랩</router-link>
+      <router-link to="/game" class="nav-menu-item">더 많이 더 적게</router-link>
     </div>
   </div>
 </template>
