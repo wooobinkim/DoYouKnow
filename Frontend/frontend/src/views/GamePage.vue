@@ -43,6 +43,8 @@ export default {
 <style scoped>
 .game-background {
   background-color: rgba(137, 156, 255, 75%);
+  background: url("@/assets/bg-2.png") no-repeat center center fixed;
+  background-size: cover;
   height: 100%;
   width: 100%;
 }
@@ -50,6 +52,7 @@ export default {
   width: 100px;
   height: 100px;
 }
+
 .game-container {
   display: flex;
   flex-direction: column;
@@ -60,6 +63,10 @@ export default {
   height: 700px;
   width: 700px;
   margin-top: -7rem;
+}
+.game-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0px 10px rgba(0, 0, 0, 0.5));
 }
 .intro-container {
   display: flex;
@@ -85,51 +92,23 @@ export default {
   height: 6.3rem;
   margin-top: 2rem;
   margin-bottom: 4rem;
+  z-index: 1;
 }
-@keyframes ring {
-  0% {
-    width: 30px;
-    height: 30px;
-    opacity: 1;
-  }
-  100% {
-    width: 180px;
-    height: 180px;
-    opacity: 0;
-  }
-}
-.w-btn-neon2 {
-  position: relative;
-  border: none;
-  min-width: 200px;
-  min-height: 50px;
-  background: linear-gradient(
-    90deg,
-    rgba(129, 230, 217, 1) 0%,
-    rgba(79, 209, 197, 1) 100%
-  );
-  border-radius: 1000px;
-  color: darkslategray;
+button {
+  padding: 13px;
+  width: 200px;
+  background: none;
+  border: 3px solid white;
+  border-radius: 200px;
+  font-weight: bold;
+  color: white;
+  font-size: 16pt;
   cursor: pointer;
-  box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
-  font-weight: 700;
-  transition: 0.3s;
-  font-size: 1.5rem;
+  transition: color 0.2s, background-color 0.2s;
 }
-.w-btn-neon2:hover {
-  transform: scale(1.2);
-}
-.w-btn-neon2:hover::after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-  border: 6px solid #00ffcb;
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: ring 1.5s infinite;
+button:hover {
+  color: black;
+  text-shadow: 1px 2px grey;
+  background-color: white;
 }
 </style>

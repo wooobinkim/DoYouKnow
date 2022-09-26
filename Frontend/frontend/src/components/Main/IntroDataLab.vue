@@ -4,13 +4,11 @@
       <h1>Intro Datalab</h1>
       <p>Lorem 로렘</p>
     </div>
-    <img class="photo" src="../../assets/wordcloud.png" alt="">
+    <img class="photo" src="../../assets/wordcloud.png" alt="" />
   </section>
 </template>
 
-<script>
-
-</script>
+<script></script>
 
 <style scoped>
 .photo {
@@ -51,4 +49,3 @@
   }
 }
 </style>
-
