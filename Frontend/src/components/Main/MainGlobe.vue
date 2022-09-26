@@ -56,10 +56,6 @@ export default {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
     document.body.appendChild(renderer.domElement);
-    // window.onload = function(){
-    //   canvas.appendChild(renderer.domElement)
-    //   console.log(renderer.domElement)
-    // }
     
 
     const sunLight = new DirectionalLight(

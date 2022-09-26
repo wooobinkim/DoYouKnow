@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <NavBar/>
   <swiper
     :modules="modules"
     class="mySwiper"
@@ -26,11 +26,11 @@ import "swiper/css/bundle";
 // import required modules
 import { Navigation, Pagination, Mousewheel } from "swiper";
 
-import IntroTop from "@/components/Main/IntroTop.vue";
-import IntroDataLab from "@/components/Main/IntroDataLab.vue";
-import IntroAwards from "@/components/Main/IntroAwards.vue";
-import IntroGame from "@/components/Main/IntroGame.vue";
-import NavBar from "@/components/Main/NavBar.vue";
+import IntroTop from '@/components/Main/IntroTop.vue'
+import IntroDataLab from '@/components/Main/IntroDataLab.vue'
+import IntroAwards from '@/components/Main/IntroAwards.vue'
+import IntroGame from '@/components/Main/IntroGame.vue'
+import NavBar from '@/components/Main/NavBar.vue'
 export default {
   components: {
     Swiper,

@@ -1,8 +1,16 @@
 <template>
-  <div class="black-bg" v-if="modal == true" @click="close($event)">
+  <div class="black-bg" v-if="youtube == true" @click="youtubeClose($event)">
     <div class="white-bg">
       <h1 style="text-align : center; font-size: xx-large;">Title</h1>
-      <CardModal/>
+      <YoutubeCardmodal/>
+      <button class="close">close</button>
+    </div>
+  </div>
+
+  <div class="black-bg" v-if="twitter == true" @click="twitterClose($event)">
+    <div class="white-bg">
+      <h1 style="text-align : center; font-size: xx-large;">Title</h1>
+      <TwitterCardmodal/>
       <button class="close">close</button>
     </div>
   </div>
@@ -11,136 +19,140 @@
       <source src="../../assets/DYKC/award.mp4" type="video/mp4">
   </video>
 
-  <div v-show="modal===false">
-      <DYKCNav/>
-      <div>
-        <div v-if="isShowing">
-          <audio id="myAudio" autoplay loop onloadstart="this.volume=0.2">
-            <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
-          </audio>
-        </div>
-        <div v-show="isShowing===true">
-          <img class="soundbtn" src="../../assets/DYKC/soundon.png" @click="sound()" >
-        </div>
-        <div v-show="isShowing===false">
-          <img class="soundbtn" src="../../assets/DYKC/soundoff.png" @click="sound()">
-        </div>
+  <div v-if="youtube===false && twitter===false && isShowing===true">
+    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.6">
+      <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+  <div v-show="youtube===false && twitter===false">
+    <DYKCNav/>
+    <div>
+      <div v-show="isShowing===true">
+        <img class="soundbtn" src="../../assets/DYKC/soundon.png" @click="sound()" >
+      </div>
+      <div v-show="isShowing===false">
+        <img class="soundbtn" src="../../assets/DYKC/soundoff.png" @click="sound()">
+      </div>
+    </div>
+
+    <div class="main">
+      <ul class="category">
+        <li>
+          <button v-if="keyword==='운동선수'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('운동선수')">운동선수</button>
+          <button v-else @click="changeKeyword('운동선수')">운동선수</button>
+
+        </li>
+        <li>
+          <button v-if="keyword==='드 라 마'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('드 라 마')">드 라 마</button>
+          <button v-else @click="changeKeyword('드 라 마')">드 라 마</button>
+        </li>
+        <li>
+          <button v-if="keyword==='영    화'" @click="changeKeyword('영    화')" style="letter-spacing:15px; background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);">영      화</button>
+          <button v-else @click="changeKeyword('영    화')" style="letter-spacing:15px;">영      화</button>
+        </li>
+        <li>
+          <button v-if="keyword==='연 예 인'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('연 예 인')">연 예 인</button>
+          <button v-else @click="changeKeyword('연 예 인')">연 예 인</button>
+        </li>
+      </ul>
+
+      <div class="content">
+        <div class="title">{{ keyword }}</div>
+        
+        <div class="scene">
+          <label class="card-wrap">
+              <input type="checkbox" class="flipcard">
+              <div class="card">
+                <div class="front card-face">
+                    <img src="https://source.unsplash.com/random" alt="" class="card-photo">
+                    <div id="front-content">
+                      <h2 style="margin:0.5rem;">가나</h2>
+                      <p>100회</p>
+                    </div>
+                </div>
+                <div class="back card-face">
+                  <h1>가나</h1>
+                  <p class="card__body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
+                  <footer class="social">
+                    <button class="btn btn__phone" @click="openYoutubeModal"></button>
+                    <button class="btn btn__email" @click="openTwitterModal"></button>
+                  </footer>
+                </div>
+              </div>
+          </label>
+          <label class="card-wrap">
+              <input type="checkbox" class="flipcard">
+              <div class="card">
+                <div class="front card-face">
+                    <img src="https://source.unsplash.com/random" alt="" class="card-photo">
+                    <div id="front-content">
+                      <h2 style="margin:0.5rem;">가나다</h2>
+                      <p>100회</p>
+                    </div>
+                </div>
+                <div class="back card-face">
+                  <h1>가나다</h1>
+                  <p class="card__body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
+                  <footer class="social">
+                    <button class="btn btn__phone" @click="openYoutubeModal"></button>
+                    <button class="btn btn__email" @click="openTwitterModal"></button>
+                  </footer>
+                </div>
+              </div>
+          </label>
+          <label class="card-wrap">
+              <input type="checkbox" class="flipcard">
+              <div class="card">
+                <div class="front card-face">
+                    <img src="https://source.unsplash.com/random" alt="" class="card-photo">
+                    
+                    <div id="front-content">
+                      <h2 style="margin:0.5rem;">가나다라</h2>
+                      <p>100회</p>
+                    </div>
+                </div>
+                <div class="back card-face">
+                  <h1>가나다라</h1>
+                  <p class="card__body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
+                  <footer class="social">
+                    <button class="btn btn__phone" @click="openYoutubeModal"></button>
+                    <button class="btn btn__email" @click="openTwitterModal"></button>
+                  </footer>
+                </div>
+              </div>
+          </label>
       </div>
 
-      <div class="main">
-        <ul class="category">
-          <li>
-            <button v-if="keyword==='운동선수'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('운동선수')">운동선수</button>
-            <button v-else @click="changeKeyword('운동선수')">운동선수</button>
-
-          </li>
-          <li>
-            <button v-if="keyword==='드 라 마'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('드 라 마')">드 라 마</button>
-            <button v-else @click="changeKeyword('드 라 마')">드 라 마</button>
-          </li>
-          <li>
-            <button v-if="keyword==='영    화'" @click="changeKeyword('영    화')" style="letter-spacing:15px; background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);">영      화</button>
-            <button v-else @click="changeKeyword('영    화')" style="letter-spacing:15px;">영      화</button>
-          </li>
-          <li>
-            <button v-if="keyword==='연 예 인'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('연 예 인')">연 예 인</button>
-            <button v-else @click="changeKeyword('연 예 인')">연 예 인</button>
-          </li>
-        </ul>
-
-        <div class="content">
-          <div class="title">{{ keyword }}</div>
-          
-          <div class="scene">
-            <label class="card-wrap">
-                <input type="checkbox" class="flipcard">
-                <div class="card">
-                  <div class="front card-face">
-                      <img src="https://source.unsplash.com/random" alt="" class="card-photo">
-                      <div id="front-content">
-                        <h2 style="margin:0.5rem;">Title</h2>
-                        <p>100회</p>
-                      </div>
-                  </div>
-                  <div class="back card-face">
-                    <h1>Title</h1>
-                    <p class="card__body">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <footer class="social">
-                      <button class="btn btn__phone" @click="openModal"></button>
-                      <button class="btn btn__email" @click="openModal"></button>
-                    </footer>
-                  </div>
-                </div>
-            </label>
-            <label class="card-wrap">
-                <input type="checkbox" class="flipcard">
-                <div class="card">
-                  <div class="front card-face">
-                      <img src="https://source.unsplash.com/random" alt="" class="card-photo">
-                      <div id="front-content">
-                        <h2 style="margin:0.5rem;">Title</h2>
-                        <p>100회</p>
-                      </div>
-                  </div>
-                  <div class="back card-face">
-                    <h1>Title</h1>
-                    <p class="card__body">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <footer class="social">
-                      <button class="btn btn__phone" @click="openModal"></button>
-                      <button class="btn btn__email" @click="openModal"></button>
-                    </footer>
-                  </div>
-                </div>
-            </label>
-            <label class="card-wrap">
-                <input type="checkbox" class="flipcard">
-                <div class="card">
-                  <div class="front card-face">
-                      <img src="https://source.unsplash.com/random" alt="" class="card-photo">
-                      
-                      <div id="front-content">
-                        <h2 style="margin:0.5rem;">Title</h2>
-                        <p>100회</p>
-                      </div>
-                  </div>
-                  <div class="back card-face">
-                    <h1>Title</h1>
-                    <p class="card__body">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </p>
-                    <footer class="social">
-                      <button class="btn btn__phone" @click="openModal"></button>
-                      <button class="btn btn__email" @click="openModal"></button>
-                    </footer>
-                  </div>
-                </div>
-            </label>
-        </div>
-
-        </div>
       </div>
+    </div>
   </div> 
 
 </template>
 
 <script>
 import DYKCNav from '@/components/DYKC/DYKCNav.vue'
-import CardModal from '@/components/DYKC/CardModal.vue'
+import YoutubeCardmodal from '@/components/DYKC/YoutubeCardmodal.vue'
+import TwitterCardmodal from '@/components/DYKC/TwitterCardmodal.vue'
 
 export default {
   name: "AwardView",
   components:{
     DYKCNav,
-    CardModal
+    YoutubeCardmodal,
+    TwitterCardmodal
   },
   data(){
       return{
         isShowing : true,
-        modal : false,
+        youtube : false,
+        twitter: false,
         keyword : "운동선수",
       }
     },
@@ -151,14 +163,24 @@ export default {
     changeKeyword(event){
       this.keyword = event;
     },
-    openModal(){
-      this.modal = true;
+    openYoutubeModal(){
+      this.youtube = true;
     },
-    close(event){
+    openTwitterModal(){
+      this.twitter = true;
+    },
+    youtubeClose(event){
       if(event.target.classList.contains('black-bg')||event.target.classList.contains('close')){
-        this.modal = false;
+        this.youtube = false;
       } else if (event.target.classList.contains('white-bg')){
-        this.modal = true;
+        this.youtube = true;
+      }
+    },
+    twitterClose(event){
+      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close')){
+        this.twitter = false;
+      } else if (event.target.classList.contains('white-bg')){
+        this.twitter = true;
       }
     }
   },
@@ -231,7 +253,6 @@ export default {
     font-weight: bold;
     font-size: 3.5rem;
     color: white;
-    margin-bottom: 1rem;
     text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(230, 29, 230, 0.712),
     0 0 82px rgba(230, 29, 230, 0.712), 0 0 92px rgb(230, 29, 230, 0.712), 0 0 102px rgb(230, 29, 230, 0.712), 0 0 151px rgb(230, 29, 230, 0.712);
   }
@@ -289,18 +310,13 @@ export default {
   .front:hover #front-content{
       opacity: 1;
   }
-  .front:hover .card-photo{
-      opacity: 0.4;
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-  }
-
   #front-content{
+    width: 300px;
     text-align: center;
     position: absolute;
     font-size: xx-large;
     top: 35%;
-    left: 30%;
+    left: 0%;
     opacity: 0;
     transition: 0.3s;
     color: white;
@@ -448,8 +464,8 @@ export default {
     font-weight: bold;
     border-radius: 5px;
     padding: 5px 15px;
-    bottom: 3vh;
-    right: 45%;
+    bottom: 2vh;
+    right: 35vw;
     width: 10rem;
     height: 7vh;
     font-size: x-large;
