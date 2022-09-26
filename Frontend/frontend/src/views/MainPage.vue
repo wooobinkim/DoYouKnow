@@ -5,7 +5,7 @@
     :direction="'vertical'" 
     mousewheel
     :speed="1000"
-    :scrollbar="{hide: true,}"
+    :scrollbar="{draggable: true}"
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="second"><IntroDataLab /></swiper-slide>

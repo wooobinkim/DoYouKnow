@@ -5,13 +5,13 @@
      data-aos-easing="ease-in-sine">
         Introduce
     </h6>
-    <h1 data-aos="fade">Do You Know</h1>
+    <h1 data-aos="fade">DoYouKnow</h1>
     <div class="content-msg"
         data-aos="fade-up"
         data-aos-offset="300"
         data-aos-easing="ease-in-sine">
-      <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! Do You Know를 아시나요?</p>
-      <p>Do you Know 'DoYouKnow'?</p>
+      <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?</p>
+      <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
     </div>
     <div class="globe-area">
       
@@ -63,7 +63,7 @@ h1 {
 
 .content-msg {
   font-size: 1em;
-  width: 380px;
+  width: 450px;
   color: black;
   font-family: sans-serif;
   font-weight: 400;
@@ -74,7 +74,13 @@ h1 {
 }
 
 .content-msg p {
-  margin: 0;
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.catch-phrase {
+  font-size: 1.4em;
+  margin-top: 30px;
 }
 </style>
 
