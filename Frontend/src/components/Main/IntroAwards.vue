@@ -6,6 +6,7 @@
     </div>
     <img class="photo" src="../../assets/HallOfFame.png" alt="">
   </section>
+  <div>intro awards</div>
 </template>
 
 <script>
