@@ -28,7 +28,7 @@ export default {
   right: 15vw;
 }
 
-.photo:hover {
+.photo:ho {
   outline: none;
   border-color: #9ecaed;
   box-shadow: 0 0 10px #9ecaed;
@@ -58,7 +58,12 @@ export default {
 }
 
 .awards-router {
-  color: gray;
+  margin-top: 10px;
+  background: -webkit-linear-gradient(red, purple);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   cursor: pointer;
+  font-weight: bold;
 }
 </style>

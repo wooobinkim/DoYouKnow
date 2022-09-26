@@ -46,6 +46,7 @@ export default {
 .game-title p {
   margin: 0;
   font-weight: bold;
+  
 }
 
 .more {
@@ -74,5 +75,6 @@ export default {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
+  font-weight: bold;
 }
 </style>
