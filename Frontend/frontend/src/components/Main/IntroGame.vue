@@ -8,7 +8,7 @@
     <div class="game-content">
       <p>총 검색량으로 K-culture의 힘을 알아봅시다!</p>
       <p>어떤 것이 최고의 DoYouKnow 지수를 갖고 있을지 궁금하다면?</p>
-      <p class="game-router">플레이 하러 가기 >></p>
+      <div class="game-router">플레이 하러 가기 >></div>
     </div>
   </div>
   <img class="photo" src="../../assets/hilow.png">
@@ -30,7 +30,7 @@ export default {
 }
 
 .text-area {
-  width: 600px;
+  width: auto;
   height: 500px;
   position: absolute;
   top: 200px;
@@ -59,5 +59,20 @@ export default {
 .game-content {
   color: black;
   font-size: 1.2em;
+  margin-top: 30px;
+
+}
+
+.game-content p {
+  margin: 0;
+}
+
+.game-router {
+  margin-top: 10px;
+  background: -webkit-linear-gradient(red, blue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
 }
 </style>
