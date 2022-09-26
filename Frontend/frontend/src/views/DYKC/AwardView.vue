@@ -19,13 +19,13 @@
       <source src="../../assets/DYKC/award.mp4" type="video/mp4">
   </video>
 
-  <div v-if="youtube===false && twitter===false">
-    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.2">
+  <div v-if="youtube===false && twitter===false && isShowing===true">
+    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.6">
       <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
     </audio>
   </div>
 
-  <div v-show="youtube===false && twitter===false && isShowing===true"">
+  <div v-show="youtube===false && twitter===false">
     <DYKCNav/>
     <div>
       <div v-show="isShowing===true">
