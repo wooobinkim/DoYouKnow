@@ -1,5 +1,6 @@
 <template>
   <div class="game-background">
+
     <div class="game-container">
       <div class="card-left">
         <div class="img-container">
@@ -16,6 +17,7 @@
         <img class="icon-img" src="@/assets/vs.png" alt="" />
       </div>
       <div class="card-right">
+
         <div class="img-container">
           <img class="card-img" id="url1-img" :src="game.right.imgUrl" alt="" />
         </div>
@@ -40,6 +42,7 @@ import { ref, onMounted } from "vue";
 export default {
   setup() {
     const router = useRouter();
+
 
     // TODO : data axios로 받아오기
     const data = [
