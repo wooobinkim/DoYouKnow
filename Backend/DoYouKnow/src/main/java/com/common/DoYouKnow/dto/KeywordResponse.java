@@ -20,7 +20,7 @@ public class KeywordResponse {
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-    private String count;
+    private int count;
 
 
     public static KeywordResponse response(Keyword k) {

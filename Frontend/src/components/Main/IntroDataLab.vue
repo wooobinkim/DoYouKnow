@@ -1,16 +1,16 @@
 <template>
   <section>
     <div class="text-area">
-      <h1>Intro Datalab</h1>
-      <p>Lorem 로렘</p>
+      <h1>DYK DataLab</h1>
+      <div class="datalab-content">
+        <p>주요 6개국의 데이터를 한 눈에 알아보세요</p>
+      </div>
     </div>
     <img class="photo" src="../../assets/wordcloud.png" alt="">
   </section>
 </template>
 
-<script>
-
-</script>
+<script></script>
 
 <style scoped>
 .photo {
@@ -51,4 +51,3 @@
   }
 }
 </style>
-
