@@ -26,7 +26,7 @@ DoYouKnow_db= pymysql.connect(
     user='b208', 
     passwd='b208root', 
     host='43.201.37.208', 
-    db='DoYouKnow', 
+    db='RawData', 
     charset='utf8'
 )
 cursor = DoYouKnow_db.cursor(pymysql.cursors.DictCursor)
@@ -107,7 +107,7 @@ def np_tag(text):
     for doc in list:
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
         if doc[1] == 'NNP':
-            val = (doc[0].replace(" ", "_"),date_time_obj,1,2)
+            val = (doc[0].replace(" ", "_"),date_time_obj,,2)
             cursor.execute(sql,val)
             DoYouKnow_db.commit()
             news_desc += doc[0].replace(" ", "_") + '\n'
@@ -159,7 +159,7 @@ search = 'korean drama'
 start_year=2022
 start_month=8
 
-for i in range(1,30):
+for i in range(11,30):
     chrome_options = webdriver.ChromeOptions()
     # chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
