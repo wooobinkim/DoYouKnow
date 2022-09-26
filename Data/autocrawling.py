@@ -121,7 +121,7 @@ def np_tag(text):
     nospacetext = text.replace(" ","")
     for i in range(len(exceptkeyword)):
         if exceptkeyword[i] in nospacetext :
-            val = (exceptkeyword[i],date_time_obj,1,2)
+            val = (exceptkeyword[i],date_time_obj,nation,category)
             for i in range(5):
                 cursor.execute(sql,val)
                 DoYouKnow_db.commit()
@@ -195,7 +195,7 @@ def crawling_category(searches, category_id, month, nation_id):
     global exceptkeyword
 
     print(searches, category_id, month, nation_id)
-    day =[32, 29, 32, 31, 32, 31, 32, 32, 25, 32, 31, 32]
+    day =[32, 29, 32, 31, 32, 31, 32, 32, 24, 32, 31, 32]
     
     start = time.time()
     start_year=2022
@@ -253,15 +253,15 @@ def crawling_category(searches, category_id, month, nation_id):
             start_day=i
             end_day=start_day
 
-            Url(searches[cnt])
-            # try:
-            #     Url(searches[cnt])
-            # except Exception as e:
-            #     print("timeout")
-            #     continue
-            # finally:
-            #     driver.quit()
-            #     print("============")
+            # Url(searches[cnt])
+            try:
+                Url(searches[cnt])
+            except Exception as e:
+                print("timeout")
+                continue
+            finally:
+                driver.quit()
+                print("============")
                 
         driver.quit()
     print("time!!!!!!!!!!!!!!!!!!!!! :", time.time() - start)
