@@ -19,7 +19,6 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-@ToString
 public class Nation extends BaseEntity{
     @Column(unique = true)
     private String name;

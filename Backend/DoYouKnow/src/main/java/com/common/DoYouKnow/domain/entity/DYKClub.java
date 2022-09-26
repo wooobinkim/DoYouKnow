@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-@ToString
 public class DYKClub extends BaseEntity{
     private String name;
     private String imgUrl;
@@ -23,5 +22,9 @@ public class DYKClub extends BaseEntity{
 
     @OneToMany(mappedBy = "dykClub")
     private List<DYKClubContent> dykClubContents = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "dykClub")
+    private List<DYKClubTwitter> dykClubTwitters = new ArrayList<>();
 
 }
