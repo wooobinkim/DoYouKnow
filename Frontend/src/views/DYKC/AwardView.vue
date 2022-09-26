@@ -19,11 +19,11 @@
       <source src="../../assets/DYKC/award.mp4" type="video/mp4">
   </video>
 
-  <div v-if="youtube===false && twitter===false && isShowing===true">
+  <!-- <div v-if="youtube===false && twitter===false && isShowing===true">
     <audio id="myAudio" autoplay loop onloadstart="this.volume=0.4">
       <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
     </audio>
-  </div>
+  </div> -->
 
   <div v-show="youtube===false && twitter===false">
     <DYKCNav/>
@@ -38,21 +38,21 @@
 
     <div class="main">
       <ul class="category">
-        <li>
-          <button v-if="keyword==='운동선수'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('운동선수')">운동선수</button>
+        <li class="one">
+          <button class="category_color" v-if="keyword==='운동선수'" @click="changeKeyword('운동선수')">운동선수</button>
           <button v-else @click="changeKeyword('운동선수')">운동선수</button>
 
         </li>
         <li>
-          <button v-if="keyword==='드 라 마'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('드 라 마')">드 라 마</button>
+          <button class="category_color" v-if="keyword==='드 라 마'" @click="changeKeyword('드 라 마')">드 라 마</button>
           <button v-else @click="changeKeyword('드 라 마')">드 라 마</button>
         </li>
         <li>
-          <button v-if="keyword==='영    화'" @click="changeKeyword('영    화')" style="letter-spacing:15px; background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);">영      화</button>
-          <button v-else @click="changeKeyword('영    화')" style="letter-spacing:15px;">영      화</button>
+          <button class="category_color" v-if="keyword==='영    화'" @click="changeKeyword('영    화')">영      화</button>
+          <button v-else @click="changeKeyword('영    화')" >영      화</button>
         </li>
         <li>
-          <button v-if="keyword==='연 예 인'" style="background-size: 100% 100%;background-image: linear-gradient(transparent 90%, rgb(248, 205, 7) 20%);" @click="changeKeyword('연 예 인')">연 예 인</button>
+          <button class="category_color" v-if="keyword==='연 예 인'" @click="changeKeyword('연 예 인')">연 예 인</button>
           <button v-else @click="changeKeyword('연 예 인')">연 예 인</button>
         </li>
       </ul>
@@ -65,7 +65,7 @@
               <input type="checkbox" class="flipcard">
               <div class="card">
                 <div class="front card-face">
-                    <img src="https://source.unsplash.com/random" alt="" class="card-photo">
+                    <img src="https://dyk.s3.ap-northeast-2.amazonaws.com/DYKC/DYKC/%EC%B9%B4%EB%93%9C/%EC%86%90%ED%9D%A5%EB%AF%BC.jpg" alt="" class="card-photo">
                     <div id="front-content">
                       <h2 style="margin:0.5rem;">가나</h2>
                       <p>100회</p>
@@ -87,7 +87,7 @@
               <input type="checkbox" class="flipcard">
               <div class="card">
                 <div class="front card-face">
-                    <img src="https://source.unsplash.com/random" alt="" class="card-photo">
+                    <img src="https://dyk.s3.ap-northeast-2.amazonaws.com/DYKC/DYKC/%EC%B9%B4%EB%93%9C/%EA%B9%80%EC%97%B0%EA%B2%BD.jpg" alt="" class="card-photo">
                     <div id="front-content">
                       <h2 style="margin:0.5rem;">가나다</h2>
                       <p>100회</p>
@@ -109,7 +109,7 @@
               <input type="checkbox" class="flipcard">
               <div class="card">
                 <div class="front card-face">
-                    <img src="https://source.unsplash.com/random" alt="" class="card-photo">
+                    <img src="https://dyk.s3.ap-northeast-2.amazonaws.com/DYKC/DYKC/%EC%B9%B4%EB%93%9C/%EA%B9%80%EC%97%B0%EC%95%84.jpg" alt="" class="card-photo">
                     
                     <div id="front-content">
                       <h2 style="margin:0.5rem;">가나다라</h2>
@@ -210,6 +210,8 @@ export default {
     justify-content: space-evenly;
     align-items: center;
     margin-left: 2rem;
+  }
+  .category_color{
     text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
     0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
   }
@@ -220,7 +222,7 @@ export default {
   li > button {
     all: unset;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 8rem;
     color: white;
     font-size: 2rem;
@@ -230,21 +232,11 @@ export default {
     position: relative;
   }
 
-  li > button::after {
-    content:"";
-    position: absolute;
-    bottom: 0;
-    left:50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 4px;
-    background: #f1c40f;
-    transition: all .5s ease-out;
-  }
-
-  li > button:hover::after {
-    width: 8rem;
-  }
+li > button:hover {
+  color: white;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
+    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+} 
   .content{
     flex: 1;
   }
@@ -253,8 +245,6 @@ export default {
     font-weight: bold;
     font-size: 3.5rem;
     color: white;
-    /* text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(230, 29, 230, 0.712),
-    0 0 82px rgba(230, 29, 230, 0.712), 0 0 92px rgb(230, 29, 230, 0.712), 0 0 102px rgb(230, 29, 230, 0.712), 0 0 151px rgb(230, 29, 230, 0.712); */
   }
 
  * {
