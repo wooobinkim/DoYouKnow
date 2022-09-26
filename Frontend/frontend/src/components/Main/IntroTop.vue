@@ -1,8 +1,15 @@
 <template>
   <section>
-    <h6>Introduce</h6>
-    <h1>Do You Know</h1>
-    <div class="content-msg">
+    <h6 data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+        Introduce
+    </h6>
+    <h1 data-aos="fade">Do You Know</h1>
+    <div class="content-msg"
+        data-aos="fade-up"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine">
       <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! Do You Know를 아시나요?</p>
       <p>Do you Know 'DoYouKnow'?</p>
     </div>
@@ -39,7 +46,7 @@ h6 {
   position: absolute;
   top: 180px;
   left: 300px;
-  animation: slide 2s ease-out;
+  /* animation: slide 2s ease-out; */
   text-align: start;
 }
 
@@ -51,7 +58,6 @@ h1 {
   position: absolute;
   top: 190px;
   left: 300px;
-  animation: slide 2s ease-out;
   text-align: start;
 }
 
@@ -64,36 +70,11 @@ h1 {
   position: absolute;
   top: 350px;
   left: 300px;
-  animation: slide 2s ease-out;
   text-align: start;
 }
 
 .content-msg p {
   margin: 0;
-}
-
-
-
-@keyframes slide {
-  from {
-    left: -200px;
-    opacity: 0;
-  }
-  to {
-    left: 300px;
-    opacity: 1;
-  }
-}
-
-@keyframes disappear {
-  from {
-    left: 300px;
-    opacity: 1;
-  }
-  to {
-    left: -200px;
-    opacity: 0;
-  }
 }
 </style>
 
