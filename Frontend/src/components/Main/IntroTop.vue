@@ -1,11 +1,5 @@
 <template>
   <section>
-<<<<<<< HEAD
-    <h1>Do You Know</h1>
-    <div class="globe-area">
-      
-      <MainGlobe class="top-globe"/>
-=======
     <h6>Introduce</h6>
     <h1>Do You Know</h1>
     <div class="content-msg">
@@ -15,53 +9,29 @@
     <div class="globe-area">
       
       <!-- <MainGlobe class="top-globe"/> -->
->>>>>>> 3514bdfa4f1d2d880a2eeb7ea24997debb02f453
     </div>
   </section>
 </template>
 
 <script>
 import MainGlobe from '@/components/Main/MainGlobe.vue'
-<<<<<<< HEAD
-=======
 import AOS from "aos";
 import { onMounted } from '@vue/runtime-core';
->>>>>>> 3514bdfa4f1d2d880a2eeb7ea24997debb02f453
 
 export default {
   components: {
     MainGlobe, // eslint-disable-line
-<<<<<<< HEAD
-=======
   },
   setup(){
     onMounted(() => {
       AOS.init();
     })
->>>>>>> 3514bdfa4f1d2d880a2eeb7ea24997debb02f453
   }
 }
 </script>
 
 <style scoped>
-<<<<<<< HEAD
 
-.photo {
-  position: absolute;
-  top: 200px;
-  right: 200px;
-  width: 20.8vw;
-  height: 37vh;
-}
-
-h1 {
-  font-size: 5em;
-  width: 258px;
-  color: black;
-  font-family: sans-serif;
-  position: absolute;
-  top: 80px;
-=======
 h6 {
   font-size: 1.2em;
   width: 258px;
@@ -69,14 +39,11 @@ h6 {
   font-family: sans-serif;
   position: absolute;
   top: 180px;
->>>>>>> 3514bdfa4f1d2d880a2eeb7ea24997debb02f453
   left: 300px;
   animation: slide 2s ease-out;
   text-align: start;
 }
 
-<<<<<<< HEAD
-=======
 h1 {
   font-size: 4em;
   width: 500px;
@@ -106,7 +73,6 @@ h1 {
   margin: 0;
 }
 
->>>>>>> 3514bdfa4f1d2d880a2eeb7ea24997debb02f453
 
 
 @keyframes slide {
