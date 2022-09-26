@@ -31,6 +31,7 @@ export default {
 </script>
 
 <style scoped>
+
 h6 {
   font-size: 1.2em;
   width: 258px;
