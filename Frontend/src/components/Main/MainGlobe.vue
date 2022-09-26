@@ -1,5 +1,6 @@
 <template>
-  <div class="cavas-container">
+  <div class="canvas-container">
+    
     <!-- <div class="moon-background"></div>
     <div class="sun-background"></div> -->
   </div>
@@ -37,7 +38,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 export default {
   setup() {
     // const router = useRouter();
-
+    // const canvas = document.querySelector('.canvas-container')
     const scene = new Scene();
     const camera = new PerspectiveCamera(
       45,
@@ -45,16 +46,17 @@ export default {
       0.1,
       1000
     );
-    camera.position.set(0, 15, 50);
+    camera.position.set(0, 15, 30); // 지구 크기 조정
 
-    const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(innerWidth, innerHeight);
+    const renderer = new WebGLRenderer({ antialias: true, alpha: true, });
+    renderer.setSize(1200, 563); // 캔버스 사이즈 때문에 조정함
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.outputEncoding = sRGBEncoding;
     renderer.physicallyCorrectLights = true;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
     document.body.appendChild(renderer.domElement);
+    
 
     const sunLight = new DirectionalLight(
       new Color("#FFFFFF").convertSRGBToLinear(),
@@ -294,6 +296,9 @@ export default {
   opacity: 1;
 }
 canvas {
-  position: relative;
+  position: absolute;
+  top: 200px;
+  right: 50px;
+  z-index: 1;
 }
 </style>
