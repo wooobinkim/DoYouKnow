@@ -108,6 +108,18 @@ body {
   background-image: url('../assets/data-img.gif');
   background-size: 60% 100%;
   background-repeat: no-repeat;
+  position: relative;
+}
+.second::before {
+  content:"";
+  opacity: 0.5;
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  background-color: #000;
+
 }
 .third {
   background-color: #d4ad37a7;
