@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section >
     <div class="text-area">
       <h1>DYK DataLab</h1>
       <div class="datalab-content">
