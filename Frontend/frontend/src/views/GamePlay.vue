@@ -157,7 +157,7 @@ export default {
 
           // localStorage에 점수 저장
           window.localStorage.setItem("korea-score", score.value);
-        }, 1000);
+        }, 2000);
       } else {
         //TODO: 중앙버튼 바뀌기
         setTimeout(() => {
@@ -191,7 +191,7 @@ export default {
 
           // localStorage에 점수 저장
           window.localStorage.setItem("korea-score", score.value);
-        }, 1000);
+        }, 2000);
       } else {
         //TODO: 중앙버튼 바뀌기
         setTimeout(() => {
@@ -216,6 +216,7 @@ export default {
       document.getElementById("qus-container").appendChild(newDiv);
       newDiv.id = "newDiv";
       newH2.id = "ans-count";
+      newH2.className = "ans-count";
       document.getElementById("ans-count").style.fontSize = "2rem";
       document.getElementById("ans-count").style.color = "white";
       document.getElementById("qus-container").style.left = "71%";
