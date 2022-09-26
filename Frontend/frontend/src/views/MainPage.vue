@@ -1,16 +1,17 @@
 <template>
   <NavBar/>
-  <swiper 
-    :modules="modules" class="mySwiper" 
-    :direction="'vertical'" 
-    :mousewheel="{forceToAxis : true}"
-    :pagination="{clickable: true }"
+  <swiper
+    :modules="modules"
+    class="mySwiper"
+    :direction="'vertical'"
+    :mousewheel="{ forceToAxis: true }"
+    :pagination="{ clickable: true }"
     :speed="1000"
-    >
-    <swiper-slide class="first"><IntroTop/></swiper-slide>
-    <swiper-slide class="second"><IntroDataLab/></swiper-slide>
-    <swiper-slide class="third"><IntroAwards/></swiper-slide>
-    <swiper-slide class="forth"><IntroGame/></swiper-slide>
+  >
+    <swiper-slide class="first"><IntroTop /></swiper-slide>
+    <swiper-slide class="second"><IntroDataLab /></swiper-slide>
+    <swiper-slide class="third"><IntroAwards /></swiper-slide>
+    <swiper-slide class="forth"><IntroGame /></swiper-slide>
   </swiper>
 </template>
 
@@ -30,7 +31,6 @@ import IntroDataLab from '@/components/Main/IntroDataLab.vue'
 import IntroAwards from '@/components/Main/IntroAwards.vue'
 import IntroGame from '@/components/Main/IntroGame.vue'
 import NavBar from '@/components/Main/NavBar.vue'
-
 export default {
   components: {
     Swiper,
@@ -40,7 +40,6 @@ export default {
     IntroAwards,
     IntroGame,
     NavBar,
-    
   },
   setup() {
     return {
@@ -50,7 +49,9 @@ export default {
 };
 </script>
 <style>
-#app { height: 100% }
+#app {
+  height: 100%;
+}
 html,
 body {
   position: relative;
