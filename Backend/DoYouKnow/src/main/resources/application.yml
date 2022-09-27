@@ -15,6 +15,9 @@ spring:
     #url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: b208
     password: b208root
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -37,4 +40,3 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
-
