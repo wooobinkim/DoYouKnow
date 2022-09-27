@@ -15,7 +15,7 @@
     </div>
     <div class="globe-area">
       
-      <!-- <MainGlobe class="top-globe"/> -->
+      <MainGlobe class="top-globe"/>
     </div>
   </section>
 </template>
@@ -82,5 +82,6 @@ h1 {
   font-size: 1.4em;
   margin-top: 30px;
 }
+
 </style>
 
