@@ -33,6 +33,7 @@ import {
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
+import { onMounted } from '@vue/runtime-core';
 // import { useRouter } from "vue-router";
 
 export default {
@@ -46,16 +47,18 @@ export default {
       0.1,
       1000
     );
-    camera.position.set(0, 15, 30); // 지구 크기 조정
+    camera.position.set(3, 10, 30); // 지구 크기 조정
 
     const renderer = new WebGLRenderer({ antialias: true, alpha: true, });
-    renderer.setSize(1200, 563); // 캔버스 사이즈 때문에 조정함
+    renderer.setSize(1000, 500); // 캔버스 사이즈 때문에 조정함
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.outputEncoding = sRGBEncoding;
     renderer.physicallyCorrectLights = true;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
-    document.body.appendChild(renderer.domElement);
+    onMounted(() => {
+      document.querySelector('.globe-area').appendChild(renderer.domElement);
+    })
     
 
     const sunLight = new DirectionalLight(
@@ -297,8 +300,8 @@ export default {
 }
 canvas {
   position: absolute;
-  top: 200px;
-  right: 50px;
+  top: 20%;
+  right: 15%;
   z-index: 1;
 }
 </style>
