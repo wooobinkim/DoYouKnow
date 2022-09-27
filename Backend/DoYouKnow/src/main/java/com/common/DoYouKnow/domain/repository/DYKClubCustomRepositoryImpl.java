@@ -6,10 +6,10 @@ import com.common.DoYouKnow.dto.DYKClubTwitterResponse;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,15 +26,16 @@ public class DYKClubCustomRepositoryImpl implements DYKClubCustomRepository {
         List<DYKClub> dykClubs = jpaQueryFactory
                 .selectFrom(k)
                 .where(k.category.id.eq(category_id))
-                .limit(3)
+//                .limit(3)
                 .fetch();
 
-        List<DYKClubResponse> dykClubResponses = new ArrayList<>();
-        for (DYKClub tmp: dykClubs){
-            System.out.println("tmp = " + tmp);
-            dykClubResponses.add(DYKClubResponse.response(tmp));
-        }
-        return dykClubResponses;
+//        List<DYKClubResponse> dykClubResponses = new ArrayList<>();
+//        for (DYKClub tmp: dykClubs){
+//            System.out.println("tmp = " + tmp);
+//            //dykClubResponses.add(DYKClubResponse.response(tmp));
+//        }
+//        System.out.println("끝");
+        return null;
     }
 
     @Override
