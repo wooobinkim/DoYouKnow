@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/dykclub")
 public class DYKClubController {
     private final DYKClubService dykClubService;
+
     @GetMapping("/{category_id}")
     public ResponseEntity<?> getPeriodKeyword(@PathVariable("category_id") Long category_id)
     {
