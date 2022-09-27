@@ -229,7 +229,7 @@ export default {
 
       renderer.setAnimationLoop(() => {
         let delta = clock.getDelta();
-        // scene.rotation.y += delta * 0.05;
+        scene.rotation.y += delta * 0.05;
 
         controls.update();
         renderer.render(scene, camera);

@@ -1,18 +1,18 @@
 <template>
-  <NavBar/>
-  <swiper 
-    :modules="modules" class="mySwiper" 
-    :direction="'vertical'" 
+  <NavBar />
+  <swiper
+    :modules="modules"
+    class="mySwiper"
+    :direction="'vertical'"
     mousewheel
     :speed="1000"
-    :scrollbar="{draggable: true}"
+    :scrollbar="{ draggable: true }"
     :allowTouchMove="false"
   >
-    <swiper-slide class="first"><IntroTop/></swiper-slide>
+    <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="second"><IntroDataLab /></swiper-slide>
     <swiper-slide class="third"><IntroAwards /></swiper-slide>
     <swiper-slide class="forth"><IntroGame /></swiper-slide>
-
   </swiper>
 </template>
 
@@ -24,15 +24,14 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/bundle";
 
-
 // import required modules
 import { Navigation, Pagination, Mousewheel, Scrollbar } from "swiper";
 
-import IntroTop from '@/components/Main/IntroTop.vue'
-import IntroDataLab from '@/components/Main/IntroDataLab.vue'
-import IntroAwards from '@/components/Main/IntroAwards.vue'
-import IntroGame from '@/components/Main/IntroGame.vue'
-import NavBar from '@/components/Main/NavBar.vue'
+import IntroTop from "@/components/Main/IntroTop.vue";
+import IntroDataLab from "@/components/Main/IntroDataLab.vue";
+import IntroAwards from "@/components/Main/IntroAwards.vue";
+import IntroGame from "@/components/Main/IntroGame.vue";
+import NavBar from "@/components/Main/NavBar.vue";
 
 export default {
   components: {
@@ -103,34 +102,32 @@ body {
 }
 
 .first {
-  background-color: #ffdfae;
+  /* background-color: #ffdfae; */
+  background: linear-gradient(#fff9f0, #fae3c2, #ffdfae);
 }
 .second {
   background-color: #f5f5f5;
-  background-image: url('../assets/data-img.gif');
+  background-image: url("../assets/data-img.gif");
   background-size: 60% 100%;
   background-repeat: no-repeat;
   position: relative;
 }
 .second::before {
-  content:"";
+  content: "";
   opacity: 0.5;
   position: absolute;
-  top:0px;
-  left:0px;
-  right:0px;
-  bottom:0px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
   background-color: black;
-
 }
 .third {
   background-color: #d4ad37a7;
-  background-image: url('../assets/podium.jpg');
+  background-image: url("../assets/podium.jpg");
   background-size: 60% 100%;
   background-repeat: no-repeat;
   background-position: right;
-  
-
 }
 .forth {
   background-color: #899cff;
