@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "Frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "swiper": "^8.4.2",
     "three": "^0.144.0",

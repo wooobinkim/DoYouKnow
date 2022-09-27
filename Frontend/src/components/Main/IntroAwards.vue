@@ -28,7 +28,7 @@ export default {
   right: 15vw;
 }
 
-.photo:ho {
+.photo:hover {
   outline: none;
   border-color: #9ecaed;
   box-shadow: 0 0 10px #9ecaed;

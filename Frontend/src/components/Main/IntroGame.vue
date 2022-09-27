@@ -11,7 +11,7 @@
       <div class="game-router">플레이 하러 가기 >></div>
     </div>
   </div>
-  <img class="photo" src="../../assets/hilow.png">
+  <img class="photo" src="@/assets/hilow.png">
 </template>
 
 <script>

@@ -7,7 +7,7 @@
       <div class="datalab-router">데이터 확인하러 가기 >></div>
     </div>
   </div>
-  <img class="photo" src="../../assets/wordcloud.png" alt="">
+  <img class="photo" src="@/assets/wordcloud.png" alt="">
 </template>
 
 <script></script>
