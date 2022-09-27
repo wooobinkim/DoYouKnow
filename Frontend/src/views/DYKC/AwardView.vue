@@ -1,15 +1,15 @@
 <template>
   <div class="black-bg" v-if="youtube == true" @click="youtubeClose($event)">
     <div class="white-bg">
-      <h1 style="text-align : center; font-size: xx-large;">Title</h1>
-      <YoutubeCardmodal/>
+      <h1 style="text-align : center; font-size: xx-large;">{{youtubeName}}</h1>
+      <YoutubeCardmodal v-bind:name="youtubeName"/>
       <button class="close">close</button>
     </div>
   </div>
 
   <div class="black-bg" v-if="twitter == true" @click="twitterClose($event)">
     <div class="white-bg">
-      <h1 style="text-align : center; font-size: xx-large;">Title</h1>
+      <h1 style="text-align : center; font-size: xx-large;">{{twitterName}}</h1>
       <TwitterCardmodal v-bind:name="twitterName"/>
       <button class="close">close</button>
     </div>
@@ -77,7 +77,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </p>
                   <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal"></button>
+                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[0].name)"></button>
                     <button class="btn btn__email" @click="openTwitterModal(cardfront[0].name)"></button>
                   </footer>
                 </div>
@@ -99,7 +99,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </p>
                   <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal"></button>
+                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[1].name)"></button>
                     <button class="btn btn__email" @click="openTwitterModal(cardfront[1].name)"></button>
                   </footer>
                 </div>
@@ -122,7 +122,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </p>
                   <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal"></button>
+                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[2].name)"></button>
                     <button class="btn btn__email" @click="openTwitterModal(cardfront[2].name)"></button>
                   </footer>
                 </div>
@@ -156,6 +156,7 @@ export default {
       keyword : "운동선수",
       category_id : 1,
       twitterName : "",
+      youtubeName : "",
     }
   },
   computed: {
@@ -173,8 +174,9 @@ export default {
     changecategory(event){
       this.category_id = event;
     },
-    openYoutubeModal(){
+    openYoutubeModal(event){
       this.youtube = true;
+      this.youtubeName = event
     },
     openTwitterModal(event){
       this.twitter = true;
@@ -453,14 +455,14 @@ li > button:hover {
     background: rgba(0,0,0,0.6);
   }
   .white-bg {
-    width: 100%; background: white;
+    width: 100%; background: rgb(255 255 255 / 20%);
     border-radius: 8px;
     padding: 20px;
     position: relative;
     top: 50%;
     left: 50%;
-    width: 80vw;
-    height: 80vh;
+    width: 70vw;
+    height: 90vh;
     transform: translate(-50%, -50%);
   }
   .close{
@@ -473,9 +475,9 @@ li > button:hover {
     border-radius: 5px;
     padding: 5px 15px;
     bottom: 2vh;
-    right: 35vw;
+    right: 30vw;
     width: 10rem;
-    height: 7vh;
+    height: 5vh;
     font-size: x-large;
   }
   .close:hover{
