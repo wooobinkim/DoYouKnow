@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Data
-@ToString
 public class DYKClubResponse {
     private String name;
     private String imgUrl;
