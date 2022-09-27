@@ -105,20 +105,22 @@ def np_tag(text):
 
     for doc in list:
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
-        # flag = True
+        flag = True
         if doc[1] == 'NNP':
             for i in range(len(exceptkeyword)) :
                 if exceptkeyword[i] in doc[0] :
+                    flag = False
                     print("doc[0] : ",doc[0],", exceptkeyword : ", exceptkeyword[i])
 
                     val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
                     for i in range(3) : 
                         cursor.execute(sql,val)
                         DoYouKnow_db.commit()
-
-            val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
-            cursor.execute(sql,val)
-            DoYouKnow_db.commit()
+            if(flag):
+                print("doc[0] : ",doc[0])
+                val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
+                cursor.execute(sql,val)
+                DoYouKnow_db.commit()
                 
                     # news_desc += doc[0].replace(" ", "_") + '\n'
 
