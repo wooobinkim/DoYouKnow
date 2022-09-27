@@ -47,9 +47,8 @@ export default {
       1000
     );
     camera.position.set(0, 15, 30); // model camera set
-
     const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(1000, 500); // 캔버스 사이즈 때문에 조정함
+    renderer.setSize(innerWidth, innerHeight); // 캔버스 사이즈 때문에 조정함
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.outputEncoding = sRGBEncoding;
     renderer.physicallyCorrectLights = true;
@@ -131,7 +130,6 @@ export default {
           clearcoat: 0.5,
         })
       );
-      console.log(sphere, "=========");
       sphere.sunEnvIntensity = 0.4;
       sphere.moonEnvIntensity = 0.1;
       sphere.rotation.y += Math.PI * 1.25;
@@ -195,6 +193,24 @@ export default {
 
           console.log(intersects, "뭐임?");
           console.log(intersects[0].object.id, "id임?");
+          if (intersects[0].object.id == 59) {
+            alert(intersects[0].object.id + "영국클릭");
+          }
+          if (intersects[0].object.id == 65) {
+            alert(intersects[0].object.id + "일본클릭");
+          }
+          if (intersects[0].object.id == 71) {
+            alert(intersects[0].object.id + "베트남클릭");
+          }
+          if (intersects[0].object.id == 77) {
+            alert(intersects[0].object.id + "인도네시아클릭");
+          }
+          if (intersects[0].object.id == 83) {
+            alert(intersects[0].object.id + "브라질클릭");
+          }
+          if (intersects[0].object.id == 53) {
+            alert(intersects[0].object.id + "미국클릭");
+          }
         }
       };
       window.addEventListener("click", onMouseMove);
@@ -323,9 +339,9 @@ export default {
   opacity: 1;
 }
 canvas {
-  position: absolute;
+  /* position: absolute;
   top: 20%;
-  right: 15%;
-  z-index: 1;
+  right: 15%; */
+  z-index: 3;
 }
 </style>
