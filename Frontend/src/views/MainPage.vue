@@ -103,7 +103,7 @@ body {
 
 .first {
   /* background-color: #ffdfae; */
-  background: linear-gradient(#fff9f0, #fae3c2, #ffdfae);
+  background: linear-gradient(#fff0fddf, #fae3c2, #ffdfae);
 }
 .second {
   background-color: #f5f5f5;
