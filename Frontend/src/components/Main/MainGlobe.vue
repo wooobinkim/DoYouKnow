@@ -1,6 +1,5 @@
 <template>
   <div class="canvas-container">
-    
     <!-- <div class="moon-background"></div>
     <div class="sun-background"></div> -->
   </div>
@@ -33,7 +32,7 @@ import {
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
-import { onMounted } from '@vue/runtime-core';
+import { onMounted } from "@vue/runtime-core";
 // import { useRouter } from "vue-router";
 
 export default {
@@ -47,9 +46,9 @@ export default {
       0.1,
       1000
     );
-    camera.position.set(3, 10, 30); // 지구 크기 조정
+    camera.position.set(0, 15, 30); // model camera set
 
-    const renderer = new WebGLRenderer({ antialias: true, alpha: true, });
+    const renderer = new WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(1000, 500); // 캔버스 사이즈 때문에 조정함
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.outputEncoding = sRGBEncoding;
@@ -57,9 +56,8 @@ export default {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
     onMounted(() => {
-      document.querySelector('.globe-area').appendChild(renderer.domElement);
-    })
-    
+      document.querySelector(".globe-area").appendChild(renderer.domElement);
+    });
 
     const sunLight = new DirectionalLight(
       new Color("#FFFFFF").convertSRGBToLinear(),
@@ -144,16 +142,42 @@ export default {
         .children[0];
 
       // marker model
+      // us
       let marker = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker.scale.set(0.05, 0.05, 0.05);
-      marker.position.set(0, 0, 20);
+      marker.position.set(-5, 6, -8);
       scene.add(marker);
+      // uk
       let marker1 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker1.scale.set(0.05, 0.05, 0.05);
-      marker1.position.set(0, 0, 18);
+      marker1.position.set(-6, 8.5, 3.5);
       scene.add(marker1);
+      // jp
+      let marker2 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
+        .scene.children[0];
+      marker2.scale.set(0.05, 0.05, 0.05);
+      marker2.position.set(8.5, 7, 1);
+      scene.add(marker2);
+      // vi
+      let marker3 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
+        .scene.children[0];
+      marker3.scale.set(0.05, 0.05, 0.05);
+      marker3.position.set(8.5, 3, 7);
+      scene.add(marker3);
+      // ind
+      let marker4 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
+        .scene.children[0];
+      marker4.scale.set(0.05, 0.05, 0.05);
+      marker4.position.set(10, 0, 5.5);
+      scene.add(marker4);
+      // br
+      let marker5 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
+        .scene.children[0];
+      marker5.scale.set(0.05, 0.05, 0.05);
+      marker5.position.set(-10.5, -2.5, -4);
+      scene.add(marker5);
 
       // marker event =======================================================================
       // TODO: object - id 로 접근, parmas로 분기처리
