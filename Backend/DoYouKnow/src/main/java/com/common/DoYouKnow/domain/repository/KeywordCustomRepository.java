@@ -1,12 +1,8 @@
 package com.common.DoYouKnow.domain.repository;
 
 import com.common.DoYouKnow.domain.entity.Keyword;
-import com.common.DoYouKnow.dto.KeywordDataInter;
+import com.common.DoYouKnow.dto.HigherLowerResponse;
 import com.common.DoYouKnow.dto.KeywordDataResponse;
-import com.common.DoYouKnow.dto.KeywordResponse;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Date;
 import java.util.List;
@@ -23,5 +19,7 @@ public interface KeywordCustomRepository {
     List<Keyword> PeriodGraph(Date sdate,Date ndate,Long nation_id, Long category_id,String keyword);
 
     Long SearchCount(Long nation_id,Long category_id);
+
+//    List<HigherLowerResponse> getHigherLowerRand();
 
 }

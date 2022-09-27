@@ -15,19 +15,16 @@ import java.util.List;
  */
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 public class Category extends BaseEntity{
-    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "category")
     private List<Keyword> keywords = new ArrayList<>();
-/*
+
     @OneToMany(mappedBy = "category")
     private List<DYKClub> dykClubs = new ArrayList<>();
 
- */
 }

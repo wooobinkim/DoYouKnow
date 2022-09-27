@@ -8,7 +8,6 @@ import javax.persistence.*;
  * 모델 간 공통 사항 정의.
  */
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass

@@ -5,8 +5,8 @@ import com.common.DoYouKnow.dto.DYKClubResponse;
 import com.common.DoYouKnow.dto.DYKClubTwitterResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
@@ -17,7 +17,9 @@ public class DYKClubServiceImpl implements DYKClubService{
     @Override
     @Transactional
     public List<DYKClubResponse> getDYKClubs(Long category_id) {
-        return dykClubCustomRepository.getDYKClublist(category_id);
+        List<DYKClubResponse> dykClublist = dykClubCustomRepository.getDYKClublist(category_id);
+        System.out.println("dykClublist = " + dykClublist);
+        return dykClublist;
     }
 
     @Override
