@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # crawling_category(searches, category_id, month, nation_id)
-python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 8, 4)'
-python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 7, 4)'
-python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 6, 4)'
-python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 5, 4)'
-python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 4, 4)'
+python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 9, 4)'
+#python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 7, 4)'
+#python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 6, 4)'
+#python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 5, 4)'
+#python3 -c 'import autocrawling; autocrawling.crawling_category(["Phim truyền hình Hàn Quốc","phim Hàn Quốc"], [2,3], 4, 4)'
 exit 0
