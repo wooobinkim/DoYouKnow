@@ -107,16 +107,16 @@ def np_tag(text):
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
         flag = True
         if doc[1] == 'NNP':
-            for i in range(len(removekeyword)):
-                if removekeyword[i] in doc[0].replace(" ",""): 
-                    flag = False
-                    break
-            if(flag) :
+            # for i in range(len(removekeyword)):
+            #     if removekeyword[i] in doc[0].replace(" ",""): 
+            #         flag = False
+            #         break
+            # if(flag) :
                 # print(doc[0])
-                val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
-                cursor.execute(sql,val)
-                DoYouKnow_db.commit()
-                news_desc += doc[0].replace(" ", "_") + '\n'
+            val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
+            cursor.execute(sql,val)
+            DoYouKnow_db.commit()
+            news_desc += doc[0].replace(" ", "_") + '\n'
 
     nospacetext = text.replace(" ","")
     for i in range(len(exceptkeyword)):
@@ -229,6 +229,24 @@ def crawling_category(searches, category_id, month, nation_id):
                 exceptkeyword.append(line)
         elif category==3 :
             File = open("/home/hadoop/S07P22B208/Data/movieexcept.txt", encoding='utf-8')
+            while True : 
+                line = File.readline().strip()
+                if not line : break
+                exceptkeyword.append(line)
+        elif category==1 :
+            File = open("/home/hadoop/S07P22B208/Data/sportexcept.txt", encoding='utf-8')
+            while True : 
+                line = File.readline().strip()
+                if not line : break
+                exceptkeyword.append(line)
+        elif category==4 :
+            File = open("/home/hadoop/S07P22B208/Data/idolexcept.txt", encoding='utf-8')
+            while True : 
+                line = File.readline().strip()
+                if not line : break
+                exceptkeyword.append(line)
+        elif category==5 :
+            File = open("/home/hadoop/S07P22B208/Data/actorexcept.txt", encoding='utf-8')
             while True : 
                 line = File.readline().strip()
                 if not line : break
