@@ -1,10 +1,15 @@
 <template>
   <section>
     <div class="text-area">
-      <h1>Intro Awards</h1>
-      <p>Lorem awards~</p>
+      <h1 class="awards-title">DYK Hall of Fame</h1>
+      <div class="awards-content">
+        <p>우리 나라를 빛낸 수많은 K-culture 중 최고봉은 과연?</p>
+        <p>영광의 순간을 맛보러 GO GO~</p>
+        <p class="awards-router">명예의 전당 입장하기 >></p>
+      </div>
     </div>
-    <img class="photo" src="../../assets/HallOfFame.png" alt="">
+    <img src="../../assets/DYKClub.png" class="photo">
+    
   </section>
 </template>
 
@@ -16,19 +21,49 @@ export default {
 
 <style scoped>
 .photo {
-  width: 35vw;
+  width: 30vw;
   height: auto;
   position: absolute;
-  top: 200px;
-  right: 200px;
-  
+  bottom: 30vh;
+  right: 15vw;
+}
+
+.photo:hover {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
 }
 
 .text-area {
-  width: 500px;
+  width: 700px;
   height: 500px;
   position: absolute;
   top: 200px;
   left: 100px;
+  text-align: start;
+}
+
+.awards-title {
+  color: black;
+  font-size: 4em;
+}
+
+.awards-content {
+  color: black;
+  font-size: 1.2em
+}
+
+.awards-content p {
+  margin: 0;
+}
+
+.awards-router {
+  margin-top: 10px;
+  background: -webkit-linear-gradient(red, purple);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
 }
 </style>
