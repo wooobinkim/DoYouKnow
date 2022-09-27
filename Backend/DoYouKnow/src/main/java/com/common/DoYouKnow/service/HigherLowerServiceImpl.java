@@ -1,5 +1,6 @@
 package com.common.DoYouKnow.service;
 
+import com.common.DoYouKnow.config.S3Uploader;
 import com.common.DoYouKnow.domain.entity.HigherLower;
 import com.common.DoYouKnow.domain.entity.Keyword;
 import com.common.DoYouKnow.domain.repository.HigherLowerRepository;
@@ -22,6 +23,7 @@ public class HigherLowerServiceImpl implements HigherLowerService{
 
     private final KeywordRepository keywordRepository;
     private final HigherLowerRepository higherLowerRepository;
+    private final S3Uploader s3Uploader;
 
     @Override
     @Transactional
@@ -31,7 +33,8 @@ public class HigherLowerServiceImpl implements HigherLowerService{
         List<HigherLowerCreateRequest> higherLowerCreateRequests = keywordRepository.getHigherLower();
         
         for (HigherLowerCreateRequest higherLowerCreateRequest : higherLowerCreateRequests) {
-            String imgUrl = "https://dyk.s3.ap-northeast-2.amazonaws.com/Game/"+higherLowerCreateRequest.getName()+".jfif";
+//            String imgUrl = "https://dyk.s3.ap-northeast-2.amazonaws.com/Game/"+higherLowerCreateRequest.getName()+".jfif";
+            String imgUrl = s3Uploader.getPath(higherLowerCreateRequest.getName()+".jfif");
             HigherLower higherLower = HigherLower.create(higherLowerCreateRequest, imgUrl);
             higherLowerRepository.save(higherLower);
         }

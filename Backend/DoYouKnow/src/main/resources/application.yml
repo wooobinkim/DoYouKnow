@@ -40,3 +40,16 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
+
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAW547JXMVEONK7UUQ
+      secretKey: 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
+    s3:
+      bucket: dyk
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
