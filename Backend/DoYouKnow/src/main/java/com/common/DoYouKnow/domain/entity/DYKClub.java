@@ -21,4 +21,8 @@ public class DYKClub extends BaseEntity{
     @OneToMany(mappedBy = "dykClub")
     private List<DYKClubContent> dykClubContents = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "dykClub")
+    private List<DYKClubTwitter> dykClubTwitters = new ArrayList<>();
+
 }

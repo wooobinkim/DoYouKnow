@@ -12,4 +12,5 @@ import java.util.List;
 public interface KeywordRepository extends JpaRepository<Keyword,Long> {
     @Query(value = "select new com.common.DoYouKnow.dto.HigherLowerCreateRequest(k.name, sum(k.count)) from Keyword k group by k.name")
     List<HigherLowerCreateRequest> getHigherLower();
+
 }

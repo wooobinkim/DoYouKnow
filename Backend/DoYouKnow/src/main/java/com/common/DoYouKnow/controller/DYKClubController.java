@@ -20,4 +20,11 @@ public class DYKClubController {
     {
         return ResponseEntity.status(HttpStatus.OK).body(dykClubService.getDYKClubs(category_id));
     }
+
+
+    @GetMapping("/keyword/{name}")
+    public ResponseEntity<?> getPeriodKeyword(@PathVariable("name") String name)
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(dykClubService.getTwitter(name));
+    }
 }
