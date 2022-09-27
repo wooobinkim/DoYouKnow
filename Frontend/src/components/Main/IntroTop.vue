@@ -6,32 +6,30 @@
       <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! Do You Know를 아시나요?</p>
       <p>Do you Know 'DoYouKnow'?</p>
     </div>
-    <div class="globe-area">
-      
-      <!-- <MainGlobe class="top-globe"/> -->
-    </div>
+    <!-- <div class="globe-area">
+      <MainGlobe class="top-globe" />
+    </div> -->
   </section>
 </template>
 
 <script>
-import MainGlobe from '@/components/Main/MainGlobe.vue'
+import MainGlobe from "@/components/Main/MainGlobe.vue";
 import AOS from "aos";
-import { onMounted } from '@vue/runtime-core';
+import { onMounted } from "@vue/runtime-core";
 
 export default {
   components: {
     MainGlobe, // eslint-disable-line
   },
-  setup(){
+  setup() {
     onMounted(() => {
       AOS.init();
-    })
-  }
-}
+    });
+  },
+};
 </script>
 
 <style scoped>
-
 h6 {
   font-size: 1.2em;
   width: 258px;
@@ -73,8 +71,6 @@ h1 {
   margin: 0;
 }
 
-
-
 @keyframes slide {
   from {
     left: -200px;
@@ -97,4 +93,3 @@ h1 {
   }
 }
 </style>
-

@@ -3,13 +3,19 @@
     <div class="keyword-container">
       <input id="tab1" type="radio" name="tabs" checked />
       <!-- 메뉴-->
-      <label for="tab1">드라마&영화</label>
+      <label for="tab1">드라마</label>
 
       <input id="tab2" type="radio" name="tabs" />
-      <label for="tab2">스포츠</label>
+      <label for="tab2">영화</label>
 
       <input id="tab3" type="radio" name="tabs" />
-      <label for="tab3">연예인</label>
+      <label for="tab3">스포츠</label>
+
+      <input id="tab4" type="radio" name="tabs" />
+      <label for="tab4">가수</label>
+
+      <input id="tab5" type="radio" name="tabs" />
+      <label for="tab5">배우</label>
 
       <section id="content1">
         <p>1 오징어게임 -------------- 456회(34 %)</p>
@@ -20,11 +26,33 @@
       </section>
 
       <section id="content2">
-        <p>tab menu2의 내용</p>
+        <p>1 오징어게임 -------------- 456회(34 %)</p>
+        <p>2 오징어게임 -------------- 200회(16 %)</p>
+        <p>3 오징어게임 -------------- 80회(3 %)</p>
+        <p>4 오징어게임 -------------- 56회(2 %)</p>
+        <p>5 오징어게임 -------------- 24회(1 %)</p>
       </section>
 
       <section id="content3">
-        <p>tab menu3의 내용</p>
+        <p>1 오징어게임 -------------- 456회(34 %)</p>
+        <p>2 오징어게임 -------------- 200회(16 %)</p>
+        <p>3 오징어게임 -------------- 80회(3 %)</p>
+        <p>4 오징어게임 -------------- 56회(2 %)</p>
+        <p>5 오징어게임 -------------- 24회(1 %)</p>
+      </section>
+      <section id="content4">
+        <p>1 오징어게임 -------------- 456회(34 %)</p>
+        <p>2 오징어게임 -------------- 200회(16 %)</p>
+        <p>3 오징어게임 -------------- 80회(3 %)</p>
+        <p>4 오징어게임 -------------- 56회(2 %)</p>
+        <p>5 오징어게임 -------------- 24회(1 %)</p>
+      </section>
+      <section id="content5">
+        <p>1 오징어게임 -------------- 456회(34 %)</p>
+        <p>2 오징어게임 -------------- 200회(16 %)</p>
+        <p>3 오징어게임 -------------- 80회(3 %)</p>
+        <p>4 오징어게임 -------------- 56회(2 %)</p>
+        <p>5 오징어게임 -------------- 24회(1 %)</p>
       </section>
     </div>
     <div class="chart-container">여기는 char div</div>
@@ -39,12 +67,12 @@ export default {
 
 <style>
 .keyword-container {
-  width: 25rem;
+  width: 26.75rem;
   height: 15rem;
   background-color: #e4e8ef;
   margin-left: 1.5rem;
-  min-width: 320px;
-  max-width: 800px;
+  /* min-width: 320px;
+  max-width: 800px; */
   padding: 0;
   background: #ffffff;
   border-radius: 15px;
@@ -53,7 +81,7 @@ export default {
 section {
   display: none;
   padding: 20px 0 0;
-  border-top: 1px solid #ddd;
+  /* border-top: 1px solid #ddd; */
 }
 
 /*라디오버튼 숨김*/
@@ -81,21 +109,25 @@ input:checked + label {
   color: #555;
   border: 1px solid #ddd;
   border-top: 2px solid #2e9cdf;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   border-bottom: 1px solid #ffffff;
 }
-
 #tab1:checked ~ #content1,
 #tab2:checked ~ #content2,
 #tab3:checked ~ #content3,
-#tab4:checked ~ #content4 {
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5 {
   display: block;
 }
-#content1 {
+#content1,
+#content2,
+#content3,
+#content4,
+#content5 {
   margin-left: 3rem;
   padding: 0;
-  padding-top: 1rem;
+  padding-top: 0;
   padding-bottom: 1rem;
 }
 .chart-container {
@@ -104,6 +136,6 @@ input:checked + label {
   background: #ffffff;
   border-radius: 15px;
   margin-left: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 </style>

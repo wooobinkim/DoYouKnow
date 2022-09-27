@@ -1,30 +1,34 @@
 <template>
-  <div>
-    <div class="data-background">
-      <div class="nation-nav">
-        <div class="nation-title">
-          <h1 class="title">미국</h1>
-          <h2>키워드 분석</h2>
-        </div>
-        <div class="total-container">
-          <div class="nation-total">데이터검색량 : 48,321 회</div>
-          <div class="nation-percentage">국가별데이터비율 : 32 %</div>
-        </div>
+  <div class="data-background">
+    <nav-bar></nav-bar>
+    <div class="nation-nav">
+      <div class="nation-title">
+        <h1 class="title">미국</h1>
+        <h2 style="margin-top: 0">키워드 분석</h2>
       </div>
-      <div class="data-container">
-        <keyword-tab></keyword-tab>
-        <word-cloud></word-cloud>
+      <div class="total-container">
+        <div class="nation-total">데이터검색량 : 48,321 회</div>
+        <div class="nation-percentage">국가별데이터비율 : 32 %</div>
       </div>
+    </div>
+    <div class="data-container">
+      <keyword-tab></keyword-tab>
+      <word-cloud></word-cloud>
+      <trend-tab></trend-tab>
     </div>
   </div>
 </template>
 
 <script>
+import NavBar from "@/components/Main/NavBar.vue";
 import KeywordTab from "@/components/Datalab/KeywordTab.vue";
 import WordCloud from "@/components/Datalab/WordCloud.vue";
+import TrendTab from "@/components/Datalab/TrendTab.vue";
 export default {
   components: {
+    NavBar,
     KeywordTab,
+    TrendTab,
     WordCloud,
   },
   setup() {},
@@ -41,12 +45,14 @@ export default {
 .nation-nav {
   display: flex;
   justify-content: space-between;
+  padding-top: 3rem;
 }
 .nation-title {
   margin-left: 1.5rem;
 }
 .title {
   font-size: 4rem;
+  margin-bottom: 0;
 }
 .total-container {
   display: flex;

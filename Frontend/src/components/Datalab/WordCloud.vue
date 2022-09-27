@@ -1,5 +1,5 @@
 <template>
-  <div class="cloud-container">word div</div>
+  <div class="cloud-container">이 div안에서 작업하시용</div>
 </template>
 
 <script>
@@ -10,7 +10,8 @@ export default {};
 .cloud-container {
   width: 38rem;
   height: 32.5rem;
-  background: white;
-  margin-left: 1.5rem;
+  background: #e4e8ef;
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
 }
 </style>
