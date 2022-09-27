@@ -6,6 +6,7 @@
     mousewheel
     :speed="1000"
     :scrollbar="{draggable: true}"
+    :allowTouchMove="false"
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="second"><IntroDataLab /></swiper-slide>
