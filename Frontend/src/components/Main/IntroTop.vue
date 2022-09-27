@@ -1,44 +1,48 @@
 <template>
   <section>
-    <h6 data-aos="fade-right"
-     data-aos-offset="300"
-     data-aos-easing="ease-in-sine">
+    <div class="title-container">
+      <h6
+        data-aos="fade-right"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+      >
         Introduce
-    </h6>
-    <h1 data-aos="fade">DoYouKnow</h1>
-    <div class="content-msg"
+      </h6>
+      <h1 data-aos="fade">DoYouKnow</h1>
+      <div
+        class="content-msg"
         data-aos="fade-up"
         data-aos-offset="300"
-        data-aos-easing="ease-in-sine">
-      <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?</p>
-      <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
+        data-aos-easing="ease-in-sine"
+      >
+        <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?</p>
+        <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
+      </div>
     </div>
     <div class="globe-area">
-      
-      <MainGlobe class="top-globe"/>
+      <MainGlobe class="top-globe" />
     </div>
   </section>
 </template>
 
 <script>
-import MainGlobe from '@/components/Main/MainGlobe.vue'
+import MainGlobe from "@/components/Main/MainGlobe.vue";
 import AOS from "aos";
-import { onMounted } from '@vue/runtime-core';
+import { onMounted } from "@vue/runtime-core";
 
 export default {
   components: {
     MainGlobe, // eslint-disable-line
   },
-  setup(){
+  setup() {
     onMounted(() => {
       AOS.init();
-    })
-  }
-}
+    });
+  },
+};
 </script>
 
 <style scoped>
-
 h6 {
   font-size: 1.2em;
   width: 258px;
@@ -54,7 +58,7 @@ h6 {
 h1 {
   font-size: 4em;
   width: 500px;
-  color: black;
+  color: white;
   font-family: sans-serif;
   position: absolute;
   top: 190px;
@@ -65,7 +69,7 @@ h1 {
 .content-msg {
   font-size: 1em;
   width: 450px;
-  color: black;
+  color: white;
   font-family: sans-serif;
   font-weight: 400;
   position: absolute;
@@ -84,5 +88,9 @@ h1 {
   margin-top: 30px;
 }
 
-</style>
+.title-container {
+  position: absolute;
 
+  left: -13rem;
+}
+</style>
