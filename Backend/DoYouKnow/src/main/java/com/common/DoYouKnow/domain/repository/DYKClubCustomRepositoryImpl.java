@@ -26,16 +26,15 @@ public class DYKClubCustomRepositoryImpl implements DYKClubCustomRepository {
         List<DYKClub> dykClubs = jpaQueryFactory
                 .selectFrom(k)
                 .where(k.category.id.eq(category_id))
-//                .limit(3)
+                .limit(3)
                 .fetch();
 
-//        List<DYKClubResponse> dykClubResponses = new ArrayList<>();
-//        for (DYKClub tmp: dykClubs){
-//            System.out.println("tmp = " + tmp);
-//            //dykClubResponses.add(DYKClubResponse.response(tmp));
-//        }
-//        System.out.println("끝");
-        return null;
+        List<DYKClubResponse> dykClubResponses = new ArrayList<>();
+        for (DYKClub tmp: dykClubs){
+            dykClubResponses.add(DYKClubResponse.response(tmp));
+        }
+
+        return dykClubResponses;
     }
 
     @Override

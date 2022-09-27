@@ -19,7 +19,7 @@ public class DYKClubResponse {
     public static DYKClubResponse response(DYKClub dykClub){
         List<DYKClubContentResponse> tmp = new ArrayList<>();
         for(DYKClubContent t:dykClub.getDykClubContents()){
-            System.out.println("t = " + t);
+//            System.out.println("t = " + t);
             DYKClubContentResponse dykClubContentResponse =DYKClubContentResponse.response(t);
             tmp.add(dykClubContentResponse);
         }

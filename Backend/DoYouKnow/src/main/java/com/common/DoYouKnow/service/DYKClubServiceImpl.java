@@ -18,7 +18,7 @@ public class DYKClubServiceImpl implements DYKClubService{
     @Transactional
     public List<DYKClubResponse> getDYKClubs(Long category_id) {
         List<DYKClubResponse> dykClublist = dykClubCustomRepository.getDYKClublist(category_id);
-        System.out.println("dykClublist = " + dykClublist);
+//        System.out.println("dykClublist = " + dykClublist);
         return dykClublist;
     }
 
