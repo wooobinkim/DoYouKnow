@@ -41,6 +41,13 @@ dependencies {
 	// queryDSL
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+	//swagger
+	//  For Spring boot Projects
+	implementation "io.springfox:springfox-boot-starter:3.0.0"
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+//  Uncomment for regular spring mvc projects and commend above dependency
+//    implementation "io.springfox:springfox-oas:3.0.0"
 }
 
 tasks.named('test') {
