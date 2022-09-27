@@ -6,5 +6,6 @@ import java.util.List;
 
 
 public interface HigherLowerService {
+    void updateHigherLower();
     List<HigherLowerResponse> getHigherLower();
 }

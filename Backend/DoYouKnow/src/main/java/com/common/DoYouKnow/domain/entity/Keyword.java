@@ -16,6 +16,7 @@ import java.util.Date;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
+@ToString
 public class Keyword extends BaseEntity {
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

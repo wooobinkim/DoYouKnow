@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 public class HigherLowerResponse {
     private String name;
     private String imgUrl;
-    private int count;
+    private Long count;
 
-    public static HigherLowerResponse response(String name, String imgUrl, int count){
+    public static HigherLowerResponse response(String name, String imgUrl, Long count){
         return HigherLowerResponse.builder()
                 .name(name)
                 .imgUrl(imgUrl)
