@@ -10,7 +10,7 @@
   <div class="black-bg" v-if="twitter == true" @click="twitterClose($event)">
     <div class="white-bg">
       <h1 style="text-align : center; font-size: xx-large;">Title</h1>
-      <TwitterCardmodal/>
+      <TwitterCardmodal v-bind:name="twitterName"/>
       <button class="close">close</button>
     </div>
   </div>
@@ -38,22 +38,22 @@
 
     <div class="main">
       <ul class="category">
-        <li class="one">
-          <button class="category_color" v-if="keyword==='운동선수'" @click="changeKeyword('운동선수')">운동선수</button>
-          <button v-else @click="changeKeyword('운동선수')">운동선수</button>
+        <li>
+          <button class="category_color" v-if="keyword==='운동선수'" @click="changeKeyword('운동선수'), changecategory(1)">운동선수</button>
+          <button v-else @click="changeKeyword('운동선수'), changecategory(1)">운동선수</button>
 
         </li>
         <li>
-          <button class="category_color" v-if="keyword==='드 라 마'" @click="changeKeyword('드 라 마')">드 라 마</button>
-          <button v-else @click="changeKeyword('드 라 마')">드 라 마</button>
+          <button class="category_color" v-if="keyword==='드 라 마'" @click="changeKeyword('드 라 마'), changecategory(2)">드 라 마</button>
+          <button v-else @click="changeKeyword('드 라 마'), changecategory(2)">드 라 마</button>
         </li>
         <li>
-          <button class="category_color" v-if="keyword==='영    화'" @click="changeKeyword('영    화')">영      화</button>
-          <button v-else @click="changeKeyword('영    화')" >영      화</button>
+          <button class="category_color" v-if="keyword==='영    화'" @click="changeKeyword('영    화'), changecategory(3)">영      화</button>
+          <button v-else @click="changeKeyword('영    화'), changecategory(3)" >영      화</button>
         </li>
         <li>
-          <button class="category_color" v-if="keyword==='연 예 인'" @click="changeKeyword('연 예 인')">연 예 인</button>
-          <button v-else @click="changeKeyword('연 예 인')">연 예 인</button>
+          <button class="category_color" v-if="keyword==='연 예 인'" @click="changeKeyword('연 예 인'), changecategory(4)">연 예 인</button>
+          <button v-else @click="changeKeyword('연 예 인'), changecategory(4)">연 예 인</button>
         </li>
       </ul>
 
@@ -65,20 +65,20 @@
               <input type="checkbox" class="flipcard">
               <div class="card">
                 <div class="front card-face">
-                    <img src="https://dyk.s3.ap-northeast-2.amazonaws.com/DYKC/DYKC/%EC%B9%B4%EB%93%9C/%EC%86%90%ED%9D%A5%EB%AF%BC.jpg" alt="" class="card-photo">
+                    <img :src="`${cardfront[0].imgUrl}`" alt="" class="card-photo">
                     <div id="front-content">
-                      <h2 style="margin:0.5rem;">가나</h2>
+                      <h2 style="margin:0.5rem;">{{cardfront[0].name}}</h2>
                       <p>100회</p>
                     </div>
                 </div>
                 <div class="back card-face">
-                  <h1>가나</h1>
-                  <p class="card__body">
+                  <h1>{{cardfront[0].name}}</h1>
+                  <p class="card__body" >
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </p>
                   <footer class="social">
                     <button class="btn btn__phone" @click="openYoutubeModal"></button>
-                    <button class="btn btn__email" @click="openTwitterModal"></button>
+                    <button class="btn btn__email" @click="openTwitterModal(cardfront[0].name)"></button>
                   </footer>
                 </div>
               </div>
@@ -87,20 +87,20 @@
               <input type="checkbox" class="flipcard">
               <div class="card">
                 <div class="front card-face">
-                    <img src="https://dyk.s3.ap-northeast-2.amazonaws.com/DYKC/DYKC/%EC%B9%B4%EB%93%9C/%EA%B9%80%EC%97%B0%EA%B2%BD.jpg" alt="" class="card-photo">
+                    <img :src="`${cardfront[1].imgUrl}`" alt="" class="card-photo">
                     <div id="front-content">
-                      <h2 style="margin:0.5rem;">가나다</h2>
+                      <h2 style="margin:0.5rem;">{{cardfront[1].name}}</h2>
                       <p>100회</p>
                     </div>
                 </div>
                 <div class="back card-face">
-                  <h1>가나다</h1>
+                  <h1>{{cardfront[1].name}}</h1>
                   <p class="card__body">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </p>
                   <footer class="social">
                     <button class="btn btn__phone" @click="openYoutubeModal"></button>
-                    <button class="btn btn__email" @click="openTwitterModal"></button>
+                    <button class="btn btn__email" @click="openTwitterModal(cardfront[1].name)"></button>
                   </footer>
                 </div>
               </div>
@@ -109,21 +109,21 @@
               <input type="checkbox" class="flipcard">
               <div class="card">
                 <div class="front card-face">
-                    <img src="https://dyk.s3.ap-northeast-2.amazonaws.com/DYKC/DYKC/%EC%B9%B4%EB%93%9C/%EA%B9%80%EC%97%B0%EC%95%84.jpg" alt="" class="card-photo">
+                    <img :src="`${cardfront[2].imgUrl}`" alt="" class="card-photo">
                     
                     <div id="front-content">
-                      <h2 style="margin:0.5rem;">가나다라</h2>
+                      <h2 style="margin:0.5rem;">{{cardfront[2].name}}</h2>
                       <p>100회</p>
                     </div>
                 </div>
                 <div class="back card-face">
-                  <h1>가나다라</h1>
+                  <h1>{{cardfront[2].name}}</h1>
                   <p class="card__body">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </p>
                   <footer class="social">
                     <button class="btn btn__phone" @click="openYoutubeModal"></button>
-                    <button class="btn btn__email" @click="openTwitterModal"></button>
+                    <button class="btn btn__email" @click="openTwitterModal(cardfront[2].name)"></button>
                   </footer>
                 </div>
               </div>
@@ -140,7 +140,7 @@
 import DYKCNav from '@/components/DYKC/DYKCNav.vue'
 import YoutubeCardmodal from '@/components/DYKC/YoutubeCardmodal.vue'
 import TwitterCardmodal from '@/components/DYKC/TwitterCardmodal.vue'
-
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: "AwardView",
   components:{
@@ -149,25 +149,36 @@ export default {
     TwitterCardmodal
   },
   data(){
-      return{
-        isShowing : true,
-        youtube : false,
-        twitter: false,
-        keyword : "운동선수",
-      }
-    },
+    return{
+      isShowing : true,
+      youtube : false,
+      twitter: false,
+      keyword : "운동선수",
+      category_id : 1,
+      twitterName : "",
+    }
+  },
+  computed: {
+    ...mapGetters(['cardfront'])
+  },
   methods: {
+    ...mapActions(['fetchFrontcard']),
+    
     sound() {
       this.isShowing = !this.isShowing
     },
     changeKeyword(event){
       this.keyword = event;
     },
+    changecategory(event){
+      this.category_id = event;
+    },
     openYoutubeModal(){
       this.youtube = true;
     },
-    openTwitterModal(){
+    openTwitterModal(event){
       this.twitter = true;
+      this.twitterName = event
     },
     youtubeClose(event){
       if(event.target.classList.contains('black-bg')||event.target.classList.contains('close')){
@@ -184,6 +195,12 @@ export default {
       }
     }
   },
+  created() {
+    this.fetchFrontcard(1);
+  },
+  updated(){
+    this.fetchFrontcard(this.category_id);
+  }
 }  
 </script>
 
@@ -304,12 +321,13 @@ li > button:hover {
     width: 300px;
     text-align: center;
     position: absolute;
-    font-size: xx-large;
+    font-size: large;
     top: 35%;
     left: 0%;
     opacity: 0;
     transition: 0.3s;
     color: white;
+    text-shadow:1px 1px 1px #000;
   }
   
 

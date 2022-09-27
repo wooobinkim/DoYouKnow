@@ -26,7 +26,7 @@ export default {
   },
   methods:{
     setKeyword(){
-      const API_KEY = 'AIzaSyC1uZhEkyJzDH9kMOTTccbgCxN59s38QdQ';
+      const API_KEY = process.env.VUE_APP_YOUTUBE_API_KEY
       const API_URL = 'https://www.googleapis.com/youtube/v3/search'
       this.keyword = 'sg워너비'+'해외반응'
 
