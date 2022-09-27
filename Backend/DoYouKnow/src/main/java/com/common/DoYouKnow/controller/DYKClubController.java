@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "두유노클럽에 가입된 키워드 정보 제공")
+@Api(tags = "두유노클럽")
 @RequestMapping("/dykclub")
 public class DYKClubController {
     private final DYKClubService dykClubService;

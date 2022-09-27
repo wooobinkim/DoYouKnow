@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "데이터랩 관련 데이터 제공")
+@Api(tags = "데이터랩")
 @RequestMapping("/keyword")
 public class KeywordController {
     private final KeywordService keywordService;
