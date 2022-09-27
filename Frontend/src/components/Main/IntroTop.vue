@@ -90,9 +90,9 @@ h1 {
     left: 300px;
     opacity: 1;
   }
-
-  /* .catch-phrase {
+}
+.catch-phrase {
   font-size: 1.4em;
-  margin-top: 30px; */
+  margin-top: 30px;
 }
 </style>

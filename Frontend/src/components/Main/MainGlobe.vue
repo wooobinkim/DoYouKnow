@@ -1,6 +1,5 @@
 <template>
   <div class="canvas-container">
-    
     <!-- <div class="moon-background"></div>
     <div class="sun-background"></div> -->
   </div>
@@ -33,7 +32,7 @@ import {
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
-import { onMounted } from '@vue/runtime-core';
+import { onMounted } from "@vue/runtime-core";
 // import { useRouter } from "vue-router";
 
 export default {
@@ -49,7 +48,7 @@ export default {
     );
     camera.position.set(3, 10, 30); // 지구 크기 조정
 
-    const renderer = new WebGLRenderer({ antialias: true, alpha: true, });
+    const renderer = new WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(1000, 500); // 캔버스 사이즈 때문에 조정함
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.outputEncoding = sRGBEncoding;
@@ -57,9 +56,8 @@ export default {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
     onMounted(() => {
-      document.querySelector('.globe-area').appendChild(renderer.domElement);
-    })
-    
+      document.querySelector(".globe-area").appendChild(renderer.domElement);
+    });
 
     const sunLight = new DirectionalLight(
       new Color("#FFFFFF").convertSRGBToLinear(),
