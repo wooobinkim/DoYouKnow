@@ -70,6 +70,7 @@ export default {
   //   Vue3ChartJs,
   // },
   setup() {
+    // const keyword = null;
     const store = useStore();
 
     const rank1 = function (e) {
