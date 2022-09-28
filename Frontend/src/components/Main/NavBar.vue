@@ -151,6 +151,7 @@ body {
 a {
   font-family: "Bungee", cursive;
   font-size: 2.5em;
+  cursor: pointer;
 }
 
 .link-one {
@@ -182,97 +183,6 @@ a {
 
 .link-one:hover::before {
   clip-path: circle(100% at 50% 50%);
-}
-
-.link-one::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  background-color: #151515;
-
-  clip-path: polygon(
-    40% 0%,
-    60% 0%,
-    60% 0%,
-    40% 0%,
-    40% 100%,
-    60% 100%,
-    60% 100%,
-    40% 100%
-  );
-
-  /*
-  Didn't look consistently awesome enough
-  across different viewing widths.
-  clip-path: polygon(
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%,
-    50% 50%
-  );
-  */
-  transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.link-one:hover::after {
-  /*
-  clip-path: polygon(
-    20% 45%,
-    10% 40%,
-    30% 30%,
-    40% 35%,
-    60% 35%,
-    70% 30%,
-    90% 40%,
-    80% 45%,
-    60% 35%,
-    40% 35%,
-    20% 45%,
-    20% 55%,
-    10% 60%,
-    30% 70%,
-    40% 65%,
-    60% 65%,
-    70% 70%,
-    90% 60%,
-    80% 55%,
-    60% 65%,
-    40% 65%,
-    20% 55%
-  );
-  */
-  clip-path: polygon(
-    40% 10%,
-    60% 10%,
-    60% 35%,
-    40% 35%,
-    40% 90%,
-    60% 90%,
-    60% 65%,
-    40% 65%
-  );
 }
 
 .link-two {
@@ -321,23 +231,7 @@ a {
   );
 }
 
-.link-two::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: 5ch;
-  height: 5ch;
-  top: 50%;
-  right: 50%;
-  transform: translate(50%, -50%) rotate(0deg) scale(0);
-  transition: transform 1s ease;
 
-  background-color: #f27b9b;
-}
-
-.link-two:hover::after {
-  transform: translate(50%, -50%) rotate(135deg) scale(1);
-}
 
 .link-three {
   color: #eb7132;
@@ -355,7 +249,7 @@ a {
   transition: transform 1s ease;
   mix-blend-mode: difference;
 
-  clip-path: polygon(
+  /* clip-path: polygon(
     20% 60%,
     100% 60%,
     100% 40%,
@@ -363,8 +257,8 @@ a {
     20% 0%,
     60% 0%,
     60% 20%,
-    20% 20%
-  );
+    
+  ); */
 
   background-color: #eb7132;
 }
@@ -385,16 +279,16 @@ a {
   transition: transform 1s ease;
   mix-blend-mode: difference;
 
-  clip-path: polygon(
-    80% 40%,
+  /* clip-path: polygon(
+    
     0% 40%,
     0% 60%,
     80% 60%,
     80% 100%,
     40% 100%,
     40% 80%,
-    80% 80%
-  );
+    
+  ); */
 
   background-color: #eb7132;
 }
@@ -403,4 +297,15 @@ a {
   transform: translate(0%, 0%) scaleY(1);
 }
 
+.link-one-active {
+  text-decoration: underline;
+}
+
+.link-two-active {
+  text-decoration: underline;
+}
+
+.link-three-active {
+  text-decoration: underline;
+}
 </style>
