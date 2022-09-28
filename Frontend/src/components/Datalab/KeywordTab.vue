@@ -18,7 +18,7 @@
       <label for="tab5">배우</label>
 
       <section id="content1">
-        <p @click="rank1">1 오징어게임 -------------- 456회(34 %)</p>
+        <p @click="rank1(data)">오징어게임123123</p>
         <p>2 오징어게임 -------------- 200회(16 %)</p>
         <p>3 오징어게임 -------------- 80회(3 %)</p>
         <p>4 오징어게임 -------------- 56회(2 %)</p>
@@ -68,16 +68,20 @@ export default {
   //   Vue3ChartJs,
   // },
   setup() {
+    // const keyword = null;
     const store = useStore();
-    const rank1 = function () {
-      const keyword = "오징어게임";
-      store.dispatch("currentRank", { keyword });
+    const rank1 = function (data) {
+      console.log(data);
+      // const keyword = "오징어게임33";
+      store.dispatch("currentRank", { data });
+      const word = computed(() => store.getters["getCurrentRank"]);
+      console.log(word.value);
     };
 
-    const word = computed(() => store.getters["getCurrentRank"]);
+    // const word = computed(() => store.getters["getCurrentRank"]);
 
-    console.log(store, "스토어 드감?");
-    console.log(word, "워드 드감?");
+    // console.log(store, "스토어 드감?");
+    // console.log(word, "워드 드감?");
     return {
       rank1,
     };

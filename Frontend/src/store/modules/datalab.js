@@ -20,9 +20,10 @@ export const datalab = {
     //     method: 'get',
     //   })
     // }
-    currentRank({ state }, { keyword }) {
-      console.log(state, "commit");
-      console.log(keyword, "keyword");
+    async currentRank({ commit }, { keyword }) {
+      await commit("SET_CURRENTRANK", keyword)
+      // console.log(state, "commit");
+      // console.log(keyword, "keyword");
     },
   },
 };
