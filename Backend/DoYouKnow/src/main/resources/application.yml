@@ -48,6 +48,7 @@ cloud:
       secretKey: 4tfbtmzjD25FGOrcRzbvA2Zl3ksIuM8UZX6d8g45
     s3:
       bucket: dyk
+      path: https://dyk.s3.ap-northeast-2.amazonaws.com/
     region:
       static: ap-northeast-2
       auto: false
