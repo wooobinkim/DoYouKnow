@@ -10,8 +10,8 @@ const DataLab = 'keyword/'
 export default{
   // DYKC
   dykc: {
-    category: (keyword) => BE + DYKC + `${keyword}/`,
-    profile: (name) => BE + DYKC + DataLab + `${name}/`
+    DYKC: (keyword) => BE + DYKC + `${keyword}/`,
+    twitter: (name) => BE + DYKC + DataLab + `${name}/`
   },
 
   // DataLab

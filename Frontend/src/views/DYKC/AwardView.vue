@@ -61,75 +61,31 @@
         <div class="title">{{ keyword }}</div>
         
         <div class="scene">
-          <label class="card-wrap">
+          <label class="card-wrap" v-for="(item, key) in cardfront" :key="key">
               <input type="checkbox" class="flipcard">
               <div class="card">
                 <div class="front card-face">
-                    <img :src="`${cardfront[0].imgUrl}`" alt="" class="card-photo">
+                    <img :src="item.imgUrl" alt="" class="card-photo">
                     <div id="front-content">
-                      <h2 style="margin:0.5rem;">{{cardfront[0].name}}</h2>
+                      <h2 style="margin:0.5rem;">{{item.name}}</h2>
                       <p>100회</p>
                     </div>
                 </div>
                 <div class="back card-face">
-                  <h1>{{cardfront[0].name}}</h1>
+                  <h1>{{item.name}}</h1>
                   <p class="card__body" >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    프리미어 리그 득점왕: 2021-22[64]
+                    프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
+                    프리미어 리그 올해의 골: 2019-20[65]
                   </p>
                   <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[0].name)"></button>
-                    <button class="btn btn__email" @click="openTwitterModal(cardfront[0].name)"></button>
+                    <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
+                    <button class="btn btn__email" @click="openTwitterModal(item.name)"></button>
                   </footer>
                 </div>
               </div>
           </label>
-          <label class="card-wrap">
-              <input type="checkbox" class="flipcard">
-              <div class="card">
-                <div class="front card-face">
-                    <img :src="`${cardfront[1].imgUrl}`" alt="" class="card-photo">
-                    <div id="front-content">
-                      <h2 style="margin:0.5rem;">{{cardfront[1].name}}</h2>
-                      <p>100회</p>
-                    </div>
-                </div>
-                <div class="back card-face">
-                  <h1>{{cardfront[1].name}}</h1>
-                  <p class="card__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                  <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[1].name)"></button>
-                    <button class="btn btn__email" @click="openTwitterModal(cardfront[1].name)"></button>
-                  </footer>
-                </div>
-              </div>
-          </label>
-          <label class="card-wrap">
-              <input type="checkbox" class="flipcard">
-              <div class="card">
-                <div class="front card-face">
-                    <img :src="`${cardfront[2].imgUrl}`" alt="" class="card-photo">
-                    
-                    <div id="front-content">
-                      <h2 style="margin:0.5rem;">{{cardfront[2].name}}</h2>
-                      <p>100회</p>
-                    </div>
-                </div>
-                <div class="back card-face">
-                  <h1>{{cardfront[2].name}}</h1>
-                  <p class="card__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                  <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[2].name)"></button>
-                    <button class="btn btn__email" @click="openTwitterModal(cardfront[2].name)"></button>
-                  </footer>
-                </div>
-              </div>
-          </label>
-      </div>
-
+        </div>
       </div>
     </div>
   </div> 
@@ -155,15 +111,25 @@ export default {
       twitter: false,
       keyword : "운동선수",
       category_id : 1,
+      cardfront : {},
       twitterName : "",
       youtubeName : "",
     }
   },
+  mounted(){
+    this.cardfront = this.sport;
+  },
   computed: {
-    ...mapGetters(['cardfront'])
+    ...mapGetters(['sport', 'drama', 'movie', 'entertainer'])
+  },
+  created() {
+    this.fetchSport(1);
+    this.fetchDrama(2);
+    this.fetchMovie(3);
+    this.fetchEntertainer(4);
   },
   methods: {
-    ...mapActions(['fetchFrontcard']),
+    ...mapActions(['fetchSport', 'fetchMovie', 'fetchDrama', 'fetchEntertainer']),
     
     sound() {
       this.isShowing = !this.isShowing
@@ -173,6 +139,18 @@ export default {
     },
     changecategory(event){
       this.category_id = event;
+      if(this.category_id == 1){
+        this.cardfront = this.sport;
+      }
+      else if (this.category_id == 2){
+        this.cardfront = this.drama;
+      }
+      else if (this.category_id == 3){
+        this.cardfront = this.movie;
+      }
+      else if (this.category_id == 4){
+        this.cardfront = this.entertainer;
+      }
     },
     openYoutubeModal(event){
       this.youtube = true;
@@ -197,12 +175,6 @@ export default {
       }
     }
   },
-  created() {
-    this.fetchFrontcard(1);
-  },
-  updated(){
-    this.fetchFrontcard(this.category_id);
-  }
 }  
 </script>
 
@@ -231,8 +203,8 @@ export default {
     margin-left: 2rem;
   }
   .category_color{
-    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
-    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(128, 211, 183),
+    0 0 82px rgb(128, 211, 183), 0 0 92px rgb(128, 211, 183), 0 0 102px rgb(128, 211, 183), 0 0 151px rgb(128, 211, 183);
   }
   ul{
     list-style:none;
@@ -253,8 +225,8 @@ export default {
 
 li > button:hover {
   color: white;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
-    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(128, 211, 183),
+    0 0 82px rgb(128, 211, 183), 0 0 92px rgb(128, 211, 183), 0 0 102px rgb(128, 211, 183), 0 0 151px rgb(128, 211, 183);
 } 
   .content{
     flex: 1;

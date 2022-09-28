@@ -1,6 +1,6 @@
 <template>
   <div class="APIscene">
-    <p class="content" v-for="(item, index) in cardback" :key="index">
+    <p class="content" v-for="(item, index) in twitter" :key="index">
       {{ item.content }}
     </p>
   </div>
@@ -12,13 +12,13 @@
   export default {
     props: ["name"],
     computed: {
-      ...mapGetters(['cardback'])
+      ...mapGetters(['twitter'])
     },
     methods: {
-      ...mapActions(['fetchBackcard']),
+      ...mapActions(['fetchTwitter']),
     },
     created() {
-      this.fetchBackcard(this.name);
+      this.fetchTwitter(this.name);
     },
   }
 </script>

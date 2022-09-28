@@ -14,7 +14,7 @@ export default {
     endedPlaying() {
       this.$router.push('/award');
     },
-  },
+    },
 }
 </script>
 
