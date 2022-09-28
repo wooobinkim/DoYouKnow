@@ -75,7 +75,7 @@ export default {
 
     const rank1 = function (e) {
       e = rankDrama[0].title;
-      console.log(e, "eeeee");
+      // console.log(e, "eeeee");
       const keyword = e;
       store.dispatch("currentRank", { keyword });
     };
