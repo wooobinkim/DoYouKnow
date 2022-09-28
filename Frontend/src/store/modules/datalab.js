@@ -1,6 +1,6 @@
 // import axios from "axios";
 
-export default {
+export const datalab = {
   state: {
     rank: null,
     currentrank: null,
@@ -11,7 +11,7 @@ export default {
     },
   },
   mutations: {
-    SET_CURRENTRANK: (state, currentrank) => (state.currentrank = currentrank),
+    SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
   },
   actions: {
     // getRank({ commit }, rank1) {

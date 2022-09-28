@@ -62,6 +62,7 @@
 <script>
 // import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
   // components: {
   //   Vue3ChartJs,
@@ -70,10 +71,13 @@ export default {
     const store = useStore();
     const rank1 = function () {
       const keyword = "오징어게임";
-      store.dispatch("datalab/currentRank", { keyword });
-      console.log(store, "여기는 스토어");
+      store.dispatch("currentRank", { keyword });
     };
 
+    const word = computed(() => store.getters["getCurrentRank"]);
+
+    console.log(store, "스토어 드감?");
+    console.log(word, "워드 드감?");
     return {
       rank1,
     };
