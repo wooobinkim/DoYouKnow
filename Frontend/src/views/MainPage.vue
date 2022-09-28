@@ -8,6 +8,7 @@
     :speed="1000"
     :scrollbar="{ draggable: true }"
     :allowTouchMove="false"
+    :lazy="{loadPrevNext: true}"
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="second"><IntroDataLab /></swiper-slide>
