@@ -60,18 +60,23 @@
 </template>
 
 <script>
-import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
+// import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
+import { useStore } from "vuex";
 export default {
-  components: {
-    Vue3ChartJs,
-  },
+  // components: {
+  //   Vue3ChartJs,
+  // },
   setup() {
+    const store = useStore();
     const rank1 = function () {
+      const keyword = "오징어게임";
+      store.dispatch("datalab/currentRank", { keyword });
+      console.log(store, "여기는 스토어");
+    };
 
-    },
     return {
       rank1,
-    }
+    };
   },
 };
 </script>
