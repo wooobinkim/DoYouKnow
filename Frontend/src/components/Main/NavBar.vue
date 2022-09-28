@@ -10,18 +10,18 @@
     </div>
   </div> -->
   <div class="navbar-container">
-    <img src="@/assets/logo.png" class="logo">
+    <img src="@/assets/logo.png" class="logo" @click.prevent="moveSlide(0)">
     <div class="menu-container">
       <div class="background-one" >
         <div class="link-container">
-          <a class="link-one" @click="swiper.slideNext()">DataLab</a>
+          <a class="link-one" @click.prevent="moveSlide(1)">DataLab</a>
         </div>
       </div>
       <div class="background-two link-container">
-        <a class="link-two" >Hall Of Fame</a>
+        <a class="link-two" @click.prevent="moveSlide(2)">Hall Of Fame</a>
       </div>
       <div class="background-three link-container">
-        <a class="link-three">Game</a>
+        <a class="link-three" @click.prevent="moveSlide(3)">Game</a>
       </div>
     </div>
   </div>
@@ -30,6 +30,19 @@
 <script>
 
 export default {
+  props: {
+    swiper: Object,
+  },
+
+  setup(props){
+    const moveSlide = (index) => {
+      props.swiper.slideTo(index, 1000, false)
+    }
+
+    return {
+      moveSlide,
+    }
+  }
 };
 </script>
 
