@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,7 @@ public class HigherLowerCustomRepositoryImpl implements HigherLowerCustomReposit
                         h.get(k.name), S3Url+h.get(k.imgUrl), h.get(i.count())
         )).collect(Collectors.toList());
 
+        Collections.shuffle(higherLowerResponseList);
         return higherLowerResponseList;
     }
 }
