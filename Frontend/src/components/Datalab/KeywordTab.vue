@@ -65,7 +65,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .keyword-container {
   width: 26.75rem;
   height: 15rem;

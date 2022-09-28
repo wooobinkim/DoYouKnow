@@ -6,7 +6,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .cloud-container {
   width: 38rem;
   height: 32.5rem;

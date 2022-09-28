@@ -9,7 +9,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .trend-container {
   height: 15rem;
   width: 20rem;
