@@ -18,7 +18,7 @@
       <label for="tab5">배우</label>
 
       <section id="content1">
-        <p>1 오징어게임 -------------- 456회(34 %)</p>
+        <p @click="rank1">1 오징어게임 -------------- 456회(34 %)</p>
         <p>2 오징어게임 -------------- 200회(16 %)</p>
         <p>3 오징어게임 -------------- 80회(3 %)</p>
         <p>4 오징어게임 -------------- 56회(2 %)</p>
@@ -55,13 +55,24 @@
         <p>5 오징어게임 -------------- 24회(1 %)</p>
       </section>
     </div>
-    <div class="chart-container">여기는 char div</div>
+    <div class="chart-container"></div>
   </div>
 </template>
 
 <script>
+import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 export default {
-  setup() {},
+  components: {
+    Vue3ChartJs,
+  },
+  setup() {
+    const rank1 = function () {
+
+    },
+    return {
+      rank1,
+    }
+  },
 };
 </script>
 
