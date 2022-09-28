@@ -1,5 +1,7 @@
 <template>
-  <div class="cloud-container">이 div안에서 작업하시용</div>
+  <div class="cloud-container">
+    이 div안에서 작업하시용 npm으로 vueworldcloud 해보면될듯?
+  </div>
 </template>
 
 <script>
