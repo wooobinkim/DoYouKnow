@@ -18,7 +18,9 @@
       <label for="tab5">배우</label>
 
       <section id="content1">
-        <p @click="rank1">1 오징어게임 -------------- 456회(34 %)</p>
+        <p @click="rank1(e)">
+          {{ rankDrama[0].title }}
+        </p>
         <p>2 오징어게임 -------------- 200회(16 %)</p>
         <p>3 오징어게임 -------------- 80회(3 %)</p>
         <p>4 오징어게임 -------------- 56회(2 %)</p>
@@ -62,23 +64,25 @@
 <script>
 // import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import { useStore } from "vuex";
-import { computed } from "vue";
+// import { computed } from "vue";
 export default {
   // components: {
   //   Vue3ChartJs,
   // },
   setup() {
     const store = useStore();
-    const rank1 = function () {
-      const keyword = "오징어게임";
+
+    const rank1 = function (e) {
+      e = rankDrama[0].title;
+      console.log(e, "eeeee");
+      const keyword = e;
       store.dispatch("currentRank", { keyword });
     };
+    const rankDrama = [{ rank: 1, title: "오징어게임" }];
+    // const word = computed(() => store.getters["getCurrentRank"]);
 
-    const word = computed(() => store.getters["getCurrentRank"]);
-
-    console.log(store, "스토어 드감?");
-    console.log(word, "워드 드감?");
     return {
+      rankDrama,
       rank1,
     };
   },

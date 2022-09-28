@@ -23,6 +23,7 @@ export const datalab = {
     currentRank({ state }, { keyword }) {
       console.log(state, "commit");
       console.log(keyword, "keyword");
+      state.currentrank;
     },
   },
 };
