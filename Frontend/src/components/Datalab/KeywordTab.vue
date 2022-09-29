@@ -90,7 +90,7 @@ export default {
     const rankDrama = [{ rank: 1, title: "오징어게임" }];
     const rank1 = function (e) {
       e = rankDrama[0].title;
-      console.log(e, "eeeee");
+      // console.log(e, "eeeee");
       const keyword = e;
       store.dispatch("currentRank", { keyword });
     };
