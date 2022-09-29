@@ -1,98 +1,126 @@
 <template>
   <div>
     <div class="keyword-container">
-      <input id="tab1" type="radio" name="tabs" checked />
-      <!-- 메뉴-->
-      <label for="tab1">드라마</label>
+      <template v-for="nation in this.getNation" :key="nation.value">
+        <button @click="setNation(nation.value)">
+          {{ nation.text }}
+        </button>
+      </template>
+      <br />
+      <template v-for="category in this.getCategory" :key="category.value">
+        <!-- <input id="tab1" type="radio" name="tabs" checked />
+        <label for="tab1">{{ category.text }}</label> -->
+        <button @click="setCategory(category.value)">
+          {{ category.text }}
+        </button>
+      </template>
+      <br />
+      <template v-for="period in this.getPeriod" :key="period.value">
+        <button @click="setPeriod(period.value)">{{ period.text }}</button>
+      </template>
 
-      <input id="tab2" type="radio" name="tabs" />
-      <label for="tab2">영화</label>
-
-      <input id="tab3" type="radio" name="tabs" />
-      <label for="tab3">스포츠</label>
-
-      <input id="tab4" type="radio" name="tabs" />
-      <label for="tab4">가수</label>
-
-      <input id="tab5" type="radio" name="tabs" />
-      <label for="tab5">배우</label>
-
-      <section id="content1">
-        <p @click="rank1(e)">
-          {{ rankDrama[0].title }}
-        </p>
-        <p>2 오징어게임 -------------- 200회(16 %)</p>
-        <p>3 오징어게임 -------------- 80회(3 %)</p>
-        <p>4 오징어게임 -------------- 56회(2 %)</p>
-        <p>5 오징어게임 -------------- 24회(1 %)</p>
-      </section>
-
-      <section id="content2">
-        <p>1 오징어게임영화 -------------- 456회(34 %)</p>
-        <p>2 오징어게임 -------------- 200회(16 %)</p>
-        <p>3 오징어게임 -------------- 80회(3 %)</p>
-        <p>4 오징어게임 -------------- 56회(2 %)</p>
-        <p>5 오징어게임 -------------- 24회(1 %)</p>
-      </section>
-
-      <section id="content3">
-        <p>1 오징어게임스포츠 -------------- 456회(34 %)</p>
-        <p>2 오징어게임 -------------- 200회(16 %)</p>
-        <p>3 오징어게임 -------------- 80회(3 %)</p>
-        <p>4 오징어게임 -------------- 56회(2 %)</p>
-        <p>5 오징어게임 -------------- 24회(1 %)</p>
-      </section>
-      <section id="content4">
-        <p>1 오징어게임가수 -------------- 456회(34 %)</p>
-        <p>2 오징어게임 -------------- 200회(16 %)</p>
-        <p>3 오징어게임 -------------- 80회(3 %)</p>
-        <p>4 오징어게임 -------------- 56회(2 %)</p>
-        <p>5 오징어게임 -------------- 24회(1 %)</p>
-      </section>
-      <section id="content5">
-        <p>1 오징어게임배우 -------------- 456회(34 %)</p>
-        <p>2 오징어게임 -------------- 200회(16 %)</p>
-        <p>3 오징어게임 -------------- 80회(3 %)</p>
-        <p>4 오징어게임 -------------- 56회(2 %)</p>
-        <p>5 오징어게임 -------------- 24회(1 %)</p>
-      </section>
+      <!-- <section id="content1"> -->
+      <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
+        <template v-if="index < 5">
+          <div @click="setOneKeyword(keyword.name)">{{ keyword.name }}</div>
+        </template>
+      </template>
+      <!-- </section> -->
     </div>
-    <div class="chart-container"></div>
   </div>
 </template>
 
 <script>
-// import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
-import { useStore } from "vuex";
-// import { computed } from "vue";
+import { useStore, mapGetters } from "vuex";
+import { onMounted } from "vue";
+// import { useRoute } from "vue-router";
 export default {
-  // components: {
-  //   Vue3ChartJs,
-  // },
   setup() {
-    // const keyword = null;
     const store = useStore();
+    onMounted(() => {});
 
-    const rank1 = function (e) {
-      e = rankDrama[0].title;
-      // console.log(e, "eeeee");
-      const keyword = e;
+    const setNation = function setNation(nation) {
+      store.dispatch("setNation", { nation });
+    };
+    const setCategory = function setCategory(category) {
+      store.dispatch("setCategory", { category });
+    };
+    const setPeriod = function setPeriod(period) {
+      store.dispatch("setPeriod", { period });
+    };
+    const setOneKeyword = function setOneKeyword(keyword) {
       store.dispatch("currentRank", { keyword });
     };
-    const rankDrama = [{ rank: 1, title: "오징어게임" }];
-    // const word = computed(() => store.getters["getCurrentRank"]);
+
+    // const rank1 = function (e) {
+    //   e = rankDrama[0].title;
+    //   // console.log(e, "eeeee");
+    //   const keyword = e;
+    //   store.dispatch("currentRank", { keyword });
+    // };
 
     return {
-      rankDrama,
-      rank1,
+      // rank1,
+      setNation,
+      setCategory,
+      setPeriod,
+      setOneKeyword,
+      store,
+      // data,
     };
   },
+  computed: {
+    ...mapGetters([
+      "getConditionNation",
+      "getConditionCategory",
+      "getConditionPeriod",
+      "getNation",
+      "getCategory",
+      "getPeriod",
+      "getKeywordRank",
+    ]),
+  },
+  watch: {
+    getConditionNation: function () {
+      if (this.getConditionCategory && this.getConditionPeriod) {
+        const condition = {
+          nation: this.getConditionNation,
+          category: this.getConditionCategory,
+          period: this.getConditionPeriod,
+        };
+        this.store.dispatch("getKeywordData", { condition });
+      }
+    },
+    getConditionCategory: function () {
+      if (this.getConditionNation && this.getConditionPeriod) {
+        const condition = {
+          nation: this.getConditionNation,
+          category: this.getConditionCategory,
+          period: this.getConditionPeriod,
+        };
+        this.store.dispatch("getKeywordData", { condition });
+      }
+    },
+    getConditionPeriod: function () {
+      if (this.getConditionCategory && this.getConditionNation) {
+        const condition = {
+          nation: this.getConditionNation,
+          category: this.getConditionCategory,
+          period: this.getConditionPeriod,
+        };
+        this.store.dispatch("getKeywordData", { condition });
+      }
+    },
+  },
+  // methods: {
+  //   ...mapActions(["setNation", "setCategory", "setPeriod"]),
+  // },
 };
 </script>
 
 <style scoped>
 .keyword-container {
-  width: 26.75rem;
+  width: 27.75rem;
   height: 15rem;
   background-color: #e4e8ef;
   margin-left: 1.5rem;
@@ -102,7 +130,9 @@ export default {
   background: #ffffff;
   border-radius: 15px;
 }
-
+p {
+  margin: 0;
+}
 section {
   display: none;
   padding: 20px 0 0;
@@ -122,6 +152,7 @@ label {
   text-align: center;
   color: #bbb;
   border: 1px solid transparent;
+  /* width: 35px; */
 }
 
 label:hover {
@@ -153,14 +184,6 @@ input:checked + label {
   margin-left: 3rem;
   padding: 0;
   padding-top: 0;
-  padding-bottom: 1rem;
-}
-.chart-container {
-  width: 33rem;
-  height: 16rem;
-  background: #ffffff;
-  border-radius: 15px;
-  margin-left: 1.5rem;
-  margin-top: 1rem;
+  padding-bottom: 0;
 }
 </style>

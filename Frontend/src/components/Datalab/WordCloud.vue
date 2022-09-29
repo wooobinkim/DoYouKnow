@@ -1,11 +1,17 @@
 <template>
-  <div class="cloud-container">
-    이 div안에서 작업하시용 npm으로 vueworldcloud 해보면될듯?
-  </div>
+  <div class="cloud-container">{{ this.getRelatedKeyword }}</div>
 </template>
 
 <script>
-export default {};
+// import { useStore } from "vuex";
+// import { computed } from "vue";
+import { mapGetters } from "vuex";
+export default {
+  setup() {},
+  computed: {
+    ...mapGetters(["getCurrentRank", "getRelatedKeyword"]),
+  },
+};
 </script>
 
 <style scoped>
