@@ -2,19 +2,16 @@ package com.common.DoYouKnow.domain.repository;
 
 import com.common.DoYouKnow.domain.entity.Keyword;
 import com.common.DoYouKnow.domain.entity.QKeyword;
+import com.common.DoYouKnow.dto.HigherLowerResponse;
 import com.common.DoYouKnow.dto.KeywordDataResponse;
-import com.common.DoYouKnow.dto.KeywordResponse;
 import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,7 +38,7 @@ public class KeywordCustomRepositoryImpl implements KeywordCustomRepository {
                 .groupBy(k.name)
                 .orderBy(k.count.sum().desc())
                 .offset(0)
-                .limit(5)
+                .limit(20)
                 .fetch();
 
         List<KeywordDataResponse> keywordDataResponseList = fetch.stream().map(
@@ -111,4 +108,27 @@ public class KeywordCustomRepositoryImpl implements KeywordCustomRepository {
 
         return null;
     }
+
+//    @Override
+//    public List<HigherLowerResponse> getHigherLowerRand() {
+//        JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
+//        QKeyword k = new QKeyword("k");
+//
+//        System.out.println("????");
+//        List<Tuple> higherLowers = jpaQueryFactory
+//                .select(k.name, k.count.sum())
+//                .from(k)
+//                .groupBy(k.name)
+//                .orderBy(NumberExpression.random().asc())
+//                .fetch();
+//
+//        System.out.println("higherLowers = " + higherLowers);
+//
+//        List<HigherLowerResponse> higherLowerResponses =
+//                higherLowers.stream().map(h -> HigherLowerResponse.response(
+//                        h.get(k.name), null, h.get(k.count.sum())
+//                )).collect(Collectors.toList());
+//
+//        return higherLowerResponses;
+//    }
 }

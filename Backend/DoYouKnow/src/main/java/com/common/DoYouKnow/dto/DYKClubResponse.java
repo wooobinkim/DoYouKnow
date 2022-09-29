@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Data
-@ToString
 public class DYKClubResponse {
     private String name;
     private String imgUrl;
@@ -20,7 +19,7 @@ public class DYKClubResponse {
     public static DYKClubResponse response(DYKClub dykClub){
         List<DYKClubContentResponse> tmp = new ArrayList<>();
         for(DYKClubContent t:dykClub.getDykClubContents()){
-            System.out.println("t = " + t);
+//            System.out.println("t = " + t);
             DYKClubContentResponse dykClubContentResponse =DYKClubContentResponse.response(t);
             tmp.add(dykClubContentResponse);
         }

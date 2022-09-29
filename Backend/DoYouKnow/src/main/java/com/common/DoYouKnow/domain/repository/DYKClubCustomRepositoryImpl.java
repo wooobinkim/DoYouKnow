@@ -1,12 +1,12 @@
 package com.common.DoYouKnow.domain.repository;
 
-import com.common.DoYouKnow.domain.entity.DYKClub;
-import com.common.DoYouKnow.domain.entity.QDYKClub;
-import com.common.DoYouKnow.domain.entity.QKeyword;
+import com.common.DoYouKnow.domain.entity.*;
 import com.common.DoYouKnow.dto.DYKClubResponse;
+import com.common.DoYouKnow.dto.DYKClubTwitterResponse;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,13 +29,27 @@ public class DYKClubCustomRepositoryImpl implements DYKClubCustomRepository {
                 .limit(3)
                 .fetch();
 
-        System.out.println("내가 바보도 아니고");
         List<DYKClubResponse> dykClubResponses = new ArrayList<>();
         for (DYKClub tmp: dykClubs){
-            System.out.println("tmp = " + tmp);
-            //dykClubResponses.add(DYKClubResponse.response(tmp));
+            dykClubResponses.add(DYKClubResponse.response(tmp));
         }
-        System.out.println("끝");
+
         return dykClubResponses;
+    }
+
+    @Override
+    public List<DYKClubTwitterResponse> getTwitterlist(String name) {
+        JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
+        QDYKClubTwitter t = new QDYKClubTwitter("t");
+        List<DYKClubTwitter> dykClubTwitters = jpaQueryFactory
+                .selectFrom(t)
+                .where(t.dykClub.name.eq(name))
+                .limit(10)
+                .fetch();
+        List<DYKClubTwitterResponse> dykClubTwitterResponses = new ArrayList<>();
+        for (DYKClubTwitter tmp: dykClubTwitters){
+            dykClubTwitterResponses.add(DYKClubTwitterResponse.response(tmp));
+        }
+        return dykClubTwitterResponses;
     }
 }

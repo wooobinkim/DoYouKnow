@@ -34,9 +34,10 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { onMounted } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
-
+import { useStore } from "vuex";
 export default {
   setup() {
+    const store = useStore();
     const router = useRouter();
     // const canvas = document.querySelector('.canvas-container')
     const scene = new Scene();
@@ -191,35 +192,54 @@ export default {
         const intersects = raycaster.intersectObjects(scene.children);
 
         if (intersects.length >= 2) {
-          if (intersects[0].object.id == 59) {
-            alert(intersects[0].object.id + "영국클릭");
+          if (intersects[0].object.id == 53) {
+            alert(intersects[0].object.id + "미국클릭");
+            const nation = 1;
+            store.dispatch("setNation", { nation });
             router.push({
               name: "DatalabPage",
-              query: { nation: "영국" },
+            });
+          }
+          if (intersects[0].object.id == 59) {
+            alert(intersects[0].object.id + "영국클릭");
+            const nation = 2;
+            store.dispatch("setNation", { nation });
+            router.push({
+              name: "DatalabPage",
+              // query: { nation: 2 },
             });
           }
           if (intersects[0].object.id == 65) {
             alert(intersects[0].object.id + "일본클릭");
+            const nation = 3;
+            store.dispatch("setNation", { nation });
+            router.push({
+              name: "DatalabPage",
+            });
           }
           if (intersects[0].object.id == 71) {
             alert(intersects[0].object.id + "베트남클릭");
+            const nation = 4;
+            store.dispatch("setNation", { nation });
             router.push({
               name: "DatalabPage",
-              query: { nation: "베트남" },
             });
           }
           if (intersects[0].object.id == 77) {
             alert(intersects[0].object.id + "인도네시아클릭");
+            const nation = 5;
+            store.dispatch("setNation", { nation });
             router.push({
               name: "DatalabPage",
-              query: { nation: "인도네시아" },
             });
           }
           if (intersects[0].object.id == 83) {
             alert(intersects[0].object.id + "브라질클릭");
-          }
-          if (intersects[0].object.id == 53) {
-            alert(intersects[0].object.id + "미국클릭");
+            const nation = 6;
+            store.dispatch("setNation", { nation });
+            router.push({
+              name: "DatalabPage",
+            });
           }
         }
       };
