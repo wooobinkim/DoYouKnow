@@ -430,8 +430,7 @@ li > button:hover {
     grid-template-columns: 1fr 1fr;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
-    margin-top: 1rem;
-    top: 75%;
+    top: 100%;
     left: 22.5%;
     position: absolute;
   }
@@ -473,8 +472,8 @@ li > button:hover {
     box-shadow: inset 0 0 10px 0 white, 0 0 10px 0 #0099ff, 0 0 20px 0 #0099ff,
       0 0 30px 0 #0099ff;
     border: 1px solid white;
-    -webkit-transform: rotate(360deg) scale(1.3);
-    transform: rotate(360deg) scale(1.3);
+    -webkit-transform: rotate(360deg) scale(1.2);
+    transform: rotate(360deg) scale(1.2);
   }
   .btn:hover::before {
     font-family: Raleway, sans-serif;
