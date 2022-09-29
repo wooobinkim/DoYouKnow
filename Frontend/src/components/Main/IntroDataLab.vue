@@ -1,74 +1,56 @@
 <template>
-  <section>
-    <h1>Do You Know??!</h1>
-    <img class="photo" src="https://previews.123rf.com/images/joinanita/joinanita1510/joinanita151000054/46090289-%EC%A7%80%EA%B5%AC%EB%B3%B8-%EC%95%84%EC%9D%B4%EC%BD%98.jpg" alt="">
-  </section>
+  <div class="text-area">
+    <h1>DYK DataLab</h1>
+    <div class="datalab-content">
+      <p>주요 6개국의 데이터를 한 눈에!</p>
+      <p>각 나라별 한국에 대한 키워드를 확인할 수 있습니다.</p>
+      <div class="datalab-router">데이터 확인하러 가기 >></div>
+    </div>
+  </div>
+  <img class="photo" src="@/assets/wordcloud.png" alt="">
 </template>
 
-<script setup>
-import { onMounted } from 'vue'
-
-onMounted(() => {
-  let mainText = document.querySelector('h1')
-  window.addEventListener('scroll', function(){
-    let value = window.scrollY
-    
-    if(value > 300){
-      mainText.style.animation = 'disappear 1s ease-out forwards'
-    }
-    else {
-      mainText.style.animation = 'slide 1s ease-out'
-    }
-  })
-})
-</script>
+<script></script>
 
 <style scoped>
-section {
-  height: 100vh;
-  background: url(https://mblogthumb-phinf.pstatic.net/20130819_85/choimj941114_1376913324620CS7yN_JPEG/C0AC1.JPG?type=w2) fixed;
-  background-size: cover;
-}
-
 .photo {
   position: absolute;
   top: 200px;
-  right: 200px;
-  width: 20.8vw;
-  height: 37vh;
+  left: 200px;
+  width: 700px;
+  height: 600px;
+}
+
+.text-area {
+  position: absolute;
+  top: 200px;
+  right: 100px;
+  width: 500px;
+  height: 500px;
+  text-align: start;
 }
 
 h1 {
-  font-size: 6em;
-  width: 258px;
+  font-size: 4em;
+  width: 500px;
   color: white;
   font-family: sans-serif;
-  position: absolute;
-  top: 80px;
-  left: 400px;
-  animation: slide 2s ease-out;
+  text-align: start;
 }
 
-@keyframes slide {
-  from {
-    left: -200px;
-    opacity: 0;
-  }
-  to {
-    left: 400px;
-    opacity: 1;
-  }
+.datalab-content p {
+  margin: 0;
+  color: white;
+  font-size: 1.2em;
 }
 
-@keyframes disappear {
-  from {
-    left: 400px;
-    opacity: 1;
-  }
-  to {
-    left: -200px;
-    opacity: 0;
-  }
+.datalab-router {
+  margin-top: 10px;
+  background: -webkit-linear-gradient(white, rgb(18, 201, 222));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
 }
 </style>
-

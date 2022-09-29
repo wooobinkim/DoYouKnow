@@ -1,5 +1,5 @@
 <template>
-  <div class="cavas-container">
+  <div class="canvas-container">
     <!-- <div class="moon-background"></div>
     <div class="sun-background"></div> -->
   </div>
@@ -32,12 +32,13 @@ import {
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
-// import { useRouter } from "vue-router";
+import { onMounted } from "@vue/runtime-core";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
-    // const router = useRouter();
-
+    const router = useRouter();
+    // const canvas = document.querySelector('.canvas-container')
     const scene = new Scene();
     const camera = new PerspectiveCamera(
       45,
@@ -45,16 +46,19 @@ export default {
       0.1,
       1000
     );
-    camera.position.set(0, 15, 50);
 
+    camera.position.set(0, 15, 30); // model camera set
     const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(innerWidth, innerHeight);
+    renderer.setSize(innerWidth, innerHeight); // 캔버스 사이즈 때문에 조정함
+
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.outputEncoding = sRGBEncoding;
     renderer.physicallyCorrectLights = true;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
-    document.body.appendChild(renderer.domElement);
+    onMounted(() => {
+      document.querySelector(".globe-area").appendChild(renderer.domElement);
+    });
 
     const sunLight = new DirectionalLight(
       new Color("#FFFFFF").convertSRGBToLinear(),
@@ -128,7 +132,6 @@ export default {
           clearcoat: 0.5,
         })
       );
-      console.log(sphere, "=========");
       sphere.sunEnvIntensity = 0.4;
       sphere.moonEnvIntensity = 0.1;
       sphere.rotation.y += Math.PI * 1.25;
@@ -139,16 +142,42 @@ export default {
         .children[0];
 
       // marker model
+      // us
       let marker = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker.scale.set(0.05, 0.05, 0.05);
-      marker.position.set(0, 0, 20);
+      marker.position.set(-5, 6, -8);
       scene.add(marker);
+      // uk
       let marker1 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker1.scale.set(0.05, 0.05, 0.05);
-      marker1.position.set(0, 0, 18);
+      marker1.position.set(-6, 8.5, 3.5);
       scene.add(marker1);
+      // jp
+      let marker2 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
+        .scene.children[0];
+      marker2.scale.set(0.05, 0.05, 0.05);
+      marker2.position.set(8.5, 7, 1);
+      scene.add(marker2);
+      // vi
+      let marker3 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
+        .scene.children[0];
+      marker3.scale.set(0.05, 0.05, 0.05);
+      marker3.position.set(8.5, 3, 7);
+      scene.add(marker3);
+      // ind
+      let marker4 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
+        .scene.children[0];
+      marker4.scale.set(0.05, 0.05, 0.05);
+      marker4.position.set(10, 0, 5.5);
+      scene.add(marker4);
+      // br
+      let marker5 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
+        .scene.children[0];
+      marker5.scale.set(0.05, 0.05, 0.05);
+      marker5.position.set(-10.5, -2.5, -4);
+      scene.add(marker5);
 
       // marker event =======================================================================
       // TODO: object - id 로 접근, parmas로 분기처리
@@ -162,10 +191,36 @@ export default {
         const intersects = raycaster.intersectObjects(scene.children);
 
         if (intersects.length >= 2) {
-          // router.push({ name: "DataLab" });
-
-          console.log(intersects, "뭐임?");
-          console.log(intersects[0].object.id, "id임?");
+          if (intersects[0].object.id == 59) {
+            alert(intersects[0].object.id + "영국클릭");
+            router.push({
+              name: "DatalabPage",
+              query: { nation: "영국" },
+            });
+          }
+          if (intersects[0].object.id == 65) {
+            alert(intersects[0].object.id + "일본클릭");
+          }
+          if (intersects[0].object.id == 71) {
+            alert(intersects[0].object.id + "베트남클릭");
+            router.push({
+              name: "DatalabPage",
+              query: { nation: "베트남" },
+            });
+          }
+          if (intersects[0].object.id == 77) {
+            alert(intersects[0].object.id + "인도네시아클릭");
+            router.push({
+              name: "DatalabPage",
+              query: { nation: "인도네시아" },
+            });
+          }
+          if (intersects[0].object.id == 83) {
+            alert(intersects[0].object.id + "브라질클릭");
+          }
+          if (intersects[0].object.id == 53) {
+            alert(intersects[0].object.id + "미국클릭");
+          }
         }
       };
       window.addEventListener("click", onMouseMove);
@@ -184,7 +239,7 @@ export default {
 
       renderer.setAnimationLoop(() => {
         let delta = clock.getDelta();
-        // scene.rotation.y += delta * 0.05;
+        scene.rotation.y += delta * 0.05;
 
         controls.update();
         renderer.render(scene, camera);
@@ -294,6 +349,9 @@ export default {
   opacity: 1;
 }
 canvas {
-  position: relative;
+  /* position: absolute;
+  top: 20%;
+  right: 15%; */
+  z-index: 3;
 }
 </style>
