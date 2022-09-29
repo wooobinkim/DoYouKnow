@@ -7,6 +7,7 @@ export const datalab = {
     currentrank: null,
     keywordrank: null,
     relatedkeword: [],
+    relatedkeywordnews: [],
     category: [
       { value: 1, text: "운동선수" },
       { value: 2, text: "드라마" },
@@ -33,17 +34,20 @@ export const datalab = {
       category: null,
       period: null,
     },
+
   },
   getters: {
     getCurrentRank(state) {
       return state.currentrank;
     },
-
     getKeywordRank(state) {
       return state.keywordrank;
     },
     getRelatedKeyword(state) {
       return state.relatedkeword;
+    },
+    getRelatedKeywordNews(state){
+      return state.relatedkeywordnews;
     },
     getCondition(state) {
       return state.condition;
@@ -75,6 +79,7 @@ export const datalab = {
     SET_KEYWORDRANK: (state, data) => (state.keywordrank = data),
     RESET_KEYWORDRANK: (state) => (state.keywordrank = null),
     SET_RELATEDKEWORD: (state, keywords) => (state.relatedkeword = keywords),
+    SET_RELATEDKEYWORDNEWS: (state, news) => (state.relatedkeywordnews = news),
     SET_NATION: (state, nation) => (state.condition.nation = nation),
     SET_CATEGORY: (state, category) => (state.condition.category = category),
     SET_PERIOD: (state, period) => (state.condition.period = period),
@@ -137,6 +142,22 @@ export const datalab = {
         .catch((err) => {
           console.error(err.response);
         });
+    },
+
+    async relatedkeywordnews({ commit, state } ) {
+      // console.log(keyword);
+      console.log(state.currentRank)
+      await axios({
+        url:'https://newsapi.org/v2/everything?apiKey=b7e2285d0d434655b79ad42f6584ae3f&q=korea&language=pt&sortBy=publishedAt&pageSize=5&page=3',
+        method:"get",
+      })
+      .then((res)=>{
+        console.log(res.data.articles);
+        commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+      })
+      .catch((err)=>{
+        console.error(err.response);
+      })
     },
   },
 };
