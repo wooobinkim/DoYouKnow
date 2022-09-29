@@ -2,27 +2,40 @@ import axios from "axios";
 
 export const game = {
   state: {
-    gamedata: null,
+    gamedata: [],
+    asd: null,
   },
   getters: {
     getGameData(state) {
+      console.log(state, "getters state");
       return state.gamedata;
     },
   },
   mutations: {
-    SET_GAMEDATA: (state, data) => (state.gamedata = data),
+    // SET_GAMEDATA: (state) => (state.gamedata = state),
+    SET_GAMEDATA(state, data) {
+      console.log(data, "data?");
+      console.log(state.gamedata, "mutations state");
+      state.gamedata = data;
+      console.log(state.gamedata, "after");
+    },
   },
   actions: {
-    async setGameData({ commit }) {
+    setGameData({ commit }) {
       console.log("함수드간다.");
-      await axios
+      axios
         .get(`http://j7b208.p.ssafy.io:8080/api/higherlower`)
         .then((res) => {
+          console.log(res.data, "res");
           commit("SET_GAMEDATA", res.data);
         })
         .catch((err) => {
           console.log(err.response);
         });
+    },
+    setGameData1() {
+      console.log("함수드간다.1");
+      return axios.get(`http://j7b208.p.ssafy.io:8080/api/higherlower`);
     },
   },
 };
