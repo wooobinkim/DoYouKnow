@@ -9,7 +9,7 @@
 
   <div class="black-bg" v-if="twitter == true" @click="twitterClose($event)">
     <div class="white-bg">
-      <h1 style="text-align : center; font-size: xx-large;">{{twitterName}}</h1>
+      <h1 style="text-align : center; font-size: 2rem; margin-bottom:1rem;">해외 트위터 반응</h1>
       <TwitterCardmodal v-bind:name="twitterName"/>
       <button class="close">close</button>
     </div>
@@ -20,7 +20,7 @@
   </video>
 
   <!-- <div v-if="youtube===false && twitter===false && isShowing===true">
-    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.4">
+    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.3">
       <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
     </audio>
   </div> -->
@@ -60,23 +60,22 @@
       <div class="content">
         <div class="title">{{ keyword }}</div>
         
-        <div class="scene">
-          <label class="card-wrap" v-for="(item, key) in cardfront" :key="key">
+        <div class="scene" v-if="category_id==1">
+          <label class="card-wrap" v-for="(item, key) in sport" :key="key">
               <input type="checkbox" class="flipcard">
               <div class="card">
                 <div class="front card-face">
                     <img :src="item.imgUrl" alt="" class="card-photo">
                     <div id="front-content">
-                      <h2 style="margin:0.5rem;">{{item.name}}</h2>
-                      <p>100회</p>
+                      <h2 style="margin:0.5rem; top:50%">{{item.name}}</h2>
                     </div>
                 </div>
                 <div class="back card-face">
                   <h1>{{item.name}}</h1>
-                  <p class="card__body" >
-                    프리미어 리그 득점왕: 2021-22[64]
+                  <p class="card__body">
+                    프리미어 리그 득점왕: 2021-22 
                     프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
-                    프리미어 리그 올해의 골: 2019-20[65]
+                    프리미어 리그 올해의 골: 2019-20
                   </p>
                   <footer class="social">
                     <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
@@ -86,6 +85,84 @@
               </div>
           </label>
         </div>
+        <div class="scene" v-if="category_id==2">
+          <label class="card-wrap" v-for="(item, key) in drama" :key="key">
+              <input type="checkbox" class="flipcard">
+              <div class="card">
+                <div class="front card-face">
+                    <img :src="item.imgUrl" alt="" class="card-photo">
+                    <div id="front-content">
+                      <h2 style="margin:0.5rem; top:50%">{{item.name}}</h2>
+                    </div>
+                </div>
+                <div class="back card-face">
+                  <h1>{{item.name}}</h1>
+                  <p class="card__body">
+                    프리미어 리그 득점왕: 2021-22 
+                    프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
+                    프리미어 리그 올해의 골: 2019-20
+                  </p>
+                  <footer class="social">
+                    <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
+                    <button class="btn btn__email" @click="openTwitterModal(item.name)"></button>
+                  </footer>
+                </div>
+              </div>
+          </label>
+        </div>
+        <div class="scene" v-if="category_id==3">
+          <label class="card-wrap" v-for="(item, key) in movie" :key="key">
+              <input type="checkbox" class="flipcard">
+              <div class="card">
+                <div class="front card-face">
+                    <img :src="item.imgUrl" alt="" class="card-photo">
+                    <div id="front-content">
+                      <h2 style="margin:0.5rem; top:50%">{{item.name}}</h2>
+                    </div>
+                </div>
+                <div class="back card-face">
+                  <h1>{{item.name}}</h1>
+                  <p class="card__body">
+                    프리미어 리그 득점왕: 2021-22 
+                    프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
+                    프리미어 리그 올해의 골: 2019-20
+                  </p>
+                  <footer class="social">
+                    <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
+                    <button class="btn btn__email" @click="openTwitterModal(item.name)"></button>
+                  </footer>
+                </div>
+              </div>
+          </label>
+        </div>
+        <div class="scene" v-if="category_id==4">
+          <label class="card-wrap" v-for="(item, key) in entertainer" :key="key">
+              <input type="checkbox" class="flipcard">
+              <div class="card">
+                <div class="front card-face">
+                    <img :src="item.imgUrl" alt="" class="card-photo">
+                    <div id="front-content">
+                      <h2 style="margin:0.5rem; top:50%">{{item.name}}</h2>
+                    </div>
+                </div>
+                <div class="back card-face">
+                  <h1>{{item.name}}</h1>
+                  <p class="card__body">
+                    프리미어 리그 득점왕: 2021-22 
+                    프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
+                    프리미어 리그 올해의 골: 2019-20
+                  </p>
+                  <footer class="social">
+                    <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
+                    <button class="btn btn__email" @click="openTwitterModal(item.name)"></button>
+                  </footer>
+                </div>
+              </div>
+          </label>
+        </div>
+
+
+
       </div>
     </div>
   </div> 
@@ -111,13 +188,11 @@ export default {
       twitter: false,
       keyword : "운동선수",
       category_id : 1,
-      cardfront : {},
       twitterName : "",
       youtubeName : "",
     }
   },
   mounted(){
-    this.cardfront = this.sport;
   },
   computed: {
     ...mapGetters(['sport', 'drama', 'movie', 'entertainer'])
@@ -288,20 +363,23 @@ li > button:hover {
     opacity: 1;
     transition: 0.3s;
   }
+  .card-photo:hover{
+    transform: scale(1.2);
+  }
   .front:hover #front-content{
       opacity: 1;
   }
   #front-content{
-    width: 300px;
+    width: 400px;
     text-align: center;
     position: absolute;
-    font-size: large;
-    top: 35%;
-    left: 0%;
+    font-size: x-large;
+    top: 110%;
+    left: -20%;
     opacity: 0;
     transition: 0.3s;
-    color: white;
-    text-shadow:1px 1px 1px #000;
+    color: whitesmoke;
+    text-shadow:1px 1px 1px black;
   }
   
 
@@ -319,6 +397,7 @@ li > button:hover {
   }
   .back p {
       margin: 0;
+      width: 90%;
       position: absolute;
       top: 45%;
       left: 50%;
@@ -394,8 +473,8 @@ li > button:hover {
     box-shadow: inset 0 0 10px 0 white, 0 0 10px 0 #0099ff, 0 0 20px 0 #0099ff,
       0 0 30px 0 #0099ff;
     border: 1px solid white;
-    -webkit-transform: rotate(360deg) scale(1.2);
-    transform: rotate(360deg) scale(1.2);
+    -webkit-transform: rotate(360deg) scale(1.3);
+    transform: rotate(360deg) scale(1.3);
   }
   .btn:hover::before {
     font-family: Raleway, sans-serif;
