@@ -7,7 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Data
-@ToString
 public class DYKClubContentResponse {
     private String type;
     private String content;

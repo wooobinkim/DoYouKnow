@@ -36,15 +36,22 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, computed, reactive } from "vue";
 import { useStore } from "vuex";
 export default {
   setup() {
     const router = useRouter();
     const store = useStore();
-    store.dispatch("getGameData");
-    let data = store.getters["getGameData"];
-    console.log(data, "data");
+
+    store.dispatch("setGameData");
+    const data = reactive(computed(() => store.getters.getGameData));
+
+    // const data = computed(() => store.getters.getGameData()).value;
+    // console.log(store.getters, "스토어야");
+    // console.log(data, "data");
+
+    // console.log(JSON.parse(JSON.stringify(data)), "data");
+    // console.log(data, "data");
 
     let game = {
       left: null,
@@ -157,8 +164,17 @@ export default {
       checkLower,
       game,
       score,
+      data,
     };
   },
+  // computed: {
+  //   ...mapGetters(["getGameData"]),
+  // },
+  // watch: {
+  //   getGameData: function (e) {
+  //     this.data = e;
+  //   },
+  // },
 };
 </script>
 
