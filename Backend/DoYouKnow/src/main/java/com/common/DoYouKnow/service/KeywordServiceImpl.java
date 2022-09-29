@@ -70,8 +70,20 @@ public class KeywordServiceImpl implements KeywordService {
     }
 
     @Override
-    public Long getTotalCount(Long nation_id, Long category_id) {
+    public Long getWeekCount(Long nation_id, Long category_id) {
         return keywordCustomRepository.SearchCount(nation_id,category_id);
+    }
+
+    @Override
+    public KeywordRateResponse getTotalCount(Long nation_id) {
+        Long TotalCount = keywordRepository.count();
+        Long nationCount = keywordRepository.NationLength(nation_id);
+
+        Long nationRate = Math.round( ((double)nationCount*100)/(double)TotalCount );
+
+        KeywordRateResponse keywordRateResponse = KeywordRateResponse.response(nationCount, nationRate);
+
+        return keywordRateResponse;
     }
 
 
