@@ -33,11 +33,11 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { onMounted } from "@vue/runtime-core";
-// import { useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
-    // const router = useRouter();
+    const router = useRouter();
     // const canvas = document.querySelector('.canvas-container')
     const scene = new Scene();
     const camera = new PerspectiveCamera(
@@ -46,9 +46,11 @@ export default {
       0.1,
       1000
     );
+
     camera.position.set(0, 15, 30); // model camera set
     const renderer = new WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(innerWidth, innerHeight); // 캔버스 사이즈 때문에 조정함
+
     renderer.toneMapping = ACESFilmicToneMapping;
     renderer.outputEncoding = sRGBEncoding;
     renderer.physicallyCorrectLights = true;
@@ -189,21 +191,29 @@ export default {
         const intersects = raycaster.intersectObjects(scene.children);
 
         if (intersects.length >= 2) {
-          // router.push({ name: "DataLab" });
-
-          console.log(intersects, "뭐임?");
-          console.log(intersects[0].object.id, "id임?");
           if (intersects[0].object.id == 59) {
             alert(intersects[0].object.id + "영국클릭");
+            router.push({
+              name: "DatalabPage",
+              query: { nation: "영국" },
+            });
           }
           if (intersects[0].object.id == 65) {
             alert(intersects[0].object.id + "일본클릭");
           }
           if (intersects[0].object.id == 71) {
             alert(intersects[0].object.id + "베트남클릭");
+            router.push({
+              name: "DatalabPage",
+              query: { nation: "베트남" },
+            });
           }
           if (intersects[0].object.id == 77) {
             alert(intersects[0].object.id + "인도네시아클릭");
+            router.push({
+              name: "DatalabPage",
+              query: { nation: "인도네시아" },
+            });
           }
           if (intersects[0].object.id == 83) {
             alert(intersects[0].object.id + "브라질클릭");

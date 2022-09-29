@@ -84,11 +84,20 @@ h1 {
   font-size: 1.2em;
 }
 
+@keyframes slide {
+  from {
+    left: -200px;
+    opacity: 0;
+  }
+  to {
+    left: 300px;
+    opacity: 1;
+  }
+}
 .catch-phrase {
   font-size: 1.4em;
   margin-top: 30px;
 }
-
 .title-container {
   position: absolute;
 
