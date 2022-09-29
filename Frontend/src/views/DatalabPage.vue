@@ -3,12 +3,16 @@
     <nav-bar></nav-bar>
     <div class="nation-nav">
       <div class="nation-title">
-        <h1 class="title">{{ $route.query.nation }}</h1>
+        <template v-for="nation in this.getNation" :key="nation">
+          <template v-if="this.getConditionNation == nation.value">
+            <h1 class="title">{{ nation.text }}</h1>
+          </template>
+        </template>
         <h2 style="margin-top: 0">키워드 분석</h2>
       </div>
       <div class="total-container">
-        <div class="nation-total">데이터검색량 : 48,321 회</div>
-        <div class="nation-percentage">국가별데이터비율 : 32 %</div>
+        <!-- <div class="nation-total">{{ this.getNationRate.nationCount }}</div>
+        <div class="nation-percentage">{{ this.getNationRate.nationRate }}</div> -->
       </div>
     </div>
     <div class="data-container">
@@ -28,6 +32,7 @@ import KeywordTab from "@/components/Datalab/KeywordTab.vue";
 import WordCloud from "@/components/Datalab/WordCloud.vue";
 import TrendTab from "@/components/Datalab/TrendTab.vue";
 import ChartTab from "@/components/Datalab/ChartTab.vue";
+// import { mapGetters, useStore } from "vuex";
 // import { useRouter } from "vue-router";
 export default {
   components: {
@@ -37,7 +42,21 @@ export default {
     WordCloud,
     ChartTab,
   },
-  setup() {},
+  setup() {
+    // const store = useStore();
+
+    // return {
+    //   store,
+    // };
+  },
+  // computed: {
+  //   ...mapGetters(["getConditionNation", "getNation", "getNationRate"]),
+  // },
+  // watch: {
+  //   getConditionNation: function (nation) {
+  //     this.store.dispatch("getNationRate", { nation });
+  //   },
+  // },
 };
 </script>
 
