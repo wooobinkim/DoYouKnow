@@ -38,7 +38,7 @@ public class KeywordCustomRepositoryImpl implements KeywordCustomRepository {
                 .groupBy(k.name)
                 .orderBy(k.count.sum().desc())
                 .offset(0)
-                .limit(5)
+                .limit(20)
                 .fetch();
 
         List<KeywordDataResponse> keywordDataResponseList = fetch.stream().map(
