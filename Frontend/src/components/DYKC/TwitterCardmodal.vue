@@ -1,5 +1,6 @@
 <template>
   <div class="APIscene" style="overflow:auto;">
+    <h1>{{value}}</h1>
     <div class="twitter_box" v-for="(item, index) in twitter" :key="index">
       <img src="../../assets/DYKC/twitter_mark.png" alt="">
       <div class="pull">
@@ -8,6 +9,7 @@
         </p>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -15,7 +17,11 @@
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    props: ["name"],
+    props: ["name", "twitter_translate"],
+    data(){
+      return {
+      }
+    },
     computed: {
       ...mapGetters(['twitter'])
     },
