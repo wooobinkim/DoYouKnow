@@ -2,11 +2,10 @@ import axios from "axios";
 
 export const game = {
   state: {
-    gamedata: [],
+    gamedata: null,
   },
   getters: {
     getGameData(state) {
-      console.log(state, "getters안");
       return state.gamedata;
     },
   },
@@ -14,12 +13,16 @@ export const game = {
     SET_GAMEDATA: (state, data) => (state.gamedata = data),
   },
   actions: {
-    getGameData({ commit }) {
-      console.log(commit);
-      axios.get("http://j7b208.p.ssafy.io:8080/api/higherlower").then((res) => {
-        commit("SET_GAMEDATA", res.data);
-        // return res.data;
-      });
+    async setGameData({ commit }) {
+      console.log("함수드간다.");
+      await axios
+        .get(`http://j7b208.p.ssafy.io:8080/api/higherlower`)
+        .then((res) => {
+          commit("SET_GAMEDATA", res.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
     },
   },
 };
