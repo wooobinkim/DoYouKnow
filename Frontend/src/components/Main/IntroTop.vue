@@ -19,6 +19,7 @@
         <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
       </div>
     </div>
+    <img class="intro-arrow" src="@/assets/intro_arrow.png">
     <div class="globe-area">
       <MainGlobe class="top-globe" />
     </div>
@@ -101,5 +102,13 @@ h1 {
   position: absolute;
 
   left: -13rem;
+}
+
+.intro-arrow {
+  width: 12%;
+  height: 25%;
+  position: absolute;
+  top: 65%;
+  right: 19%;
 }
 </style>

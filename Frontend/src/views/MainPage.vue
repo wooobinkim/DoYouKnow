@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <NavBar :swiper="swiper"/>
   <swiper
     :modules="modules"
     class="mySwiper"
@@ -8,6 +8,8 @@
     :speed="1000"
     :scrollbar="{ draggable: true }"
     :allowTouchMove="false"
+    :lazy="{loadPrevNext: true}"
+    
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="second"><IntroDataLab /></swiper-slide>
@@ -43,9 +45,22 @@ export default {
     IntroGame,
     NavBar,
   },
+  data (){
+    return {
+      swiper : null
+    }
+  },
+
+  mounted(){
+    const swiper = document.querySelector('.swiper').swiper //swiper 인스턴스
+    this.swiper = swiper
+  },
+
   setup() {
+      
     return {
       modules: [Navigation, Pagination, Mousewheel, Scrollbar],
+      
     };
   },
 };
