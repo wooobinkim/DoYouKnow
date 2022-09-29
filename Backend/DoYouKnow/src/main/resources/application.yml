@@ -15,13 +15,16 @@ spring:
     #url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: b208
     password: b208root
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
     hibernate:
       format_sql: true
-      ddl-auto: none
+      ddl-auto: update
       show-sql: true
 
 logging:
@@ -38,3 +41,16 @@ logging:
         util:
           EC2MetadataUtils: error
 
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAW547JXMVEONK7UUQ
+      secretKey: 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
+    s3:
+      bucket: dyk
+      path: https://dyk.s3.ap-northeast-2.amazonaws.com/
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false

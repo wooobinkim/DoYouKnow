@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-@ToString
 public class DYKClub extends BaseEntity{
     private String name;
     private String imgUrl;
@@ -20,8 +18,11 @@ public class DYKClub extends BaseEntity{
     @JoinColumn(name="category_id")
     private Category category;
 
-
     @OneToMany(mappedBy = "dykClub")
     private List<DYKClubContent> dykClubContents = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "dykClub")
+    private List<DYKClubTwitter> dykClubTwitters = new ArrayList<>();
 
 }
