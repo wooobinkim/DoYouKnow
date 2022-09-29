@@ -6,6 +6,7 @@ export const datalab = {
     rank: null,
     currentrank: null,
     relatedkeword: [],
+    relatedkeywordnews: [],
   },
   getters: {
     getCurrentRank(state) {
@@ -13,11 +14,15 @@ export const datalab = {
     },
     getRelatedKeyword(state){
       return state.relatedkeword;
-    }
+    },
+    getRelatedKeywordNews(state){
+      return state.relatedkeywordnews;
+    },
   },
   mutations: {
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
     SET_RELATEDKEWORD: (state, keywords) => (state.relatedkeword = keywords),
+    SET_RELATEDKEYWORDNEWS: (state, news) => (state.relatedkeywordnews = news),
   },
   actions: {
     // getRank({ commit }, rank1) {
@@ -47,6 +52,22 @@ export const datalab = {
       
       // console.log(state, "commit");
       // console.log(keyword, "keyword");
+    },
+
+    async relatedkeywordnews({ commit, state } ) {
+      // console.log(keyword);
+      console.log(state.currentRank)
+      await axios({
+        url:'https://newsapi.org/v2/everything?apiKey=b7e2285d0d434655b79ad42f6584ae3f&q=korea&language=pt&sortBy=publishedAt&pageSize=5&page=3',
+        method:"get",
+      })
+      .then((res)=>{
+        console.log(res.data.articles);
+        commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+      })
+      .catch((err)=>{
+        console.error(err.response);
+      })
     },
   },
 };
