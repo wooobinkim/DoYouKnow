@@ -13,6 +13,7 @@
 import axios from 'axios';
 
 export default {
+  props: ["name"],
   data(){
     return{
       keyword: '',
@@ -26,9 +27,9 @@ export default {
   },
   methods:{
     setKeyword(){
-      const API_KEY = 'AIzaSyC1uZhEkyJzDH9kMOTTccbgCxN59s38QdQ';
+      const API_KEY = process.env.VUE_APP_YOUTUBE_API_KEY
       const API_URL = 'https://www.googleapis.com/youtube/v3/search'
-      this.keyword = 'sg워너비'+'해외반응'
+      this.keyword = this.name + '해외반응'
 
       const config = {
         params:{
@@ -58,8 +59,8 @@ export default {
     position: fixed;
     top: 2.5rem;
     background-color: gray;
-    width: 90%;
-    height: 75%;
-    transform: translate(5%, 5%);
+    width: 85%;
+    height: 80%;
+    transform: translate(7%, 5%);
   }
 </style>
