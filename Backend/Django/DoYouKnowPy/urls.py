@@ -19,4 +19,5 @@ from django.urls import path , include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api2/pytrend/', include('pytrend.urls')),
+    path('api2/translate/', include('translate.urls')),
 ]

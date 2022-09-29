@@ -73,9 +73,7 @@
                 <div class="back card-face">
                   <h1>{{item.name}}</h1>
                   <p class="card__body">
-                    프리미어 리그 득점왕: 2021-22 
-                    프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
-                    프리미어 리그 올해의 골: 2019-20
+                    test
                   </p>
                   <footer class="social">
                     <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
