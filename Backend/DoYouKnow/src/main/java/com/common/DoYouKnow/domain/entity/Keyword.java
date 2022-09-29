@@ -13,11 +13,9 @@ import java.util.Date;
  */
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-@ToString
 public class Keyword extends BaseEntity {
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -27,6 +25,7 @@ public class Keyword extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="nation_id")
     private Nation nation;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id")
     private Category category;
