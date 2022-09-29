@@ -3,7 +3,7 @@
     <nav-bar></nav-bar>
     <div class="nation-nav">
       <div class="nation-title">
-        <h1 class="title">미국</h1>
+        <h1 class="title">{{ $route.query.nation }}</h1>
         <h2 style="margin-top: 0">키워드 분석</h2>
       </div>
       <div class="total-container">
@@ -12,7 +12,10 @@
       </div>
     </div>
     <div class="data-container">
-      <keyword-tab></keyword-tab>
+      <div class="left-container">
+        <keyword-tab></keyword-tab>
+        <chart-tab></chart-tab>
+      </div>
       <word-cloud></word-cloud>
       <trend-tab></trend-tab>
     </div>
@@ -24,12 +27,15 @@ import NavBar from "@/components/Main/NavBar.vue";
 import KeywordTab from "@/components/Datalab/KeywordTab.vue";
 import WordCloud from "@/components/Datalab/WordCloud.vue";
 import TrendTab from "@/components/Datalab/TrendTab.vue";
+import ChartTab from "@/components/Datalab/ChartTab.vue";
+// import { useRouter } from "vue-router";
 export default {
   components: {
     NavBar,
     KeywordTab,
     TrendTab,
     WordCloud,
+    ChartTab,
   },
   setup() {},
 };

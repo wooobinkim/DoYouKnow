@@ -6,9 +6,9 @@ import GamePlay from "../views/GamePlay.vue";
 import GameEnding from "../views/GameEnding.vue";
 
 // DYKC
-import DYKCView from '../views/DYKC/DYKCView.vue';
-import AwardIntroView from '../views/DYKC/AwardIntroView.vue';
-import AwardView from '../views/DYKC/AwardView.vue';
+import DYKCView from "../views/DYKC/DYKCView.vue";
+import AwardIntroView from "../views/DYKC/AwardIntroView.vue";
+import AwardView from "../views/DYKC/AwardView.vue";
 
 const routes = [
   {
@@ -20,6 +20,8 @@ const routes = [
     path: "/datalab",
     name: "DatalabPage",
     component: DatalabPage,
+
+    props: true,
   },
   {
     path: "/game",
@@ -39,19 +41,19 @@ const routes = [
 
   // DYKC
   {
-    path: '/DYKC',
-    name: 'DYKC',
-    component: DYKCView
+    path: "/DYKC",
+    name: "DYKC",
+    component: DYKCView,
   },
   {
-    path: '/awardintro',
-    name: 'awardintro',
-    component: AwardIntroView
+    path: "/awardintro",
+    name: "awardintro",
+    component: AwardIntroView,
   },
   {
-    path: '/award',
-    name: 'award',
-    component: AwardView
+    path: "/award",
+    name: "award",
+    component: AwardView,
   },
 ];
 

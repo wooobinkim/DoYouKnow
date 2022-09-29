@@ -17,14 +17,12 @@
       <input id="tab5" type="radio" name="tabs" />
       <label for="tab5">배우</label>
 
-      <section id="content1">
-        <p @click="rank1(e)">
-          {{ rankDrama[0].title }}
-        </p>
-        <p>2 오징어게임 -------------- 200회(16 %)</p>
-        <p>3 오징어게임 -------------- 80회(3 %)</p>
-        <p>4 오징어게임 -------------- 56회(2 %)</p>
-        <p>5 오징어게임 -------------- 24회(1 %)</p>
+      <section id="content1" v-for="(item, index) in data" :key="index">
+        <p @click="rank1(e)" v-if="index == 0">{{ item.name }}</p>
+        <p v-if="index == 1">{{ item.name }}</p>
+        <p v-if="index == 2">{{ item.name }}</p>
+        <p v-if="index == 3">{{ item.name }}</p>
+        <p v-if="index == 4">{{ item.name }}</p>
       </section>
 
       <section id="content2">
@@ -57,34 +55,49 @@
         <p>5 오징어게임 -------------- 24회(1 %)</p>
       </section>
     </div>
-    <div class="chart-container"></div>
   </div>
 </template>
 
 <script>
-// import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import { useStore } from "vuex";
-// import { computed } from "vue";
+import { onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
 export default {
-  // components: {
-  //   Vue3ChartJs,
-  // },
   setup() {
-    // const keyword = null;
     const store = useStore();
+    const router = useRoute();
 
+    onMounted(() => {});
+
+    // query로 국가 분기처리하고 data 가져오기
+    if (router.query.nation === "베트남") {
+      store.dispatch("resetKeyword");
+      const nation = 4;
+      const period = 1;
+      const category = 2;
+      store.dispatch("getKeywordData", { nation, category, period });
+    } else if (router.query.nation === "영국") {
+      store.dispatch("resetKeyword");
+      const nation = 2;
+      const period = 1;
+      const category = 2;
+      store.dispatch("getKeywordData", { nation, category, period });
+    }
+    // let data = computed(() => store.getters["getKeywordRank"]);
+    const data = computed(() => store.getters["getKeywordRank"]);
+    console.log(data, "데이터");
+
+    const rankDrama = [{ rank: 1, title: "오징어게임" }];
     const rank1 = function (e) {
       e = rankDrama[0].title;
       console.log(e, "eeeee");
       const keyword = e;
       store.dispatch("currentRank", { keyword });
     };
-    const rankDrama = [{ rank: 1, title: "오징어게임" }];
-    // const word = computed(() => store.getters["getCurrentRank"]);
 
     return {
-      rankDrama,
       rank1,
+      data,
     };
   },
 };
@@ -102,7 +115,9 @@ export default {
   background: #ffffff;
   border-radius: 15px;
 }
-
+p {
+  margin: 0;
+}
 section {
   display: none;
   padding: 20px 0 0;
@@ -153,14 +168,6 @@ input:checked + label {
   margin-left: 3rem;
   padding: 0;
   padding-top: 0;
-  padding-bottom: 1rem;
-}
-.chart-container {
-  width: 33rem;
-  height: 16rem;
-  background: #ffffff;
-  border-radius: 15px;
-  margin-left: 1.5rem;
-  margin-top: 1rem;
+  padding-bottom: 0;
 }
 </style>
