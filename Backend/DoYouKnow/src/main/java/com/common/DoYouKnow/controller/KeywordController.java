@@ -1,5 +1,6 @@
 package com.common.DoYouKnow.controller;
 
+import com.common.DoYouKnow.dto.KeywordRateResponse;
 import com.common.DoYouKnow.service.KeywordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -72,7 +73,17 @@ public class KeywordController {
     @GetMapping("/searchcount/{nation_id}/{category_id}")
     public ResponseEntity<?> getWeekCount(@PathVariable("nation_id") Long nation_id,
                                           @PathVariable("category_id") Long category_id) {
-        return ResponseEntity.status(HttpStatus.OK).body(keywordService.getTotalCount(nation_id,category_id));
+        return ResponseEntity.status(HttpStatus.OK).body(keywordService.getWeekCount(nation_id,category_id));
+    }
+
+    //국가별 총 데이터검색량과 비율
+    @ApiOperation(value = "국가별 총 데이터검색량과 비율")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "nation_id", value = "나라 ID", required = true, dataType = "long")
+    })
+    @GetMapping("/searchcount/{nation_id}")
+    public ResponseEntity<?> getTotalCount(@PathVariable("nation_id") Long nation_id) {
+        return ResponseEntity.status(HttpStatus.OK).body(keywordService.getTotalCount(nation_id));
     }
 
 
