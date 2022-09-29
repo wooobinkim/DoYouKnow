@@ -1,20 +1,51 @@
+from importlib.resources import contents
+from unicodedata import name
 from rest_framework.decorators import api_view
 from googletrans import Translator
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404, get_list_or_404
-from rest_framework import status
-from rest_framework.status import(
-    HTTP_201_CREATED,
-    HTTP_204_NO_CONTENT,
-)
 
-# 미국, 영국, 일본, 베트남, 인도네시아, 브라질
-# en     en    ja     vi      id          pt
+from .models import DykclubTwitter
+
 
 @api_view(['GET'])
 def usallyview(request, keyword):
-    translator = Translator()
-    result = translator.translate(keyword, dest='ko').text
+    if keyword == '손흥민':
+        key =  1
+    elif keyword == '김연아':
+        key = 2
+    elif keyword == '김연경':
+        key = 3
+    elif keyword == '이상한 변호사 우영우':
+        key = 4
+    elif keyword == '태양의 후예':
+        key = 5
+    elif keyword == '오징어 게임':
+        key = 6
+    elif keyword == '기생충':
+        key = 7
+    elif keyword == '올드보이':
+        key = 8
+    elif keyword == '부산행':
+        key = 9
+    elif keyword == 'BTS':
+        key = 10
+    elif keyword == '싸이':
+        key = 11
+    elif keyword == '이정재':
+        key = 12
+
+
+    key = DykclubTwitter.objects.filter(dykclub_id=key).values()
+
+    data = []
+    for i in key:
+        data.append(i.get('content'))
+
+    result = []
+
+    for j in data:
+        translator = Translator()
+        result.append(translator.translate(j, dest='ko').text)
     return Response(result)
 
 
