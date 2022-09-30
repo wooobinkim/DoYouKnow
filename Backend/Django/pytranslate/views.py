@@ -8,7 +8,7 @@ from .models import DykclubTwitter
 
 
 @api_view(['GET'])
-def usallyview(request, keyword):
+def usallyview(request, keyword, num):
     if keyword == '손흥민':
         key =  1
     elif keyword == '김연아':
@@ -35,17 +35,9 @@ def usallyview(request, keyword):
         key = 12
 
 
-    key = DykclubTwitter.objects.filter(dykclub_id=key).values()
-
-    data = []
-    for i in key:
-        data.append(i.get('content'))
-
-    result = []
-
-    for j in data:
-        translator = Translator()
-        result.append(translator.translate(j, dest='ko').text)
+    key = DykclubTwitter.objects.filter(dykclub_id=key).values('content')
+    result = key[num]['content']
+    
     return Response(result)
 
 
