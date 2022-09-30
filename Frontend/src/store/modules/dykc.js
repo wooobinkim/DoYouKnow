@@ -102,9 +102,9 @@ export default {
           console.error(err.response)
         })
     },
-    fetchTranslate({ commit }, keyword) {
+    fetchTranslate({ commit }, keyword, num) {
       axios({
-        url: BackendAPI.dykc.twitter_translate(keyword),
+        url: BackendAPI.dykc.twitter_translate(keyword, num),
         method: 'get',
       })
         .then(res => {

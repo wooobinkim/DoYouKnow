@@ -1,23 +1,11 @@
 <template>
   <div class="APIscene" style="overflow:auto;">
-    <div v-show="status==false">
-      <div class="twitter_box" v-for="(item, index) in twitter" :key="index">
-        <img src="../../assets/DYKC/twitter_mark.png" alt="">
-        <div class="pull">
-          <p class="content">
-            {{ item.content }}
-          </p>
-        </div>
-      </div>
-    </div>
-    <div v-show="status==true">
-      <div class="twitter_box" v-for="(item, index) in translate" :key="index">
-        <img src="../../assets/DYKC/twitter_mark.png" alt="">
-        <div class="pull">
-          <p class="content">
-            {{ item }}
-          </p>
-        </div>
+    <div class="twitter_box" v-for="(item, index) in twitter" :key="index">
+      <img src="../../assets/DYKC/twitter_mark.png" alt="">
+      <div class="pull">
+        <p class="content">
+          {{ item.content }}
+        </p>
       </div>
     </div>
   </div>

@@ -16,7 +16,7 @@ export default{
   dykc: {
     DYKC: (keyword) => BE + DYKC + `${keyword}/`,
     twitter: (name) => BE + DYKC + DataLab + `${name}/`,
-    twitter_translate: (keyword) => BE2 + DYKC2 +`${keyword}/`
+    twitter_translate: (keyword, num) => BE2 + DYKC2 +`${keyword}/` +`${num}/`
   },
 
   // DataLab

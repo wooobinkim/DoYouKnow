@@ -10,11 +10,8 @@
   <div class="black-bg" v-if="twitter == true" @click="twitterClose($event)">
     <div class="white-bg">
       <h1 style="text-align : center; font-size: 2rem; margin-bottom:1rem;">해외 트위터 반응</h1>
-      <TwitterCardmodal v-bind:name="twitterName" v-bind:status="twitter_translate"/>
-      <div class="twitter_btn_box">
-        <button class="translate" @click="translate()">translate</button>
-        <button class="close">close</button>
-      </div>
+      <TwitterCardmodal v-bind:name="twitterName"/>
+      <button class="close2">close</button>
     </div>
   </div>
 
@@ -273,7 +270,7 @@ export default {
       }
     },
     twitterClose(event){
-      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close')){
+      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close2')){
         this.twitter = false;
         this.twitter_translate = false;
       } else if (event.target.classList.contains('white-bg')){
@@ -296,13 +293,6 @@ export default {
         this.award = true;
       }
     },
-    translate(){
-      if(this.twitter_translate == false){
-        this.twitter_translate = true;
-      } else if (this.twitter_translate == true) {
-        this.twitter_translate = false;
-      }
-    }
   },
 }  
 </script>
@@ -563,70 +553,26 @@ li > button:hover {
     height: 90vh;
     transform: translate(-50%, -50%);
   }
-  .twitter_btn_box{
-    position:relative;
-    display: flex;
-    top: 86%;
-    justify-content: center;
-  }
-  .translate{
-    cursor: pointer;
-    border:none;
-    background: #6667AB;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 5px 15px;
-    width: 10rem;
-    height: 5vh;
-    font-size: x-large;
-    margin-right: 2rem;
-  }
-  .close{
-    cursor: pointer;
-    border:none;
-    background: #6667AB;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 5px 15px;
-    width: 10rem;
-    height: 5vh;
-    font-size: x-large;
-    margin-left: 2rem;
-  }
-  .translate:hover{
-    color:white;
-    font-weight: bold;
-    transform: scale(1.1);
-    transition: all 0.5s;
-  }
-  .close:hover{
-    color:white;
-    font-weight: bold;
-    transform: scale(1.1);
-    transition: all 0.5s;
-  }
-    .close2{
-    position: absolute;
-    cursor: pointer;
-    border:none;
-    background: #6667AB;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 5px 15px;
-    bottom: 2vh;
-    right: 30vw;
-    width: 10rem;
-    height: 5vh;
-    font-size: x-large;
-  }
-  .close2:hover{
-    color:white;
-    font-weight: bold;
-    transform: scale(1.1);
-    transition: all 0.5s;
-  }
+  .close2{
+  position: absolute;
+  cursor: pointer;
+  border:none;
+  background: #6667AB;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px 15px;
+  bottom: 2vh;
+  right: 30vw;
+  width: 10rem;
+  height: 5vh;
+  font-size: x-large;
+}
+.close2:hover{
+  color:white;
+  font-weight: bold;
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
 
 </style>
