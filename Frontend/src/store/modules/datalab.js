@@ -8,6 +8,7 @@ export const datalab = {
     keywordrank: null,
     relatedkeword: [],
     relatedkeywordnews: [],
+    isoverlay: false,
     category: [
       { value: 1, text: "운동선수" },
       { value: 2, text: "드라마" },
@@ -34,7 +35,6 @@ export const datalab = {
       category: null,
       period: null,
     },
-
   },
   getters: {
     getCurrentRank(state) {
@@ -46,7 +46,7 @@ export const datalab = {
     getRelatedKeyword(state) {
       return state.relatedkeword;
     },
-    getRelatedKeywordNews(state){
+    getRelatedKeywordNews(state) {
       return state.relatedkeywordnews;
     },
     getCondition(state) {
@@ -73,6 +73,9 @@ export const datalab = {
     getNationRate(state) {
       return state.nationRate;
     },
+    getIsOverlay(state) {
+      return state.isoverlay;
+    },
   },
   mutations: {
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
@@ -84,6 +87,7 @@ export const datalab = {
     SET_CATEGORY: (state, category) => (state.condition.category = category),
     SET_PERIOD: (state, period) => (state.condition.period = period),
     SET_NATIONRATE: (state, nationRate) => (state.nationRate = nationRate),
+    SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
   },
   actions: {
     getNationRate({ commit }, { nation }) {
@@ -107,6 +111,9 @@ export const datalab = {
     },
     async setPeriod({ commit }, { period }) {
       await commit("SET_PERIOD", period);
+    },
+    async setIsOverlay({ commit }, { data }) {
+      await commit("SET_ISOVERLAY", data);
     },
 
     resetKeyword({ commit }) {
@@ -144,20 +151,20 @@ export const datalab = {
         });
     },
 
-    async relatedkeywordnews({ commit, state } ) {
+    async relatedkeywordnews({ commit, state }) {
       // console.log(keyword);
-      console.log(state.currentRank)
+      console.log(state.currentRank);
       await axios({
-        url:'https://newsapi.org/v2/everything?apiKey=b7e2285d0d434655b79ad42f6584ae3f&q=korea&language=pt&sortBy=publishedAt&pageSize=5&page=3',
-        method:"get",
+        url: "https://newsapi.org/v2/everything?apiKey=b7e2285d0d434655b79ad42f6584ae3f&q=korea&language=pt&sortBy=publishedAt&pageSize=5&page=3",
+        method: "get",
       })
-      .then((res)=>{
-        console.log(res.data.articles);
-        commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
-      })
-      .catch((err)=>{
-        console.error(err.response);
-      })
+        .then((res) => {
+          console.log(res.data.articles);
+          commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+        })
+        .catch((err) => {
+          console.error(err.response);
+        });
     },
   },
 };
