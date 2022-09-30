@@ -15,7 +15,8 @@
         <div class="nation-percentage">{{ this.getNationRate.nationRate }}</div> -->
         <div class="nation-total">
           <template v-if="this.getNationRate">
-            총 데이터량 {{ this.getNationRate.nationCount }}개
+            총 데이터량
+            {{ this.getNationRate.nationCount.toLocaleString("ko-KR") }}개
           </template>
         </div>
         <div class="nation-percentage">

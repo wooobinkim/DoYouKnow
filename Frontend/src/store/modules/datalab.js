@@ -9,6 +9,7 @@ export const datalab = {
     // relatedkeword: [],
     relatedkeywordnews: [],
     relatedkeword: null,
+    relatedkewordloading: false,
     graphkeyword: null,
     category: [
       { value: 1, text: "운동선수" },
@@ -78,6 +79,9 @@ export const datalab = {
     getGraphKeyword(state) {
       return state.graphkeyword;
     },
+    getRelatedKewordLoading(state) {
+      return state.relatedkewordloading;
+    },
   },
   mutations: {
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
@@ -96,6 +100,9 @@ export const datalab = {
         state.graphkeyword.push(keyword);
       });
       // state.graphkeyword = graphkeyword;
+    },
+    SET_RELATEDKEYWORDLOADING: (state, relatedkewordloading) => {
+      state.relatedkewordloading = relatedkewordloading;
     },
     // (state.graphkeyword = graphkeyword),
   },
@@ -134,8 +141,6 @@ export const datalab = {
           `http://j7b208.p.ssafy.io:8080/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
-          // console.log(res, "데이터 전송완료");
-          console.log(res.data);
           commit("SET_KEYWORDRANK", res.data);
         })
         .catch((err) => {
@@ -158,14 +163,14 @@ export const datalab = {
     },
 
     async relatedkeyword({ commit }, keyword) {
-      console.log(keyword);
+      commit("SET_RELATEDKEYWORDLOADING", true);
       await axios({
-        url: BackendAPI2.datalab.relatedkeyword(keyword),
+        url: BackendAPI2.datalab.relatedkeyword(keyword.data),
         method: "get",
       })
         .then((res) => {
-          // console.log(res);
           commit("SET_RELATEDKEWORD", res.data);
+          commit("SET_RELATEDKEYWORDLOADING", false);
         })
         .catch((err) => {
           console.error(err.response);
