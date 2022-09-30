@@ -1,5 +1,5 @@
 import axios from "axios";
-import BackendAPI2 from "@/api/BackendAPI2";
+import BackendAPI2 from "@/api/BackendAPI";
 
 export const datalab = {
   state: {
