@@ -36,22 +36,26 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { ref, computed, reactive } from "vue";
+import { ref } from "vue";
 import { useStore } from "vuex";
 export default {
   setup() {
     const router = useRouter();
     const store = useStore();
+    let data = [];
+    let newData = [];
+    console.log(newData, "1");
 
-    store.dispatch("setGameData");
-    const data = reactive(computed(() => store.getters.getGameData));
+    let getData = async function () {
+      await store.dispatch("setGameData1").then((res) => {
+        console.log(newData, "4");
+        newData = res.data;
+        console.log(newData, "5");
+      });
+    };
 
-    // const data = computed(() => store.getters.getGameData()).value;
-    // console.log(store.getters, "스토어야");
-    // console.log(data, "data");
-
-    // console.log(JSON.parse(JSON.stringify(data)), "data");
-    // console.log(data, "data");
+    getData();
+    console.log(newData, "2");
 
     let game = {
       left: null,
@@ -61,13 +65,17 @@ export default {
     let score = ref(0);
     // random data 초기화하는 곳
     const randomData = function () {
-      if (data.length == 0) {
-        data;
+      if (newData.length == 0) {
+        newData;
+        console.log(newData, "3");
       }
-      return data.splice(Math.floor(Math.random() * (data.length - 1)), 1)[0];
+      return newData.splice(
+        Math.floor(Math.random() * (newData.length - 1)),
+        1
+      )[0];
     };
+
     game.left = randomData();
-    console.log(game.left, "gameleft");
     game.right = randomData();
 
     // 더많이 버튼
@@ -85,7 +93,7 @@ export default {
           document.getElementById("url-img").src = game.right.imgUrl;
           game.left = game.right;
           // 오른쪽에 새로운 데이터 받기
-          game.right = randomData();
+          // game.right = randomData();
           document.getElementById("newDiv").remove();
           document.getElementById("url1-img").src = game.right.imgUrl;
           document.getElementById("name1-h2").innerText = game.right.name;
@@ -119,7 +127,7 @@ export default {
           document.getElementById("url-img").src = game.right.imgUrl;
           game.left = game.right;
           // 오른쪽에 새로운 데이터 받기
-          game.right = randomData();
+          // game.right = randomData();
           document.getElementById("newDiv").remove();
           document.getElementById("url1-img").src = game.right.imgUrl;
           document.getElementById("name1-h2").innerText = game.right.name;
@@ -167,14 +175,6 @@ export default {
       data,
     };
   },
-  // computed: {
-  //   ...mapGetters(["getGameData"]),
-  // },
-  // watch: {
-  //   getGameData: function (e) {
-  //     this.data = e;
-  //   },
-  // },
 };
 </script>
 
