@@ -8,6 +8,7 @@ export const datalab = {
     keywordrank: null,
     relatedkeword: null,
     relatedkewordloading: false,
+    datalabviewloading: false,
     graphkeyword: null,
     category: [
       { value: 1, text: "운동선수" },
@@ -77,6 +78,9 @@ export const datalab = {
     getRelatedKewordLoading(state) {
       return state.relatedkewordloading;
     },
+    getDatalabViewLoading(state) {
+      return state.datalabviewloading;
+    },
   },
   mutations: {
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
@@ -97,6 +101,9 @@ export const datalab = {
     },
     SET_RELATEDKEYWORDLOADING: (state, relatedkewordloading) => {
       state.relatedkewordloading = relatedkewordloading;
+    },
+    SET_DATALABVIEWLOADING: (state, datalabviewloading) => {
+      state.datalabviewloading = datalabviewloading;
     },
     // (state.graphkeyword = graphkeyword),
   },
