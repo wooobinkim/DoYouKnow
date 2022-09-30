@@ -22,12 +22,12 @@ export const datalab = {
       { value: 3, text: "세달" },
     ],
     nation: [
-      { value: 1, text: "미국" },
-      { value: 2, text: "영국" },
-      { value: 3, text: "일본" },
-      { value: 4, text: "베트남" },
-      { value: 5, text: "인도네시아" },
-      { value: 6, text: "브라질" },
+      { value: 1, text: "미국", lang: "en" },
+      { value: 2, text: "영국", lang: "en" },
+      { value: 3, text: "일본", lang: "ja" },
+      { value: 4, text: "베트남", lang: "vi" },
+      { value: 5, text: "인도네시아", lang: "id" },
+      { value: 6, text: "브라질", lang: "pt" },
     ],
     nationRate: null,
     condition: {
