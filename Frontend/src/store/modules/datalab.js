@@ -6,7 +6,8 @@ export const datalab = {
     rank: null,
     currentrank: null,
     keywordrank: null,
-    relatedkeword: [],
+    relatedkeword: null,
+    graphkeyword: null,
     category: [
       { value: 1, text: "운동선수" },
       { value: 2, text: "드라마" },
@@ -69,6 +70,9 @@ export const datalab = {
     getNationRate(state) {
       return state.nationRate;
     },
+    getGraphKeyword(state) {
+      return state.graphkeyword;
+    },
   },
   mutations: {
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
@@ -79,10 +83,19 @@ export const datalab = {
     SET_CATEGORY: (state, category) => (state.condition.category = category),
     SET_PERIOD: (state, period) => (state.condition.period = period),
     SET_NATIONRATE: (state, nationRate) => (state.nationRate = nationRate),
+    SET_GRAPHKEYWORD: (state, graphkeyword) => {
+      state.graphkeyword = [];
+      graphkeyword.forEach((keyword) => {
+        keyword.date = new Date(keyword.date);
+        state.graphkeyword.push(keyword);
+      });
+      // state.graphkeyword = graphkeyword;
+    },
+    // (state.graphkeyword = graphkeyword),
   },
   actions: {
-    getNationRate({ commit }, { nation }) {
-      axios
+    async getNationRate({ commit }, { nation }) {
+      await axios
         .get(`http://j7b208.p.ssafy.io:8080/api/keyword/searchcount/${nation}`)
         .then((res) => {
           commit("SET_NATIONRATE", res.data);
@@ -108,9 +121,9 @@ export const datalab = {
       commit("RESET_KEYWORDRANK");
     },
 
-    getKeywordData({ commit }, { condition }) {
-      console.log(condition);
-      axios
+    async getKeywordData({ commit }, { condition }) {
+      // console.log(condition);
+      await axios
         .get(
           `http://j7b208.p.ssafy.io:8080/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
         )
@@ -118,6 +131,20 @@ export const datalab = {
           // console.log(res, "데이터 전송완료");
           console.log(res.data);
           commit("SET_KEYWORDRANK", res.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+
+    async getGraphKeyword({ commit }, { condition }) {
+      // console.log(condition);
+      await axios
+        .get(
+          `http://j7b208.p.ssafy.io:8080/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
+        )
+        .then((res) => {
+          commit("SET_GRAPHKEYWORD", res.data);
         })
         .catch((err) => {
           console.log(err.response);

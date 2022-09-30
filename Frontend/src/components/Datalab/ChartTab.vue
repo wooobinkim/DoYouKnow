@@ -1,45 +1,32 @@
 <template>
-  <div class="chart-container">
-    <!-- <Bar
-      :chart-options="chartOptions"
-      :chart-data="chartData"
-      :chart-id="chartId"
-      :dataset-id-key="datasetIdKey"
-      :plugins="plugins"
-      :css-classes="cssClasses"
-      :styles="styles"
-      :width="width"
-      :height="height"
-    /> -->
-  </div>
+  <div class="chart-container">{{ this.getGraphKeyword }}</div>
 </template>
 
 <script>
-// import { Bar } from "vue-chartjs";
-// import {
-//   Chart as ChartJS,
-//   Title,
-//   Tooltip,
-//   Legend,
-//   BarElement,
-//   CategoryScale,
-//   LinearScale,
-// } from "chart.js";
+import { useStore, mapGetters } from "vuex";
+export default {
+  setup() {
+    const store = useStore();
+    return {
+      store,
+    };
+  },
+  computed: {
+    ...mapGetters(["getCurrentRank", "getGraphKeyword"]),
+  },
+  watch: {
+    getCurrentRank: function (data) {
+      const condition = {
+        keyword: data,
+        nation: this.store.getters.getConditionNation,
+        category: this.store.getters.getConditionCategory,
+        period: this.store.getters.getConditionPeriod,
+      };
 
-// ChartJS.register(
-//   Title,
-//   Tooltip,
-//   Legend,
-//   BarElement,
-//   CategoryScale,
-//   LinearScale
-// );
-// export default {
-//   components: {
-//     Bar,
-//   },
-//   setup() {},
-// };
+      this.store.dispatch("getGraphKeyword", { condition });
+    },
+  },
+};
 </script>
 
 <style scoped>
