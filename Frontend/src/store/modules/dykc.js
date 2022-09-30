@@ -11,7 +11,7 @@ export default {
     
     // 트위터
     twitter : null,
-    translate: null,
+    // translate: null,
   },
 
   getters: {
@@ -23,7 +23,7 @@ export default {
     
     //트위터
     twitter : state => state.twitter,
-    translate : state => state.translate,
+    // translate : state => state.translate,
   },
 
   mutations: {
@@ -35,7 +35,7 @@ export default {
     
     // 트위터
     SET_TWITTER: (state, twitter) => state.twitter = twitter,
-    SET_TRANSLATE: (state, translate) => state.translate = translate,
+    // SET_TRANSLATE: (state, translate) => state.translate = translate,
   },
 
   actions: {
@@ -102,17 +102,17 @@ export default {
           console.error(err.response)
         })
     },
-    fetchTranslate({ commit }, keyword, num) {
-      axios({
-        url: BackendAPI.dykc.twitter_translate(keyword, num),
-        method: 'get',
-      })
-        .then(res => {
-          commit('SET_TRANSLATE', res.data)
-      })
-        .catch(err => {
-          console.error(err.response)
-        })
-    },
+    // fetchTranslate({ commit }, {keyword, num}) {
+    //   axios({
+    //     url: BackendAPI.dykc.twitter_translate(keyword, num),
+    //     method: 'get',
+    //   })
+    //     .then(res => {
+    //       commit('SET_TRANSLATE', res.data)
+    //   })
+    //     .catch(err => {
+    //       console.error(err.response)
+    //     })
+    // },
   }
 }

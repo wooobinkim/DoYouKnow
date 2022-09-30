@@ -86,7 +86,7 @@
               <div class="back card-face">
                 <h1>{{item.name}}</h1>
                 <p class="card__body">
-                  test
+                  {{item.dykClubContentResponses[0]['content']}}
                 </p>
               </div>
             </div>
@@ -108,9 +108,7 @@
               <div class="back card-face">
                 <h1>{{item.name}}</h1>
                 <p class="card__body">
-                  프리미어 리그 득점왕: 2021-22 
-                  프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
-                  프리미어 리그 올해의 골: 2019-20
+                  {{item.dykClubContentResponses[0]['content']}}
                 </p>
               </div>
             </div>
@@ -132,9 +130,7 @@
               <div class="back card-face">
                 <h1>{{item.name}}</h1>
                 <p class="card__body">
-                  프리미어 리그 득점왕: 2021-22 
-                  프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
-                  프리미어 리그 올해의 골: 2019-20
+                  {{item.dykClubContentResponses[0]['content']}}
                 </p>
               </div>
               <div class="bottombox">hi</div>
@@ -157,9 +153,7 @@
               <div class="back card-face">
                 <h1>{{item.name}}</h1>
                 <p class="card__body">
-                  프리미어 리그 득점왕: 2021-22 
-                  프리미어 리그 이달의 선수: 2016년 09월, 2017년 04월, 2020년 10월
-                  프리미어 리그 올해의 골: 2019-20
+                  {{item.dykClubContentResponses[0]['content']}}
                 </p>
               </div>
             </div>
@@ -424,9 +418,9 @@ li > button:hover {
   }
   .back p {
       margin: 0;
-      width: 90%;
+      width: 60%;
       position: absolute;
-      top: 45%;
+      top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
   }
