@@ -99,6 +99,7 @@ export default {
     controls.dampingFactor = 0.05;
     controls.enableDamping = true;
     controls.enableZoom = false;
+    controls.enablePan = false;
 
     let mousePos = new Vector2(0, 0);
 
