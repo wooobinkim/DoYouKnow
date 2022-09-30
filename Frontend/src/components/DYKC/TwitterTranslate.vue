@@ -33,7 +33,7 @@
     },
     methods:{
       setKeyword(){
-        const API_URL = `http://127.0.0.1:8000/api2/pytranslate/usually/${this.keyword}/${this.num}/`
+        const API_URL = `https://j7b208.p.ssafy.io/api2/pytranslate/usually/${this.keyword}/${this.num}/`
         axios.get(API_URL)
           .then(res => {
             this.ment = res.data

@@ -6,11 +6,11 @@ from datetime import datetime
 
 for i in range(1,31):
     year=2022
-    month=3
+    month=8
     day=i
     date=str(year).zfill(2)+"-"+str(month).zfill(2)+"-"+str(day).zfill(2)
     # date="2022-08-06"
-    nation_id=1
+    nation_id=4
     category_id=2
 
     date_obj = datetime.strptime(date,"%Y-%m-%d")

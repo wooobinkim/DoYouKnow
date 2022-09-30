@@ -1,37 +1,49 @@
 <template>
   <section>
-    <h6 id="intro">Introduce</h6>
-    <h1>Do You Know</h1>
-    <div class="content-msg">
-      <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! Do You Know를 아시나요?</p>
-      <p>Do you Know 'DoYouKnow'?</p>
+    <div class="title-container">
+      <h6
+        data-aos="fade-right"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+      >
+        Introduce
+      </h6>
+      <h1 data-aos="fade">DoYouKnow</h1>
+      <div
+        class="content-msg"
+        data-aos="fade-up"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+      >
+        <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?</p>
+        <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
+      </div>
     </div>
+    <img class="intro-arrow" src="@/assets/intro_arrow.png">
     <div class="globe-area">
-      
-      <!-- <MainGlobe class="top-globe"/> -->
+      <MainGlobe class="top-globe" />
     </div>
   </section>
 </template>
 
 <script>
-import MainGlobe from '@/components/Main/MainGlobe.vue'
+import MainGlobe from "@/components/Main/MainGlobe.vue";
 import AOS from "aos";
-import { onMounted } from '@vue/runtime-core';
+import { onMounted } from "@vue/runtime-core";
 
 export default {
   components: {
     MainGlobe, // eslint-disable-line
   },
-  setup(){
+  setup() {
     onMounted(() => {
       AOS.init();
-    })
-  }
-}
+    });
+  },
+};
 </script>
 
 <style scoped>
-
 h6 {
   font-size: 1.2em;
   width: 258px;
@@ -40,40 +52,37 @@ h6 {
   position: absolute;
   top: 180px;
   left: 300px;
-  animation: slide 2s ease-out;
+  /* animation: slide 2s ease-out; */
   text-align: start;
 }
 
 h1 {
   font-size: 4em;
   width: 500px;
-  color: black;
+  color: white;
   font-family: sans-serif;
   position: absolute;
   top: 190px;
   left: 300px;
-  animation: slide 2s ease-out;
   text-align: start;
 }
 
 .content-msg {
   font-size: 1em;
-  width: 380px;
-  color: black;
+  width: 450px;
+  color: white;
   font-family: sans-serif;
   font-weight: 400;
   position: absolute;
   top: 350px;
   left: 300px;
-  animation: slide 2s ease-out;
   text-align: start;
 }
 
 .content-msg p {
-  margin: 0;
+  margin: 20px 0;
+  font-size: 1.2em;
 }
-
-
 
 @keyframes slide {
   from {
@@ -85,16 +94,21 @@ h1 {
     opacity: 1;
   }
 }
+.catch-phrase {
+  font-size: 1.4em;
+  margin-top: 30px;
+}
+.title-container {
+  position: absolute;
 
-@keyframes disappear {
-  from {
-    left: 300px;
-    opacity: 1;
-  }
-  to {
-    left: -200px;
-    opacity: 0;
-  }
+  left: -13rem;
+}
+
+.intro-arrow {
+  width: 12%;
+  height: 25%;
+  position: absolute;
+  top: 65%;
+  right: 19%;
 }
 </style>
-

@@ -1,4 +1,5 @@
 const BE = 'https://j7b208.p.ssafy.io/api/'
+const BE2 = 'https://j7b208.p.ssafy.io/api2/'
 
 
 // DYKC API
@@ -17,6 +18,6 @@ export default{
 
   // DataLab
   datalab: {
-
+    relatedkeyword : (keyword) => BE2 + "pytrend/relativetopkeyword/" + keyword,
   }
 }

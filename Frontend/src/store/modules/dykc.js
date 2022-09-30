@@ -1,7 +1,7 @@
-import BackendAPI from '@/api/BackendAPI'
-import axios from 'axios'
+import BackendAPI from "@/api/BackendAPI";
+import axios from "axios";
 
-export default {
+export const dykc = {
   state: {
     //DYKC
     sport : null,
@@ -23,7 +23,6 @@ export default {
     
     //트위터
     twitter : state => state.twitter,
-    // translate : state => state.translate,
   },
 
   mutations: {
@@ -35,7 +34,7 @@ export default {
     
     // 트위터
     SET_TWITTER: (state, twitter) => state.twitter = twitter,
-    // SET_TRANSLATE: (state, translate) => state.translate = translate,
+
   },
 
   actions: {
@@ -86,8 +85,13 @@ export default {
       })
         .catch(err => {
           console.error(err.response)
+
         })
+        .catch((err) => {
+          console.error(err.response);
+        });
     },
+
     
     // 트위터
     fetchTwitter({ commit }, name) {
@@ -100,19 +104,11 @@ export default {
       })
         .catch(err => {
           console.error(err.response)
+
         })
+        .catch((err) => {
+          console.error(err.response);
+        });
     },
-    // fetchTranslate({ commit }, {keyword, num}) {
-    //   axios({
-    //     url: BackendAPI.dykc.twitter_translate(keyword, num),
-    //     method: 'get',
-    //   })
-    //     .then(res => {
-    //       commit('SET_TRANSLATE', res.data)
-    //   })
-    //     .catch(err => {
-    //       console.error(err.response)
-    //     })
-    // },
   }
 }

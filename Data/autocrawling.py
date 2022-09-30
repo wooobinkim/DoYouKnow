@@ -107,26 +107,33 @@ def np_tag(text):
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
         flag = True
         if doc[1] == 'NNP':
-            for i in range(len(removekeyword)):
-                if removekeyword[i] in doc[0].replace(" ",""): 
+            for i in range(len(exceptkeyword)) :
+                if exceptkeyword[i] in doc[0] :
                     flag = False
-                    break
-            if(flag) :
-                # print(doc[0])
+                    print("doc[0] : ",doc[0],", exceptkeyword : ", exceptkeyword[i])
+
+                    val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
+                    for i in range(3) : 
+                        cursor.execute(sql,val)
+                        DoYouKnow_db.commit()
+            if(flag):
+                print("doc[0] : ",doc[0])
                 val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
                 cursor.execute(sql,val)
                 DoYouKnow_db.commit()
-                news_desc += doc[0].replace(" ", "_") + '\n'
+                
+                    # news_desc += doc[0].replace(" ", "_") + '\n'
 
-    nospacetext = text.replace(" ","")
-    for i in range(len(exceptkeyword)):
-        if exceptkeyword[i] in nospacetext :
-            val = (exceptkeyword[i],date_time_obj,1,2)
-            for i in range(5):
-                cursor.execute(sql,val)
-                DoYouKnow_db.commit()
+    # nospacetext = text.replace(" ","")
+    # for i in range(len(exceptkeyword)):
+    #     if exceptkeyword[i] in nospacetext :
+    #         val = (exceptkeyword[i],date_time_obj,nation,category)
+    #         for i in range(5):
+    #             cursor.execute(sql,val)
+    #             DoYouKnow_db.commit()
 
     return news_desc
+
 
 
 def Url(search):
@@ -139,7 +146,7 @@ def Url(search):
     global end_day
     global driverd
     # here
-    url_temp = 'https://www.google.com/search?q={search}&tbm=nws'.format(search=search)
+    url_temp = 'https://www.google.com.vn/search?hl=vi&q={search}&tbm=nws'.format(search=search)
     url_temp = url_temp + "&tbs=cdr%3A1%2Ccd_min%3A{start_month}".format(start_month=start_month)
     url_temp = url_temp + "%2F{start_day}".format(start_day=start_day)
     url_temp = url_temp + "%2F{start_year}".format(start_year=start_year)
@@ -195,7 +202,7 @@ def crawling_category(searches, category_id, month, nation_id):
     global exceptkeyword
 
     print(searches, category_id, month, nation_id)
-    day =[32, 29, 32, 31, 32, 31, 32, 32, 25, 32, 31, 32]
+    day =[32, 29, 32, 31, 32, 31, 32, 32, 24, 32, 31, 32]
     
     start = time.time()
     start_year=2022
@@ -233,6 +240,24 @@ def crawling_category(searches, category_id, month, nation_id):
                 line = File.readline().strip()
                 if not line : break
                 exceptkeyword.append(line)
+        elif category==1 :
+            File = open("/home/hadoop/S07P22B208/Data/sportexcept.txt", encoding='utf-8')
+            while True : 
+                line = File.readline().strip()
+                if not line : break
+                exceptkeyword.append(line)
+        elif category==4 :
+            File = open("/home/hadoop/S07P22B208/Data/idolexcept.txt", encoding='utf-8')
+            while True : 
+                line = File.readline().strip()
+                if not line : break
+                exceptkeyword.append(line)
+        elif category==5 :
+            File = open("/home/hadoop/S07P22B208/Data/actorexcept.txt", encoding='utf-8')
+            while True : 
+                line = File.readline().strip()
+                if not line : break
+                exceptkeyword.append(line)
         
 
         # while True : 
@@ -253,15 +278,15 @@ def crawling_category(searches, category_id, month, nation_id):
             start_day=i
             end_day=start_day
 
-            Url(searches[cnt])
-            # try:
-            #     Url(searches[cnt])
-            # except Exception as e:
-            #     print("timeout")
-            #     continue
-            # finally:
-            #     driver.quit()
-            #     print("============")
+            # Url(searches[cnt])
+            try:
+                Url(searches[cnt])
+            except Exception as e:
+                print("timeout")
+                continue
+            finally:
+                driver.quit()
+                print("============")
                 
         driver.quit()
     print("time!!!!!!!!!!!!!!!!!!!!! :", time.time() - start)
@@ -277,7 +302,7 @@ def cawrling_month(search, category_id, nation_id):
     global driver
     global category
     global nation
-    days =[32, 29, 32, 31, 32, 31, 32, 32, 24, 32, 31, 32]
+    days =[32, 29, 32, 31, 32, 31, 32, 32, 27, 32, 31, 32]
     for month in range(9, 3, -1):
         start_month = month
         end_month=month

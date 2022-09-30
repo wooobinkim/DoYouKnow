@@ -1,9 +1,6 @@
 package com.common.DoYouKnow.service;
 
-import com.common.DoYouKnow.dto.CategoryResponse;
-import com.common.DoYouKnow.dto.KeywordDataResponse;
-import com.common.DoYouKnow.dto.KeywordResponse;
-import com.common.DoYouKnow.dto.NationResponse;
+import com.common.DoYouKnow.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +21,8 @@ public interface KeywordService {
 
     List<KeywordResponse> getPeriodGraph(String keyword,Long nation_id,Long category_id,Long period);
 
-    Long getTotalCount(Long nation_id,Long category_id);
+    Long getWeekCount(Long nation_id,Long category_id);
+    KeywordRateResponse getTotalCount(Long nation_id);
 //    //국가별 카테고리별 3달 데이터검색량
 //    public ResponseEntity<?> getThreeMonthCount(Long nation_id,Long category_id);
 //

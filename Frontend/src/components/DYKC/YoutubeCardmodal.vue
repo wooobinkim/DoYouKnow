@@ -28,8 +28,6 @@ export default {
   methods:{
     setKeyword(){
       const API_KEY = process.env.VUE_APP_YOUTUBE_API_KEY
-      // const API_KEY = "AIzaSyC1uZhEkyJzDH9kMOTTccbgCxN59s38QdQ"
-      // const API_KEY = "AIzaSyBQrwr65HT-VIeMvQVs1eUxpWfXUeeaiH4"
       
       const API_URL = 'https://www.googleapis.com/youtube/v3/search'
       this.keyword = this.name + '해외 반응'
