@@ -36,7 +36,9 @@ def usallyview(request, keyword, num):
 
 
     key = DykclubTwitter.objects.filter(dykclub_id=key).values('content')
-    result = key[num]['content']
+    sentence = key[num]['content']
+    translator = Translator()
+    result = translator.translate(sentence, dest='ko').text
     
     return Response(result)
 
