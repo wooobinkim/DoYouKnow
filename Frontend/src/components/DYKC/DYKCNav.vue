@@ -4,9 +4,9 @@
       <img class="nav-logo" src="../../assets/logo.png">
     </router-link>
     <div class="nav-menu">
-      <router-link to="/" class="nav-menu-item">홈</router-link> 
-      <router-link to="/datalab" class="nav-menu-item">데이터랩</router-link>
-      <router-link to="/game" class="nav-menu-item">더 많이 더 적게</router-link>
+      <router-link to="/" class="nav-menu-item" id="home">홈</router-link> 
+      <router-link to="/datalab" class="nav-menu-item" id="data">데이터랩</router-link>
+      <router-link to="/game" class="nav-menu-item" id="game">더 많이 더 적게</router-link>
     </div>
   </div>
 </template>
@@ -60,5 +60,6 @@
 
 .nav-menu-item:hover::after {
   width: 80%;
+
 }
 </style>

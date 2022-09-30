@@ -3,15 +3,31 @@
     <div class="white-bg">
       <h1 style="text-align : center; font-size: xx-large;">{{youtubeName}}</h1>
       <YoutubeCardmodal v-bind:name="youtubeName"/>
-      <button class="close">close</button>
+      <button class="close2">close</button>
     </div>
   </div>
 
   <div class="black-bg" v-if="twitter == true" @click="twitterClose($event)">
     <div class="white-bg">
-      <h1 style="text-align : center; font-size: xx-large;">{{twitterName}}</h1>
+      <h1 style="text-align : center; font-size: 2rem; margin-bottom:1rem;">해외 트위터 반응</h1>
       <TwitterCardmodal v-bind:name="twitterName"/>
-      <button class="close">close</button>
+      <button class="close2">close</button>
+    </div>
+  </div>
+
+  <div class="black-bg" v-if="profile == true" @click="profileClose($event)">
+    <div class="white-bg">
+      <h1 style="text-align : center; font-size: 2rem; margin-bottom:1rem;">프로필</h1>
+      <ProfileCardmodal v-bind:name="profileName"/>
+      <button class="close2">close</button>
+    </div>
+  </div>
+
+  <div class="black-bg" v-if="award == true" @click="awardClose($event)">
+    <div class="white-bg">
+      <h1 style="text-align : center; font-size: 2rem; margin-bottom:1rem;">수상 내역</h1>
+      <AwardCardmodal v-bind:name="awardName"/>
+      <button class="close2">close</button>
     </div>
   </div>
 
@@ -20,12 +36,12 @@
   </video>
 
   <!-- <div v-if="youtube===false && twitter===false && isShowing===true">
-    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.4">
+    <audio id="myAudio" autoplay loop onloadstart="this.volume=0.3">
       <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
     </audio>
   </div> -->
 
-  <div v-show="youtube===false && twitter===false">
+  <div v-show="youtube===false && twitter===false && award===false && profile===false">
     <DYKCNav/>
     <div>
       <div v-show="isShowing===true">
@@ -60,75 +76,96 @@
       <div class="content">
         <div class="title">{{ keyword }}</div>
         
-        <div class="scene">
-          <label class="card-wrap">
-              <input type="checkbox" class="flipcard">
-              <div class="card">
-                <div class="front card-face">
-                    <img :src="`${cardfront[0].imgUrl}`" alt="" class="card-photo">
-                    <div id="front-content">
-                      <h2 style="margin:0.5rem;">{{cardfront[0].name}}</h2>
-                      <p>100회</p>
-                    </div>
-                </div>
-                <div class="back card-face">
-                  <h1>{{cardfront[0].name}}</h1>
-                  <p class="card__body" >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                  <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[0].name)"></button>
-                    <button class="btn btn__email" @click="openTwitterModal(cardfront[0].name)"></button>
-                  </footer>
-                </div>
+        <div class="scene" v-if="category_id==1">
+          <label class="card-wrap" v-for="(item, key) in sport" :key="key">
+            <input type="checkbox" class="flipcard">
+            <div class="card">
+              <div class="front card-face">
+                  <img :src="item.imgUrl" alt="" class="card-photo">
               </div>
-          </label>
-          <label class="card-wrap">
-              <input type="checkbox" class="flipcard">
-              <div class="card">
-                <div class="front card-face">
-                    <img :src="`${cardfront[1].imgUrl}`" alt="" class="card-photo">
-                    <div id="front-content">
-                      <h2 style="margin:0.5rem;">{{cardfront[1].name}}</h2>
-                      <p>100회</p>
-                    </div>
-                </div>
-                <div class="back card-face">
-                  <h1>{{cardfront[1].name}}</h1>
-                  <p class="card__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                  <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[1].name)"></button>
-                    <button class="btn btn__email" @click="openTwitterModal(cardfront[1].name)"></button>
-                  </footer>
-                </div>
+              <div class="back card-face">
+                <h1>{{item.name}}</h1>
+                <p class="card__body">
+                  {{item.dykClubContentResponses[0]['content']}}
+                </p>
               </div>
+            </div>
+            <footer class="social">
+              <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
+              <button class="btn btn__email" @click="openTwitterModal(item.name)"></button>
+              <button class="btn btn__intro" @click="openProfileModal(item.name)"></button>
+              <button class="btn btn__award" @click="openAwardModal(item.name)"></button>
+            </footer>
           </label>
-          <label class="card-wrap">
-              <input type="checkbox" class="flipcard">
-              <div class="card">
-                <div class="front card-face">
-                    <img :src="`${cardfront[2].imgUrl}`" alt="" class="card-photo">
-                    
-                    <div id="front-content">
-                      <h2 style="margin:0.5rem;">{{cardfront[2].name}}</h2>
-                      <p>100회</p>
-                    </div>
-                </div>
-                <div class="back card-face">
-                  <h1>{{cardfront[2].name}}</h1>
-                  <p class="card__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
-                  <footer class="social">
-                    <button class="btn btn__phone" @click="openYoutubeModal(cardfront[2].name)"></button>
-                    <button class="btn btn__email" @click="openTwitterModal(cardfront[2].name)"></button>
-                  </footer>
-                </div>
+        </div>
+        <div class="scene" v-if="category_id==2">
+          <label class="card-wrap" v-for="(item, key) in drama" :key="key">
+            <input type="checkbox" class="flipcard">
+            <div class="card">
+              <div class="front card-face">
+                  <img :src="item.imgUrl" alt="" class="card-photo">
               </div>
+              <div class="back card-face">
+                <h1>{{item.name}}</h1>
+                <p class="card__body">
+                  {{item.dykClubContentResponses[0]['content']}}
+                </p>
+              </div>
+            </div>
+            <footer class="social">
+              <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
+              <button class="btn btn__email" @click="openTwitterModal(item.name)"></button>
+              <button class="btn btn__intro" @click="openProfileModal(item.name)"></button>
+              <button class="btn btn__award" @click="openAwardModal(item.name)"></button>
+            </footer>
           </label>
-      </div>
+        </div>
+        <div class="scene" v-if="category_id==3">
+          <label class="card-wrap" v-for="(item, key) in movie" :key="key">
+            <input type="checkbox" class="flipcard">
+            <div class="card">
+              <div class="front card-face">
+                  <img :src="item.imgUrl" alt="" class="card-photo">
+              </div>
+              <div class="back card-face">
+                <h1>{{item.name}}</h1>
+                <p class="card__body">
+                  {{item.dykClubContentResponses[0]['content']}}
+                </p>
+              </div>
+              <div class="bottombox">hi</div>
+            </div>
+            <footer class="social">
+              <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
+              <button class="btn btn__email" @click="openTwitterModal(item.name)"></button>
+              <button class="btn btn__intro" @click="openProfileModal(item.name)"></button>
+              <button class="btn btn__award" @click="openAwardModal(item.name)"></button>
+            </footer>
+          </label>
+        </div>
+        <div class="scene" v-if="category_id==4">
+          <label class="card-wrap" v-for="(item, key) in entertainer" :key="key">
+            <input type="checkbox" class="flipcard">
+            <div class="card">
+              <div class="front card-face">
+                  <img :src="item.imgUrl" alt="" class="card-photo">
+              </div>
+              <div class="back card-face">
+                <h1>{{item.name}}</h1>
+                <p class="card__body">
+                  {{item.dykClubContentResponses[0]['content']}}
+                </p>
+              </div>
+            </div>
+            <footer class="social">
+              <button class="btn btn__phone" @click="openYoutubeModal(item.name)"></button>
+              <button class="btn btn__email" @click="openTwitterModal(item.name)"></button>
+              <button class="btn btn__intro" @click="openProfileModal(item.name)"></button>
+              <button class="btn btn__award" @click="openAwardModal(item.name)"></button>
+            </footer>
+          </label>
+        </div>
+
 
       </div>
     </div>
@@ -140,30 +177,46 @@
 import DYKCNav from '@/components/DYKC/DYKCNav.vue'
 import YoutubeCardmodal from '@/components/DYKC/YoutubeCardmodal.vue'
 import TwitterCardmodal from '@/components/DYKC/TwitterCardmodal.vue'
+import ProfileCardmodal from '@/components/DYKC/ProfileCardmodal.vue'
+import AwardCardmodal from '@/components/DYKC/AwardCardmodal.vue'
 import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: "AwardView",
   components:{
     DYKCNav,
     YoutubeCardmodal,
-    TwitterCardmodal
+    TwitterCardmodal,
+    ProfileCardmodal,
+    AwardCardmodal,
   },
   data(){
     return{
       isShowing : true,
       youtube : false,
-      twitter: false,
+      twitter : false,
+      profile : false,
+      award : false,
       keyword : "운동선수",
       category_id : 1,
       twitterName : "",
       youtubeName : "",
+      profileName : "",
+      awardName : "",
+      twitter_translate : false,
     }
   },
   computed: {
-    ...mapGetters(['cardfront'])
+    ...mapGetters(['sport', 'drama', 'movie', 'entertainer'])
+  },
+  created() {
+    this.fetchSport(1);
+    this.fetchDrama(2);
+    this.fetchMovie(3);
+    this.fetchEntertainer(4);
   },
   methods: {
-    ...mapActions(['fetchFrontcard']),
+    ...mapActions(['fetchSport', 'fetchMovie', 'fetchDrama', 'fetchEntertainer']),
     
     sound() {
       this.isShowing = !this.isShowing
@@ -173,6 +226,18 @@ export default {
     },
     changecategory(event){
       this.category_id = event;
+      if(this.category_id == 1){
+        this.cardfront = this.sport;
+      }
+      else if (this.category_id == 2){
+        this.cardfront = this.drama;
+      }
+      else if (this.category_id == 3){
+        this.cardfront = this.movie;
+      }
+      else if (this.category_id == 4){
+        this.cardfront = this.entertainer;
+      }
     },
     openYoutubeModal(event){
       this.youtube = true;
@@ -182,27 +247,47 @@ export default {
       this.twitter = true;
       this.twitterName = event
     },
+    openProfileModal(event){
+      this.profile = true;
+      this.profileName = event
+    },
+    openAwardModal(event){
+      this.award = true;
+      this.awardName = event
+    },
     youtubeClose(event){
-      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close')){
+      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close2')){
         this.youtube = false;
+        this.twitter_translate = false;
       } else if (event.target.classList.contains('white-bg')){
         this.youtube = true;
       }
     },
     twitterClose(event){
-      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close')){
+      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close2')){
         this.twitter = false;
+        this.twitter_translate = false;
       } else if (event.target.classList.contains('white-bg')){
         this.twitter = true;
       }
-    }
+    },
+    profileClose(event){
+      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close2')){
+        this.profile = false;
+        this.twitter_translate = false;
+      } else if (event.target.classList.contains('white-bg')){
+        this.profile = true;
+      }
+    },
+    awardClose(event){
+      if(event.target.classList.contains('black-bg')||event.target.classList.contains('close2')){
+        this.award = false;
+        this.twitter_translate = false;
+      } else if (event.target.classList.contains('white-bg')){
+        this.award = true;
+      }
+    },
   },
-  created() {
-    this.fetchFrontcard(1);
-  },
-  updated(){
-    this.fetchFrontcard(this.category_id);
-  }
 }  
 </script>
 
@@ -231,8 +316,8 @@ export default {
     margin-left: 2rem;
   }
   .category_color{
-    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
-    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(128, 211, 183),
+    0 0 82px rgb(128, 211, 183), 0 0 92px rgb(128, 211, 183), 0 0 102px rgb(128, 211, 183), 0 0 151px rgb(128, 211, 183);
   }
   ul{
     list-style:none;
@@ -253,8 +338,8 @@ export default {
 
 li > button:hover {
   color: white;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
-    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(128, 211, 183),
+    0 0 82px rgb(128, 211, 183), 0 0 92px rgb(128, 211, 183), 0 0 102px rgb(128, 211, 183), 0 0 151px rgb(128, 211, 183);
 } 
   .content{
     flex: 1;
@@ -316,23 +401,9 @@ li > button:hover {
     opacity: 1;
     transition: 0.3s;
   }
-  .front:hover #front-content{
-      opacity: 1;
+  .card-photo:hover{
+    transform: scale(1.1);
   }
-  #front-content{
-    width: 300px;
-    text-align: center;
-    position: absolute;
-    font-size: large;
-    top: 35%;
-    left: 0%;
-    opacity: 0;
-    transition: 0.3s;
-    color: white;
-    text-shadow:1px 1px 1px #000;
-  }
-  
-
   .back {
       background-color: white;
       transform: rotateY( 180deg );
@@ -347,8 +418,9 @@ li > button:hover {
   }
   .back p {
       margin: 0;
+      width: 60%;
       position: absolute;
-      top: 45%;
+      top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
   }
@@ -375,21 +447,19 @@ li > button:hover {
   footer.social {
     display: grid;
     justify-items: center;
-    grid-column-gap: 3em;
-    grid-template-columns: 1fr 1fr;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    margin-top: 1rem;
-    top: 75%;
-    left: 22.5%;
+    grid-column-gap: 1em;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-radius: 1em;
+    top: 90%;
     position: absolute;
+    background-color: rgb(0 0 0 / 35%);
   }
   .btn {
     position: relative;
     width: 4em;
     height: 4em;
     border-radius: 50vh;
-    background: #0099ff;
+    background: #0099ff8a;
     border: 0;
     outline: 0;
     -webkit-transition: all 0.4s ease;
@@ -450,6 +520,18 @@ li > button:hover {
   .btn__email:hover::before {
     content: "TWITTER";
   }
+  .btn__intro::before {
+    content: url("../../assets/DYKC/profile.png");
+  }
+  .btn__intro:hover::before {
+    content: "INTRO";
+  }
+  .btn__award::before {
+    content: url("../../assets/DYKC/award.png");
+  }
+  .btn__award:hover::before {
+    content: "AWARD";
+  }
   .black-bg {
     width: 100%; height:100%;
     background: rgba(0,0,0,0.6);
@@ -465,25 +547,26 @@ li > button:hover {
     height: 90vh;
     transform: translate(-50%, -50%);
   }
-  .close{
-    position: absolute;
-    cursor: pointer;
-    border:none;
-    background: #6667AB;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 5px 15px;
-    bottom: 2vh;
-    right: 30vw;
-    width: 10rem;
-    height: 5vh;
-    font-size: x-large;
-  }
-  .close:hover{
-    color:white;
-    font-weight: bold;
-    transform: scale(1.1);
-    transition: all 0.5s;
-  }
+  .close2{
+  position: absolute;
+  cursor: pointer;
+  border:none;
+  background: #6667AB;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px 15px;
+  bottom: 2vh;
+  right: 30vw;
+  width: 10rem;
+  height: 5vh;
+  font-size: x-large;
+}
+.close2:hover{
+  color:white;
+  font-weight: bold;
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
 </style>
