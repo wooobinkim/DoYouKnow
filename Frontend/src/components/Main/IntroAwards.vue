@@ -9,6 +9,7 @@
       </div>
     </div>
     <img src="../../assets/DYKClub.png" class="photo">
+    <img src="@/assets/podium.jpg" class="podium">
     
   </section>
 </template>
@@ -26,6 +27,14 @@ export default {
   position: absolute;
   bottom: 30vh;
   right: 15vw;
+}
+
+.podium {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 60%;
+  z-index: -1;
 }
 
 .photo:hover {

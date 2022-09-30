@@ -57,7 +57,7 @@ export default {
   },
 
   setup() {
-      
+    
     return {
       modules: [Navigation, Pagination, Mousewheel, Scrollbar],
       
@@ -121,30 +121,12 @@ body {
   background: linear-gradient(#fff0fddf, #fae3c2, #ffdfae);
 }
 .second {
-  background-color: #f5f5f5;
-  background-image: url("../assets/data-img.gif");
-  background-size: 60% 100%;
-  background-repeat: no-repeat;
-  position: relative;
-}
-.second::before {
-  content: "";
-  opacity: 0.5;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-color: black;
+  background: linear-gradient(#f5f7fa, #b8c6db);
 }
 .third {
-  background-color: #d4ad37a7;
-  background-image: url("../assets/podium.jpg");
-  background-size: 60% 100%;
-  background-repeat: no-repeat;
-  background-position: right;
+  background: linear-gradient(#f1c56c, #dab097);
 }
 .forth {
-  background-color: #899cff;
+  background: linear-gradient(#9d7eb8,#ddbdfc, #96c8fb);
 }
 </style>

@@ -8,6 +8,7 @@
     </div>
   </div>
   <img class="photo" src="@/assets/wordcloud.png" alt="">
+  <img class="data-img" src="@/assets/data-img.gif" >
 </template>
 
 <script></script>
@@ -19,6 +20,15 @@
   left: 200px;
   width: 700px;
   height: 600px;
+  z-index: 0;
+}
+
+.data-img {
+  width: 60%;
+  height: 100%;
+  position: absolute;
+  left: 0%;
+  z-index: -1;
 }
 
 .text-area {
@@ -33,14 +43,14 @@
 h1 {
   font-size: 4em;
   width: 500px;
-  color: white;
+  color: black;
   font-family: sans-serif;
   text-align: start;
 }
 
 .datalab-content p {
   margin: 0;
-  color: white;
+  color: black;
   font-size: 1.2em;
 }
 
