@@ -3,21 +3,20 @@ import axios from "axios";
 export const game = {
   state: {
     gamedata: [],
-    asd: null,
   },
   getters: {
     getGameData(state) {
-      console.log(state, "getters state");
+      // console.log(state, "getters state");
       return state.gamedata;
     },
   },
   mutations: {
     // SET_GAMEDATA: (state) => (state.gamedata = state),
     SET_GAMEDATA(state, data) {
-      console.log(data, "data?");
-      console.log(state.gamedata, "mutations state");
+      // console.log(data, "data?");
+      // console.log(state.gamedata, "mutations state");
       state.gamedata = data;
-      console.log(state.gamedata, "after");
+      // console.log(state.gamedata, "after");
     },
   },
   actions: {
@@ -34,7 +33,6 @@ export const game = {
         });
     },
     setGameData1() {
-      console.log("함수드간다.1");
       return axios.get(`http://j7b208.p.ssafy.io:8080/api/higherlower`);
     },
   },

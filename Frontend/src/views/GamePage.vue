@@ -9,7 +9,7 @@
         </div>
         <div class="main-intro">
           <h1>어떤 키워드들이 더 많이 검색됐을까?</h1>
-          <h2 class="intro-h2">Google 검색량 2022년 9월 기준</h2>
+          <h2 class="intro-h2">Google News 키워드 검색량 2022년 9월 기준</h2>
         </div>
       </div>
       <div class="button-container">
