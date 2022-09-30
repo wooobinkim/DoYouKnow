@@ -11,6 +11,8 @@
         <h2 style="margin-top: 0">키워드 분석</h2>
       </div>
       <div class="total-container">
+        <!-- <div class="nation-total">{{ this.getNationRate.nationCount }}</div>
+        <div class="nation-percentage">{{ this.getNationRate.nationRate }}</div> -->
         <div class="nation-total">
           <template v-if="this.getNationRate">
             총 데이터량
@@ -22,6 +24,7 @@
             전체의 {{ this.getNationRate.nationRate }}%
           </template>
         </div>
+
       </div>
     </div>
     <div class="data-container">
@@ -52,6 +55,11 @@ export default {
     ChartTab,
   },
   setup() {
+    // const store = useStore();
+
+    // return {
+    //   store,
+    // };
     const store = useStore();
     return {
       store,
@@ -65,6 +73,14 @@ export default {
       this.store.dispatch("getNationRate", { nation });
     },
   },
+  // computed: {
+  //   ...mapGetters(["getConditionNation", "getNation", "getNationRate"]),
+  // },
+  // watch: {
+  //   getConditionNation: function (nation) {
+  //     this.store.dispatch("getNationRate", { nation });
+  //   },
+  // },
 };
 </script>
 

@@ -6,6 +6,8 @@ export const datalab = {
     rank: null,
     currentrank: null,
     keywordrank: null,
+    // relatedkeword: [],
+    relatedkeywordnews: [],
     relatedkeword: null,
     relatedkewordloading: false,
     graphkeyword: null,
@@ -22,12 +24,12 @@ export const datalab = {
       { value: 3, text: "세달" },
     ],
     nation: [
-      { value: 1, text: "미국" },
-      { value: 2, text: "영국" },
-      { value: 3, text: "일본" },
-      { value: 4, text: "베트남" },
-      { value: 5, text: "인도네시아" },
-      { value: 6, text: "브라질" },
+      { value: 1, text: "미국", lang: "en" },
+      { value: 2, text: "영국", lang: "en" },
+      { value: 3, text: "일본", lang: "ja" },
+      { value: 4, text: "베트남", lang: "vi" },
+      { value: 5, text: "인도네시아", lang: "id" },
+      { value: 6, text: "브라질", lang: "pt" },
     ],
     nationRate: null,
     condition: {
@@ -35,17 +37,20 @@ export const datalab = {
       category: null,
       period: null,
     },
+
   },
   getters: {
     getCurrentRank(state) {
       return state.currentrank;
     },
-
     getKeywordRank(state) {
       return state.keywordrank;
     },
     getRelatedKeyword(state) {
       return state.relatedkeword;
+    },
+    getRelatedKeywordNews(state){
+      return state.relatedkeywordnews;
     },
     getCondition(state) {
       return state.condition;
@@ -83,6 +88,7 @@ export const datalab = {
     SET_KEYWORDRANK: (state, data) => (state.keywordrank = data),
     RESET_KEYWORDRANK: (state) => (state.keywordrank = null),
     SET_RELATEDKEWORD: (state, keywords) => (state.relatedkeword = keywords),
+    SET_RELATEDKEYWORDNEWS: (state, news) => (state.relatedkeywordnews = news),
     SET_NATION: (state, nation) => (state.condition.nation = nation),
     SET_CATEGORY: (state, category) => (state.condition.category = category),
     SET_PERIOD: (state, period) => (state.condition.period = period),
@@ -169,6 +175,53 @@ export const datalab = {
         .catch((err) => {
           console.error(err.response);
         });
+    },
+
+    async relatedkeywordnews({ commit, state }, data ) {
+      // console.log(data[0].category, data[0].nation);
+      var keyword = data[1];
+      await axios({
+        url: BackendAPI2.datalab.relatedkeywordtranslate('한국 ' + data[1] + ".한국 " + state.category[data[0].category-1].text, state.nation[data[0].nation-1].lang),
+        method:"get",
+      })
+      .then((res)=>{
+        keyword = res.data.split(".");
+        console.log(keyword)
+      })
+      .catch((err)=>{
+        console.error(err.response);
+        // lang = 'ko';
+      })
+
+      await axios({
+        // &language=${lang}
+        url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[0]}&sortBy=relevancy&pageSize=5`,
+        method:"get",
+      })
+      .then((res)=>{
+        // console.log(res.data.articles.length)
+        if(res.data.articles.length == 0){
+          axios({
+            // &language=${lang}
+            url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[1]}&sortBy=relevancy&pageSize=5`,
+            method:"get",
+          })
+          .then((res)=>{
+            // console.log(res.data.articles.length)
+            commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+          })
+          .catch((err)=>{
+            console.error(err.response);
+          })
+        }else{
+          commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+        }
+        // commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+      })
+      .catch((err)=>{
+        console.error(err.response);
+      })
+
     },
   },
 };
