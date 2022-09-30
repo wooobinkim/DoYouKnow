@@ -5,17 +5,12 @@
         <ul>
           <!-- <li v-for="news in test.getRelatedKeywordNews" :key="news">{{ news.title }}</li> -->
           <li v-for="news in test.getRelatedKeywordNews" :key="news">
-            <!-- <a href="http://mwultong.blogspot.com/2006/12/html-image-size.html">fff</a> -->
             <img :src=news.urlToImage width="80">
             <h3>{{ news.title }}</h3>
             <p>{{ news.publishedAt }}</p>
           </li>
         </ul>
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action">First item</a>
-          <a href="#" class="list-group-item list-group-item-action">Second item</a>
-          <a href="#" class="list-group-item list-group-item-action">Third item</a>
-        </div>
+        
         <!-- <button @click.prevent="relatedkeywordnews">하이</button> -->
       </div> 
       
@@ -37,7 +32,7 @@
     watch:{
       getCurrentRank: function(){
         // 키워드 그 나라 언어로 번역 후에 넘겨주어야함.. 근데 번역이 안된다..!~!
-        this.relatedkeywordnews();
+        this.relatedkeywordnews([this.test.getConditionNation, this.test.getCurrentRank]);
       },
 
     },
