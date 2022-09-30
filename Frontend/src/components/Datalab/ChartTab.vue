@@ -83,14 +83,14 @@ export default {
     ...mapActions(["getGraphKeyword"]),
   },
   watch: {
-    getCurrentRank: function (data) {
-      // this 뭐였지..
-      this.relatedkeyword(data);
-    },
-    getKeyword: function (data) {
-      // this.keywordlist = data;
-      this.updateChart(data);
-    },
+    // getCurrentRank: function (data) {
+    //   // this 뭐였지..
+    //   this.relatedkeyword(data);
+    // },
+    // getKeyword: function (data) {
+    //   // this.keywordlist = data;
+    //   this.updateChart(data);
+    // },
   },
 };
 </script>

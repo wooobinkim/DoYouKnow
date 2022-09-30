@@ -180,6 +180,7 @@ export const datalab = {
     async relatedkeywordnews({ commit, state }, data ) {
       // console.log(data[0].category, data[0].nation);
       var keyword = data[1];
+      console.log(data);
       await axios({
         url: BackendAPI2.datalab.relatedkeywordtranslate('한국 ' + data[1] + ".한국 " + state.category[data[0].category-1].text, state.nation[data[0].nation-1].lang),
         method:"get",
