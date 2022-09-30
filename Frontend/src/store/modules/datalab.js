@@ -6,8 +6,10 @@ export const datalab = {
     rank: null,
     currentrank: null,
     keywordrank: null,
-    relatedkeword: [],
+    // relatedkeword: [],
     relatedkeywordnews: [],
+    relatedkeword: null,
+    graphkeyword: null,
     category: [
       { value: 1, text: "운동선수" },
       { value: 2, text: "드라마" },
@@ -73,6 +75,9 @@ export const datalab = {
     getNationRate(state) {
       return state.nationRate;
     },
+    getGraphKeyword(state) {
+      return state.graphkeyword;
+    },
   },
   mutations: {
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
@@ -84,10 +89,19 @@ export const datalab = {
     SET_CATEGORY: (state, category) => (state.condition.category = category),
     SET_PERIOD: (state, period) => (state.condition.period = period),
     SET_NATIONRATE: (state, nationRate) => (state.nationRate = nationRate),
+    SET_GRAPHKEYWORD: (state, graphkeyword) => {
+      state.graphkeyword = [];
+      graphkeyword.forEach((keyword) => {
+        keyword.date = new Date(keyword.date);
+        state.graphkeyword.push(keyword);
+      });
+      // state.graphkeyword = graphkeyword;
+    },
+    // (state.graphkeyword = graphkeyword),
   },
   actions: {
-    getNationRate({ commit }, { nation }) {
-      axios
+    async getNationRate({ commit }, { nation }) {
+      await axios
         .get(`http://j7b208.p.ssafy.io:8080/api/keyword/searchcount/${nation}`)
         .then((res) => {
           commit("SET_NATIONRATE", res.data);
@@ -113,9 +127,9 @@ export const datalab = {
       commit("RESET_KEYWORDRANK");
     },
 
-    getKeywordData({ commit }, { condition }) {
-      console.log(condition);
-      axios
+    async getKeywordData({ commit }, { condition }) {
+      // console.log(condition);
+      await axios
         .get(
           `http://j7b208.p.ssafy.io:8080/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
         )
@@ -123,6 +137,20 @@ export const datalab = {
           // console.log(res, "데이터 전송완료");
           console.log(res.data);
           commit("SET_KEYWORDRANK", res.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+
+    async getGraphKeyword({ commit }, { condition }) {
+      // console.log(condition);
+      await axios
+        .get(
+          `http://j7b208.p.ssafy.io:8080/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
+        )
+        .then((res) => {
+          commit("SET_GRAPHKEYWORD", res.data);
         })
         .catch((err) => {
           console.log(err.response);
@@ -145,15 +173,14 @@ export const datalab = {
     },
 
     async relatedkeywordnews({ commit, state }, data ) {
-      // console.log(state.nation[data[0]-1].lang)
-      // var lang = state.nation[data[0]-1].lang;
+      // console.log(data[0].category, data[0].nation);
       var keyword = data[1];
       await axios({
-        url: BackendAPI2.datalab.relatedkeywordtranslate('드라마 ' + data[1], state.nation[data[0]-1].lang),
+        url: BackendAPI2.datalab.relatedkeywordtranslate('한국 ' + data[1] + ".한국 " + state.category[data[0].category-1].text, state.nation[data[0].nation-1].lang),
         method:"get",
       })
       .then((res)=>{
-        keyword = res.data;
+        keyword = res.data.split(".");
         console.log(keyword)
       })
       .catch((err)=>{
@@ -163,12 +190,28 @@ export const datalab = {
 
       await axios({
         // &language=${lang}
-        url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword}&sortBy=popularity&pageSize=5`,
+        url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[0]}&sortBy=relevancy&pageSize=5`,
         method:"get",
       })
       .then((res)=>{
-        console.log(res.data.articles);
-        commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+        // console.log(res.data.articles.length)
+        if(res.data.articles.length == 0){
+          axios({
+            // &language=${lang}
+            url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[1]}&sortBy=relevancy&pageSize=5`,
+            method:"get",
+          })
+          .then((res)=>{
+            // console.log(res.data.articles.length)
+            commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+          })
+          .catch((err)=>{
+            console.error(err.response);
+          })
+        }else{
+          commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+        }
+        // commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
       })
       .catch((err)=>{
         console.error(err.response);

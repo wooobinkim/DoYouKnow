@@ -31,7 +31,7 @@
     },
     watch:{
       getCurrentRank: function(){
-        this.relatedkeywordnews([this.test.getConditionNation, this.test.getCurrentRank]);
+        this.relatedkeywordnews([this.test.getCondition, this.test.getCurrentRank]);
       },
 
     },

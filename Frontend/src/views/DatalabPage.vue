@@ -13,6 +13,17 @@
       <div class="total-container">
         <!-- <div class="nation-total">{{ this.getNationRate.nationCount }}</div>
         <div class="nation-percentage">{{ this.getNationRate.nationRate }}</div> -->
+        <div class="nation-total">
+          <template v-if="this.getNationRate">
+            총 데이터량 {{ this.getNationRate.nationCount }}개
+          </template>
+        </div>
+        <div class="nation-percentage">
+          <template v-if="this.getNationRate">
+            전체의 {{ this.getNationRate.nationRate }}%
+          </template>
+        </div>
+
       </div>
     </div>
     <div class="data-container">
@@ -32,7 +43,7 @@ import KeywordTab from "@/components/Datalab/KeywordTab.vue";
 import WordCloud from "@/components/Datalab/WordCloud.vue";
 import TrendTab from "@/components/Datalab/TrendTab.vue";
 import ChartTab from "@/components/Datalab/ChartTab.vue";
-// import { mapGetters, useStore } from "vuex";
+import { mapGetters, useStore } from "vuex";
 // import { useRouter } from "vue-router";
 export default {
   components: {
@@ -48,6 +59,18 @@ export default {
     // return {
     //   store,
     // };
+    const store = useStore();
+    return {
+      store,
+    };
+  },
+  computed: {
+    ...mapGetters(["getConditionNation", "getNation", "getNationRate"]),
+  },
+  watch: {
+    getConditionNation: function (nation) {
+      this.store.dispatch("getNationRate", { nation });
+    },
   },
   // computed: {
   //   ...mapGetters(["getConditionNation", "getNation", "getNationRate"]),
