@@ -108,7 +108,7 @@ export default {
         method: 'get',
       })
         .then(res => {
-          commit('SET_TWITTER', res.data)
+          commit('SET_TRANSLATE', res.data)
       })
         .catch(err => {
           console.error(err.response)

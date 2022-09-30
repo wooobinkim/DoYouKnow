@@ -1,15 +1,25 @@
 <template>
   <div class="APIscene" style="overflow:auto;">
-    <h1>{{value}}</h1>
-    <div class="twitter_box" v-for="(item, index) in twitter" :key="index">
-      <img src="../../assets/DYKC/twitter_mark.png" alt="">
-      <div class="pull">
-        <p class="content">
-          {{ item.content }}
-        </p>
+    <div v-show="status==false">
+      <div class="twitter_box" v-for="(item, index) in twitter" :key="index">
+        <img src="../../assets/DYKC/twitter_mark.png" alt="">
+        <div class="pull">
+          <p class="content">
+            {{ item.content }}
+          </p>
+        </div>
       </div>
     </div>
-    
+    <div v-show="status==true">
+      <div class="twitter_box" v-for="(item, index) in translate" :key="index">
+        <img src="../../assets/DYKC/twitter_mark.png" alt="">
+        <div class="pull">
+          <p class="content">
+            {{ item }}
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,19 +27,21 @@
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    props: ["name", "twitter_translate"],
+    props: ["name", "status"],
+
     data(){
       return {
       }
     },
     computed: {
-      ...mapGetters(['twitter'])
+      ...mapGetters(['twitter', 'translate'])
     },
     methods: {
-      ...mapActions(['fetchTwitter']),
+      ...mapActions(['fetchTwitter', 'fetchTranslate']),
     },
     created() {
       this.fetchTwitter(this.name);
+      this.fetchTranslate(this.name);
     },
   }
 </script>
