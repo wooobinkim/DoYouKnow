@@ -23,6 +23,14 @@
       <word-cloud></word-cloud>
       <trend-tab></trend-tab>
     </div>
+    <button @click="overlayon()">오버레이</button>
+    <template v-if="this.getIsOverlay">
+      <div class="overlay">
+        <button @click="overlayoff()" style="width: 1000px; height: 400px">
+          오버레이
+        </button>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -32,6 +40,7 @@ import KeywordTab from "@/components/Datalab/KeywordTab.vue";
 import WordCloud from "@/components/Datalab/WordCloud.vue";
 import TrendTab from "@/components/Datalab/TrendTab.vue";
 import ChartTab from "@/components/Datalab/ChartTab.vue";
+import { useStore, mapGetters } from "vuex";
 // import { mapGetters, useStore } from "vuex";
 // import { useRouter } from "vue-router";
 export default {
@@ -43,20 +52,26 @@ export default {
     ChartTab,
   },
   setup() {
-    // const store = useStore();
+    const store = useStore();
 
-    // return {
-    //   store,
-    // };
+    const overlayon = function () {
+      const data = true;
+      store.dispatch("setIsOverlay", { data });
+    };
+
+    const overlayoff = function () {
+      const data = false;
+      store.dispatch("setIsOverlay", { data });
+    };
+
+    return {
+      overlayoff,
+      overlayon,
+    };
   },
-  // computed: {
-  //   ...mapGetters(["getConditionNation", "getNation", "getNationRate"]),
-  // },
-  // watch: {
-  //   getConditionNation: function (nation) {
-  //     this.store.dispatch("getNationRate", { nation });
-  //   },
-  // },
+  computed: {
+    ...mapGetters(["getIsOverlay"]),
+  },
 };
 </script>
 
@@ -109,5 +124,18 @@ export default {
 }
 .data-container {
   display: flex;
+}
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: block; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2); /* Black background with opacity */
+  z-index: 5; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
 }
 </style>
