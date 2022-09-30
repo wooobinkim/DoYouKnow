@@ -21,12 +21,12 @@ export const datalab = {
       { value: 3, text: "세달" },
     ],
     nation: [
-      { value: 1, text: "미국" },
-      { value: 2, text: "영국" },
-      { value: 3, text: "일본" },
-      { value: 4, text: "베트남" },
-      { value: 5, text: "인도네시아" },
-      { value: 6, text: "브라질" },
+      { value: 1, text: "미국", lang: "en" },
+      { value: 2, text: "영국", lang: "en" },
+      { value: 3, text: "일본", lang: "ja" },
+      { value: 4, text: "베트남", lang: "vi" },
+      { value: 5, text: "인도네시아", lang: "id" },
+      { value: 6, text: "브라질", lang: "pt" },
     ],
     nationRate: null,
     condition: {
@@ -144,11 +144,11 @@ export const datalab = {
         });
     },
 
-    async relatedkeywordnews({ commit, state } ) {
-      // console.log(keyword);
-      console.log(state.currentRank)
+    async relatedkeywordnews({ commit, state }, data ) {
+      console.log(data[1]);
+      console.log(state.nation[data[0]-1].lang)
       await axios({
-        url:'https://newsapi.org/v2/everything?apiKey=b7e2285d0d434655b79ad42f6584ae3f&q=korea&language=pt&sortBy=publishedAt&pageSize=5&page=3',
+        url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${data[1]}&language=ko&sortBy=publishedAt&pageSize=5&page=1`,
         method:"get",
       })
       .then((res)=>{

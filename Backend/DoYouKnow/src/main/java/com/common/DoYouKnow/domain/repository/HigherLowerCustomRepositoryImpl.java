@@ -44,7 +44,7 @@ public class HigherLowerCustomRepositoryImpl implements HigherLowerCustomReposit
                         h.get(k.name), S3Url+h.get(k.imgUrl), h.get(i.count())
         )).collect(Collectors.toList());
 
-        Collections.shuffle(higherLowerResponseList);
+//        Collections.shuffle(higherLowerResponseList);
         return higherLowerResponseList;
     }
 }
