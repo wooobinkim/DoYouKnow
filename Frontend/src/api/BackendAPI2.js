@@ -17,5 +17,6 @@ export default{
   // DataLab
   datalab: {
     relatedkeyword : (keyword) => BE + "pytrend/relativetopkeyword/" + keyword,
+    relatedkeywordtranslate : (keyword, lang) => BE + "pytranslate/detail/" + keyword + "/" + lang
   }
 }

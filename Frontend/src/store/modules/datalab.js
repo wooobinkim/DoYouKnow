@@ -24,7 +24,7 @@ export const datalab = {
       { value: 1, text: "미국", lang: "en" },
       { value: 2, text: "영국", lang: "en" },
       { value: 3, text: "일본", lang: "ja" },
-      { value: 4, text: "베트남", lang: "ko" },
+      { value: 4, text: "베트남", lang: "vi" },
       { value: 5, text: "인도네시아", lang: "id" },
       { value: 6, text: "브라질", lang: "pt" },
     ],
@@ -146,8 +146,24 @@ export const datalab = {
 
     async relatedkeywordnews({ commit, state }, data ) {
       // console.log(state.nation[data[0]-1].lang)
+      // var lang = state.nation[data[0]-1].lang;
+      var keyword = data[1];
       await axios({
-        url:`https://newsapi.org/v2/everything?apiKey=b7e2285d0d434655b79ad42f6584ae3f&q=${data[1]}&language=${state.nation[data[0]-1].lang}&sortBy=publishedAt&pageSize=5&page=1`,
+        url: BackendAPI2.datalab.relatedkeywordtranslate('드라마 ' + data[1], state.nation[data[0]-1].lang),
+        method:"get",
+      })
+      .then((res)=>{
+        keyword = res.data;
+        console.log(keyword)
+      })
+      .catch((err)=>{
+        console.error(err.response);
+        // lang = 'ko';
+      })
+
+      await axios({
+        // &language=${lang}
+        url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword}&sortBy=popularity&pageSize=5`,
         method:"get",
       })
       .then((res)=>{
@@ -157,6 +173,7 @@ export const datalab = {
       .catch((err)=>{
         console.error(err.response);
       })
+
     },
   },
 };

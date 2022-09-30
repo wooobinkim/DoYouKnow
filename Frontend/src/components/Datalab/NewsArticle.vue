@@ -31,14 +31,12 @@
     },
     watch:{
       getCurrentRank: function(){
-        // 키워드 그 나라 언어로 번역 후에 넘겨주어야함.. 근데 번역이 안된다..!~!
         this.relatedkeywordnews([this.test.getConditionNation, this.test.getCurrentRank]);
       },
 
     },
     setup() {
       const store = useStore();
-      // const news = computed(() => store.state.relatedkeywordnews);
       const test = computed(() => store.getters);
 
       return { test };
