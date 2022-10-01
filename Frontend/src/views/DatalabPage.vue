@@ -24,13 +24,21 @@
       <trend-tab></trend-tab>
     </div>
     <button @click="overlayon()">오버레이</button>
-    <template v-if="this.getIsOverlay">
-      <div class="overlay">
-        <button @click="overlayoff()" style="width: 1000px; height: 400px">
-          오버레이
-        </button>
+    <div v-if="this.getIsOverlay" class="overlay">
+      <div class="left_section">
+        <div class="head_box">
+          <h1 class="nation">box2</h1>
+          <button class="backbtn" @click="overlayoff()">닫기</button>
+        </div>
+        <div><KeywordRelated /></div>
+        <div><KeywordRank /></div>
       </div>
-    </template>
+      <div class="right_section">
+        <div><KeywordNews /></div>
+        <div><KeywordLineGraph /></div>
+        <div><KeywordDonutGraph /></div>
+      </div>
+    </div>
   </div>
 </template>
 

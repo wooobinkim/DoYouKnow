@@ -8,6 +8,21 @@
         <MainGlobe class="top-globe" />
       </div>
     </div>
+    <div v-if="this.getIsOverlay" class="overlay">
+      <div class="left_section">
+        <div class="head_box">
+          <h1 class="nation">box2</h1>
+          <button class="backbtn" @click="overlayoff()">닫기</button>
+        </div>
+        <div><KeywordRelated /></div>
+        <div><KeywordRank /></div>
+      </div>
+      <div class="right_section">
+        <div><KeywordNews /></div>
+        <div><KeywordLineGraph /></div>
+        <div><KeywordDonutGraph /></div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -15,7 +30,7 @@
 import MainGlobe from "@/components/Datalab/MainGlobe.vue";
 import LoadingSpinner from "@/components/Datalab/LoadingSpinner.vue";
 import { computed } from "@vue/runtime-core";
-import { useStore } from "vuex";
+import { useStore, mapGetters } from "vuex";
 export default {
   components: {
     MainGlobe,
@@ -28,12 +43,14 @@ export default {
       renderCheck,
     };
   },
+  computed: {
+    ...mapGetters(["getIsOverlay"]),
+  },
 };
 </script>
 
 <style scoped>
 .first {
-  /* background-color: #ffdfae; */
   background: linear-gradient(#fff0fddf, #fae3c2, #ffdfae);
 }
 h6 {
@@ -44,7 +61,6 @@ h6 {
   position: absolute;
   top: 180px;
   left: 300px;
-  /* animation: slide 2s ease-out; */
   text-align: start;
 }
 
@@ -102,5 +118,18 @@ h1 {
   position: absolute;
   top: 65%;
   right: 19%;
+}
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: block; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2); /* Black background with opacity */
+  z-index: 5; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
 }
 </style>
