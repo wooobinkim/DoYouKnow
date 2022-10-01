@@ -1,6 +1,32 @@
 <template>
   <div class="game-background">
     <img @click="gohome" src="@/assets/logo.png" alt="logo" class="logo" />
+    <div>
+      <div>
+        <img
+          v-show="data.isSound === true"
+          class="soundbtn"
+          src="@/assets/DYKC/soundon.png"
+          @click="onOffSound"
+        />
+        <img
+          v-show="data.isSound === false"
+          class="soundbtn"
+          src="@/assets/DYKC/soundoff.png"
+          @click="onOffSound"
+        />
+      </div>
+      <div v-if="data.isSound === true">
+        <audio
+          id="myAudio"
+          autoplay="autoplay"
+          loop
+          onloadstart="this.volume=0.1"
+        >
+          <source src="@/assets/higherlower/bg-music.mp3" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
     <div class="game-container">
       <img class="game-logo" src="@/assets/hilow.png" alt="game-logo" />
       <div class="intro-container">
@@ -20,6 +46,7 @@
 </template>
 
 <script>
+import { reactive } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 
 export default {
@@ -31,8 +58,17 @@ export default {
     const gohome = function () {
       router.push({ name: "MainPage" });
     };
+    let data = reactive({
+      isSound: true,
+    });
+    const onOffSound = function () {
+      data.isSound = !data.isSound;
+      console.log(data.isSound);
+    };
 
     return {
+      data,
+      onOffSound,
       gamestart,
       gohome,
     };
@@ -112,5 +148,14 @@ button:hover {
   color: black;
   text-shadow: 1px 2px grey;
   background-color: white;
+}
+.soundbtn {
+  width: 3rem;
+  height: auto;
+  position: absolute;
+  right: 0%;
+  margin-left: auto;
+  margin-right: 5rem;
+  cursor: pointer;
 }
 </style>
