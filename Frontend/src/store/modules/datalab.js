@@ -8,7 +8,7 @@ export const datalab = {
     keywordrank: null,
     relatedkeword: null,
     relatedkewordloading: false,
-    datalabviewloading: false,
+    datalabviewloading: true,
     graphkeyword: null,
     category: [
       { value: 1, text: "운동선수" },

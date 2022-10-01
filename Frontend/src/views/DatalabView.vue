@@ -3,7 +3,7 @@
     <div v-if="renderCheck">
       <loading-spinner></loading-spinner>
     </div>
-    <div class="first" v-else>
+    <div class="first" v-show="!renderCheck">
       <div class="globe-area">
         <MainGlobe class="top-globe" />
       </div>
@@ -14,14 +14,16 @@
 <script>
 import MainGlobe from "@/components/Datalab/MainGlobe.vue";
 import LoadingSpinner from "@/components/Datalab/LoadingSpinner.vue";
-
+import { computed } from "@vue/runtime-core";
+import { useStore } from "vuex";
 export default {
   components: {
     MainGlobe,
     LoadingSpinner,
   },
   setup() {
-    const renderCheck = true;
+    const store = useStore();
+    const renderCheck = computed(() => store.getters["getDatalabViewLoading"]);
     return {
       renderCheck,
     };
