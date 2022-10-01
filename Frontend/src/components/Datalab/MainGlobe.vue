@@ -29,6 +29,7 @@ import {
   Group,
   Raycaster,
 } from "three";
+import { watchEffect } from "vue";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
@@ -59,8 +60,20 @@ export default {
     renderer.shadowMap.type = PCFSoftShadowMap;
     onMounted(() => {
       document.querySelector(".globe-area").appendChild(renderer.domElement);
+      console.log(document.querySelector(".globe-area > canvas"));
     });
-
+    function sleep(sec) {
+      return new Promise((resolve) => setTimeout(resolve, sec * 1000));
+    } // 함수정의
+    const checkglobeloading = watchEffect(async () => {
+      console.log("delay");
+      await sleep(3);
+      console.log("delay2");
+      if (document.querySelector(".globe-area > canvas")) {
+        console.log("지구 생김");
+        store.commit("SET_DATALABVIEWLOADING", false);
+      }
+    });
     const sunLight = new DirectionalLight(
       new Color("#FFFFFF").convertSRGBToLinear(),
       3.5
@@ -340,6 +353,8 @@ export default {
       scene.add(group);
 
       return {
+        sleep,
+        checkglobeloading,
         group,
         yOff: 10.5 + Math.random() * 1.0,
         rot: Math.PI * 2, // just to set a random starting point
