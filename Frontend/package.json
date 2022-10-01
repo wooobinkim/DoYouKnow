@@ -18,13 +18,14 @@
     "dotenv": "^16.0.3",
     "swiper": "^8.4.2",
     "three": "^0.144.0",
+    "velocity-animate": "^1.5.2",
     "vue": "^3.2.13",
     "vue-chartjs": "^4.1.2",
     "vue-router": "^4.0.3",
-    "vuex-persistedstate": "^4.1.0",
     "vue-spinner": "^1.0.4",
     "vue-wordcloud": "^1.1.1",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

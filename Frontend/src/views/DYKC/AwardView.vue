@@ -39,11 +39,11 @@
     <source src="../../assets/DYKC/award.mp4" type="video/mp4" />
   </video>
 
-  <!-- <div v-if="youtube===false && twitter===false && isShowing===true">
+  <div v-if="youtube===false && twitter===false && isShowing===true">
     <audio id="myAudio" autoplay loop onloadstart="this.volume=0.3">
       <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
     </audio>
-  </div> -->
+  </div>
 
 
   <div v-show="youtube===false && twitter===false && award===false && profile===false">
@@ -351,12 +351,12 @@ export default {
     background-size: cover;
   }
   .soundbtn{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: auto;
     display: flex;
     margin-left: auto;
+    margin-right: 5rem;
     float: right;
-    margin-right: 2rem;
   }
   .soundbtn:hover{
     transform: scale(1.2);
@@ -399,7 +399,7 @@ export default {
   }
   .title{
     text-align : center;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-family: 'BMJUA';
     letter-spacing: 1rem;
     color: #ffdfaed6;
@@ -414,179 +414,36 @@ export default {
     box-sizing: border-box;
   }
 
+  .input {
+      position: absolute;
+  }
 
-.input {
-  position: absolute;
-}
-
-.scene {
-  width: 80%;
-  max-width: 100%;
-  min-height: 80%;
-  margin: auto;
-  padding: 40px 30px;
-}
-
-.card-wrap {
-  display: block;
-  width: 300px;
-  max-width: 100%;
-  height: 400px;
-  margin: 0 auto;
-  margin-bottom: 15px;
-}
-
-.card,
-.front,
-.back,
-.card-photo {
-  width: 100%;
-  height: 100%;
-}
-
-.card-face {
-  position: absolute;
-  backface-visibility: hidden;
-}
-
-.card {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1s, box-shadow 0.4s;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 1px 3px 1px rgba(60, 64, 67, 0.149);
-  border-radius: 10px;
-}
-.card-photo {
-  object-fit: fill;
-  border-radius: 10px;
-  opacity: 1;
-  transition: 0.3s;
-}
-.front:hover #front-content {
-  opacity: 1;
-}
-#front-content {
-  width: 300px;
-  text-align: center;
-  position: absolute;
-  font-size: large;
-  top: 35%;
-  left: 0%;
-  opacity: 0;
-  transition: 0.3s;
-  color: white;
-  text-shadow: 1px 1px 1px #000;
-}
-
-.back {
-  background-color: white;
-  transform: rotateY(180deg);
-  text-align: center;
-  color: darkgray;
-  border-radius: 10px;
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-}
-.back h1 {
-  margin-top: 2rem;
-}
-.back p {
-  margin: 0;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.flipcard {
-  opacity: 0;
-}
-input:checked + .card {
-  transform: rotateY(180deg);
-}
-@media screen and (min-width: 960px) {
   .scene {
-
       width: 80%;
       max-width: 100%;
       min-height: 80%;
       margin: auto;
       padding: 10px 30px;
   }
-}
-a {
-  text-decoration: none;
-  color: var(--color-link);
-}
-a:hover {
-  color: var(--color-link-hover);
-}
 
-footer.social {
-  display: grid;
-  justify-items: center;
-  grid-column-gap: 3em;
-  grid-template-columns: 1fr 1fr;
-  border-bottom-left-radius: 1em;
-  border-bottom-right-radius: 1em;
-  margin-top: 1rem;
-  top: 75%;
-  left: 22.5%;
-  position: absolute;
-}
-.btn {
-  position: relative;
-  width: 4em;
-  height: 4em;
-  border-radius: 50vh;
-  background: #0099ff;
-  border: 0;
-  outline: 0;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-  margin: 5px;
-}
-.social .btn::before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -45%);
-  transform: translate(-50%, -45%);
-  color: white;
-  font-size: 2em;
-  margin-right: 0.5em;
-}
-.icon::before,
-.icon::after,
-.btn::before {
-  display: inline-block;
-  font-weight: 700;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-}
+  .card-wrap {
+      display: block;
+      width: 300px;
+      max-width: 100%;
+      height: 400px;
+      margin-right: 2rem;
+      margin-bottom: 15px;
+  }
 
-.btn:hover {
-  -webkit-box-shadow: inset 0 0 10px 0 white, 0 0 10px 0 #0099ff,
-    0 0 20px 0 #0099ff, 0 0 30px 0 #0099ff;
-  box-shadow: inset 0 0 10px 0 white, 0 0 10px 0 #0099ff, 0 0 20px 0 #0099ff,
-    0 0 30px 0 #0099ff;
-  border: 1px solid white;
-  -webkit-transform: rotate(360deg) scale(1.2);
-  transform: rotate(360deg) scale(1.2);
-}
-.btn:hover::before {
-  font-family: Raleway, sans-serif;
-  font-weight: 900;
-  font-size: 1em;
-  color: white;
-  text-shadow: 0 0 3px #003b62;
-}
+  .card, .front, .back, .card-photo{
+      width: 100%;
+      height: 100%;
+  }
 
-.btn:active {
-  background-color: #6dc5ff;
-}
-
+  .card-face {
+      position: absolute;
+      backface-visibility: hidden;
+  }
 
   .card {
     position: relative;
@@ -595,7 +452,7 @@ footer.social {
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
     border-radius: 10px;
   }
-  .card-photo {
+   .card-photo {
     object-fit: fill;
     border-radius: 10px;
     opacity: 1;
@@ -746,7 +603,6 @@ footer.social {
   }
 .white-bg {
   width: 100%; background: rgb(255 255 255 / 20%);
-
   border-radius: 8px;
   padding: 20px;
   position: relative;
@@ -756,13 +612,11 @@ footer.social {
   height: 90vh;
   transform: translate(-50%, -50%);
 }
-
 .close2{
   position: absolute;
   cursor: pointer;
   border:none;
   background: #6667AB;
-
   color: white;
   font-weight: bold;
   border-radius: 5px;
@@ -773,11 +627,12 @@ footer.social {
   height: 5vh;
   font-size: x-large;
 }
-
 .close2:hover{
   color:white;
   font-weight: bold;
   transform: scale(1.1);
   transition: all 0.5s;
 }
+
 </style>
+

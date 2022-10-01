@@ -34,7 +34,7 @@
     </div>
     <button @click="overlayon()">열기</button>
     <div v-if="this.getIsOverlay" class="overlay">
-      <div class="left_section" v-if="this.getIsOverlay">
+      <div class="left_section">
         <div class="head_box">
           <h1 class="nation">box2</h1>
           <button class="backbtn" @click="overlayoff()">닫기</button>
@@ -85,19 +85,14 @@ export default {
       const data = false;
       store.dispatch("setIsOverlay", { data });
     };
-    const toggleTrigger = function () {
-      const data = !this.getTrigger;
-      store.dispatch("setTrigger", { data });
-    };
 
     return {
       overlayoff,
       overlayon,
-      toggleTrigger,
     };
   },
   computed: {
-    ...mapGetters(["getIsOverlay", "getTrigger"]),
+    ...mapGetters(["getIsOverlay"]),
   },
 };
 </script>
