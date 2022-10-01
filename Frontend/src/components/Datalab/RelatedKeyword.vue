@@ -2,7 +2,9 @@
   <div>
     <div class="trend-container">
       <div>연관검색어</div>
+      <loading-spinner v-if="this.getRelatedKewordLoading" />
       <vue3-chart-js
+        :class="{ chartvue: this.getRelatedKewordLoading }"
         :id="barChart.id"
         ref="chartRef"
         :type="barChart.type"
@@ -14,17 +16,20 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, useStore } from "vuex";
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import { ref } from "vue";
+import LoadingSpinner from "@/components/Datalab/LoadingSpinner.vue";
 
 export default {
   components: {
     Vue3ChartJs,
+    LoadingSpinner,
   },
   setup() {
     const keywordlist = ref([]);
     const chartRef = ref(null);
+    const store = useStore();
 
     const barChart = {
       id: "bar",
@@ -77,26 +82,26 @@ export default {
       updateChart,
       barChart,
       chartRef,
+      store,
     };
   },
   computed: {
-    ...mapGetters(["getCurrentRank", "getRelatedKeyword"]),
+    ...mapGetters([
+      "getCurrentRank",
+      "getRelatedKeyword",
+      "getRelatedKewordLoading",
+    ]),
   },
-  methods: {
-    ...mapActions(["relatedkeyword"]),
-  },
+  // methods: {
+  //   ...mapActions(["relatedkeyword"]),
+  // },
   watch: {
     getCurrentRank: function (data) {
-      this.relatedkeyword(data);
+      this.store.dispatch("relatedkeyword", { data });
     },
     getRelatedKeyword: function (data) {
       this.keywordlist = data;
       this.updateChart(data);
-      // this.lineChart.data.labels = []
-      // data.forEach(element => {
-      //     this.lineChart.data.labels.push(element[0]);
-      //     this.lineChart.data.datasets[0].data.push(element[1]);
-      // });
     },
   },
 };
@@ -110,5 +115,8 @@ export default {
   margin-left: 1rem;
   margin-right: 1.5rem;
   border-radius: 15px;
+}
+.chartvue {
+  visibility: hidden;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="cloud-container">{{ this.getRelatedKeyword }}</div>
+  <div class="cloud-container">{{ this.getKeywordRank }}</div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import { mapGetters } from "vuex";
 export default {
   setup() {},
   computed: {
-    ...mapGetters(["getCurrentRank", "getRelatedKeyword"]),
+    ...mapGetters(["getCurrentRank", "getKeywordRank"]),
   },
 };
 </script>
