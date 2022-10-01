@@ -49,7 +49,7 @@
     color: white;
     position: relative;
     padding: 6px 12px;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-family: 'TTCrownMychewR'
   }
 

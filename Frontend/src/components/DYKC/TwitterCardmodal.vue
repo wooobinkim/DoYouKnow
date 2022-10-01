@@ -39,7 +39,6 @@
     height: 80%;
     transform: translate(5%, 5%);
   } 
-  
   .APIscene::-webkit-scrollbar {
     width: 10px;
   }

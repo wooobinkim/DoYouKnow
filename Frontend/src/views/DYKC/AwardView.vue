@@ -35,11 +35,11 @@
       <source src="../../assets/DYKC/award.mp4" type="video/mp4">
   </video>
 
-  <div v-if="youtube===false && twitter===false && isShowing===true">
+  <!-- <div v-if="youtube===false && twitter===false && isShowing===true">
     <audio id="myAudio" autoplay loop onloadstart="this.volume=0.3">
       <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
     </audio>
-  </div>
+  </div> -->
 
   <div v-show="youtube===false && twitter===false && award===false && profile===false">
     <DYKCNav/>
@@ -167,8 +167,6 @@
             </footer>
           </label>
         </div>
-
-
       </div>
     </div>
   </div> 
@@ -203,8 +201,8 @@ export default {
       category_id : 1,
       twitterName : "",
       youtubeName : "",
-      profileName : "",
       awardName : "",
+      profileName : "",
       twitter_translate : false,
     }
   },
@@ -332,11 +330,12 @@ export default {
     background-size: cover;
   }
   .soundbtn{
-    width: 3rem;
-    height: auto;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     margin-left: auto;
-    margin-right: 5rem;
+    float: right;
+    margin-right: 2rem;
   }
   .soundbtn:hover{
     transform: scale(1.2);
@@ -379,7 +378,7 @@ export default {
   }
   .title{
     text-align : center;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-family: 'BMJUA';
     letter-spacing: 1rem;
     color: #ffdfaed6;
