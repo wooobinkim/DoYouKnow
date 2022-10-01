@@ -33,7 +33,6 @@ export default {
 
 <style scoped>
 .first {
-  /* background-color: #ffdfae; */
   background: linear-gradient(#fff0fddf, #fae3c2, #ffdfae);
 }
 h6 {
@@ -44,7 +43,6 @@ h6 {
   position: absolute;
   top: 180px;
   left: 300px;
-  /* animation: slide 2s ease-out; */
   text-align: start;
 }
 
