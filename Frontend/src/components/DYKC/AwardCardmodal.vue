@@ -346,16 +346,205 @@
         <h3 class="title">누적관객수 11,566,862명</h3>
       </div>
       <div v-else-if="name=='BTS'" style="width:60%; border-color:black; border-style: solid;">
-        <h1 class="title" style="background-color: rgb(153, 149, 149);" ></h1>
-        <h3 class="title"></h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >한국대중음악상</h1>
+        <h3 class="title">FAKE LOVE</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >올해의 음악인</h1>
+        <h3 class="title">2018년 ~ 2019년</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >올해의 아티스트상</h1>
+        <h3 class="title">2018년~2020년</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >올해의 앨범상</h1>
+        <h3 class="title">화양연화 Young Forever</h3>
+        <h3 class="title">LOVE YOURSELF 轉 'Tear'</h3>
+        <h3 class="title">MAP OF THE SOUL : PERSONA</h3>
+        <h3 class="title">MAP OF THE SOUL : 7</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >올해의 노래상</h1>
+        <h3 class="title">작은 것들을 위한 시 (Boy With Luv)</h3>
+        <h3 class="title">Dynamite</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >WORLDWIDE ICON OF THE YEAR</h1>
+        <h3 class="title">LOVE YOURSELF 承 Her(2018년)</h3>
+        <h3 class="title">LOVE YOURSELF 結 Answer(2019년)</h3>
+        <h3 class="title">MAP OF THE SOUL : PERSONA(2020년)</h3>
+        <h3 class="title">MAP OF THE SOUL : 7(2021년)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >디지털 음원대상</h1>
+        <h3 class="title">작은 것들을 위한 시 (Boy With Luv)(2020년)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >서울가요대상 대상</h1>
+        <h3 class="title">DNA</h3>
+        <h3 class="title">FAKE LOVE</h3>
+        <h3 class="title">작은 것들을 위한 시</h3>
+        <h3 class="title">ON</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >역대 빌보드 뮤직 어워드</h1>
+        <h3 class="title">톱 듀오/그룹상(2019년)</h3>
+        <h3 class="title">톱 듀오/그룹상(2021년)</h3>
+        <h3 class="title">톱 소셜 아티스트상(2017년)</h3>
+        <h3 class="title">톱 소셜 아티스트상(2021년)</h3>
+        <h3 class="title">톱 송 세일즈 아티스트상(2021년)</h3>
+        <h3 class="title">톱 셀링 송(2021년)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >역대 아메리칸 뮤직 어워드</h1>
+        <h3 class="title">Artist of the Year(2021년)</h3>
+        <h3 class="title">Favorite Duo or Group Pop/Rock(2019년~2021년)</h3>
+        <h3 class="title">Favorite Social Artist(2018년~2020년)</h3>
+        <h3 class="title">Tour of the Year(2019년)</h3>
+        <h3 class="title">Favorite Pop Song(2021년)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >역대 MTV 비디오 뮤직 어워드</h1>
+        <h3 class="title">Best Group(2019년)</h3>
+        <h3 class="title">Best Group(2020년)</h3>
+        <h3 class="title">Best Pop(2020년)</h3>
+        <h3 class="title">Best K-Pop(2019년)</h3>
+        <h3 class="title">Best K-Pop(2020년)</h3>
+        <h3 class="title">Best Cheography(2020년)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제9회 멜론 뮤직 어워드</h1>
+        <h3 class="title">신인상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제28회 골든디스크 시상식</h1>
+        <h3 class="title">신인상 음반부문</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제23회 서울가요대상</h1>
+        <h3 class="title">신인상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제3회 가온차트 뮤직 어워즈</h1>
+        <h3 class="title">올해의 신인상 그룹부문</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제2회 YinYueTai VChart Awards</h1>
+        <h3 class="title">Top New Artist</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제29회 골든디스크 시상식</h1>
+        <h3 class="title">본상 음반부문</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제24회 서울가요대상</h1>
+        <h3 class="title">본상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제4회 가온차트 뮤직 어워즈</h1>
+        <h3 class="title">올해의 발견상 월드루키부문</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제29회 The Japan Gold Disk Award</h1>
+        <h3 class="title">New Artist of The Year (Asia)</h3>
+        <h3 class="title">Best 3 New Artists (Asia)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제9회 케이블TV 방송대상</h1>
+        <h3 class="title">케이블스타상 인기상 한류부문</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제11회 멜론 뮤직 어워드</h1>
+        <h3 class="title">댄스 남자부문</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제17회 엠넷 아시안 뮤직 어워즈</h1>
+        <h3 class="title">월드 퍼포먼스</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제25회 서울가요대상</h1>
+        <h3 class="title">본상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제30회 골든디스크 시상식</h1>
+        <h3 class="title">본상 음반부문</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제5회 가온차트 뮤직 어워즈</h1>
+        <h3 class="title">특별상 월드한류스타상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제7회 대한민국대중문화예술상</h1>
+        <h3 class="title">문화체육관광부장관표창</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제1회 아시아 아티스트 어워즈</h1>
+        <h3 class="title">베스트 아이콘상 가수부문</h3>
+        <h3 class="title">베스트 아티스트상 가수부문</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제12회 멜론 뮤직 어워드</h1>
+        <h3 class="title">TOP 10</h3>
+        <h3 class="title">올해의 앨범상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제31회 골든디스크 시상식</h1>
+        <h3 class="title">본상 음반부문</h3>
+        <h3 class="title">글로벌 케이팝 아티스트상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제26회 서울가요대상</h1>
+        <h3 class="title">뮤직비디오상</h3>
+        <h3 class="title">댄스 퍼포먼스상</h3>
+        <h3 class="title">본상</h3>
+        <h3 class="title">최고 앨범상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제6회 가온차트 뮤직 어워즈</h1>
+        <h3 class="title">V LIVE 글로벌 인기상</h3>
+        <h3 class="title">올해의 가수상 음반부문 4분기</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제31회 The Japan Gold Disk Award</h1>
+        <h3 class="title">Best 3 Albums (Asia)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제5회 YinYueTai VChart Awards</h1>
+        <h3 class="title">Best Stage Performance</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제24회 Billboard Music Awards</h1>
+        <h3 class="title">Top Social Artist</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제1회 소리바다 베스트 케이뮤직 어워즈</h1>
+        <h3 class="title">신한류 아티스트상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제44회 한국방송대상</h1>
+        <h3 class="title">가수상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제19회 엠넷 아시안 뮤직 어워즈</h1>
+        <h3 class="title">베스트 뮤직비디오</h3>
+        <h3 class="title">베스트 아시안 스타일</h3>
+        <h3 class="title">올해의 가수상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제13회 멜론 뮤직 어워즈</h1>
+        <h3 class="title">TOP 10</h3>
+        <h3 class="title">핫트렌드상(슈가)</h3>
+        <h3 class="title">뮤직비디오상</h3>
+        <h3 class="title">글로벌 아티스트</h3>
+        <h3 class="title">올해의 베스트송</h3>
       </div>
       <div v-else-if="name=='싸이'" style="width:60%; border-color:black; border-style: solid;">
-        <h1 class="title" style="background-color: rgb(153, 149, 149);" ></h1>
-        <h3 class="title"></h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2012: American Music Awards</h1>
+        <h3 class="title">New Media Award상 (강남스타일)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2012: MTV Europe Music Awards</h1>
+        <h3 class="title">Best Video상 (강남스타일)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2013: NRJ Music Awards(프랑스)</h1>
+        <h3 class="title">NRJ Award of Honor상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2013: NRJ Music Awards(프랑스)</h1>
+        <h3 class="title">Chanson Internationale de l'année (International Song of the Year)상 - (강남스타일)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2013: NRJ Music Awards(프랑스)</h1>
+        <h3 class="title">Clip de l'année (Video of the Year)상 (강남스타일)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2013: Billboard Music Awards</h1>
+        <h3 class="title">Streaming Song (Video)상 (강남스타일)</h3>
       </div>
       <div v-else-if="name=='이정재'" style="width:60%; border-color:black; border-style: solid;">
-        <h1 class="title" style="background-color: rgb(153, 149, 149);" ></h1>
-        <h3 class="title"></h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제31회 백상예술대상</h1>
+        <h3 class="title">TV부문 남자 신인연기상</h3>
+        <h3 class="title">영화부문 남자 신인연기상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제33회 대종상영화제</h1>
+        <h3 class="title">신인남자배우상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제15회 한국영화평론가협회상</h1>
+        <h3 class="title">신인남우상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제16회 청룡영화상</h1>
+        <h3 class="title">신인남우상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >SBS 연기대상</h1>
+        <h3 class="title">남자 신인상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제33회 백상예술대상</h1>
+        <h3 class="title">영화부문 인기상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제35회 백상예술대상</h1>
+        <h3 class="title">영화부문 인기상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제19회 한국영화평론가협회상</h1>
+        <h3 class="title">남우주연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제20회 청룡영화상</h1>
+        <h3 class="title">남우주연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제38회 저축의 날</h1>
+        <h3 class="title">국무총리 표창</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제29회 황금촬영상</h1>
+        <h3 class="title">연기대상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제1회 스타일 아이콘 어워즈</h1>
+        <h3 class="title">남자 배우상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제4회 Mnet 20's Choice</h1>
+        <h3 class="title">가장 영향력 있는 스타 20인</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제31회 판타스포르토 국제영화제</h1>
+        <h3 class="title">감독주간부문 남우주연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제50회 대종상영화제</h1>
+        <h3 class="title">남자인기상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제34회 청룡영화상</h1>
+        <h3 class="title">남우조연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제33회 한국영화평론가협회상</h1>
+        <h3 class="title">CGV 스타상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제5회 올해의 영화상</h1>
+        <h3 class="title">남우조연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제50회 백상예술대상</h1>
+        <h3 class="title">영화부문 남자 조연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제51회 백상예술대상</h1>
+        <h3 class="title">인스타일 베스트 스타일상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제24회 부일영화상</h1>
+        <h3 class="title">남우주연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제3회 마리끌레르 아시아 스타 어워즈</h1>
+        <h3 class="title">올해의 배우상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제8회 스타일 아이콘 아시아</h1>
+        <h3 class="title">스타일 아이콘상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2020 아시아 아티스트 어워즈</h1>
+        <h3 class="title">AAA 올해의 배우(영화 부문)</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제25회 소비자의 날 시상식</h1>
+        <h3 class="title">2020 관객이 뽑은 올해의 배우</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2021 아시아 아티스트 어워즈</h1>
+        <h3 class="title">AAA 올해의 배우</h3>
+        <h3 class="title">AAA 페뷸러스</h3>
+        <h3 class="title">AAA 핫트렌드</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제28회 미국 배우조합상</h1>
+        <h3 class="title">TV부문 드라마 남자배우상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제37회 인디펜던트 스피릿 시상식</h1>
+        <h3 class="title">TV부문 남자 최우수 연기상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제27회 크리틱스 초이스 시상식</h1>
+        <h3 class="title">TV부문 드라마 남우주연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제1회 청룡시리즈어워즈</h1>
+        <h3 class="title">드라마부문 남우주연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >2022 할리우드 비평가 협회 TV 어워즈</h1>
+        <h3 class="title">스트리밍부문 드라마 남우주연상</h3>
+        <h1 class="title" style="background-color: rgb(153, 149, 149);" >제74회 프라임타임 에미상</h1>
+        <h3 class="title">드라마부문 남우주연상</h3>
       </div>
     </div>
   </div>

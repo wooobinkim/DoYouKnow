@@ -8,6 +8,7 @@ export const datalab = {
     keywordrank: null,
     relatedkeywordnews: [],
     isoverlay: false,
+    trigger: true,
     relatedkeword: [],
     relatedkewordloading: false,
     datalabviewloading: true,
@@ -76,9 +77,11 @@ export const datalab = {
     getNationRate(state) {
       return state.nationRate;
     },
-
     getIsOverlay(state) {
       return state.isoverlay;
+    },
+    getTrigger(state) {
+      return state.trigger;
     },
     getGraphKeyword(state) {
       return state.graphkeyword;
@@ -101,6 +104,7 @@ export const datalab = {
     SET_PERIOD: (state, period) => (state.condition.period = period),
     SET_NATIONRATE: (state, nationRate) => (state.nationRate = nationRate),
     SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
+    SET_TRIGGER: (state, trigger) => (state.trigger = trigger),
     SET_GRAPHKEYWORD: (state, graphkeyword) => {
       state.graphkeyword = [];
       graphkeyword.forEach((keyword) => {
@@ -143,7 +147,9 @@ export const datalab = {
     async setIsOverlay({ commit }, { data }) {
       await commit("SET_ISOVERLAY", data);
     },
-
+    async setTrigger({ commit }, { data }) {
+      await commit("SET_TRIGGER", data);
+    },
     resetKeyword({ commit }) {
       commit("RESET_KEYWORDRANK");
     },
