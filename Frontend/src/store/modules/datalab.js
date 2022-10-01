@@ -6,9 +6,12 @@ export const datalab = {
     rank: null,
     currentrank: null,
     keywordrank: null,
-    relatedkeword: [],
     relatedkeywordnews: [],
     isoverlay: false,
+    relatedkeword: [],
+    relatedkewordloading: false,
+    datalabviewloading: true,
+    graphkeyword: null,
     category: [
       { value: 1, text: "운동선수" },
       { value: 2, text: "드라마" },
@@ -73,8 +76,18 @@ export const datalab = {
     getNationRate(state) {
       return state.nationRate;
     },
+
     getIsOverlay(state) {
       return state.isoverlay;
+    },
+    getGraphKeyword(state) {
+      return state.graphkeyword;
+    },
+    getRelatedKewordLoading(state) {
+      return state.relatedkewordloading;
+    },
+    getDatalabViewLoading(state) {
+      return state.datalabviewloading;
     },
   },
   mutations: {
@@ -88,10 +101,25 @@ export const datalab = {
     SET_PERIOD: (state, period) => (state.condition.period = period),
     SET_NATIONRATE: (state, nationRate) => (state.nationRate = nationRate),
     SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
+    SET_GRAPHKEYWORD: (state, graphkeyword) => {
+      state.graphkeyword = [];
+      graphkeyword.forEach((keyword) => {
+        keyword.date = new Date(keyword.date);
+        state.graphkeyword.push(keyword);
+      });
+      // state.graphkeyword = graphkeyword;
+    },
+    SET_RELATEDKEYWORDLOADING: (state, relatedkewordloading) => {
+      state.relatedkewordloading = relatedkewordloading;
+    },
+    SET_DATALABVIEWLOADING: (state, datalabviewloading) => {
+      state.datalabviewloading = datalabviewloading;
+    },
+    // (state.graphkeyword = graphkeyword),
   },
   actions: {
-    getNationRate({ commit }, { nation }) {
-      axios
+    async getNationRate({ commit }, { nation }) {
+      await axios
         .get(`http://j7b208.p.ssafy.io:8080/api/keyword/searchcount/${nation}`)
         .then((res) => {
           commit("SET_NATIONRATE", res.data);
@@ -120,15 +148,13 @@ export const datalab = {
       commit("RESET_KEYWORDRANK");
     },
 
-    getKeywordData({ commit }, { condition }) {
-      console.log(condition);
-      axios
+    async getKeywordData({ commit }, { condition }) {
+      // console.log(condition);
+      await axios
         .get(
           `http://j7b208.p.ssafy.io:8080/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
-          // console.log(res, "데이터 전송완료");
-          console.log(res.data);
           commit("SET_KEYWORDRANK", res.data);
         })
         .catch((err) => {
@@ -136,15 +162,29 @@ export const datalab = {
         });
     },
 
+    async getGraphKeyword({ commit }, { condition }) {
+      // console.log(condition);
+      await axios
+        .get(
+          `http://j7b208.p.ssafy.io:8080/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
+        )
+        .then((res) => {
+          commit("SET_GRAPHKEYWORD", res.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+
     async relatedkeyword({ commit }, keyword) {
-      console.log(keyword);
+      commit("SET_RELATEDKEYWORDLOADING", true);
       await axios({
-        url: BackendAPI2.datalab.relatedkeyword(keyword),
+        url: BackendAPI2.datalab.relatedkeyword(keyword.data),
         method: "get",
       })
         .then((res) => {
-          // console.log(res);
           commit("SET_RELATEDKEWORD", res.data);
+          commit("SET_RELATEDKEYWORDLOADING", false);
         })
         .catch((err) => {
           console.error(err.response);

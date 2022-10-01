@@ -11,8 +11,17 @@
         <h2 style="margin-top: 0">키워드 분석</h2>
       </div>
       <div class="total-container">
-        <!-- <div class="nation-total">{{ this.getNationRate.nationCount }}</div>
-        <div class="nation-percentage">{{ this.getNationRate.nationRate }}</div> -->
+        <div class="nation-total">
+          <template v-if="this.getNationRate">
+            총 데이터량
+            {{ this.getNationRate.nationCount.toLocaleString("ko-KR") }}개
+          </template>
+        </div>
+        <div class="nation-percentage">
+          <template v-if="this.getNationRate">
+            전체의 {{ this.getNationRate.nationRate }}%
+          </template>
+        </div>
       </div>
     </div>
     <div class="data-container">
@@ -68,7 +77,6 @@ export default {
   },
   setup() {
     const store = useStore();
-
     const overlayon = function () {
       const data = true;
       store.dispatch("setIsOverlay", { data });
