@@ -11,8 +11,17 @@
         <h2 style="margin-top: 0">키워드 분석</h2>
       </div>
       <div class="total-container">
-        <!-- <div class="nation-total">{{ this.getNationRate.nationCount }}</div>
-        <div class="nation-percentage">{{ this.getNationRate.nationRate }}</div> -->
+        <div class="nation-total">
+          <template v-if="this.getNationRate">
+            총 데이터량
+            {{ this.getNationRate.nationCount.toLocaleString("ko-KR") }}개
+          </template>
+        </div>
+        <div class="nation-percentage">
+          <template v-if="this.getNationRate">
+            전체의 {{ this.getNationRate.nationRate }}%
+          </template>
+        </div>
       </div>
     </div>
     <div class="data-container">
@@ -46,22 +55,28 @@
 import NavBar from "@/components/Main/NavBar.vue";
 import KeywordTab from "@/components/Datalab/KeywordTab.vue";
 import WordCloud from "@/components/Datalab/WordCloud.vue";
-import TrendTab from "@/components/Datalab/TrendTab.vue";
 import ChartTab from "@/components/Datalab/ChartTab.vue";
+import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
+import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+import KeywordNews from "@/components/Datalab/KeywordNews.vue";
+import KeywordRank from "@/components/Datalab/KeywordRank.vue";
+import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
 import { useStore, mapGetters } from "vuex";
-// import { mapGetters, useStore } from "vuex";
-// import { useRouter } from "vue-router";
+
 export default {
   components: {
     NavBar,
     KeywordTab,
-    TrendTab,
     WordCloud,
     ChartTab,
+    KeywordRelated,
+    KeywordRank,
+    KeywordNews,
+    KeywordLineGraph,
+    KeywordDonutGraph,
   },
   setup() {
     const store = useStore();
-
     const overlayon = function () {
       const data = true;
       store.dispatch("setIsOverlay", { data });
@@ -135,15 +150,88 @@ export default {
 }
 .overlay {
   position: fixed; /* Sit on top of the page content */
-  display: block; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2); /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 0.1); /* Black background with opacity */
   z-index: 5; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
+  display: flex;
+  justify-content: space-between;
+}
+.left_section {
+  background-color: skyblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25%;
+  position: relative;
+  animation: fadeInLeft 1s;
+}
+.right_section {
+  background-color: skyblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25%;
+  position: relative;
+  animation: fadeInRight 1s;
+}
+.head_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nation {
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
+.backbtn {
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
 }
 </style>

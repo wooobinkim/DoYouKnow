@@ -11,16 +11,22 @@
     <div v-if="this.getIsOverlay" class="overlay">
       <div class="left_section">
         <div class="head_box">
-          <h1 class="nation">box2</h1>
+          <div class="nation">
+            <template v-for="nation in this.getNation" :key="nation">
+              <template v-if="this.getConditionNation == nation.value">
+                <h1 class="title">{{ nation.text }}</h1>
+              </template>
+            </template>
+          </div>
           <button class="backbtn" @click="overlayoff()">닫기</button>
         </div>
-        <div><KeywordRelated /></div>
         <div><KeywordRank /></div>
+        <div><KeywordDonutGraph /></div>
       </div>
       <div class="right_section">
-        <div><KeywordNews /></div>
         <div><KeywordLineGraph /></div>
-        <div><KeywordDonutGraph /></div>
+        <div><KeywordRelated /></div>
+        <div><KeywordNews /></div>
       </div>
     </div>
   </section>
@@ -31,20 +37,37 @@ import MainGlobe from "@/components/Datalab/MainGlobe.vue";
 import LoadingSpinner from "@/components/Datalab/LoadingSpinner.vue";
 import { computed } from "@vue/runtime-core";
 import { useStore, mapGetters } from "vuex";
+import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
+import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+import KeywordNews from "@/components/Datalab/KeywordNews.vue";
+import KeywordRank from "@/components/Datalab/KeywordRank.vue";
+import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
 export default {
   components: {
     MainGlobe,
     LoadingSpinner,
+    KeywordRelated,
+    KeywordRank,
+    KeywordNews,
+    KeywordLineGraph,
+    KeywordDonutGraph,
   },
   setup() {
     const store = useStore();
     const renderCheck = computed(() => store.getters["getDatalabViewLoading"]);
+
+    const overlayoff = function () {
+      const data = false;
+      store.dispatch("setIsOverlay", { data });
+    };
+
     return {
       renderCheck,
+      overlayoff,
     };
   },
   computed: {
-    ...mapGetters(["getIsOverlay"]),
+    ...mapGetters(["getIsOverlay", "getNation", "getConditionNation"]),
   },
 };
 </script>
@@ -121,15 +144,90 @@ h1 {
 }
 .overlay {
   position: fixed; /* Sit on top of the page content */
-  display: block; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2); /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 0.05); /* Black background with opacity */
   z-index: 5; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
+  display: flex;
+  justify-content: space-between;
+}
+.left_section {
+  /* background-color: skyblue; */
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25%;
+  position: relative;
+  animation: fadeInLeft 1s;
+}
+.right_section {
+  /* background-color: skyblue; */
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25%;
+  position: relative;
+  animation: fadeInRight 1s;
+}
+.head_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nation {
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
+.backbtn {
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 0.5;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 0.5;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
 }
 </style>
