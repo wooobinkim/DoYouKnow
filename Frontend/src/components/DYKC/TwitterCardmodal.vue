@@ -34,7 +34,7 @@
     position: fixed;
     top: 2.5rem;
     border-radius: 8px;
-    background-color: white;
+    background-color: #cac9cd;
     width: 90%;
     height: 80%;
     transform: translate(5%, 5%);
@@ -48,10 +48,19 @@
   }
   .APIscene::-webkit-scrollbar-thumb {
     border-radius: 20px;
-    background-color: rgb(153, 152, 152);
+    background-color: rgb(219, 214, 214);
   }
   .APIscene::-webkit-scrollbar-button {
     width: 0;
     height: 0;
+  }
+  .twitter_box{
+    display: flex;
+    height: auto;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
   }
 </style>

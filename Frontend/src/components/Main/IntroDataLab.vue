@@ -4,13 +4,27 @@
     <div class="datalab-content">
       <p>주요 6개국의 데이터를 한 눈에!</p>
       <p>각 나라별 한국에 대한 키워드를 확인할 수 있습니다.</p>
-      <div class="datalab-router">데이터 확인하러 가기 >></div>
+      <div class="datalab-router" @click="godatalab">데이터 확인하러 가기 >></div>
     </div>
   </div>
   <img class="photo" src="@/assets/wordcloud.png" alt="">
 </template>
 
-<script></script>
+<script>
+import { useRouter } from "vue-router";
+
+export default{
+  setup(){
+    const router = useRouter();
+    const godatalab = function () {
+      router.push({ name: "DatalabPage" });
+    };
+    return{
+      godatalab,
+    }
+  }
+}
+</script>
 
 <style scoped>
 .photo {

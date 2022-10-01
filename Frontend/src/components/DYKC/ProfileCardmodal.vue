@@ -16,7 +16,7 @@ export default {
   .APIscene{
     position: fixed;
     top: 2.5rem;
-    background-color: gray;
+    background-color: #c5c3e8;
     width: 85%;
     height: 80%;
     transform: translate(7%, 5%);
