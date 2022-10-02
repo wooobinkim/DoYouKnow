@@ -10,14 +10,14 @@ from rest_framework.status import(
 
 @api_view(['GET'])
 def relativetopkeyword(request,keyword):
-    pytrend = TrendReq()
+    pytrend = TrendReq(hl='ko')
     # Create payload and capture API tokens. Only needed for interest_over_time(), interest_by_region() & related_topics()
-    pytrend.build_payload(kw_list=[keyword],timeframe ='now 5-y')
+    pytrend.build_payload(kw_list=[keyword],timeframe ='today 5-y')
     related_topics_dict = pytrend.related_topics()
     a = []
     for i in range(0, len(related_topics_dict[keyword]['top'])):
         tmp= []
-        tmp.append(related_topics_dict[keyword]['top']['query'][i])
+        tmp.append(related_topics_dict[keyword]['top']['topic_title'][i])
         tmp.append(related_topics_dict[keyword]['top']['value'][i])
         a.append(tmp)
     return Response(a)
@@ -25,16 +25,15 @@ def relativetopkeyword(request,keyword):
 
 @api_view(['GET'])
 def relativerisingkeyword(request,keyword):
-    removekeyword=["보기", "누누", "화","회",]
-    pytrend = TrendReq()
+    pytrend = TrendReq(hl='ko')
     # Create payload and capture API tokens. Only needed for interest_over_time(), interest_by_region() & related_topics()
-    pytrend.build_payload(kw_list=[keyword],timeframe ='now 5-y')
+    pytrend.build_payload(kw_list=[keyword],timeframe ='today 5-y')
     print('rising')
     related_topics_dict = pytrend.related_topics()
     a = []
     for i in range(0, len(related_topics_dict[keyword]['rising'])):
         tmp= []
-        tmp.append(related_topics_dict[keyword]['rising']['query'][i])
+        tmp.append(related_topics_dict[keyword]['rising']['topic_title'][i])
         tmp.append(related_topics_dict[keyword]['rising']['value'][i])
         a.append(tmp)
     return Response(a)

@@ -1,6 +1,7 @@
 package com.common.DoYouKnow.controller;
 
 import com.common.DoYouKnow.dto.KeywordRateResponse;
+import com.common.DoYouKnow.dto.KeywordResponse;
 import com.common.DoYouKnow.service.KeywordService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -61,6 +64,10 @@ public class KeywordController {
             @PathVariable("nation_id") Long nation_id,
             @PathVariable("category_id") Long category_id,
             @PathVariable("period") Long period) {
+        List<KeywordResponse> periodGraph = keywordService.getPeriodGraph(keyword, nation_id, category_id, period);
+        for (KeywordResponse keywordResponse : periodGraph) {
+            System.out.println("keywordResponse.getDate() = " + keywordResponse.getDate());
+        }
         return ResponseEntity.status(HttpStatus.OK).body(keywordService.getPeriodGraph(keyword,nation_id, category_id, period));
     }
 

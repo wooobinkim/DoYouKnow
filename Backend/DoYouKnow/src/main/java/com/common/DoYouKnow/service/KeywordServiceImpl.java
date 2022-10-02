@@ -65,7 +65,9 @@ public class KeywordServiceImpl implements KeywordService {
         Date ndate = java.sql.Date.valueOf(endDate);
         Date sdate = getSdate(now,period);
         List<Keyword> keywords = keywordCustomRepository.PeriodGraph(sdate,ndate,nation_id,category_id,keyword);
-
+//        for (Keyword keyword1 : keywords) {
+//            System.out.println("keyword1.getDate() = " + keyword1.getDate());
+//        }
         return keywords.stream().map(k-> KeywordResponse.response(k)).collect(Collectors.toList());
     }
 
