@@ -1,14 +1,17 @@
 <template>
   <div class="black-bg" v-if="youtube == true" @click="youtubeClose($event)">
     <div class="white-bg">
+
       <h1 style="text-align : center; font-size: 2.5rem; font-family: 'SDSamliphopangche_Outline';">{{youtubeName}}</h1>
       <YoutubeCardmodal v-bind:name="youtubeName"/>
       <button class="close2">close</button>
+
     </div>
   </div>
 
   <div class="black-bg" v-if="twitter == true" @click="twitterClose($event)">
     <div class="white-bg">
+
       <h1 style="text-align : center; font-size: 2.5rem; margin-bottom:1rem; font-family: 'SDSamliphopangche_Outline';">해외 트위터 반응</h1>
       <TwitterCardmodal v-bind:name="twitterName"/>
       <button class="close2">close</button>
@@ -28,11 +31,12 @@
       <h1 style="text-align : center; font-size: 2.5rem; margin-bottom:1rem; font-family: 'SDSamliphopangche_Outline';">수상 내역</h1>
       <AwardCardmodal v-bind:name="awardName"/>
       <button class="close2">close</button>
+
     </div>
   </div>
 
   <video class="videoPlay" muted autoplay loop>
-      <source src="../../assets/DYKC/award.mp4" type="video/mp4">
+    <source src="../../assets/DYKC/award.mp4" type="video/mp4" />
   </video>
 
   <div v-if="youtube===false && twitter===false && isShowing===true">
@@ -41,20 +45,31 @@
     </audio>
   </div>
 
+
   <div v-show="youtube===false && twitter===false && award===false && profile===false">
     <DYKCNav/>
+
     <div>
-      <div v-show="isShowing===true">
-        <img class="soundbtn" src="../../assets/DYKC/soundon.png" @click="sound()" >
+      <div v-show="isShowing === true">
+        <img
+          class="soundbtn"
+          src="../../assets/DYKC/soundon.png"
+          @click="sound()"
+        />
       </div>
-      <div v-show="isShowing===false">
-        <img class="soundbtn" src="../../assets/DYKC/soundoff.png" @click="sound()">
+      <div v-show="isShowing === false">
+        <img
+          class="soundbtn"
+          src="../../assets/DYKC/soundoff.png"
+          @click="sound()"
+        />
       </div>
     </div>
 
     <div class="main">
       <ul class="category">
         <li>
+
           <button v-if="keyword==='운동선수'" @click="changeKeyword('운동선수'), changecategory(1)">운동선수</button>
           <button v-else @click="changeKeyword('운동선수'), changecategory(1)">운동선수</button>
 
@@ -70,10 +85,12 @@
         <li>
           <button v-if="keyword==='연 예 인'" @click="changeKeyword('연 예 인'), changecategory(4)">연 예 인</button>
           <button v-else @click="changeKeyword('연 예 인'), changecategory(4)">연 예 인</button>
+
         </li>
       </ul>
 
       <div class="content">
+
         <div>
           <h1 class="title">{{ keyword }}</h1>
         </div>
@@ -167,15 +184,13 @@
             </footer>
           </label>
         </div>
-
-
       </div>
     </div>
-  </div> 
-
+  </div>
 </template>
 
 <script>
+
 import DYKCNav from '@/components/DYKC/DYKCNav.vue'
 import YoutubeCardmodal from '@/components/DYKC/YoutubeCardmodal.vue'
 import TwitterCardmodal from '@/components/DYKC/TwitterCardmodal.vue'
@@ -183,12 +198,14 @@ import ProfileCardmodal from '@/components/DYKC/ProfileCardmodal.vue'
 import AwardCardmodal from '@/components/DYKC/AwardCardmodal.vue'
 import { mapActions, mapGetters } from 'vuex'
 
+
 export default {
   name: "AwardView",
-  components:{
+  components: {
     DYKCNav,
     YoutubeCardmodal,
     TwitterCardmodal,
+
     ProfileCardmodal,
     AwardCardmodal,
   },
@@ -203,8 +220,8 @@ export default {
       category_id : 1,
       twitterName : "",
       youtubeName : "",
-      profileName : "",
       awardName : "",
+      profileName : "",
       twitter_translate : false,
     }
   },
@@ -220,13 +237,14 @@ export default {
   methods: {
     ...mapActions(['fetchSport', 'fetchMovie', 'fetchDrama', 'fetchEntertainer']),
     
+
     sound() {
-      this.isShowing = !this.isShowing
+      this.isShowing = !this.isShowing;
     },
-    changeKeyword(event){
+    changeKeyword(event) {
       this.keyword = event;
     },
-    changecategory(event){
+    changecategory(event) {
       this.category_id = event;
       if(this.category_id == 1){
         this.cardfront = this.sport;
@@ -241,14 +259,15 @@ export default {
         this.cardfront = this.entertainer;
       }
     },
-    openYoutubeModal(event){
+    openYoutubeModal(event) {
       this.youtube = true;
-      this.youtubeName = event
+      this.youtubeName = event;
     },
-    openTwitterModal(event){
+    openTwitterModal(event) {
       this.twitter = true;
-      this.twitterName = event
+      this.twitterName = event;
     },
+
     openProfileModal(event){
       this.profile = true;
       this.profileName = event
@@ -337,6 +356,7 @@ export default {
     display: flex;
     margin-left: auto;
     margin-right: 5rem;
+    float: right;
   }
   .soundbtn:hover{
     transform: scale(1.2);
@@ -411,7 +431,7 @@ export default {
       width: 300px;
       max-width: 100%;
       height: 400px;
-      margin: 0 auto;
+      margin-right: 2rem;
       margin-bottom: 15px;
   }
 
@@ -615,3 +635,4 @@ export default {
 }
 
 </style>
+

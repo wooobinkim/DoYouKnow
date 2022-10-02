@@ -3,12 +3,17 @@
     <div class="game-container">
       <div class="card-left">
         <div class="img-container">
-          <img class="card-img" id="url-img" :src="game.left.imgUrl" alt="" />
+          <img
+            class="card-img"
+            id="url-img"
+            :src="`${game.data[0].imgUrl}`"
+            alt=""
+          />
         </div>
         <div class="ans-container">
-          <h2 id="name-h2">{{ game.left.name }}</h2>
+          <h2 id="name-h2">{{ game.data[0].name }}</h2>
           <h2 style="font-size: 2rem" id="count-h2">
-            {{ game.left.count.toLocaleString("ko-KR") }} 회
+            {{ game.data[0].count.toLocaleString("ko-KR") }} 회
           </h2>
         </div>
       </div>
@@ -17,10 +22,15 @@
       </div>
       <div class="card-right">
         <div class="img-container">
-          <img class="card-img" id="url1-img" :src="game.right.imgUrl" alt="" />
+          <img
+            class="card-img"
+            id="url1-img"
+            :src="`${game.data[1].imgUrl}`"
+            alt=""
+          />
         </div>
         <div class="qus-container" id="qus-container">
-          <h2 id="name1-h2">{{ game.right.name }}</h2>
+          <h2 id="name1-h2">{{ game.data[1].name }}</h2>
           <div id="button-container">
             <button @click="checkHigher">더많이</button>
             <button @click="checkLower">더적게</button>
@@ -35,128 +45,208 @@
 </template>
 
 <script>
+import { computed, onMounted, reactive } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
-import { ref, computed, reactive } from "vue";
+import { ref } from "vue";
 import { useStore } from "vuex";
 export default {
   setup() {
     const router = useRouter();
     const store = useStore();
-
-    store.dispatch("setGameData");
-    const data = reactive(computed(() => store.getters.getGameData));
-
-    // const data = computed(() => store.getters.getGameData()).value;
-    // console.log(store.getters, "스토어야");
-    // console.log(data, "data");
-
-    // console.log(JSON.parse(JSON.stringify(data)), "data");
-    // console.log(data, "data");
-
-    let game = {
+    let game = reactive({
+      data: computed(() => store.getters["getGameData"]),
       left: null,
       right: null,
       playDatas: [],
-    };
+    });
     let score = ref(0);
+    let getData = function () {
+      store.dispatch("setGameData1").then((res) => {
+        store.commit("SET_GAMEDATA", res.data);
+      });
+    };
+
+    getData();
+
+    onMounted(() => {});
     // random data 초기화하는 곳
     const randomData = function () {
-      if (data.length == 0) {
-        data;
+      if (game.data.length == 0) {
+        game.data;
       }
-      return data.splice(Math.floor(Math.random() * (data.length - 1)), 1)[0];
+      console.log(score, "score");
+      console.log(game.data, "gamedata");
+      console.log(game.data[score.value], "게임데이터i");
+      return game.data[score.value + 1];
     };
-    game.left = randomData();
-    console.log(game.left, "gameleft");
-    game.right = randomData();
+    // game.left = randomData();
+    // game.right = randomData();
 
     // 더많이 버튼
     const checkHigher = function () {
-      //TODO: 숫자보여주기
       removeBtn();
-      if (game.left.count <= game.right.count) {
-        score.value++;
-        //TODO: 중앙버튼 바뀌기
-        setTimeout(() => {
-          // 오른쪽 데이터를 왼쪽으로 보내기
-          document.getElementById("name-h2").innerText = game.right.name;
-          document.getElementById("count-h2").innerText =
-            game.right.count.toLocaleString("ko-KR") + " 회";
-          document.getElementById("url-img").src = game.right.imgUrl;
-          game.left = game.right;
-          // 오른쪽에 새로운 데이터 받기
-          game.right = randomData();
-          document.getElementById("newDiv").remove();
-          document.getElementById("url1-img").src = game.right.imgUrl;
-          document.getElementById("name1-h2").innerText = game.right.name;
-          document.getElementById("button-container").style.display = "block";
-          document.getElementById("qus-container").style.left = "61%";
+      if (game.right) {
+        if (game.left.count <= game.right.count) {
+          score.value++;
+          //TODO: 중앙버튼 바뀌기
+          console.log(score, "score");
+          setTimeout(() => {
+            // 오른쪽 데이터를 왼쪽으로 보내기
+            document.getElementById("name-h2").innerText = game.right.name;
+            document.getElementById("count-h2").innerText =
+              game.right.count + " 회";
+            document.getElementById("url-img").src = game.right.imgUrl;
+            game.left = game.right;
+            // 오른쪽에 새로운 데이터 받기
+            game.right = randomData();
+            document.getElementById("newDiv").remove();
+            document.getElementById("url1-img").src = game.right.imgUrl;
+            document.getElementById("name1-h2").innerText = game.right.name;
+            document.getElementById("button-container").style.display = "block";
+            document.getElementById("qus-container").style.left = "61%";
 
-          // localStorage에 점수 저장
-          window.localStorage.setItem("korea-score", score.value);
-        }, 2000);
+            // localStorage에 점수 저장
+            window.localStorage.setItem("korea-score", score.value);
+          }, 2000);
+        } else {
+          //TODO: 중앙버튼 바뀌기
+          setTimeout(() => {
+            // localStorage에 점수 저장
+            window.localStorage.setItem("korea-score", score.value);
+            router.push({ name: "GameEnding" });
+          }, 2000);
+        }
       } else {
-        //TODO: 중앙버튼 바뀌기
-        setTimeout(() => {
-          // localStorage에 점수 저장
-          window.localStorage.setItem("korea-score", score.value);
-          router.push({ name: "GameEnding" });
-        }, 2000);
+        if (game.data[0].count <= game.data[1].count) {
+          score.value++;
+          console.log(score, "최초");
+          setTimeout(() => {
+            // 오른쪽 데이터를 왼쪽으로 보내기
+            document.getElementById("name-h2").innerText = game.data[1].name;
+            document.getElementById("count-h2").innerText =
+              game.data[1].count + " 회";
+            document.getElementById("url-img").src = game.data[1].imgUrl;
+            game.left = game.data[1];
+            // 오른쪽에 새로운 데이터 받기
+            game.right = randomData();
+            document.getElementById("newDiv").remove();
+            document.getElementById("url1-img").src = game.right.imgUrl;
+            document.getElementById("name1-h2").innerText = game.right.name;
+            document.getElementById("button-container").style.display = "block";
+            document.getElementById("qus-container").style.left = "61%";
+
+            // localStorage에 점수 저장
+            window.localStorage.setItem("korea-score", score.value);
+          }, 2000);
+        } else {
+          //TODO: 중앙버튼 바뀌기
+          setTimeout(() => {
+            // localStorage에 점수 저장
+            window.localStorage.setItem("korea-score", score.value);
+            router.push({ name: "GameEnding" });
+          }, 2000);
+        }
       }
     };
     // 더적게버튼
     const checkLower = function () {
-      //TODO: 숫자보여주기
       removeBtn();
-      if (game.left.count >= game.right.count) {
-        score.value++;
-        //TODO: 중앙버튼 바뀌기
-        setTimeout(() => {
-          // 오른쪽 데이터를 왼쪽으로 보내기
-          document.getElementById("name-h2").innerText = game.right.name;
-          document.getElementById("count-h2").innerText =
-            game.right.count.toLocaleString("ko-KR") + " 회";
-          document.getElementById("url-img").src = game.right.imgUrl;
-          game.left = game.right;
-          // 오른쪽에 새로운 데이터 받기
-          game.right = randomData();
-          document.getElementById("newDiv").remove();
-          document.getElementById("url1-img").src = game.right.imgUrl;
-          document.getElementById("name1-h2").innerText = game.right.name;
-          document.getElementById("button-container").style.display = "block";
-          document.getElementById("qus-container").style.left = "61%";
+      if (game.right) {
+        if (game.left.count >= game.right.count) {
+          score.value++;
+          //TODO: 중앙버튼 바뀌기
+          console.log(score, "score");
+          setTimeout(() => {
+            // 오른쪽 데이터를 왼쪽으로 보내기
+            document.getElementById("name-h2").innerText = game.right.name;
+            document.getElementById("count-h2").innerText =
+              game.right.count + " 회";
+            document.getElementById("url-img").src = game.right.imgUrl;
+            game.left = game.right;
+            // 오른쪽에 새로운 데이터 받기
+            game.right = randomData();
+            document.getElementById("newDiv").remove();
+            document.getElementById("url1-img").src = game.right.imgUrl;
+            document.getElementById("name1-h2").innerText = game.right.name;
+            document.getElementById("button-container").style.display = "block";
+            document.getElementById("qus-container").style.left = "61%";
 
-          // localStorage에 점수 저장
-          window.localStorage.setItem("korea-score", score.value);
-        }, 2000);
+            // localStorage에 점수 저장
+            window.localStorage.setItem("korea-score", score.value);
+          }, 2000);
+        } else {
+          //TODO: 중앙버튼 바뀌기
+          setTimeout(() => {
+            // localStorage에 점수 저장
+            window.localStorage.setItem("korea-score", score.value);
+            router.push({ name: "GameEnding" });
+          }, 2000);
+        }
       } else {
-        //TODO: 중앙버튼 바뀌기
-        setTimeout(() => {
-          // localStorage에 점수 저장
-          window.localStorage.setItem("korea-score", score.value);
-          router.push({ name: "GameEnding" });
-        }, 2000);
+        if (game.data[0].count >= game.data[1].count) {
+          score.value++;
+          console.log(score, "최초");
+          setTimeout(() => {
+            // 오른쪽 데이터를 왼쪽으로 보내기
+            document.getElementById("name-h2").innerText = game.data[1].name;
+            document.getElementById("count-h2").innerText =
+              game.data[1].count + " 회";
+            document.getElementById("url-img").src = game.data[1].imgUrl;
+            game.left = game.data[1];
+            // 오른쪽에 새로운 데이터 받기
+            game.right = randomData();
+            document.getElementById("newDiv").remove();
+            document.getElementById("url1-img").src = game.right.imgUrl;
+            document.getElementById("name1-h2").innerText = game.right.name;
+            document.getElementById("button-container").style.display = "block";
+            document.getElementById("qus-container").style.left = "61%";
+
+            // localStorage에 점수 저장
+            window.localStorage.setItem("korea-score", score.value);
+          }, 2000);
+        } else {
+          //TODO: 중앙버튼 바뀌기
+          setTimeout(() => {
+            // localStorage에 점수 저장
+            window.localStorage.setItem("korea-score", score.value);
+            router.push({ name: "GameEnding" });
+          }, 2000);
+        }
       }
     };
 
     // button 없애기
     const removeBtn = function () {
       document.getElementById("button-container").style.display = "none";
-      // TODO: 숫자 애니메이션 보여주기
-      const newDiv = document.createElement("div");
-      const newH2 = document.createElement("h2");
-      const newText = document.createTextNode(
-        game.right.count.toLocaleString("ko-KR") + " 회"
-      );
-      newH2.appendChild(newText);
-      newDiv.appendChild(newH2);
-      document.getElementById("qus-container").appendChild(newDiv);
-      newDiv.id = "newDiv";
-      newH2.id = "ans-count";
-      newH2.className = "ans-count";
-      document.getElementById("ans-count").style.fontSize = "2rem";
-      document.getElementById("ans-count").style.color = "white";
-      document.getElementById("qus-container").style.left = "71%";
+      if (game.right) {
+        // TODO: 숫자 애니메이션 보여주기
+        const newDiv = document.createElement("div");
+        const newH2 = document.createElement("h2");
+        const newText = document.createTextNode(game.right.count + " 회");
+        newH2.appendChild(newText);
+        newDiv.appendChild(newH2);
+        document.getElementById("qus-container").appendChild(newDiv);
+        newDiv.id = "newDiv";
+        newH2.id = "ans-count";
+        newH2.className = "ans-count";
+        document.getElementById("ans-count").style.fontSize = "2rem";
+        document.getElementById("ans-count").style.color = "white";
+        document.getElementById("qus-container").style.left = "73%";
+      } else {
+        // TODO: 숫자 애니메이션 보여주기
+        const newDiv = document.createElement("div");
+        const newH2 = document.createElement("h2");
+        const newText = document.createTextNode(game.data[1].count + " 회");
+        newH2.appendChild(newText);
+        newDiv.appendChild(newH2);
+        document.getElementById("qus-container").appendChild(newDiv);
+        newDiv.id = "newDiv";
+        newH2.id = "ans-count";
+        newH2.className = "ans-count";
+        document.getElementById("ans-count").style.fontSize = "2rem";
+        document.getElementById("ans-count").style.color = "white";
+        document.getElementById("qus-container").style.left = "73%";
+      }
     };
 
     return {
@@ -164,17 +254,8 @@ export default {
       checkLower,
       game,
       score,
-      data,
     };
   },
-  // computed: {
-  //   ...mapGetters(["getGameData"]),
-  // },
-  // watch: {
-  //   getGameData: function (e) {
-  //     this.data = e;
-  //   },
-  // },
 };
 </script>
 
@@ -246,7 +327,7 @@ h2 {
 .ans-container {
   position: absolute;
   top: 65%;
-  left: 20%;
+  left: 23%;
   text-align: center;
 }
 .qus-container {

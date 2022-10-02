@@ -12,7 +12,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serverTimezone=UTC&characterEncoding=UTF-8
-    #url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+#    url: jdbc:mysql://43.201.37.208:3306/DoYouKnow?serve1rTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: b208
     password: b208root
   mvc:

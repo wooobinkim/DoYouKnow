@@ -99,6 +99,7 @@ export default {
     controls.dampingFactor = 0.05;
     controls.enableDamping = true;
     controls.enableZoom = false;
+    controls.enablePan = false;
 
     let mousePos = new Vector2(0, 0);
 
@@ -196,14 +197,16 @@ export default {
             alert(intersects[0].object.id + "미국클릭");
             const nation = 1;
             store.dispatch("setNation", { nation });
+            store.dispatch("getNationRate", { nation });
             router.push({
-              name: "DatalabPage",
+              name: "DatalabView",
             });
           }
           if (intersects[0].object.id == 59) {
             alert(intersects[0].object.id + "영국클릭");
             const nation = 2;
             store.dispatch("setNation", { nation });
+            store.dispatch("getNationRate", { nation });
             router.push({
               name: "DatalabPage",
               // query: { nation: 2 },
@@ -213,6 +216,7 @@ export default {
             alert(intersects[0].object.id + "일본클릭");
             const nation = 3;
             store.dispatch("setNation", { nation });
+            store.dispatch("getNationRate", { nation });
             router.push({
               name: "DatalabPage",
             });
@@ -221,6 +225,7 @@ export default {
             alert(intersects[0].object.id + "베트남클릭");
             const nation = 4;
             store.dispatch("setNation", { nation });
+            store.dispatch("getNationRate", { nation });
             router.push({
               name: "DatalabPage",
             });
@@ -229,6 +234,7 @@ export default {
             alert(intersects[0].object.id + "인도네시아클릭");
             const nation = 5;
             store.dispatch("setNation", { nation });
+            store.dispatch("getNationRate", { nation });
             router.push({
               name: "DatalabPage",
             });
@@ -237,6 +243,7 @@ export default {
             alert(intersects[0].object.id + "브라질클릭");
             const nation = 6;
             store.dispatch("setNation", { nation });
+            store.dispatch("getNationRate", { nation });
             router.push({
               name: "DatalabPage",
             });
