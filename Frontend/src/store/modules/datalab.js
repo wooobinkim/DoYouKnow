@@ -149,12 +149,14 @@ export const datalab = {
     },
 
     async getGraphKeyword({ commit }, { condition }) {
-      // console.log(condition);
+      console.log(condition);
       await axios
         .get(
           `http://j7b208.p.ssafy.io:8080/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
+          console.log(res.data);
+          console.log("WWW");
           commit("SET_GRAPHKEYWORD", res.data);
         })
         .catch((err) => {

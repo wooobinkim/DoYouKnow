@@ -17,13 +17,14 @@
 import { ref } from "vue";
 import { mapGetters, mapActions } from "vuex";
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
+import { useStore } from "vuex";
 
 export default {
   components: {
     Vue3ChartJs,
   },
   setup() {
-    // const keywordlist = ref([]);
+    const keywordlist = ref([]);
     const chartRef = ref(null);
 
     const lineChart = {
@@ -50,47 +51,61 @@ export default {
       },
     };
 
-    const updateChart = () => {
+    const updateChart = (res) => {
       lineChart.options.plugins.title = {
         text: "Updated Chart",
         display: true,
       };
-      lineChart.data.labels = ["Cats", "Dogs", "Hamsters", "Dragons"];
+      lineChart.data.labels = [1,2,3,4,5,6,7,8,9,0];
       lineChart.data.datasets = [
         {
-          backgroundColor: ["#333333", "#E46651", "#00D8FF", "#DD1B16"],
-          data: [100, 20, 800, 20],
+          backgroundColor: "#f87979",
+          data: [],
         },
       ];
 
-      // for (let i = 0; i < 3; i++) {
-      //   lineChart.data.labels[i] = data[i][3];
-      //   lineChart.data.datasets[i] = data[i][2];
-      // }
+      for (let i = 0; i < res.length; i++) {
+        console.log(res[i]);
+        lineChart.data.labels[i] = res[i].date;
+        lineChart.data.datasets[0].data[i] = res[i].count;
+      }
       chartRef.value.update(250);
     };
-
+    const store = useStore();
     return {
+      keywordlist,
       lineChart,
       updateChart,
       chartRef,
+      store
     };
   },
-  computed: {
-    ...mapGetters(["getCurrentRank", "getGraphKeyword"]),
+  computed:{
+      ...mapGetters(["getCurrentRank","getConditionNation",
+      "getConditionCategory",
+      "getConditionPeriod", "getGraphKeyword"])
   },
   methods: {
     ...mapActions(["getGraphKeyword"]),
   },
   watch: {
-    // getCurrentRank: function (data) {
-    //   // this 뭐였지..
-    //   this.relatedkeyword(data);
-    // },
-    // getKeyword: function (data) {
-    //   // this.keywordlist = data;
-    //   this.updateChart(data);
-    // },
+    getCurrentRank: function () {
+      if (this.getConditionCategory && this.getConditionPeriod) {
+        const condition = {
+          keyword: this.getCurrentRank,
+          nation: this.getConditionNation,
+          category: this.getConditionCategory,
+          period: this.getConditionPeriod,
+        };
+        this.store.dispatch("getGraphKeyword", { condition });
+      }
+    },
+    getGraphKeyword: function (data) {
+      console.log("변했다.");
+      console.log(data);
+      this.keywordlist = data;
+      this.updateChart(data);
+    },
   },
 };
 </script>
