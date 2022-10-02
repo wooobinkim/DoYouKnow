@@ -1,8 +1,8 @@
 <template>
   <NavBar :swiper="swiper"/>
   <swiper
-    :modules="modules"
     class="mySwiper"
+    :modules="modules"
     :direction="'vertical'"
     mousewheel
     :speed="1000"
