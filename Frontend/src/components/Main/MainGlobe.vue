@@ -199,7 +199,7 @@ export default {
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
             router.push({
-              name: "DatalabPage",
+              name: "DatalabView",
             });
           }
           if (intersects[0].object.id == 59) {

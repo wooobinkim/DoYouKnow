@@ -64,7 +64,7 @@ export default {
         },
       ];
 
-      for (let i = 0; i < 5; i++) {
+      for (let i   = 0; i < 5; i++) {
         barChart.data.labels[i] = data[i][0];
         barChart.data.datasets[0].data[i] = data[i][1];
       }
