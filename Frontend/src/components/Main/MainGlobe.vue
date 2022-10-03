@@ -1,6 +1,5 @@
 <template>
   <div class="canvas-container">
-
     <div
       id="tooltip"
       style="
@@ -80,17 +79,13 @@ export default {
     renderer.shadowMap.type = PCFSoftShadowMap;
     onMounted(() => {
       document.querySelector(".globe-area").appendChild(renderer.domElement);
-      console.log(document.querySelector(".globe-area > canvas"));
     });
     function sleep(sec) {
       return new Promise((resolve) => setTimeout(resolve, sec * 1000));
     } // 함수정의
     const checkglobeloading = watchEffect(async () => {
-      console.log("delay");
       await sleep(3);
-      console.log("delay2");
       if (document.querySelector(".globe-area > canvas")) {
-        console.log("지구 생김");
         store.commit("SET_DATALABVIEWLOADING", false);
       }
     });
@@ -183,18 +178,15 @@ export default {
       var latestMouseProjection = undefined;
       var tooltipDisplayTimeout = undefined;
 
-
       // us
       let marker = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker.scale.set(0.05, 0.05, 0.05);
       marker.position.set(-5, 6, -8);
 
-      console.log(marker, "marker");
       marker.userData.tooltipText = "미국";
       marker.userData.name = "미국";
       tooltipEnabledObjects.push(marker);
-      console.log(marker, "marker");
       scene.add(marker);
       // uk
       let marker1 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
@@ -237,10 +229,8 @@ export default {
       const pointer = new Vector2();
       const raycaster = new Raycaster();
 
-
       const showTooltip = function () {
         var divElement = document.getElementById("tooltip");
-        console.log(divElement, "ele");
         if (divElement && latestMouseProjection) {
           divElement.style.display = "block";
           divElement.style.opacity = 0.0;
@@ -345,7 +335,6 @@ export default {
 
       window.addEventListener("mousemove", onMouseMove1, false);
 
-
       const onMouseMove = (e) => {
         pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
         pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -354,7 +343,6 @@ export default {
         const intersects = raycaster.intersectObjects(scene.children);
         if (intersects.length >= 2) {
           if (intersects[0].object.id == 53) {
-
             // alert(intersects[0].object.id + "미국클릭");
             const nation = 1;
             store.dispatch("setNation", { nation });
@@ -374,7 +362,6 @@ export default {
             store.dispatch("setIsOverlay", { data });
           }
           if (intersects[0].object.id == 65) {
-
             const nation = 3;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -383,7 +370,6 @@ export default {
             store.dispatch("setIsOverlay", { data });
           }
           if (intersects[0].object.id == 71) {
-
             const nation = 4;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -392,7 +378,6 @@ export default {
             store.dispatch("setIsOverlay", { data });
           }
           if (intersects[0].object.id == 77) {
-
             const nation = 5;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -401,7 +386,6 @@ export default {
             store.dispatch("setIsOverlay", { data });
           }
           if (intersects[0].object.id == 83) {
-
             const nation = 6;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -544,5 +528,4 @@ canvas {
   right: 15%; */
   z-index: 3;
 }
-
 </style>

@@ -39,7 +39,6 @@ export const datalab = {
       category: null,
       period: null,
     },
-
   },
   getters: {
     getCurrentRank(state) {
@@ -51,7 +50,7 @@ export const datalab = {
     getRelatedKeyword(state) {
       return state.relatedkeword;
     },
-    getRelatedKeywordNews(state){
+    getRelatedKeywordNews(state) {
       return state.relatedkeywordnews;
     },
     getIsOverlay(state) {
@@ -197,52 +196,57 @@ export const datalab = {
         });
     },
 
-    async relatedkeywordnews({ commit, state }, data ) {
+    async relatedkeywordnews({ commit, state }, data) {
       // console.log(data[0].category, data[0].nation);
       var keyword = data[1];
       console.log(data);
       await axios({
-        url: BackendAPI2.datalab.relatedkeywordtranslate('한국 ' + data[1] + ".한국 " + state.category[data[0].category-1].text, state.nation[data[0].nation-1].lang),
-        method:"get",
+        url: BackendAPI2.datalab.relatedkeywordtranslate(
+          "한국 " +
+            data[1] +
+            ".한국 " +
+            state.category[data[0].category - 1].text,
+          state.nation[data[0].nation - 1].lang
+        ),
+        method: "get",
       })
-      .then((res)=>{
-        keyword = res.data.split(".");
-        console.log(keyword)
-      })
-      .catch((err)=>{
-        console.error(err.response);
-        // lang = 'ko';
-      })
+        .then((res) => {
+          keyword = res.data.split(".");
+          console.log(keyword);
+        })
+        .catch((err) => {
+          console.error(err.response);
+          // lang = 'ko';
+        });
 
       await axios({
         // &language=${lang}
-        url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[0]}&sortBy=relevancy&pageSize=5`,
-        method:"get",
+        url: `https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[0]}&sortBy=relevancy&pageSize=5`,
+        method: "get",
       })
-      .then((res)=>{
-        // console.log(res.data.articles.length)
-        if(res.data.articles.length == 0){
-          axios({
-            // &language=${lang}
-            url:`https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[1]}&sortBy=relevancy&pageSize=5`,
-            method:"get",
-          })
-          .then((res)=>{
-            // console.log(res.data.articles.length)
+        .then((res) => {
+          // console.log(res.data.articles.length)
+          if (res.data.articles.length == 0) {
+            axios({
+              // &language=${lang}
+              url: `https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[1]}&sortBy=relevancy&pageSize=5`,
+              method: "get",
+            })
+              .then((res) => {
+                // console.log(res.data.articles.length)
+                commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+              })
+              .catch((err) => {
+                console.error(err.response);
+              });
+          } else {
             commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
-          })
-          .catch((err)=>{
-            console.error(err.response);
-          })
-        }else{
-          commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
-        }
-        // commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
-      })
-      .catch((err)=>{
-        console.error(err.response);
-      })
-
+          }
+          // commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+        })
+        .catch((err) => {
+          console.error(err.response);
+        });
     },
   },
 };

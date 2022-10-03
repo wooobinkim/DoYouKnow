@@ -21,11 +21,9 @@ export const game = {
   },
   actions: {
     setGameData({ commit }) {
-      console.log("함수드간다.");
       axios
         .get(`http://j7b208.p.ssafy.io:8080/api/higherlower`)
         .then((res) => {
-          console.log(res.data, "res");
           commit("SET_GAMEDATA", res.data);
         })
         .catch((err) => {
