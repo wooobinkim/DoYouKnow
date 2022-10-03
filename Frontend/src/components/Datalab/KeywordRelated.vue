@@ -1,7 +1,7 @@
 <template>
-  <div style="height: 100%; width: 100%">
+  <div style="height: 320px; width: 480px">
     <loading-spinner v-if="this.getRelatedKewordLoading" />
-    <div style="height: 100%; width: 100%">
+    <div style="height: 320px; width: 480px">
       <canvas id="canvas"></canvas>
     </div>
   </div>
@@ -34,7 +34,7 @@ export default {
         ],
       },
       options: {
-        responsive: true,
+        // responsive: true,
         maintainAspectRatio: false,
         plugins: {
           labels: false,
@@ -51,21 +51,23 @@ export default {
     const updatewordcloud = (data) => {
       console.log(data);
       const color = [
-        "#bccad6",
-        "#8d9db6",
-        "#667292",
-        "#f1e3dd",
-        "#cfe0e8",
-        "#b7d7e8",
-        "#87bdd8",
-        "#daebe8",
+        '#004B6B',
+        // '#255D7E',
+        '#3C6F8E',
+        // '#5483A1',
+        '#6996B3',
+        // '#7EAAC7',
+        '#94BDD9',
+        // '#ABD3EC',
+        '#C1E6FF',
+        '#EBF2F7',
       ];
       const data1 = {
         labels: data.map((d) => d[0]),
         datasets: [
           {
             label: "",
-            data: data.map((d, index) => 70 - index * 3),
+            data: data.map((d, index) => 40 - index * 3),
             color: data.map((d) => color[d[1] % 8]),
           },
         ],
@@ -128,7 +130,7 @@ export default {
       this.store.dispatch("relatedkeyword", { data });
     },
     getRelatedKeyword: function (data) {
-      const data1 = data.splice(0, 10);
+      const data1 = data.splice(0, 30);
       this.updatewordcloud(data1);
     },
   },
@@ -146,5 +148,9 @@ export default {
 }
 .chartvue {
   visibility: hidden;
+}
+#canvas{
+  height: 320px;
+  width: 480px;
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+
   <section>
     <div v-if="this.getIsOverlay == false">
       <div class="title-container">
@@ -59,6 +60,7 @@
 </template>
 
 <script>
+
 import { useStore, mapGetters } from "vuex";
 import { onMounted } from "@vue/runtime-core";
 import MainGlobe from "@/components/Main/MainGlobe.vue";
@@ -111,7 +113,7 @@ h6 {
   position: absolute;
   top: 180px;
   left: 300px;
-  /* animation: slide 2s ease-out; */
+  animation: slide 2s ease-out;
   text-align: start;
 }
 
@@ -126,6 +128,7 @@ h6 {
   top: 190px;
   left: 300px;
   text-align: start;
+  height: 15%;
 }
 
 .content-msg {
@@ -176,7 +179,7 @@ h6 {
   position: fixed;
   width: 100%;
   height: 100%;
-  top: -6%;
+  /* top: -6%; */
   left: 0;
   bottom: 0;
   display: flex;
@@ -193,13 +196,13 @@ h6 {
   height: 100%;
   top: 0%;
   bottom: 0;
-  right: 0;
+  right: 2%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   width: 25%;
   float: right;
   z-index: 10;
+  justify-content: space-around;
   animation: fadeInRight 2s;
 }
 
@@ -279,4 +282,27 @@ h6 {
     transform: translate3d(100%, 0, 0);
   }
 }
+/* .news-container{
+  width: 340px;
+  height: 320px;
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 17px;
+}
+.chart-container{
+  width: 340px;
+  height: 160px;
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 17px;
+};
+
+.doughnut-container{
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 20px;
+}; */
+
 </style>
