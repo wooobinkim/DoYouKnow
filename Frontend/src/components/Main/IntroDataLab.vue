@@ -3,15 +3,29 @@
     <h1>DYK DataLab</h1>
     <div class="datalab-content">
       <p>주요 6개국의 데이터를 한 눈에!</p>
-      <p>각 나라별 한국에 대한 키워드를 확인할 수 있습니다.</p>
-      <div class="datalab-router">데이터 확인하러 가기 >></div>
+      <p>한국에 대한 키워드를 나라별로 확인할 수 있습니다.</p>
+      <div class="datalab-router" @click="goToDatalab">데이터 확인하러 가기 >></div>
     </div>
   </div>
   <img class="photo" src="@/assets/wordcloud.png" alt="">
   <img class="data-img" src="@/assets/data-img.gif" >
 </template>
 
-<script></script>
+<script>
+import { useRouter } from "vue-router";
+export default {
+  setup(){
+    const router = useRouter();
+    const goToDatalab = () => {
+      router.push({name: 'DatalabPage'})
+    }
+    return {
+      goToDatalab
+    }
+  }
+  
+}
+</script>
 
 <style scoped>
 .photo {

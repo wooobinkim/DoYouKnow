@@ -52,6 +52,7 @@ export default {
   width: 5vw;
   height: auto;
   margin: 10px 0 0 10px;
+  cursor: pointer;
 }
 
 body {

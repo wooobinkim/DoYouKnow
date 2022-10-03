@@ -8,15 +8,25 @@
     <div class="game-content">
       <p>총 검색량으로 K-culture의 힘을 알아봅시다!</p>
       <p>어떤 것이 최고의 DoYouKnow 지수를 갖고 있을지 궁금하다면?</p>
-      <div class="game-router">플레이 하러 가기 >></div>
+      <div class="game-router" @click="goToGamePage">플레이 하러 가기 >></div>
     </div>
   </div>
-  <img class="photo" src="@/assets/hilow.png">
+  <img class="photo" src="@/assets/highlow.jpg">
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 export default {
-
+  setup(){
+    const router = useRouter();
+    const goToGamePage = () => {
+      router.push({name: 'GamePage'})
+    }
+    return {
+      goToGamePage
+    }
+  }
+  
 }
 </script>
 
