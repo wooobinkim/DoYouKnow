@@ -1,5 +1,5 @@
 <template>
-  <section style="display:flex">
+  <section >
     <div v-if="this.getIsOverlay==false">
       <div class="title-container">
         <h6
@@ -22,7 +22,7 @@
       </div>
       <img class="intro-arrow" src="@/assets/intro_arrow.png">
     </div>
-    <div v-else style="display:flex">
+    <div v-else >
       <transition name="left">
         <div class="left_section" v-if="this.getIsOverlay" >
           <div class="head_box">
@@ -38,14 +38,14 @@
             </button>
           </div>
           <div><KeywordRank /></div>
-          <div><KeywordDonutGraph /></div>
+          <div class="doughnut-container"><KeywordDonutGraph /></div>
         </div>
       </transition>
       <transition name="right">
         <div class="right_section" v-if="this.getIsOverlay" >
-          <div><KeywordRelated /></div>
-          <div><KeywordLineGraph /></div>
-          <div><KeywordNews /></div>
+          <div class="wordcloud-container"><KeywordRelated /></div>
+          <div class="chart-container"><KeywordLineGraph /></div>
+          <div class="news-container"><KeywordNews /></div>
         </div>
       </transition>
     </div>
@@ -59,6 +59,7 @@
   import { useStore, mapGetters } from "vuex";
   import { onMounted } from "@vue/runtime-core";
   import MainGlobe from "@/components/Main/MainGlobe.vue";
+  
   import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
   import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
   import KeywordNews from "@/components/Datalab/KeywordNews.vue";
@@ -74,11 +75,6 @@ export default {
     KeywordNews,
     KeywordLineGraph,
     KeywordDonutGraph,
-  },
-  data(){
-    return{
-      show: true,
-    }
   },
   setup() {
     onMounted(() => {
@@ -173,8 +169,8 @@ h6 {
 .left_section {
   position: fixed;
   width: 100%;
-  height: 90%;
-  top: 10%;
+  height: 100%;
+  top: -6%;
   left: 0;
   bottom: 0;
   display: flex;
@@ -188,8 +184,8 @@ h6 {
 .right_section {
   position: fixed;
   width: 100%;
-  height: 90%;
-  top: 10;
+  height: 100%;
+  top: 0%;
   bottom: 0;
   right: 0;
   display: flex;
@@ -203,7 +199,7 @@ h6 {
 
 .head_box {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .nation {

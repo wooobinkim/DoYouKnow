@@ -1,5 +1,7 @@
 <template>
-  <NavBar :swiper="swiper"/>
+
+  <NavBar v-if="this.getIsOverlay==false" :swiper="swiper"/>
+
   <swiper
     class="mySwiper"
     :modules="modules"
@@ -32,6 +34,7 @@ import IntroTop from "@/components/Main/IntroTop.vue";
 import IntroAwards from "@/components/Main/IntroAwards.vue";
 import IntroGame from "@/components/Main/IntroGame.vue";
 import NavBar from "@/components/Main/NavBar.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -55,11 +58,12 @@ export default {
   },
 
   setup() {
-    
     return {
       modules: [Navigation, Pagination, Mousewheel, Scrollbar],
-      
     };
+  },
+  computed: {
+    ...mapGetters(["getIsOverlay", "getNation", "getConditionNation"]),
   },
 };
 </script>
