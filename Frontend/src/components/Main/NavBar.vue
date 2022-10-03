@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="background-two link-container">
-        <a class="link-two" @click.prevent="moveSlide(2)">Hall Of Fame</a>
+        <a class="link-two" @click.prevent="moveSlide(2)">DYK Club</a>
       </div>
       <div class="background-three link-container">
         <a class="link-three" @click.prevent="moveSlide(3)">Game</a>
