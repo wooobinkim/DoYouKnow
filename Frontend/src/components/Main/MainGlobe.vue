@@ -10,10 +10,11 @@
         text-align: center;
         font-family: monospace;
         font-weight: bold;
-        background: #ffec88;
+        color: white;
+        background: #eb96dd;
         display: none;
         opacity: 0;
-        border: 1px solid black;
+        border : 1px, solid, black
         transition: opacity 0.25s linear;
         border-radius: 3px;
         width: 100px;
@@ -337,9 +338,6 @@ export default {
             const nation = 1;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
-            router.push({
-              name: "DatalabView",
-            });
           }
           if (intersects[0].object.id == 59) {
             const nation = 2;
