@@ -1,6 +1,32 @@
 <template>
   <div class="ending-background">
     <img @click="gohome" src="@/assets/logo.png" alt="logo" class="logo" />
+    <div>
+      <div>
+        <img
+          v-show="data.isSound === true"
+          class="soundbtn"
+          src="@/assets/DYKC/soundon.png"
+          @click="onOffSound"
+        />
+        <img
+          v-show="data.isSound === false"
+          class="soundbtn"
+          src="@/assets/DYKC/soundoff.png"
+          @click="onOffSound"
+        />
+      </div>
+      <div v-if="data.isSound === true">
+        <audio
+          id="myAudio"
+          autoplay="autoplay"
+          loop
+          onloadstart="this.volume=0.05"
+        >
+          <source src="@/assets/higherlower/ending-bgm.mp3" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
     <div class="ending-container">
       <!-- <img
         class="ending-img"
@@ -9,7 +35,9 @@
       /> -->
       <div class="ending-info">
         <h2 style="color: white">🎯당신의 점수는🎯</h2>
+        <transition class="animate__animated animate__bounceInDown">
         <h1 class="score">{{ score }}점 !</h1>
+        </transition>
         <h3 style="color: white">아이쿠 손이 미끄러졌네~~🔨</h3>
         <h3 style="margin-top: 0rem">유저 평균 점수 6.3점</h3>
         <div class="button-container">
@@ -22,6 +50,7 @@
 
 <script>
 import { useRouter } from "vue-router";
+import { reactive } from "vue";
 export default {
   setup() {
     const router = useRouter();
@@ -43,8 +72,17 @@ export default {
     const gamestart = function () {
       router.push({ name: "GamePage" });
     };
+    let data = reactive({
+      isSound: true,
+    });
+    const onOffSound = function () {
+      data.isSound = !data.isSound;
+      console.log(data.isSound);
+    };
 
     return {
+      onOffSound,
+      data,
       randomint,
       gamestart,
       gohome,
@@ -113,5 +151,14 @@ button:hover {
   color: black;
   text-shadow: 1px 2px grey;
   background-color: white;
+}
+.soundbtn {
+  width: 3rem;
+  height: auto;
+  position: absolute;
+  right: 0%;
+  margin-left: auto;
+  margin-right: 5rem;
+  cursor: pointer;
 }
 </style>
