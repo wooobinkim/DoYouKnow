@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="height: 100%; width: 100%">
     <loading-spinner v-if="this.getRelatedKewordLoading" />
-    <div style="height: 200px; width: 200px">
+    <div style="height: 100%; width: 100%">
       <canvas id="canvas"></canvas>
     </div>
   </div>
@@ -36,7 +36,15 @@ export default {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {},
+        plugins: {
+          labels: false,
+          legend: {
+            display: false,
+          },
+          datalabels: {
+            display: false,
+          },
+        },
       },
     };
 
@@ -57,7 +65,7 @@ export default {
         datasets: [
           {
             label: "",
-            data: data.map((d) => 10 + d[1] * 1),
+            data: data.map((d, index) => 70 - index * 3),
             color: data.map((d) => color[d[1] % 8]),
           },
         ],
@@ -80,7 +88,11 @@ export default {
               text: "Chart.js Word Cloud",
             },
             plugins: {
+              labels: false,
               legend: {
+                display: false,
+              },
+              datalabels: {
                 display: false,
               },
             },
@@ -116,7 +128,8 @@ export default {
       this.store.dispatch("relatedkeyword", { data });
     },
     getRelatedKeyword: function (data) {
-      this.updatewordcloud(data);
+      const data1 = data.splice(0, 10);
+      this.updatewordcloud(data1);
     },
   },
 };
