@@ -71,7 +71,6 @@ export default {
     // return {
     //   store,
     // };
-    const store = useStore();
     return {
       renderCheck,
       overlayoff,
@@ -81,11 +80,11 @@ export default {
   computed: {
     ...mapGetters(["getIsOverlay", "getNation", "getConditionNation"]),
   },
-  watch: {
-    getConditionNation: function (nation) {
-      this.store.dispatch("getNationRate", { nation });
-    },
-  },
+  // watch: {
+  //   getConditionNation: function (nation) {
+  //     this.store.dispatch("getNationRate", { nation });
+  //   },
+  // },
   // computed: {
   //   ...mapGetters(["getConditionNation", "getNation", "getNationRate"]),
   // },
