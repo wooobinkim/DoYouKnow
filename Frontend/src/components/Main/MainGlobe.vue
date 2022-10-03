@@ -10,17 +10,17 @@
         text-align: center;
         font-family: monospace;
         font-weight: bold;
-        color: white;
-        background: #eb96dd;
         display: none;
         opacity: 0;
         border : 1px, solid, black
         transition: opacity 0.25s linear;
         border-radius: 3px;
-        width: 100px;
-        height: 22px;
+        width: 40px;
+        height: 40px;
       "
-    ></div>
+    >
+      <img src="" id="hoverimg" alt="" />
+    </div>
   </div>
 </template>
 
@@ -256,22 +256,28 @@ export default {
           divElement.style.top = `${tooltipPosition.y}px`;
 
           if (hoveredObj.id == 53) {
-            divElement.innerText = "미국";
+            divElement.innerHTML =
+              '<img src="/datalab/us.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 59) {
-            divElement.innerText = "영국";
+            divElement.innerHTML =
+              '<img src="/datalab/uk.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 65) {
-            divElement.innerText = "일본";
+            divElement.innerHTML =
+              '<img src="/datalab/jp.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 71) {
-            divElement.innerText = "베트남";
+            divElement.innerHTML =
+              '<img src="/datalab/vi.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 77) {
-            divElement.innerText = "인도네시아";
+            divElement.innerHTML =
+              '<img src="/datalab/in.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 83) {
-            divElement.innerText = "브라질";
+            divElement.innerHTML =
+              '<img src="/datalab/br.png" style="width: 100%; height: 100%;">';
           }
 
           // divElement.innerText = hoveredObj.userData.name;

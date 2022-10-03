@@ -91,6 +91,7 @@ export default {
       const data = false;
       store.dispatch("setIsOverlay", { data });
     };
+
     return {
       overlayoff,
     };
