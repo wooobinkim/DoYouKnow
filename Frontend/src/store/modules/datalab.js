@@ -7,8 +7,10 @@ export const datalab = {
     currentrank: null,
     keywordrank: null,
     // relatedkeword: [],
+    isoverlay: false,
+    datalabviewloading: true,
+    relatedkeword: [],
     relatedkeywordnews: [],
-    relatedkeword: null,
     relatedkewordloading: false,
     graphkeyword: null,
     category: [
@@ -52,6 +54,12 @@ export const datalab = {
     getRelatedKeywordNews(state){
       return state.relatedkeywordnews;
     },
+    getIsOverlay(state) {
+      return state.isoverlay;
+    },
+    getDatalabViewLoading(state) {
+      return state.datalabviewloading;
+    },
     getCondition(state) {
       return state.condition;
     },
@@ -84,6 +92,10 @@ export const datalab = {
     },
   },
   mutations: {
+    SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
+    SET_DATALABVIEWLOADING: (state, datalabviewloading) => {
+      state.datalabviewloading = datalabviewloading;
+    },
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
     SET_KEYWORDRANK: (state, data) => (state.keywordrank = data),
     RESET_KEYWORDRANK: (state) => (state.keywordrank = null),
@@ -107,6 +119,10 @@ export const datalab = {
     // (state.graphkeyword = graphkeyword),
   },
   actions: {
+    async setIsOverlay({ commit }, { data }) {
+      await commit("SET_ISOVERLAY", data);
+    },
+
     async getNationRate({ commit }, { nation }) {
       await axios
         .get(`http://j7b208.p.ssafy.io:8080/api/keyword/searchcount/${nation}`)
