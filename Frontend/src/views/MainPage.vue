@@ -11,7 +11,6 @@
     :pagination="{ clickable: true }"
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
-    <swiper-slide class="second"><IntroDataLab /></swiper-slide>
     <swiper-slide class="third"><IntroAwards /></swiper-slide>
     <swiper-slide class="forth"><IntroGame /></swiper-slide>
   </swiper>
@@ -29,7 +28,7 @@ import "swiper/css/bundle";
 import { Navigation, Pagination, Mousewheel, Scrollbar } from "swiper";
 
 import IntroTop from "@/components/Main/IntroTop.vue";
-import IntroDataLab from "@/components/Main/IntroDataLab.vue";
+// import IntroDataLab from "@/components/Main/IntroDataLab.vue";
 import IntroAwards from "@/components/Main/IntroAwards.vue";
 import IntroGame from "@/components/Main/IntroGame.vue";
 import NavBar from "@/components/Main/NavBar.vue";
@@ -39,7 +38,7 @@ export default {
     Swiper,
     SwiperSlide,
     IntroTop,
-    IntroDataLab,
+    // IntroDataLab,
     IntroAwards,
     IntroGame,
     NavBar,

@@ -14,14 +14,14 @@
     <div class="menu-container">
       <div class="background-one" >
         <div class="link-container">
-          <a class="link-one" @click.prevent="moveSlide(1)">DataLab</a>
+          <a class="link-one" @click.prevent="moveSlide(0)">DataLab</a>
         </div>
       </div>
       <div class="background-two link-container">
-        <a class="link-two" @click.prevent="moveSlide(2)">Hall Of Fame</a>
+        <a class="link-two" @click.prevent="moveSlide(1)">Hall Of Fame</a>
       </div>
       <div class="background-three link-container">
-        <a class="link-three" @click.prevent="moveSlide(3)">Game</a>
+        <a class="link-three" @click.prevent="moveSlide(2)">Game</a>
       </div>
     </div>
   </div>

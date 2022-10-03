@@ -1,44 +1,101 @@
 <template>
-  <section>
-    <div class="title-container">
-      <h6
-        data-aos="fade-right"
-        data-aos-offset="300"
-        data-aos-easing="ease-in-sine"
-      >
+  <section style="display:flex">
+    <div v-if="this.getIsOverlay==false">
+      <div class="title-container">
+        <h6
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
         Introduce
       </h6>
-      <h1 data-aos="fade">DoYouKnow</h1>
-      <div
-        class="content-msg"
-        data-aos="fade-up"
-        data-aos-offset="300"
-        data-aos-easing="ease-in-sine"
-      >
-        <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?</p>
-        <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
+        <h1 class="headTitle" data-aos="fade">DoYouKnow</h1>
+        <div
+          class="content-msg"
+          data-aos="fade-up"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
+          <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?</p>
+          <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
+        </div>
       </div>
+      <img class="intro-arrow" src="@/assets/intro_arrow.png">
     </div>
-    <img class="intro-arrow" src="@/assets/intro_arrow.png">
+    <div v-else style="display:flex">
+      <transition name="left">
+        <div class="left_section" v-if="this.getIsOverlay" >
+          <div class="head_box">
+            <div class="nation">
+              <template v-for="nation in this.getNation" :key="nation">
+                <template v-if="this.getConditionNation == nation.value">
+                  <h1 class="title">{{ nation.text }}</h1>
+                </template>
+              </template>
+            </div>
+            <button class="backbtn" @click="overlayoff()">
+              <img class="backbtnimg" src="../../assets/exit.png" />
+            </button>
+          </div>
+          <div><KeywordRank /></div>
+          <div><KeywordDonutGraph /></div>
+        </div>
+      </transition>
+      <transition name="right">
+        <div class="right_section" v-if="this.getIsOverlay" >
+          <div><KeywordRelated /></div>
+          <div><KeywordLineGraph /></div>
+          <div><KeywordNews /></div>
+        </div>
+      </transition>
+    </div>
     <div class="globe-area">
-      <MainGlobe class="top-globe" />
+      <MainGlobe class="top-globe"/>
     </div>
   </section>
 </template>
 
 <script>
-import MainGlobe from "@/components/Main/MainGlobe.vue";
-import AOS from "aos";
-import { onMounted } from "@vue/runtime-core";
+  import { useStore, mapGetters } from "vuex";
+  import { onMounted } from "@vue/runtime-core";
+  import MainGlobe from "@/components/Main/MainGlobe.vue";
+  import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
+  import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+  import KeywordNews from "@/components/Datalab/KeywordNews.vue";
+  import KeywordRank from "@/components/Datalab/KeywordRank.vue";
+  import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
+  import AOS from "aos";
 
 export default {
   components: {
-    MainGlobe, // eslint-disable-line
+    MainGlobe,
+    KeywordRelated,
+    KeywordRank,
+    KeywordNews,
+    KeywordLineGraph,
+    KeywordDonutGraph,
+  },
+  data(){
+    return{
+      show: true,
+    }
   },
   setup() {
     onMounted(() => {
       AOS.init();
     });
+    const store = useStore();
+
+    const overlayoff = function () {
+      const data = false;
+      store.dispatch("setIsOverlay", { data });
+    };
+    return {
+      overlayoff,
+    };
+  },
+  computed: {
+    ...mapGetters(["getIsOverlay", "getNation", "getConditionNation"]),
   },
 };
 </script>
@@ -56,7 +113,7 @@ h6 {
   text-align: start;
 }
 
-h1 {
+.headTitle {
   font-size: 4em;
   width: 500px;
   background: -webkit-linear-gradient(coral, #6495ed);
@@ -112,5 +169,112 @@ h1 {
   position: absolute;
   top: 65%;
   right: 19%;
+}
+.left_section {
+  position: fixed;
+  width: 100%;
+  height: 90%;
+  top: 10%;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25%;
+  float: left;
+  z-index: 10;
+  animation: fadeInLeft 2s;
+}
+.right_section {
+  position: fixed;
+  width: 100%;
+  height: 90%;
+  top: 10;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25%;
+  float: right;
+  z-index: 10;
+  animation: fadeInRight 2s;
+}
+
+.head_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nation {
+  margin-right: 3rem;
+  margin-left: 3rem;
+  font-size : 2rem;
+}
+.backbtn {
+  all: unset;
+  width: 25px;
+  height: 25px;
+  margin-top: 1.2rem
+}
+.backbtnimg {
+  width: 100%;
+  height: 100%;
+}
+.backbtnimg:hover {
+  transform: scale(1.2);
+}
+.left-enter-active {
+  animation: fadeInLeft 2s;
+}
+.left-leave-active {
+  animation: fadeOutLeft 2s;
+}
+.right-enter-active {
+  animation: fadeInRight 2s;
+}
+.right-leave-active {
+  animation: fadeOutRight 2s;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
 }
 </style>
