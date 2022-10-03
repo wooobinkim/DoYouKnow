@@ -6,10 +6,9 @@
     :direction="'vertical'"
     mousewheel
     :speed="1000"
-    :scrollbar="{ draggable: true }"
     :allowTouchMove="false"
-    :lazy="{loadPrevNext: true}"
-    
+    :lazy="{ loadPrevNext: true }"
+    :pagination="{ clickable: true }"
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="second"><IntroDataLab /></swiper-slide>
@@ -129,4 +128,32 @@ body {
 .forth {
   background: linear-gradient(#9d7eb8,#ddbdfc, #96c8fb);
 }
+
+/* .swiper-container { width: 100%; height: 100%; }
+.swiper-slide { text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center; } */
+.swiper-pagination-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.swiper-pagination-bullet {
+   width: 12px; 
+   height: 12px; 
+   background: transparent; 
+   border: 1px solid #007aff; 
+   opacity: 1; 
+   }
+
+.swiper-pagination-bullet-active {
+  width: 20px;
+  height: 20px; 
+  transition: width .5s height .5s; 
+  border-radius: 100%s; 
+  background: #007aff; 
+  border: 1px solid transparent; 
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  }
+  
 </style>
