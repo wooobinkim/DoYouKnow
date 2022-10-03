@@ -1,6 +1,6 @@
 import axios from "axios";
 import BackendAPI2 from "@/api/BackendAPI2";
-
+// 안녕하세요!!
 export const datalab = {
   state: {
     rank: null,
