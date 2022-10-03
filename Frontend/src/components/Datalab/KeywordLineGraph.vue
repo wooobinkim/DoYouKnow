@@ -1,5 +1,4 @@
 <template>
-  <div>꺾은선그래프 컴포넌트
     <div class="chart-container">
     <vue3-chart-js
       :id="lineChart.id"
@@ -9,9 +8,7 @@
       :options="lineChart.options"
     ></vue3-chart-js>
 
-    <button @click="updateChart">Update Chart</button>
-  </div>
-
+    <!-- <button @click="updateChart">Update Chart</button> -->
   </div>
 </template>
 
@@ -33,7 +30,7 @@ export default {
       id: "line",
       type: "line",
       data: {
-        labels: "hello",
+        labels: "",
         datasets: [
           {
             backgroundColor: "#f87979",
@@ -45,6 +42,10 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
+          labels: false,
+          legend: {
+            display: false
+          },
           title: {
             text: "검색량 추이",
             display: true,
@@ -54,13 +55,15 @@ export default {
     };
 
     const updateChart = (res) => {
-      lineChart.options.plugins.title = {
-        text: res[0].name,
-        display: true,
-      };
-      lineChart.data.labels = res[0].name;
+      // lineChart.options.plugins.title = {
+      //   text: res[0].name,
+      //   display: true,
+      // };
+      lineChart.labels = res[0].name;
+      lineChart.data.labels = [];
       lineChart.data.datasets = [
         {
+          label: res[0].name,
           backgroundColor: "#f87979",
           data: [],
         },
@@ -68,7 +71,7 @@ export default {
 
       for (let i = 0; i < res.length; i++) {
         // console.log(res[i]);
-        // lineChart.data.labels[i] = res[i].date;
+        lineChart.data.labels[i] = res[i].date.toLocaleDateString();
         lineChart.data.datasets[0].data[i] = res[i].count;
       }
       chartRef.value.update(250);
@@ -113,12 +116,13 @@ export default {
 </script>
 
 <style scoped>
-.chart-container {
+
+/* .chart-container {
   width: 20rem;
   height: 16rem;
   background: #ffffff;
   border-radius: 15px;
   margin-left: 1.5rem;
   margin-top: 1rem;
-}
+} */
 </style>
