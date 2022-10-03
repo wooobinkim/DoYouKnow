@@ -1,15 +1,15 @@
-const BE = "https://j7b208.p.ssafy.io/api2/";
+const BE = 'https://j7b208.p.ssafy.io/api2/'
 
 // DYKC API
-const DYKC = "dykclub/";
+const DYKC = 'dykclub/'
 // DataLab API
-const DataLab = "keyword/";
+const DataLab = 'keyword/'
 
-export default {
+export default{
   // DYKC
   dykc: {
     category: (keyword) => BE + DYKC + `${keyword}/`,
-    profile: (name) => BE + DYKC + DataLab + `${name}/`,
+    profile: (name) => BE + DYKC + DataLab + `${name}/`
   },
 
   // DataLab
@@ -20,3 +20,4 @@ export default {
       BE + "pytranslate/detail/" + keyword + "/" + lang,
   },
 };
+

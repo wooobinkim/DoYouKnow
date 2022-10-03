@@ -17,20 +17,21 @@
 import { ref } from "vue";
 import { mapGetters, mapActions } from "vuex";
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
+import { useStore } from "vuex";
 
 export default {
   components: {
     Vue3ChartJs,
   },
   setup() {
-    // const keywordlist = ref([]);
+    const keywordlist = ref([]);
     const chartRef = ref(null);
 
     const lineChart = {
       id: "line",
       type: "line",
       data: {
-        labels: [],
+        label: [],
         datasets: [
           {
             backgroundColor: "#f87979",
@@ -39,9 +40,24 @@ export default {
         ],
       },
       options: {
+        labels: false,
+        legend: {
+          display: false,
+        },
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItem) {
+              return tooltipItem.yLabel;
+            },
+          },
+        },
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
+          datalabels: {
+            display: false,
+            backgroundColor: "#404040",
+          },
           title: {
             text: "검색량 추이",
             display: true,
@@ -50,46 +66,64 @@ export default {
       },
     };
 
-    const updateChart = () => {
+    const updateChart = (res) => {
       lineChart.options.plugins.title = {
-        text: "Updated Chart",
+        text: "검색량 추이",
         display: true,
       };
-      lineChart.data.labels = ["Cats", "Dogs", "Hamsters", "Dragons"];
+      lineChart.data.labels = [];
       lineChart.data.datasets = [
         {
-          backgroundColor: ["#333333", "#E46651", "#00D8FF", "#DD1B16"],
-          data: [100, 20, 800, 20],
+          label: res[0].name,
+          backgroundColor: "#f87979",
+          data: [],
         },
       ];
 
-      // for (let i = 0; i < 3; i++) {
-      //   lineChart.data.labels[i] = data[i][3];
-      //   lineChart.data.datasets[i] = data[i][2];
-      // }
+      for (let i = 0; i < res.length; i++) {
+        // console.log(res[i]);
+        lineChart.data.labels[i] = res[i].date.toLocaleDateString();
+        lineChart.data.datasets[0].data[i] = res[i].count;
+      }
       chartRef.value.update(250);
     };
-
+    const store = useStore();
     return {
+      keywordlist,
       lineChart,
       updateChart,
       chartRef,
+      store,
     };
   },
   computed: {
-    ...mapGetters(["getCurrentRank", "getGraphKeyword"]),
+    ...mapGetters([
+      "getCurrentRank",
+      "getConditionNation",
+      "getConditionCategory",
+      "getConditionPeriod",
+      "getGraphKeyword",
+    ]),
   },
   methods: {
     ...mapActions(["getGraphKeyword"]),
   },
   watch: {
-    getCurrentRank: function (data) {
-      // this 뭐였지..
-      // this.relatedkeyword(data);
-      console.log(data);
+    getCurrentRank: function () {
+      if (this.getConditionCategory && this.getConditionPeriod) {
+        const condition = {
+          keyword: this.getCurrentRank,
+          nation: this.getConditionNation,
+          category: this.getConditionCategory,
+          period: this.getConditionPeriod,
+        };
+        this.store.dispatch("getGraphKeyword", { condition });
+      }
     },
-    getKeyword: function (data) {
-      // this.keywordlist = data;
+    getGraphKeyword: function (data) {
+      // console.log("변했다.");
+      // console.log(data);
+      this.keywordlist = data;
       this.updateChart(data);
     },
   },

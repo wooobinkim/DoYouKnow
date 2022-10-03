@@ -39,6 +39,7 @@ export default {
         plugins: {},
       },
     };
+
     const updatewordcloud = (data) => {
       console.log(data);
       const color = [
@@ -87,7 +88,6 @@ export default {
         });
       }
     };
-
     return {
       //keywordlist,
       updatewordcloud,
@@ -96,6 +96,7 @@ export default {
       store,
     };
   },
+
   computed: {
     ...mapGetters([
       "getCurrentRank",

@@ -10,11 +10,7 @@
             <p>{{ news.publishedAt }}</p>
           </li>
         </ul>
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action">First item</a>
-          <a href="#" class="list-group-item list-group-item-action">Second item</a>
-          <a href="#" class="list-group-item list-group-item-action">Third item</a>
-        </div>
+        
         <!-- <button @click.prevent="relatedkeywordnews">하이</button> -->
       </div> 
       
@@ -42,7 +38,6 @@
     },
     setup() {
       const store = useStore();
-      // const news = computed(() => store.state.relatedkeywordnews);
       const test = computed(() => store.getters);
 
       return { test };
