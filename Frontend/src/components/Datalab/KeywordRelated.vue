@@ -51,14 +51,16 @@ export default {
     const updatewordcloud = (data) => {
       console.log(data);
       const color = [
-        "#bccad6",
-        "#8d9db6",
-        "#667292",
-        "#f1e3dd",
-        "#cfe0e8",
-        "#b7d7e8",
-        "#87bdd8",
-        "#daebe8",
+        '#004B6B',
+        // '#255D7E',
+        '#3C6F8E',
+        // '#5483A1',
+        '#6996B3',
+        // '#7EAAC7',
+        '#94BDD9',
+        // '#ABD3EC',
+        '#C1E6FF',
+        '#EBF2F7',
       ];
       const data1 = {
         labels: data.map((d) => d[0]),
@@ -128,7 +130,7 @@ export default {
       this.store.dispatch("relatedkeyword", { data });
     },
     getRelatedKeyword: function (data) {
-      const data1 = data.splice(0, 10);
+      const data1 = data.splice(0, 30);
       this.updatewordcloud(data1);
     },
   },
