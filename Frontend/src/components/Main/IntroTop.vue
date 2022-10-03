@@ -1,14 +1,14 @@
 <template>
-  <section >
-    <div v-if="this.getIsOverlay==false">
+  <section>
+    <div v-if="this.getIsOverlay == false">
       <div class="title-container">
         <h6
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
         >
-        Introduce
-      </h6>
+          Introduce
+        </h6>
         <h1 class="headTitle" data-aos="fade">DoYouKnow</h1>
         <div
           class="content-msg"
@@ -16,15 +16,17 @@
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
         >
-          <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?</p>
+          <p>
+            한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?
+          </p>
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
       </div>
-      <img class="intro-arrow" src="@/assets/intro_arrow.png">
+      <img class="intro-arrow" src="@/assets/intro_arrow.png" />
     </div>
-    <div v-else >
+    <div v-else>
       <transition name="left">
-        <div class="left_section" v-if="this.getIsOverlay" >
+        <div class="left_section" v-if="this.getIsOverlay">
           <div class="head_box">
             <div class="nation">
               <template v-for="nation in this.getNation" :key="nation">
@@ -37,12 +39,13 @@
               <img class="backbtnimg" src="../../assets/exit.png" />
             </button>
           </div>
+          <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div class="doughnut-container"><KeywordDonutGraph /></div>
         </div>
       </transition>
       <transition name="right">
-        <div class="right_section" v-if="this.getIsOverlay" >
+        <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
           <div class="chart-container"><KeywordLineGraph /></div>
           <div class="news-container"><KeywordNews /></div>
@@ -50,25 +53,27 @@
       </transition>
     </div>
     <div class="globe-area">
-      <MainGlobe class="top-globe"/>
+      <MainGlobe class="top-globe" />
     </div>
   </section>
 </template>
 
 <script>
-  import { useStore, mapGetters } from "vuex";
-  import { onMounted } from "@vue/runtime-core";
-  import MainGlobe from "@/components/Main/MainGlobe.vue";
-  
-  import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
-  import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
-  import KeywordNews from "@/components/Datalab/KeywordNews.vue";
-  import KeywordRank from "@/components/Datalab/KeywordRank.vue";
-  import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
-  import AOS from "aos";
+import { useStore, mapGetters } from "vuex";
+import { onMounted } from "@vue/runtime-core";
+import MainGlobe from "@/components/Main/MainGlobe.vue";
+
+import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
+import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+import KeywordNews from "@/components/Datalab/KeywordNews.vue";
+import KeywordRank from "@/components/Datalab/KeywordRank.vue";
+import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
+import DataInfo from "@/components/Datalab/DataInfo.vue";
+import AOS from "aos";
 
 export default {
   components: {
+    DataInfo,
     MainGlobe,
     KeywordRelated,
     KeywordRank,
@@ -205,13 +210,13 @@ h6 {
 .nation {
   margin-right: 3rem;
   margin-left: 3rem;
-  font-size : 2rem;
+  font-size: 2rem;
 }
 .backbtn {
   all: unset;
   width: 25px;
   height: 25px;
-  margin-top: 1.2rem
+  margin-top: 1.2rem;
 }
 .backbtnimg {
   width: 100%;
