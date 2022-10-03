@@ -85,7 +85,8 @@ export default {
   watch: {
     getCurrentRank: function (data) {
       // this 뭐였지..
-      this.relatedkeyword(data);
+      // this.relatedkeyword(data);
+      console.log(data);
     },
     getKeyword: function (data) {
       // this.keywordlist = data;
