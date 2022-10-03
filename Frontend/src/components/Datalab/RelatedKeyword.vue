@@ -1,33 +1,23 @@
 <template>
   <div>
-    <div class="trend-container">
-      <div>연관검색어</div>
-      <loading-spinner v-if="this.getRelatedKewordLoading" />
-      <vue3-chart-js
-        :class="{ chartvue: this.getRelatedKewordLoading }"
-        :id="barChart.id"
-        ref="chartRef"
-        :type="barChart.type"
-        :data="barChart.data"
-        :options="barChart.options"
-      ></vue3-chart-js>
+    <loading-spinner v-if="this.getRelatedKewordLoading" />
+    <div style="height: 200px; width: 200px">
+      <canvas id="canvas"></canvas>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, useStore } from "vuex";
-import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
+import { Chart } from "chart.js";
+import { WordCloudController, WordElement } from "chartjs-chart-wordcloud";
 import { ref } from "vue";
 import LoadingSpinner from "@/components/Datalab/LoadingSpinner.vue";
-
 export default {
-  components: {
-    Vue3ChartJs,
-    LoadingSpinner,
-  },
+  components: { LoadingSpinner },
   setup() {
-    const keywordlist = ref([]);
+    Chart.register(WordCloudController, WordElement);
+    //const keywordlist = ref([]);
     const chartRef = ref(null);
     const store = useStore();
 
@@ -49,42 +39,64 @@ export default {
         plugins: {},
       },
     };
-    const updateChart = (data) => {
-      barChart.options.plugins.title = {
-        text: "Updated Chart",
-        display: true,
-      };
 
-      barChart.data.labels = [];
-      barChart.data.datasets = [
-        {
-          label: "연관검색어",
-          backgroundColor: "#f87979",
-          data: [],
-        },
+    const updatewordcloud = (data) => {
+      console.log(data);
+      const color = [
+        "#bccad6",
+        "#8d9db6",
+        "#667292",
+        "#f1e3dd",
+        "#cfe0e8",
+        "#b7d7e8",
+        "#87bdd8",
+        "#daebe8",
       ];
+      const data1 = {
+        labels: data.map((d) => d[0]),
+        datasets: [
+          {
+            label: "",
+            data: data.map((d) => 10 + d[1] * 1),
+            color: data.map((d) => color[d[1] % 8]),
+          },
+        ],
+      };
+      console.log(data1);
 
-      for (let i   = 0; i < 5; i++) {
-        barChart.data.labels[i] = data[i][0];
-        barChart.data.datasets[0].data[i] = data[i][1];
+      {
+        let chartStatus = Chart.getChart("canvas"); // <canvas> id
+        if (chartStatus != undefined) {
+          chartStatus.destroy();
+        }
+        const ctx = document.getElementById("canvas").getContext("2d");
+
+        window.myBar = new Chart(ctx, {
+          type: WordCloudController.id,
+          data: data1,
+          options: {
+            title: {
+              display: false,
+              text: "Chart.js Word Cloud",
+            },
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+          },
+        });
       }
-
-      // data.forEach(element => {
-      //     barChart.data.labels.push(element[0]);
-      //     barChart.data.datasets[0].data.push(element[1]);
-      // });
-      // console.log(barChart.data);
-      chartRef.value.update(250);
     };
-
     return {
-      keywordlist,
-      updateChart,
+      //keywordlist,
+      updatewordcloud,
       barChart,
       chartRef,
       store,
     };
   },
+
   computed: {
     ...mapGetters([
       "getCurrentRank",
@@ -97,11 +109,14 @@ export default {
   // },
   watch: {
     getCurrentRank: function (data) {
+      let chartStatus = Chart.getChart("canvas"); // <canvas> id
+      if (chartStatus != undefined) {
+        chartStatus.destroy();
+      }
       this.store.dispatch("relatedkeyword", { data });
     },
     getRelatedKeyword: function (data) {
-      this.keywordlist = data;
-      this.updateChart(data);
+      this.updatewordcloud(data);
     },
   },
 };

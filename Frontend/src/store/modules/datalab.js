@@ -88,6 +88,7 @@ export const datalab = {
       return state.graphkeyword;
     },
     getRelatedKewordLoading(state) {
+      console.log(state.relatedkewordloading);
       return state.relatedkewordloading;
     },
   },
@@ -114,6 +115,7 @@ export const datalab = {
       // state.graphkeyword = graphkeyword;
     },
     SET_RELATEDKEYWORDLOADING: (state, relatedkewordloading) => {
+      // console.log(relatedkewordloading);
       state.relatedkewordloading = relatedkewordloading;
     },
     // (state.graphkeyword = graphkeyword),
@@ -187,8 +189,8 @@ export const datalab = {
         method: "get",
       })
         .then((res) => {
-          commit("SET_RELATEDKEWORD", res.data);
           commit("SET_RELATEDKEYWORDLOADING", false);
+          commit("SET_RELATEDKEWORD", res.data);
         })
         .catch((err) => {
           console.error(err.response);

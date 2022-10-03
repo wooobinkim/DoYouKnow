@@ -42,21 +42,21 @@ export default {
       options: {
         labels: false,
         legend: {
-          display: false
+          display: false,
         },
         tooltips: {
-            callbacks: {
-              label: function(tooltipItem) {
-                      return tooltipItem.yLabel;
-              }
-            }
+          callbacks: {
+            label: function (tooltipItem) {
+              return tooltipItem.yLabel;
+            },
+          },
         },
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           datalabels: {
             display: false,
-            backgroundColor: '#404040',
+            backgroundColor: "#404040",
           },
           title: {
             text: "검색량 추이",
@@ -74,7 +74,7 @@ export default {
       lineChart.data.labels = [];
       lineChart.data.datasets = [
         {
-           label: res[0].name,
+          label: res[0].name,
           backgroundColor: "#f87979",
           data: [],
         },
@@ -93,13 +93,17 @@ export default {
       lineChart,
       updateChart,
       chartRef,
-      store
+      store,
     };
   },
-  computed:{
-      ...mapGetters(["getCurrentRank","getConditionNation",
+  computed: {
+    ...mapGetters([
+      "getCurrentRank",
+      "getConditionNation",
       "getConditionCategory",
-      "getConditionPeriod", "getGraphKeyword"])
+      "getConditionPeriod",
+      "getGraphKeyword",
+    ]),
   },
   methods: {
     ...mapActions(["getGraphKeyword"]),

@@ -1,11 +1,9 @@
 const BE = 'https://j7b208.p.ssafy.io/api2/'
 
-
 // DYKC API
 const DYKC = 'dykclub/'
 // DataLab API
 const DataLab = 'keyword/'
-
 
 export default{
   // DYKC
@@ -16,7 +14,10 @@ export default{
 
   // DataLab
   datalab: {
-    relatedkeyword : (keyword) => BE + "pytrend/relativetopkeyword/" + keyword,
-    relatedkeywordtranslate : (keyword, lang) => BE + "pytranslate/detail/" + keyword + "/" + lang
-  }
-}
+    relatedkeyword: (keyword) =>
+      BE + "pytrend/relativerisingkeyword/" + keyword,
+    relatedkeywordtranslate: (keyword, lang) =>
+      BE + "pytranslate/detail/" + keyword + "/" + lang,
+  },
+};
+
