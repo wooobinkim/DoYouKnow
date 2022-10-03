@@ -21,15 +21,16 @@
           <img class="backbtnimg" src="../assets/exit.png" />
         </button>
       </div>
-      <div><KeywordRelated /></div>
       <div><KeywordRank /></div>
+      <div class="doughnut-container"><KeywordDonutGraph /></div>
+      <!-- <div><KeywordRelated /></div> -->
     </div>
   </transition>
   <transition name="right">
     <div class="right_section" v-if="this.getIsOverlay">
-      <div><KeywordNews /></div>
-      <div><KeywordLineGraph /></div>
-      <div><KeywordDonutGraph /></div>
+      <div class ="news-container"><KeywordNews /></div>
+      <div class="chart-container"><KeywordLineGraph /></div>
+      
     </div>
   </transition>
 </template>
@@ -43,13 +44,13 @@ import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
 import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
 import KeywordNews from "@/components/Datalab/KeywordNews.vue";
 import KeywordRank from "@/components/Datalab/KeywordRank.vue";
-import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
+// import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
 
 export default {
   components: {
     MainGlobe,
     LoadingSpinner,
-    KeywordRelated,
+    // KeywordRelated,
     KeywordRank,
     KeywordNews,
     KeywordLineGraph,
@@ -265,4 +266,29 @@ export default {
     transform: translate3d(100%, 0, 0);
   }
 }
+.news-container{
+  width: 340px;
+  height: 320px;
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 17px;
+}
+.chart-container{
+  /* position: absolute; */
+  width: 340px;
+  height: 160px;
+  /* margin-right: 1.5rem; */
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 17px;
+};
+
+.doughnut-container{
+  /* position: absolute; */
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 20px;
+};
 </style>

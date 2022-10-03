@@ -1,6 +1,6 @@
 <template>
-  <div>키워드뉴스 컴포넌트
-    <ul>
+  <div style="overflow: auto; width: 340px; height: 320px;" >
+    <ul class="uiui">
       <!-- <li v-for="news in test.getRelatedKeywordNews" :key="news">{{ news.title }}</li> -->
       <li v-for="news in test.getRelatedKeywordNews" :key="news">
       <a :href=news.url target="_blank">
@@ -57,10 +57,14 @@ div {
   /* margin: 20px; */
 }
  
-ul {
-  /* list-style-type: none;
-  width: 500px; */
-  /* width: 18rem; */
+.uiui {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 15px;
 }
  
 /* h3 {
