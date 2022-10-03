@@ -59,7 +59,9 @@ h6 {
 h1 {
   font-size: 4em;
   width: 500px;
-  color: white;
+  background: -webkit-linear-gradient(coral, #6495ed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: sans-serif;
   position: absolute;
   top: 190px;
