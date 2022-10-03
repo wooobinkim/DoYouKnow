@@ -15,8 +15,8 @@
         border : 1px, solid, black
         transition: opacity 0.25s linear;
         border-radius: 3px;
-        width: 40px;
-        height: 40px;
+        width: 55px;
+        height: 55px;
       "
     >
       <img src="" id="hoverimg" alt="" />
