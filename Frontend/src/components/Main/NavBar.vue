@@ -31,7 +31,7 @@
 
 export default {
   props: {
-    swiper: Object,
+    swiper: Object, // swiper 인스턴스 받기
   },
 
   setup(props){
@@ -47,58 +47,12 @@ export default {
 </script>
 
 <style scoped>
-/* .nav-img {
-  margin: 0;
-}
-.navbar {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 3;
-  position: fixed;
-}
-.nav-logo {
-  border: 0;
-  width: 5vw;
-  height: auto;
-  margin: 10px 0 0 10px;
-} */
-/* 
-.nav-menu {
-  display: flex;
-  font-size: 2em;
-  margin: 0 30px;
-} */
-
-/* .nav-menu-item {
-  margin: 0 10px;
-  font-weight: bold;
-  text-decoration: none;
-  position: relative;
-  padding: 6px 12px;
-}
-
-.nav-menu-item::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 4px;
-  background: #f1c40f;
-  transition: all 0.5s ease-out;
-}
-
-.nav-menu-item:hover::after {
-  width: 80%;
-} */
 .logo {
   border: 0;
   width: 5vw;
   height: auto;
   margin: 10px 0 0 10px;
+  cursor: pointer;
 }
 
 body {
@@ -163,8 +117,6 @@ a {
 .link-one:hover {
   color: #111;
   transition: color 1s cubic-bezier(0.33, 1, 0.68, 1);
-
-  /* Thanks Chris Coyier, you got my back always. https://css-tricks.com/different-transitions-for-hover-on-hover-off/ */
 }
 
 .link-one::before {
@@ -186,8 +138,9 @@ a {
 }
 
 .link-two {
-  color: #f27b9b;
+  color: #f1c56c;
   transition: color 1s cubic-bezier(0.32, 0, 0.67, 0);
+  line-height: 1em;
 }
 
 .link-two:hover {
@@ -198,114 +151,62 @@ a {
 .link-two::before {
   content: "";
   position: absolute;
-  z-index: -2;
+  z-index: -1;
   width: 100%;
   height: 100%;
   top: 0;
   right: 0;
-  clip-path: polygon(
-    0% -20%,
-    100% -30%,
-    100% -10%,
-    0% 0%,
-    0% 130%,
-    100% 120%,
-    100% 100%,
-    0% 110%
-  );
-  background-color: #f27b9b;
+  background-color: #f1c56c;
 
-  transition: clip-path 1s cubic-bezier(0.25, 1, 0.5, 1);
+  clip-path: circle(0% at 50% calc(50%));
+  transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .link-two:hover::before {
-  clip-path: polygon(
-    0% 10%,
-    100% 0%,
-    100% 20%,
-    0% 30%,
-    0% 100%,
-    100% 90%,
-    100% 70%,
-    0% 80%
-  );
+  clip-path: circle(100% at 50% 50%);
 }
-
-
 
 .link-three {
-  color: #eb7132;
+  color: #899cff;
+  transition: color 1s cubic-bezier(0.32, 0, 0.67, 0);
+  line-height: 1em;
 }
 
-.link-three::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  width: 50%;
-  height: 100%;
-  top: 0%;
-  left: 0%;
-  transform: translate(0, -50%) scaleY(0);
-  transition: transform 1s ease;
-  mix-blend-mode: difference;
-
-  /* clip-path: polygon(
-    20% 60%,
-    100% 60%,
-    100% 40%,
-    20% 40%,
-    20% 0%,
-    60% 0%,
-    60% 20%,
-    
-  ); */
-
-  background-color: #eb7132;
-}
-
-.link-three:hover::after {
-  transform: translate(0, 0%) scaleY(1);
+.link-three:hover {
+  color: #111;
+  transition: color 1s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .link-three::before {
   content: "";
   position: absolute;
-  z-index: 2;
-  width: 50%;
+  z-index: -1;
+  width: 100%;
   height: 100%;
-  bottom: 0%;
-  right: 0%;
-  transform: translate(0, 50%) scaleY(0);
-  transition: transform 1s ease;
-  mix-blend-mode: difference;
+  top: 0;
+  right: 0;
+  background-color: #899cff;
 
-  /* clip-path: polygon(
-    
-    0% 40%,
-    0% 60%,
-    80% 60%,
-    80% 100%,
-    40% 100%,
-    40% 80%,
-    
-  ); */
-
-  background-color: #eb7132;
+  clip-path: circle(0% at 50% calc(50%));
+  transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .link-three:hover::before {
-  transform: translate(0%, 0%) scaleY(1);
+  clip-path: circle(100% at 50% 50%);
 }
 
 .link-one-active {
   text-decoration: underline;
+  text-decoration-style: wavy;
 }
 
 .link-two-active {
   text-decoration: underline;
+  text-decoration-style: wavy;  
 }
 
 .link-three-active {
   text-decoration: underline;
+  text-decoration-style: wavy;
 }
 </style>
