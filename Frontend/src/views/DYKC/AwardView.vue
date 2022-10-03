@@ -1,15 +1,18 @@
 <template>
   <div class="black-bg" v-if="youtube == true" @click="youtubeClose($event)">
     <div class="white-bg">
-      <h1 style="text-align : center; font-size: xx-large;">{{youtubeName}}</h1>
+
+      <h1 style="text-align : center; font-size: 2.5rem; font-family: 'SDSamliphopangche_Outline';">{{youtubeName}}</h1>
       <YoutubeCardmodal v-bind:name="youtubeName"/>
       <button class="close2">close</button>
+
     </div>
   </div>
 
   <div class="black-bg" v-if="twitter == true" @click="twitterClose($event)">
     <div class="white-bg">
-      <h1 style="text-align : center; font-size: 2rem; margin-bottom:1rem;">해외 트위터 반응</h1>
+
+      <h1 style="text-align : center; font-size: 2.5rem; margin-bottom:1rem; font-family: 'SDSamliphopangche_Outline';">해외 트위터 반응</h1>
       <TwitterCardmodal v-bind:name="twitterName"/>
       <button class="close2">close</button>
     </div>
@@ -17,7 +20,7 @@
 
   <div class="black-bg" v-if="profile == true" @click="profileClose($event)">
     <div class="white-bg">
-      <h1 style="text-align : center; font-size: 2rem; margin-bottom:1rem;">프로필</h1>
+      <h1 style="text-align : center; font-size: 2.5rem; margin-bottom:1rem; font-family: 'SDSamliphopangche_Outline';">프로필</h1>
       <ProfileCardmodal v-bind:name="profileName"/>
       <button class="close2">close</button>
     </div>
@@ -25,57 +28,73 @@
 
   <div class="black-bg" v-if="award == true" @click="awardClose($event)">
     <div class="white-bg">
-      <h1 style="text-align : center; font-size: 2rem; margin-bottom:1rem;">수상 내역</h1>
+      <h1 style="text-align : center; font-size: 2.5rem; margin-bottom:1rem; font-family: 'SDSamliphopangche_Outline';">수상 내역</h1>
       <AwardCardmodal v-bind:name="awardName"/>
       <button class="close2">close</button>
+
     </div>
   </div>
 
   <video class="videoPlay" muted autoplay loop>
-      <source src="../../assets/DYKC/award.mp4" type="video/mp4">
+    <source src="../../assets/DYKC/award.mp4" type="video/mp4" />
   </video>
 
-  <!-- <div v-if="youtube===false && twitter===false && isShowing===true">
+  <div v-if="youtube===false && twitter===false && isShowing===true">
     <audio id="myAudio" autoplay loop onloadstart="this.volume=0.3">
       <source src="../../assets/DYKC/BGM.mp3" type="audio/mp3">
     </audio>
-  </div> -->
+  </div>
+
 
   <div v-show="youtube===false && twitter===false && award===false && profile===false">
     <DYKCNav/>
+
     <div>
-      <div v-show="isShowing===true">
-        <img class="soundbtn" src="../../assets/DYKC/soundon.png" @click="sound()" >
+      <div v-show="isShowing === true">
+        <img
+          class="soundbtn"
+          src="../../assets/DYKC/soundon.png"
+          @click="sound()"
+        />
       </div>
-      <div v-show="isShowing===false">
-        <img class="soundbtn" src="../../assets/DYKC/soundoff.png" @click="sound()">
+      <div v-show="isShowing === false">
+        <img
+          class="soundbtn"
+          src="../../assets/DYKC/soundoff.png"
+          @click="sound()"
+        />
       </div>
     </div>
 
     <div class="main">
       <ul class="category">
         <li>
-          <button class="category_color" v-if="keyword==='운동선수'" @click="changeKeyword('운동선수'), changecategory(1)">운동선수</button>
+
+          <button v-if="keyword==='운동선수'" @click="changeKeyword('운동선수'), changecategory(1)">운동선수</button>
           <button v-else @click="changeKeyword('운동선수'), changecategory(1)">운동선수</button>
 
         </li>
         <li>
-          <button class="category_color" v-if="keyword==='드 라 마'" @click="changeKeyword('드 라 마'), changecategory(2)">드 라 마</button>
+          <button v-if="keyword==='드 라 마'" @click="changeKeyword('드 라 마'), changecategory(2)">드 라 마</button>
           <button v-else @click="changeKeyword('드 라 마'), changecategory(2)">드 라 마</button>
         </li>
         <li>
-          <button class="category_color" v-if="keyword==='영    화'" @click="changeKeyword('영    화'), changecategory(3)">영      화</button>
+          <button v-if="keyword==='영    화'" @click="changeKeyword('영    화'), changecategory(3)">영      화</button>
           <button v-else @click="changeKeyword('영    화'), changecategory(3)" >영      화</button>
         </li>
         <li>
-          <button class="category_color" v-if="keyword==='연 예 인'" @click="changeKeyword('연 예 인'), changecategory(4)">연 예 인</button>
+          <button v-if="keyword==='연 예 인'" @click="changeKeyword('연 예 인'), changecategory(4)">연 예 인</button>
           <button v-else @click="changeKeyword('연 예 인'), changecategory(4)">연 예 인</button>
+
         </li>
       </ul>
 
       <div class="content">
-        <div class="title">{{ keyword }}</div>
-        
+
+        <div>
+          <h1 class="title">{{ keyword }}</h1>
+        </div>
+      
         <div class="scene" v-if="category_id==1">
           <label class="card-wrap" v-for="(item, key) in sport" :key="key">
             <input type="checkbox" class="flipcard">
@@ -165,15 +184,13 @@
             </footer>
           </label>
         </div>
-
-
       </div>
     </div>
-  </div> 
-
+  </div>
 </template>
 
 <script>
+
 import DYKCNav from '@/components/DYKC/DYKCNav.vue'
 import YoutubeCardmodal from '@/components/DYKC/YoutubeCardmodal.vue'
 import TwitterCardmodal from '@/components/DYKC/TwitterCardmodal.vue'
@@ -181,12 +198,14 @@ import ProfileCardmodal from '@/components/DYKC/ProfileCardmodal.vue'
 import AwardCardmodal from '@/components/DYKC/AwardCardmodal.vue'
 import { mapActions, mapGetters } from 'vuex'
 
+
 export default {
   name: "AwardView",
-  components:{
+  components: {
     DYKCNav,
     YoutubeCardmodal,
     TwitterCardmodal,
+
     ProfileCardmodal,
     AwardCardmodal,
   },
@@ -201,8 +220,8 @@ export default {
       category_id : 1,
       twitterName : "",
       youtubeName : "",
-      profileName : "",
       awardName : "",
+      profileName : "",
       twitter_translate : false,
     }
   },
@@ -218,13 +237,14 @@ export default {
   methods: {
     ...mapActions(['fetchSport', 'fetchMovie', 'fetchDrama', 'fetchEntertainer']),
     
+
     sound() {
-      this.isShowing = !this.isShowing
+      this.isShowing = !this.isShowing;
     },
-    changeKeyword(event){
+    changeKeyword(event) {
       this.keyword = event;
     },
-    changecategory(event){
+    changecategory(event) {
       this.category_id = event;
       if(this.category_id == 1){
         this.cardfront = this.sport;
@@ -239,14 +259,15 @@ export default {
         this.cardfront = this.entertainer;
       }
     },
-    openYoutubeModal(event){
+    openYoutubeModal(event) {
       this.youtube = true;
-      this.youtubeName = event
+      this.youtubeName = event;
     },
-    openTwitterModal(event){
+    openTwitterModal(event) {
       this.twitter = true;
-      this.twitterName = event
+      this.twitterName = event;
     },
+
     openProfileModal(event){
       this.profile = true;
       this.profileName = event
@@ -292,6 +313,37 @@ export default {
 </script>
 
 <style scoped>
+  @font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'RixYeoljeongdo_Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'KyoboHand';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'SDSamliphopangche_Outline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+  font-family: 'PyeongChangPeace-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
   video {
     position: fixed; right: 0; bottom: 0;
     min-width: 100%; min-height: 100%;
@@ -304,20 +356,13 @@ export default {
     display: flex;
     margin-left: auto;
     margin-right: 5rem;
+    float: right;
+  }
+  .soundbtn:hover{
+    transform: scale(1.2);
   }
   .main{
     display: flex;
-  }
-  .category{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-left: 2rem;
-  }
-  .category_color{
-    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(128, 211, 183),
-    0 0 82px rgb(128, 211, 183), 0 0 92px rgb(128, 211, 183), 0 0 102px rgb(128, 211, 183), 0 0 151px rgb(128, 211, 183);
   }
   ul{
     list-style:none;
@@ -329,27 +374,39 @@ export default {
     justify-content: center;
     width: 8rem;
     color: white;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     border: 0;
     padding: 0;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
     position: relative;
+    font-family: 'BMJUA';
+  }
+  .category{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 2rem;
   }
 
-li > button:hover {
-  color: white;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(128, 211, 183),
-    0 0 82px rgb(128, 211, 183), 0 0 92px rgb(128, 211, 183), 0 0 102px rgb(128, 211, 183), 0 0 151px rgb(128, 211, 183);
-} 
+  li > button:hover {
+    transform: scale(1.2);
+  } 
   .content{
     flex: 1;
   }
   .title{
     text-align : center;
-    font-weight: bold;
     font-size: 3.5rem;
-    color: white;
+    font-family: 'BMJUA';
+    letter-spacing: 1rem;
+    color: #ffdfaed6;
+    text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffdfaed6,
+    0 0 25px #ffdfaed6, 0 0 35px #ffdfaed6, 0 0 55px #ffdfaed6, 0 0 70px #ffdfaed6
   }
+
 
  * {
     margin: 0;
@@ -366,7 +423,7 @@ li > button:hover {
       max-width: 100%;
       min-height: 80%;
       margin: auto;
-      padding: 40px 30px;
+      padding: 10px 30px;
   }
 
   .card-wrap {
@@ -374,7 +431,7 @@ li > button:hover {
       width: 300px;
       max-width: 100%;
       height: 400px;
-      margin: 0 auto;
+      margin-right: 2rem;
       margin-bottom: 15px;
   }
 
@@ -415,14 +472,18 @@ li > button:hover {
   }
   .back h1 {
     margin-top: 2rem;
+    font-family: 'RixYeoljeongdo_Regular';
   }
   .back p {
-      margin: 0;
-      width: 60%;
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    margin: 0;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.2rem;
+    font-family: 'KyoboHand';
+    transform: translate(-50%, -50%);
+    text-align: left;
   }
   .flipcard {
       opacity: 0;
@@ -450,7 +511,7 @@ li > button:hover {
     grid-column-gap: 1em;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     border-radius: 1em;
-    top: 90%;
+    top: 85%;
     position: absolute;
     background-color: rgb(0 0 0 / 35%);
   }
@@ -512,6 +573,7 @@ li > button:hover {
   }
   .btn__phone:hover::before {
     content: "YOUTUBE";
+    font-family: 'PyeongChangPeace-Bold';
   }
 
   .btn__email::before {
@@ -519,35 +581,38 @@ li > button:hover {
   }
   .btn__email:hover::before {
     content: "TWITTER";
+    font-family: 'PyeongChangPeace-Bold';
   }
   .btn__intro::before {
     content: url("../../assets/DYKC/profile.png");
   }
   .btn__intro:hover::before {
     content: "INTRO";
+    font-family: 'PyeongChangPeace-Bold';
   }
   .btn__award::before {
     content: url("../../assets/DYKC/award.png");
   }
   .btn__award:hover::before {
     content: "AWARD";
+    font-family: 'PyeongChangPeace-Bold';
   }
   .black-bg {
     width: 100%; height:100%;
     background: rgba(0,0,0,0.6);
   }
-  .white-bg {
-    width: 100%; background: rgb(255 255 255 / 20%);
-    border-radius: 8px;
-    padding: 20px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    width: 70vw;
-    height: 90vh;
-    transform: translate(-50%, -50%);
-  }
-  .close2{
+.white-bg {
+  width: 100%; background: rgb(255 255 255 / 20%);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 70vw;
+  height: 90vh;
+  transform: translate(-50%, -50%);
+}
+.close2{
   position: absolute;
   cursor: pointer;
   border:none;
@@ -570,3 +635,4 @@ li > button:hover {
 }
 
 </style>
+

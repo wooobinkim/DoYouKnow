@@ -6,8 +6,12 @@ export const datalab = {
     rank: null,
     currentrank: null,
     keywordrank: null,
-    relatedkeword: [],
     relatedkeywordnews: [],
+    isoverlay: false,
+    relatedkeword: [],
+    relatedkewordloading: false,
+    datalabviewloading: true,
+    graphkeyword: null,
     category: [
       { value: 1, text: "운동선수" },
       { value: 2, text: "드라마" },
@@ -21,12 +25,12 @@ export const datalab = {
       { value: 3, text: "세달" },
     ],
     nation: [
-      { value: 1, text: "미국" },
-      { value: 2, text: "영국" },
-      { value: 3, text: "일본" },
-      { value: 4, text: "베트남" },
-      { value: 5, text: "인도네시아" },
-      { value: 6, text: "브라질" },
+      { value: 1, text: "미국", lang: "en" },
+      { value: 2, text: "영국", lang: "en" },
+      { value: 3, text: "일본", lang: "ja" },
+      { value: 4, text: "베트남", lang: "vi" },
+      { value: 5, text: "인도네시아", lang: "id" },
+      { value: 6, text: "브라질", lang: "pt" },
     ],
     nationRate: null,
     condition: {
@@ -34,7 +38,6 @@ export const datalab = {
       category: null,
       period: null,
     },
-
   },
   getters: {
     getCurrentRank(state) {
@@ -46,7 +49,7 @@ export const datalab = {
     getRelatedKeyword(state) {
       return state.relatedkeword;
     },
-    getRelatedKeywordNews(state){
+    getRelatedKeywordNews(state) {
       return state.relatedkeywordnews;
     },
     getCondition(state) {
@@ -73,6 +76,18 @@ export const datalab = {
     getNationRate(state) {
       return state.nationRate;
     },
+    getIsOverlay(state) {
+      return state.isoverlay;
+    },
+    getGraphKeyword(state) {
+      return state.graphkeyword;
+    },
+    getRelatedKewordLoading(state) {
+      return state.relatedkewordloading;
+    },
+    getDatalabViewLoading(state) {
+      return state.datalabviewloading;
+    },
   },
   mutations: {
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
@@ -84,10 +99,26 @@ export const datalab = {
     SET_CATEGORY: (state, category) => (state.condition.category = category),
     SET_PERIOD: (state, period) => (state.condition.period = period),
     SET_NATIONRATE: (state, nationRate) => (state.nationRate = nationRate),
+    SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
+    SET_GRAPHKEYWORD: (state, graphkeyword) => {
+      state.graphkeyword = [];
+      graphkeyword.forEach((keyword) => {
+        keyword.date = new Date(keyword.date);
+        state.graphkeyword.push(keyword);
+      });
+      // state.graphkeyword = graphkeyword;
+    },
+    SET_RELATEDKEYWORDLOADING: (state, relatedkewordloading) => {
+      state.relatedkewordloading = relatedkewordloading;
+    },
+    SET_DATALABVIEWLOADING: (state, datalabviewloading) => {
+      state.datalabviewloading = datalabviewloading;
+    },
+    // (state.graphkeyword = graphkeyword),
   },
   actions: {
-    getNationRate({ commit }, { nation }) {
-      axios
+    async getNationRate({ commit }, { nation }) {
+      await axios
         .get(`http://j7b208.p.ssafy.io:8080/api/keyword/searchcount/${nation}`)
         .then((res) => {
           commit("SET_NATIONRATE", res.data);
@@ -108,20 +139,20 @@ export const datalab = {
     async setPeriod({ commit }, { period }) {
       await commit("SET_PERIOD", period);
     },
-
+    async setIsOverlay({ commit }, { data }) {
+      await commit("SET_ISOVERLAY", data);
+    },
     resetKeyword({ commit }) {
       commit("RESET_KEYWORDRANK");
     },
 
-    getKeywordData({ commit }, { condition }) {
-      console.log(condition);
-      axios
+    async getKeywordData({ commit }, { condition }) {
+      // console.log(condition);
+      await axios
         .get(
           `http://j7b208.p.ssafy.io:8080/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
-          // console.log(res, "데이터 전송완료");
-          console.log(res.data);
           commit("SET_KEYWORDRANK", res.data);
         })
         .catch((err) => {
@@ -129,35 +160,49 @@ export const datalab = {
         });
     },
 
+    async getGraphKeyword({ commit }, { condition }) {
+      // console.log(condition);
+      await axios
+        .get(
+          `http://j7b208.p.ssafy.io:8080/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
+        )
+        .then((res) => {
+          commit("SET_GRAPHKEYWORD", res.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+
     async relatedkeyword({ commit }, keyword) {
-      console.log(keyword);
+      commit("SET_RELATEDKEYWORDLOADING", true);
       await axios({
-        url: BackendAPI2.datalab.relatedkeyword(keyword),
+        url: BackendAPI2.datalab.relatedkeyword(keyword.data),
         method: "get",
       })
         .then((res) => {
-          // console.log(res);
           commit("SET_RELATEDKEWORD", res.data);
+          commit("SET_RELATEDKEYWORDLOADING", false);
         })
         .catch((err) => {
           console.error(err.response);
         });
     },
 
-    async relatedkeywordnews({ commit, state } ) {
+    async relatedkeywordnews({ commit, state }) {
       // console.log(keyword);
-      console.log(state.currentRank)
+      console.log(state.currentRank);
       await axios({
-        url:'https://newsapi.org/v2/everything?apiKey=b7e2285d0d434655b79ad42f6584ae3f&q=korea&language=pt&sortBy=publishedAt&pageSize=5&page=3',
-        method:"get",
+        url: "https://newsapi.org/v2/everything?apiKey=b7e2285d0d434655b79ad42f6584ae3f&q=korea&language=pt&sortBy=publishedAt&pageSize=5&page=3",
+        method: "get",
       })
-      .then((res)=>{
-        console.log(res.data.articles);
-        commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
-      })
-      .catch((err)=>{
-        console.error(err.response);
-      })
+        .then((res) => {
+          console.log(res.data.articles);
+          commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
+        })
+        .catch((err) => {
+          console.error(err.response);
+        });
     },
   },
 };

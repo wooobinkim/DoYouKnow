@@ -5,25 +5,32 @@
     </video>
 
     <div>
-      <img class="img" src="../../assets/DYKC/leftleaf.png" style="transform: rotate(339deg);">
+      <img class="img" src="../../assets/DYKC/leftleaf.png" style="transform: rotate(330deg);">
     </div>
     <div class="main">
-      <div class="title">
-        <h1>DoYouKnow</h1>
-        <h1>Club</h1>
-      </div>
+        <transition class="animate__animated animate__zoomIn">
+          <div class="title">
+              <h1 style="margin:0;">DoYouKnow</h1>
+              <h1 style="margin:0;">Club</h1>
+          </div>
+        </transition>
       <button class="button" @click="Award()">
         <img class="btn_img" src="../../assets/DYKC/trophy.png"/>
       </button>
     </div>
     <div>
-      <img class="img" src="../../assets/DYKC/rightleaf.png" style="transform: rotate(21deg);">
+      <img class="img" src="../../assets/DYKC/rightleaf.png" style="transform: rotate(30deg);">
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      show:true,
+    }
+  },
   methods: {
     Award() {
       this.$router.push('/awardintro');
@@ -33,7 +40,10 @@ export default {
 </script>
 
 <style scoped>
-  video {
+  @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Lobster&family=Rowdies&family=Supermercado+One&display=swap');
+  @import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
+ 
+ video {
     position: fixed; right: 0; bottom: 0;
     min-width: 100%; min-height: 100%;
     width: auto; height: auto; z-index: -100;
@@ -52,10 +62,9 @@ export default {
   }
   .title {
     color: bisque;
-    font-size: xx-large;
+    font-size: xxx-large;
     text-align : center;
-    margin-top : 6rem;
-    margin-bottom: 3rem;
+    font-family: 'Lobster', cursive;
   }
   .button{
     background-color: unset;
@@ -64,9 +73,8 @@ export default {
     margin: 3rem;
   }
   .img{
-    width: 10rem;
+    width: 15rem;
     height: auto;
-    margin: 3rem
   }
   .btn_img:hover{
     transform: scale(1.2);
