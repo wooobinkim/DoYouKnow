@@ -1,30 +1,29 @@
 <template>
   <div>
     <div class="keyword-container">
-      <template v-for="nation in this.getNation" :key="nation.value">
-        <button @click="setNation(nation.value)" :class="{'btn-common': true, 'btn-nation-active' : ActiveNation[nation.value-1] === true}">
-          {{ nation.text }}
-        </button>
-      </template>
       <br />
       <template v-for="category in this.getCategory" :key="category.value">
         <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
-        <button @click="setCategory(category.value)" :class="{'btn-common': true, 'btn-category-active' : CategoryNo === category.value}">
+        <button @click="setCategory(category.value)" :class="{'btn-common': true, 'btn-category-active' : CategoryNo === category.value}" style="margin-right:1rem; margin-left:1rem;">
           {{ category.text }}
         </button>
       </template>
       <br />
-      <template v-for="period in this.getPeriod" :key="period.value">
-        <button @click="setPeriod(period.value)" :class="{'btn-common': true, 'btn-period-active' : PeriodNo === period.value}">{{ period.text }}</button>
-      </template>
+      <div style="margin-top:2rem;">
+        <div style="display:flex; flex-direction: column; float: right;">
+          <div v-for="period in this.getPeriod" :key="period.value">
+            <button @click="setPeriod(period.value)" :class="{'btn-common': true, 'btn-period-active' : PeriodNo === period.value}">{{ period.text }}</button>
+          </div>
+        </div>
 
-      <!-- <section id="content1"> -->
-      <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
-        <template v-if="index < 5">
-          <div @click="setOneKeyword(keyword.name)">{{ keyword.name }}</div>
+        <!-- <section id="content1"> -->
+        <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
+          <div class="rankkeyword" v-if="index < 5">
+            <div @click="setOneKeyword(keyword.name)">{{index+1}}. {{ keyword.name }}</div>
+          </div>
         </template>
-      </template>
+      </div>
       <!-- </section> -->
     </div>
   </div>
@@ -134,13 +133,16 @@ export default {
 .keyword-container {
   width: 27.75rem;
   height: 15rem;
-  background-color: #e4e8ef;
   margin-left: 1.5rem;
   /* min-width: 320px;
   max-width: 800px; */
   padding: 0;
-  background: #ffffff;
   border-radius: 15px;
+}
+.rankkeyword{
+  text-align: left;
+  margin-left: 1rem;
+  font-weight: bold;
 }
 p {
   margin: 0;

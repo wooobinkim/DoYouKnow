@@ -6,6 +6,7 @@
       :type="lineChart.type"
       :data="lineChart.data"
       :options="lineChart.options"
+      :width="440"
     ></vue3-chart-js>
   </div>
 </template>
@@ -49,7 +50,7 @@ export default {
         ],
       },
       options: {
-        // responsive: true,
+        responsive: false,
         // maintainAspectRatio: false,
         plugins: {
           labels: false,
@@ -124,8 +125,8 @@ export default {
 
 <style scoped>
 .doughnut-container{
-  width: 320px;
-  height: 320px;
+  width: 90%;
+  height: 450px;
   margin-left: 1.5rem;
   background: rgba(255, 255, 255, 0.70);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);

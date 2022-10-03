@@ -1,5 +1,5 @@
 <template>
-  <section >
+  <div >
     <div v-if="this.getIsOverlay==false">
       <div class="title-container">
         <h6
@@ -52,7 +52,7 @@
     <div class="globe-area">
       <MainGlobe class="top-globe"/>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -64,8 +64,8 @@
   import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
   import KeywordNews from "@/components/Datalab/KeywordNews.vue";
   import KeywordRank from "@/components/Datalab/KeywordRank.vue";
-  import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
   import AOS from "aos";
+  import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
 
 export default {
   components: {
@@ -105,7 +105,7 @@ h6 {
   position: absolute;
   top: 180px;
   left: 300px;
-  /* animation: slide 2s ease-out; */
+  animation: slide 2s ease-out;
   text-align: start;
 }
 
@@ -120,6 +120,7 @@ h6 {
   top: 190px;
   left: 300px;
   text-align: start;
+  height: 15%;
 }
 
 .content-msg {
@@ -170,7 +171,7 @@ h6 {
   position: fixed;
   width: 100%;
   height: 100%;
-  top: -6%;
+  /* top: -6%; */
   left: 0;
   bottom: 0;
   display: flex;
@@ -187,13 +188,13 @@ h6 {
   height: 100%;
   top: 0%;
   bottom: 0;
-  right: 0;
+  right: 2%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   width: 25%;
   float: right;
   z-index: 10;
+  justify-content: space-around;
   animation: fadeInRight 2s;
 }
 

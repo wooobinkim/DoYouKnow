@@ -1,7 +1,7 @@
 <template>
-  <div style="height: 100%; width: 100%">
+  <div style="height: 320px; width: 480px">
     <loading-spinner v-if="this.getRelatedKewordLoading" />
-    <div style="height: 100%; width: 100%">
+    <div style="height: 320px; width: 480px">
       <canvas id="canvas"></canvas>
     </div>
   </div>
@@ -34,7 +34,7 @@ export default {
         ],
       },
       options: {
-        responsive: true,
+        // responsive: true,
         maintainAspectRatio: false,
         plugins: {
           labels: false,
@@ -146,5 +146,9 @@ export default {
 }
 .chartvue {
   visibility: hidden;
+}
+#canvas{
+  height: 320px;
+  width: 480px;
 }
 </style>
