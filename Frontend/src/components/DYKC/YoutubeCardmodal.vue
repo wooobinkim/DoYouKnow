@@ -28,8 +28,9 @@ export default {
   methods:{
     setKeyword(){
       const API_KEY = process.env.VUE_APP_YOUTUBE_API_KEY
+      
       const API_URL = 'https://www.googleapis.com/youtube/v3/search'
-      this.keyword = this.name + '해외반응'
+      this.keyword = this.name + '해외 반응'
 
       const config = {
         params:{
@@ -37,14 +38,14 @@ export default {
           part: 'snippet',
           type: 'video',
           chart : 'mostPopular',
-          maxResults : 1,
+          maxResults : 2,
           q: this.keyword,
         }
       }
       axios.get(API_URL, config)
         .then(response => {
           this.youtube = response.data.items
-          this.selectedYoutube = this.youtube[0]      
+          this.selectedYoutube = this.youtube[1]      
           this.urlword = this.selectedYoutube.id.videoId
            
         })
