@@ -1,16 +1,15 @@
 import axios from "axios";
-import BackendAPI2 from "@/api/BackendAPI";
+import BackendAPI2 from "@/api/BackendAPI2";
 
 export const datalab = {
   state: {
     rank: null,
     currentrank: null,
     keywordrank: null,
+    // relatedkeword: [],
     relatedkeywordnews: [],
-    isoverlay: false,
-    relatedkeword: [],
+    relatedkeword: null,
     relatedkewordloading: false,
-    datalabviewloading: true,
     graphkeyword: null,
     category: [
       { value: 1, text: "운동선수" },
@@ -38,6 +37,7 @@ export const datalab = {
       category: null,
       period: null,
     },
+
   },
   getters: {
     getCurrentRank(state) {
@@ -49,7 +49,7 @@ export const datalab = {
     getRelatedKeyword(state) {
       return state.relatedkeword;
     },
-    getRelatedKeywordNews(state) {
+    getRelatedKeywordNews(state){
       return state.relatedkeywordnews;
     },
     getCondition(state) {
@@ -76,17 +76,11 @@ export const datalab = {
     getNationRate(state) {
       return state.nationRate;
     },
-    getIsOverlay(state) {
-      return state.isoverlay;
-    },
     getGraphKeyword(state) {
       return state.graphkeyword;
     },
     getRelatedKewordLoading(state) {
       return state.relatedkewordloading;
-    },
-    getDatalabViewLoading(state) {
-      return state.datalabviewloading;
     },
   },
   mutations: {
@@ -99,7 +93,6 @@ export const datalab = {
     SET_CATEGORY: (state, category) => (state.condition.category = category),
     SET_PERIOD: (state, period) => (state.condition.period = period),
     SET_NATIONRATE: (state, nationRate) => (state.nationRate = nationRate),
-    SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
     SET_GRAPHKEYWORD: (state, graphkeyword) => {
       state.graphkeyword = [];
       graphkeyword.forEach((keyword) => {
@@ -110,9 +103,6 @@ export const datalab = {
     },
     SET_RELATEDKEYWORDLOADING: (state, relatedkewordloading) => {
       state.relatedkewordloading = relatedkewordloading;
-    },
-    SET_DATALABVIEWLOADING: (state, datalabviewloading) => {
-      state.datalabviewloading = datalabviewloading;
     },
     // (state.graphkeyword = graphkeyword),
   },
@@ -139,9 +129,7 @@ export const datalab = {
     async setPeriod({ commit }, { period }) {
       await commit("SET_PERIOD", period);
     },
-    async setIsOverlay({ commit }, { data }) {
-      await commit("SET_ISOVERLAY", data);
-    },
+
     resetKeyword({ commit }) {
       commit("RESET_KEYWORDRANK");
     },
@@ -236,6 +224,7 @@ export const datalab = {
       .catch((err)=>{
         console.error(err.response);
       })
+
     },
   },
 };

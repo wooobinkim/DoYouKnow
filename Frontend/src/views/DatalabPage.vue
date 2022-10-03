@@ -33,6 +33,7 @@
       </div>
       <word-cloud></word-cloud>
       <trend-tab></trend-tab>
+      <div><KeywordNews /></div>s
     </div>
     <button @click="overlayon()">열기</button>
     <div v-if="this.getIsOverlay" class="overlay">

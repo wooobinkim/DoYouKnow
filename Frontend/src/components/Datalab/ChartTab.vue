@@ -31,7 +31,7 @@ export default {
       id: "line",
       type: "line",
       data: {
-        labels: [],
+        label: [],
         datasets: [
           {
             backgroundColor: "#f87979",
@@ -40,9 +40,24 @@ export default {
         ],
       },
       options: {
+        labels: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+            callbacks: {
+              label: function(tooltipItem) {
+                      return tooltipItem.yLabel;
+              }
+            }
+        },
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
+          datalabels: {
+            display: false,
+            backgroundColor: '#404040',
+          },
           title: {
             text: "검색량 추이",
             display: true,
@@ -53,20 +68,21 @@ export default {
 
     const updateChart = (res) => {
       lineChart.options.plugins.title = {
-        text: "Updated Chart",
+        text: "검색량 추이",
         display: true,
       };
-      lineChart.data.labels = [1,2,3,4,5,6,7,8,9,0];
+      lineChart.data.labels = [];
       lineChart.data.datasets = [
         {
+           label: res[0].name,
           backgroundColor: "#f87979",
           data: [],
         },
       ];
 
       for (let i = 0; i < res.length; i++) {
-        console.log(res[i]);
-        lineChart.data.labels[i] = res[i].date;
+        // console.log(res[i]);
+        lineChart.data.labels[i] = res[i].date.toLocaleDateString();
         lineChart.data.datasets[0].data[i] = res[i].count;
       }
       chartRef.value.update(250);
@@ -101,8 +117,8 @@ export default {
       }
     },
     getGraphKeyword: function (data) {
-      console.log("변했다.");
-      console.log(data);
+      // console.log("변했다.");
+      // console.log(data);
       this.keywordlist = data;
       this.updateChart(data);
     },
