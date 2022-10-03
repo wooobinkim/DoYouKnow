@@ -1,6 +1,26 @@
 <template>
   <div class="canvas-container">
-    <div id="tooltip"></div>
+    <div
+      id="tooltip"
+      style="
+        left: 0;
+        top: 0;
+        position: fixed;
+        min-width: 15px;
+        text-align: center;
+        font-family: monospace;
+        font-weight: bold;
+        color: white;
+        background: #eb96dd;
+        display: none;
+        opacity: 0;
+        border : 1px, solid, black
+        transition: opacity 0.25s linear;
+        border-radius: 3px;
+        width: 100px;
+        height: 22px;
+      "
+    ></div>
   </div>
 </template>
 
@@ -143,19 +163,19 @@ export default {
         .children[0];
 
       // marker model
-      let mouse = new Vector2();
       var hoveredObj = undefined;
       var tooltipEnabledObjects = [];
       var latestMouseProjection = undefined;
       var tooltipDisplayTimeout = undefined;
-      console.log(renderer, "dom");
 
       // us
       let marker = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker.scale.set(0.05, 0.05, 0.05);
       marker.position.set(-5, 6, -8);
+      console.log(marker, "marker");
       marker.userData.tooltipText = "미국";
+      marker.userData.name = "미국";
       tooltipEnabledObjects.push(marker);
       console.log(marker, "marker");
       scene.add(marker);
@@ -165,30 +185,35 @@ export default {
         .scene.children[0];
       marker1.scale.set(0.05, 0.05, 0.05);
       marker1.position.set(-6, 8.5, 3.5);
+      tooltipEnabledObjects.push(marker1);
       scene.add(marker1);
       // jp
       let marker2 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker2.scale.set(0.05, 0.05, 0.05);
       marker2.position.set(8.5, 7, 1);
+      tooltipEnabledObjects.push(marker2);
       scene.add(marker2);
       // vi
       let marker3 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker3.scale.set(0.05, 0.05, 0.05);
       marker3.position.set(8.5, 3, 7);
+      tooltipEnabledObjects.push(marker3);
       scene.add(marker3);
       // ind
       let marker4 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker4.scale.set(0.05, 0.05, 0.05);
       marker4.position.set(10, 0, 5.5);
+      tooltipEnabledObjects.push(marker4);
       scene.add(marker4);
       // br
       let marker5 = (await new GLTFLoader().loadAsync("texture/pointer.glb"))
         .scene.children[0];
       marker5.scale.set(0.05, 0.05, 0.05);
       marker5.position.set(-10.5, -2.5, -4);
+      tooltipEnabledObjects.push(marker5);
       scene.add(marker5);
 
       // marker event =======================================================================
@@ -196,7 +221,8 @@ export default {
       const raycaster = new Raycaster();
 
       const showTooltip = function () {
-        var divElement = document.querySelector("#tooltip");
+        var divElement = document.getElementById("tooltip");
+        console.log(divElement, "ele");
         if (divElement && latestMouseProjection) {
           divElement.style.display = "block";
           divElement.style.opacity = 0.0;
@@ -213,13 +239,34 @@ export default {
             -(tooltipPosition.y * canvasHalfHeight) +
             canvasHalfHeight +
             renderer.domElement.offsetTop;
-          var tootipWidth = divElement[0].Width;
-          var tootipHeight = divElement[0].Height;
 
-          divElement.style.left = `${tooltipPosition.x - tootipWidth / 2}px`;
-          divElement.style.top = `${tooltipPosition.y - tootipHeight - 5}px`;
+          // var tootipWidth = divElement.width;
+          // var tootipHeight = divElement.height;
+          // 여기가 툴팁 위치
+          // divElement.style.left = `${tooltipPosition.x - tootipWidth / 2}px`;
+          divElement.style.left = `${tooltipPosition.x}px`;
+          divElement.style.top = `${tooltipPosition.y}px`;
 
-          divElement.text(hoveredObj.userData.tooltipText);
+          if (hoveredObj.id == 53) {
+            divElement.innerText = "미국";
+          }
+          if (hoveredObj.id == 59) {
+            divElement.innerText = "영국";
+          }
+          if (hoveredObj.id == 65) {
+            divElement.innerText = "일본";
+          }
+          if (hoveredObj.id == 71) {
+            divElement.innerText = "베트남";
+          }
+          if (hoveredObj.id == 77) {
+            divElement.innerText = "인도네시아";
+          }
+          if (hoveredObj.id == 83) {
+            divElement.innerText = "브라질";
+          }
+
+          // divElement.innerText = hoveredObj.userData.name;
 
           setTimeout(function () {
             divElement.style.opacity = 1.0;
@@ -236,13 +283,13 @@ export default {
 
       const updateMouseCoords = function (event, coordsObj) {
         coordsObj.x =
-          ((event.clientX - renderer.domElement.Left + 0.5) /
+          ((event.clientX - renderer.domElement.offsetLeft + 0.5) /
             window.innerWidth) *
             2 -
           1;
         coordsObj.y =
           -(
-            (event.clientY - renderer.domElement.Top + 0.5) /
+            (event.clientY - renderer.domElement.offsetTop + 0.5) /
             window.innerHeight
           ) *
             2 +
@@ -250,10 +297,9 @@ export default {
       };
 
       const handleManipulationUpdate = function () {
-        raycaster.setFromCamera(mouse, camera);
-        var intersects = raycaster.intersectObjects(tooltipEnabledObjects);
-        console.log(intersects, " inter");
-        if (intersects.length >= 2) {
+        raycaster.setFromCamera(pointer, camera);
+        const intersects = raycaster.intersectObjects(tooltipEnabledObjects);
+        if (intersects.length > 0) {
           latestMouseProjection = intersects[0].point;
           hoveredObj = intersects[0].object;
         }
@@ -268,12 +314,12 @@ export default {
           tooltipDisplayTimeout = setTimeout(function () {
             tooltipDisplayTimeout = undefined;
             showTooltip();
-          }, 330);
+          }, 100);
         }
       };
 
       const onMouseMove1 = (e) => {
-        updateMouseCoords(e, mouse);
+        updateMouseCoords(e, pointer);
         latestMouseProjection = undefined;
         hoveredObj = undefined;
         handleManipulationUpdate();
@@ -284,22 +330,16 @@ export default {
       const onMouseMove = (e) => {
         pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
         pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
-
         raycaster.setFromCamera(pointer, camera);
-        const intersects = raycaster.intersectObjects(scene.children);
 
+        const intersects = raycaster.intersectObjects(scene.children);
         if (intersects.length >= 2) {
           if (intersects[0].object.id == 53) {
-            alert(intersects[0].object.id + "미국클릭");
             const nation = 1;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
-            router.push({
-              name: "DatalabView",
-            });
           }
           if (intersects[0].object.id == 59) {
-            alert(intersects[0].object.id + "영국클릭");
             const nation = 2;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -309,13 +349,11 @@ export default {
             });
           }
           if (intersects[0].object.id == 65) {
-            alert(intersects[0].object.id + "일본클릭");
             const nation = 3;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
           }
           if (intersects[0].object.id == 71) {
-            alert(intersects[0].object.id + "베트남클릭");
             const nation = 4;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -324,7 +362,6 @@ export default {
             });
           }
           if (intersects[0].object.id == 77) {
-            alert(intersects[0].object.id + "인도네시아클릭");
             const nation = 5;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -333,7 +370,6 @@ export default {
             });
           }
           if (intersects[0].object.id == 83) {
-            alert(intersects[0].object.id + "브라질클릭");
             const nation = 6;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -474,7 +510,7 @@ canvas {
   right: 15%; */
   z-index: 3;
 }
-#tooltip {
+/* #tooltip {
   position: fixed;
   left: 0;
   top: 0;
@@ -489,5 +525,5 @@ canvas {
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   transition: opacity 0.25s linear;
   border-radius: 3px;
-}
+} */
 </style>
