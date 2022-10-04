@@ -1,7 +1,7 @@
 <template>
-  <div style="height: 320px; width: 480px">
+  <div style="height: 100%; width: 100%">
     <loading-spinner v-if="this.getRelatedKewordLoading" />
-    <div style="height: 320px; width: 480px">
+    <div style="height: 100%; width: 100%">
       <canvas id="canvas"></canvas>
     </div>
   </div>
@@ -34,7 +34,7 @@ export default {
         ],
       },
       options: {
-        // responsive: true,
+        responsive: true,
         maintainAspectRatio: false,
         plugins: {
           labels: false,
@@ -67,7 +67,7 @@ export default {
         datasets: [
           {
             label: "",
-            data: data.map((d, index) => 40 - index * 3),
+            data: data.map((d, index) => 25 - index * 2),
             color: data.map((d) => color[d[1] % 8]),
           },
         ],
@@ -130,7 +130,7 @@ export default {
       this.store.dispatch("relatedkeyword", { data });
     },
     getRelatedKeyword: function (data) {
-      const data1 = data.splice(0, 30);
+      const data1 = data.splice(0, 0);
       this.updatewordcloud(data1);
     },
   },
@@ -148,9 +148,5 @@ export default {
 }
 .chartvue {
   visibility: hidden;
-}
-#canvas{
-  height: 320px;
-  width: 480px;
 }
 </style>

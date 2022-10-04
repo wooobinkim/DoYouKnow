@@ -282,18 +282,18 @@ h6 {
   }
 }
 /* .news-container{
-  width: 340px;
+  width: 450px;
   height: 320px;
   background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
   border-radius: 17px;
-}
+} */
 .chart-container{
-  width: 340px;
+  width: 450px;
   height: 160px;
-  background: rgba(255, 255, 255, 0.53);
+  /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
-  border-radius: 17px;
+  border-radius: 17px; */
 };
 
 .doughnut-container{
@@ -302,6 +302,6 @@ h6 {
   background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
   border-radius: 20px;
-}; */
+};
 
 </style>
