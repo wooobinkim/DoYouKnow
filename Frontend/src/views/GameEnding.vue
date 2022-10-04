@@ -23,7 +23,7 @@
           id="myAudio"
           autoplay="autoplay"
           loop
-          onloadstart="this.volume=0.05"
+          onloadstart="this.volume=0.1"
         >
           <source src="@/assets/higherlower/ending-bgm.mp3" type="audio/mp3" />
         </audio>
