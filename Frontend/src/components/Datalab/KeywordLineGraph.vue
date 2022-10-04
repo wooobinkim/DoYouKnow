@@ -1,5 +1,5 @@
 <template>
-    <div class="chart-container">
+  <div class="chart-container">
     <vue3-chart-js
       :id="lineChart.id"
       ref="chartRef"
@@ -33,18 +33,17 @@ export default {
         labels: "",
         datasets: [
           {
-            backgroundColor: "#f87979",
             data: [],
           },
         ],
       },
       options: {
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: false,
         plugins: {
           labels: false,
           legend: {
-            display: false
+            display: false,
           },
           title: {
             text: "검색량 추이",
@@ -82,13 +81,17 @@ export default {
       lineChart,
       updateChart,
       chartRef,
-      store
+      store,
     };
   },
-  computed:{
-      ...mapGetters(["getCurrentRank","getConditionNation",
+  computed: {
+    ...mapGetters([
+      "getCurrentRank",
+      "getConditionNation",
       "getConditionCategory",
-      "getConditionPeriod", "getGraphKeyword"])
+      "getConditionPeriod",
+      "getGraphKeyword",
+    ]),
   },
   methods: {
     ...mapActions(["getGraphKeyword"]),
@@ -116,7 +119,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* .chart-container {
   width: 20rem;
   height: 16rem;

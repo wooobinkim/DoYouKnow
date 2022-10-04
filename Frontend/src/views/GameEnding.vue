@@ -1,6 +1,8 @@
 <template>
   <div class="ending-background">
-    <img @click="gohome" src="@/assets/logo.png" alt="logo" class="logo" />
+    <a href="https://j7b208.p.ssafy.io/">
+      <img src="@/assets/logo.png" alt="logo" class="logo" />
+    </a>
     <div>
       <div>
         <img
@@ -21,7 +23,7 @@
           id="myAudio"
           autoplay="autoplay"
           loop
-          onloadstart="this.volume=0.05"
+          onloadstart="this.volume=0.1"
         >
           <source src="@/assets/higherlower/ending-bgm.mp3" type="audio/mp3" />
         </audio>

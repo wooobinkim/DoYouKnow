@@ -5,30 +5,39 @@
       <template v-for="category in this.getCategory" :key="category.value">
         <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
-        <button @click="setCategory(category.value)" :class="{'btn-common': true, 'btn-category-active' : CategoryNo === category.value}" style="margin-right:1rem; margin-left:1rem;">
+        <button
+          @click="setCategory(category.value)"
+          :class="{
+            'btn-common': true,
+            'btn-category-active': CategoryNo === category.value,
+          }"
+          style="margin-right: 1rem; margin-left: 1rem"
+        >
           {{ category.text }}
         </button>
       </template>
       <br />
-      <div style="margin-top:1rem">
+      <div style="margin-top:2rem;">
         <div style="display:flex; flex-direction: column; float: right;">
           <div v-for="period in this.getPeriod" :key="period.value">
-            <button @click="setPeriod(period.value)" :class="{'btn-common': true, 'btn-period-active' : PeriodNo === period.value}">{{ period.text }}</button>
+            <button
+              @click="setPeriod(period.value)"
+              :class="{
+                'btn-common': true,
+                'btn-period-active': PeriodNo === period.value,
+              }"
+            >
+              {{ period.text }}
+            </button>
           </div>
         </div>
 
-        <div class="leaderboard">
-          <ol>
-            <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
-              <li data-aos="fade-right" v-if="index<5">
-                <mark class="rankkeyword" @click="setOneKeyword(keyword.name)">
-                  {{ keyword.name }}
-                </mark>
-              </li>
-            </template>
-          </ol>
-        </div>
-        
+        <!-- <section id="content1"> -->
+        <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
+          <div class="rankkeyword" v-if="index < 5">
+            <div @click="setOneKeyword(keyword.name)">{{index+1}}. {{ keyword.name }}</div>
+          </div>
+        </template>
       </div>
       <!-- </section> -->
     </div>
@@ -41,7 +50,7 @@ import { onMounted } from "vue";
 // import { useRoute } from "vue-router";
 export default {
   setup() {
-    let ActiveNation = [false, false, false, false, false, false]
+    let ActiveNation = [false, false, false, false, false, false];
     // let ActiveCategory = [false, false, false, false, false, false]
     // let ActivePeriod = [false, false, false, false, false, false]
 
@@ -49,10 +58,10 @@ export default {
     onMounted(() => {});
 
     const setNation = function setNation(nation) {
-      if (ActiveNation[nation-1] === false){
-        ActiveNation[nation-1] = true
+      if (ActiveNation[nation - 1] === false) {
+        ActiveNation[nation - 1] = true;
       } else {
-        ActiveNation[nation-1] = false
+        ActiveNation[nation - 1] = false;
       }
       store.dispatch("setNation", { nation });
     };
@@ -66,14 +75,13 @@ export default {
       store.dispatch("currentRank", { keyword });
     };
 
-    
     // const rank1 = function (e) {
     //   e = rankDrama[0].title;
     //   // console.log(e, "eeeee");
     //   const keyword = e;
     //   store.dispatch("currentRank", { keyword });
     // };
-  
+
     return {
       // rank1,
       setNation,
@@ -135,6 +143,13 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 .keyword-container {
   width: 27.75rem;
@@ -144,8 +159,9 @@ export default {
   max-width: 800px; */
   padding: 0;
   border-radius: 15px;
+  font-family: "KOTRA_BOLD-Bold";
 }
-.rankkeyword{
+.rankkeyword {
   text-align: left;
   margin-left: 1rem;
   font-weight: bold;
@@ -220,7 +236,7 @@ input:checked + label {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 15px;
-  font-family: 'Jeju Gothic', sans-serif;
+  font-family: "Jeju Gothic", sans-serif;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   font-weight: 600;

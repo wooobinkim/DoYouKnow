@@ -21,8 +21,10 @@
           </p>
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
+        <div class="intro-arrow">
+          <img src="@/assets/intro_arrow.png" />
+        </div>
       </div>
-      <img class="intro-arrow" src="@/assets/intro_arrow.png" />
     </div>
     <div v-else>
       <transition name="left">
@@ -30,14 +32,49 @@
           <div class="head_box">
             <div class="nation">
               <div v-for="nation in this.getNation" :key="nation">
-                <div v-if="this.getConditionNation == nation.value" style="display:flex; align-items: center;">
-                  <p class="head_title">{{ nation.text }}</p>
-                  <div v-if="this.getConditionNation==1"><img class="nationFlag" src="../../../public/datalab/us.png"></div>
-                  <div v-else-if="this.getConditionNation==2"><img class="nationFlag" src="../../../public/datalab/uk.png"></div>
-                  <div v-else-if="this.getConditionNation==3"><img class="nationFlag" src="../../../public/datalab/jp.png"></div>
-                  <div v-else-if="this.getConditionNation==4"><img class="nationFlag" src="../../../public/datalab/vi.png"></div>
-                  <div v-else-if="this.getConditionNation==5"><img class="nationFlag" src="../../../public/datalab/in.png"></div>
-                  <div v-else-if="this.getConditionNation==6"><img class="nationFlag" src="../../../public/datalab/br.png"></div>
+                <div
+                  v-if="this.getConditionNation == nation.value"
+                  style="display: flex; align-items: center"
+                >
+                  <div class="nation-container">
+                    <p class="head_title">{{ nation.text }}</p>
+                  </div>
+                  <div v-if="this.getConditionNation == 1">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/us.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 2">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/uk.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 3">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/jp.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 4">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/vi.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 5">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/in.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 6">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/br.png"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -45,7 +82,7 @@
               <img class="backbtnimg" src="../../assets/exit.png" />
             </button>
           </div>
-          <div><DataInfo/></div>
+          <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div class="doughnut-container"><KeywordDonutGraph /></div>
         </div>
@@ -110,14 +147,18 @@ export default {
 
 <style scoped>
 @font-face {
-    font-family: 'RixInooAriDuriR';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "RixInooAriDuriR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
-.head_title{
-  font-family: 'RixInooAriDuriR';
-  font-size: 4rem;
+.nation-container {
+  width: 210px;
+}
+.head_title {
+  font-family: "KOTRA_BOLD-Bold";
+  font-size: 2.5rem;
 }
 h6 {
   font-size: 1.2em;
@@ -130,7 +171,7 @@ h6 {
   animation: slide 2s ease-out;
   text-align: start;
 }
-.nationFlag{
+.nationFlag {
   width: 3rem;
   height: 3rem;
   margin-top: 1rem;
@@ -146,21 +187,33 @@ h6 {
   top: 190px;
   left: 300px;
   text-align: start;
-  height: 15%;
 }
-
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .content-msg {
+  font-family: "KOTRA_BOLD-Bold";
   font-size: 1em;
   width: 450px;
   color: white;
-  font-family: sans-serif;
   font-weight: 400;
   position: absolute;
   top: 350px;
   left: 300px;
   text-align: start;
 }
-
+.intro-arrow {
+  width: 15rem;
+  height: 15rem;
+  position: absolute;
+  /* left: -70%; */
+  margin-left: 81rem;
+  margin-top: 28rem;
+}
 .content-msg p {
   margin: 20px 0;
   font-size: 1.2em;
@@ -186,17 +239,10 @@ h6 {
   left: -13rem;
 }
 
-.intro-arrow {
-  width: 12%;
-  height: 25%;
-  position: absolute;
-  top: 65%;
-  right: 19%;
-}
 .left_section {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 80%;
   /* top: -6%; */
   left: 0;
   bottom: 0;

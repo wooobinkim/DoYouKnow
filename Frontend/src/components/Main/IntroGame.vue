@@ -11,26 +11,32 @@
       <div class="game-router" @click="goToGamePage">플레이 하러 가기 >></div>
     </div>
   </div>
-  <img class="photo" src="@/assets/highlow.jpg">
+  <img class="photo" src="@/assets/highlow.jpg" />
 </template>
 
 <script>
 import { useRouter } from "vue-router";
 export default {
-  setup(){
+  setup() {
     const router = useRouter();
     const goToGamePage = () => {
-      router.push({name: 'GamePage'})
-    }
+      router.push({ name: "GamePage" });
+    };
     return {
-      goToGamePage
-    }
-  }
-  
-}
+      goToGamePage,
+    };
+  },
+};
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .photo {
   position: absolute;
   top: 200px;
@@ -56,22 +62,23 @@ export default {
 .game-title p {
   margin: 0;
   font-weight: bold;
-  
 }
 
 .more {
+  font-family: "KOTRA_BOLD-Bold";
   color: red;
 }
 
 .less {
+  font-family: "KOTRA_BOLD-Bold";
   color: blue;
 }
 
 .game-content {
+  font-family: "KOTRA_BOLD-Bold";
   color: black;
   font-size: 1.2em;
   margin-top: 30px;
-
 }
 
 .game-content p {
