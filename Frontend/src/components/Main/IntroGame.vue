@@ -11,23 +11,22 @@
       <div class="game-router" @click="goToGamePage">플레이 하러 가기 >></div>
     </div>
   </div>
-  <img class="photo" src="@/assets/highlow.jpg">
+  <img class="photo" src="@/assets/highlow.jpg" />
 </template>
 
 <script>
 import { useRouter } from "vue-router";
 export default {
-  setup(){
+  setup() {
     const router = useRouter();
     const goToGamePage = () => {
-      router.push({name: 'GamePage'})
-    }
+      router.push({ name: "GamePage" });
+    };
     return {
-      goToGamePage
-    }
-  }
-  
-}
+      goToGamePage,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -56,7 +55,6 @@ export default {
 .game-title p {
   margin: 0;
   font-weight: bold;
-  
 }
 
 .more {
@@ -71,7 +69,6 @@ export default {
   color: black;
   font-size: 1.2em;
   margin-top: 30px;
-
 }
 
 .game-content p {

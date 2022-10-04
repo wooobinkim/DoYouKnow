@@ -1,6 +1,8 @@
 <template>
   <div class="ending-background">
-    <img @click="gohome" src="@/assets/logo.png" alt="logo" class="logo" />
+    <a href="https://j7b208.p.ssafy.io/">
+      <img src="@/assets/logo.png" alt="logo" class="logo" />
+    </a>
     <div>
       <div>
         <img

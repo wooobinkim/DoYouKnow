@@ -18,9 +18,7 @@
         width: 55px;
         height: 55px;
       "
-    >
-      <img src="" id="hoverimg" alt="" />
-    </div>
+    ></div>
   </div>
 </template>
 
@@ -53,10 +51,11 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { onMounted } from "@vue/runtime-core";
-// import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+// import { useRouter } from "vue-router";
 export default {
   setup() {
+    // const router = useRouter();
     const store = useStore();
     // const router = useRouter();
     // const canvas = document.querySelector('.canvas-container')
@@ -78,6 +77,11 @@ export default {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
     onMounted(() => {
+      let flag = false;
+      if (flag === false) {
+        // router.go();
+        flag = true;
+      }
       document.querySelector(".globe-area").appendChild(renderer.domElement);
     });
     function sleep(sec) {
@@ -513,7 +517,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .sun-background {
   position: absolute;
   width: 100%;
@@ -532,6 +536,6 @@ canvas {
   /* position: absolute;
   top: 20%;
   right: 15%; */
-  z-index: 3;
+  z-index: 100;
 }
 </style>

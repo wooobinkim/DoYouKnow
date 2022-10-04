@@ -1,6 +1,8 @@
 <template>
   <div class="game-background">
-    <img @click="gohome" src="@/assets/logo.png" alt="logo" class="logo" />
+    <a href="https://j7b208.p.ssafy.io/">
+      <img src="@/assets/logo.png" alt="logo" class="logo" />
+    </a>
     <div>
       <div>
         <img
@@ -58,14 +60,13 @@ export default {
       router.push({ name: "GamePlay" });
     };
     const gohome = function () {
-      router.push({ name: "MainPage" });
+      router.go(-1);
     };
     let data = reactive({
       isSound: true,
     });
     const onOffSound = function () {
       data.isSound = !data.isSound;
-      console.log(data.isSound);
     };
 
     return {

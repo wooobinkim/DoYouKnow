@@ -5,29 +5,29 @@
       <div class="awards-content">
         <p>우리 나라를 빛낸 수많은 K-culture 중 최고봉은 과연?</p>
         <p>영광의 순간을 맛보러 GO GO~</p>
-        <p class="awards-router" @click="goToAwardsPage">두유노클럽 입장하기 >></p>
+        <p class="awards-router" @click="goToAwardsPage">
+          두유노클럽 입장하기 >>
+        </p>
       </div>
     </div>
-    <img src="../../assets/DYKClub.png" class="photo" @click="goToAwardsPage">
-    <img src="@/assets/podium.jpg" class="podium">
-    
+    <img src="../../assets/DYKClub.png" class="photo" @click="goToAwardsPage" />
+    <img src="@/assets/podium.jpg" class="podium" />
   </section>
 </template>
 
 <script>
 import { useRouter } from "vue-router";
 export default {
-  setup(){
+  setup() {
     const router = useRouter();
     const goToAwardsPage = () => {
-      router.push({name: 'DYKC'})
-    }
+      router.push({ name: "DYKC" });
+    };
     return {
-      goToAwardsPage
-    }
-  }
-  
-}
+      goToAwardsPage,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -69,7 +69,7 @@ export default {
 
 .awards-content {
   color: black;
-  font-size: 1.2em
+  font-size: 1.2em;
 }
 
 .awards-content p {
