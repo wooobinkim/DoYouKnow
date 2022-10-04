@@ -29,17 +29,23 @@
         <div class="left_section" v-if="this.getIsOverlay">
           <div class="head_box">
             <div class="nation">
-              <template v-for="nation in this.getNation" :key="nation">
-                <template v-if="this.getConditionNation == nation.value">
-                  <h1 class="title">{{ nation.text }}</h1>
-                </template>
-              </template>
+              <div v-for="nation in this.getNation" :key="nation">
+                <div v-if="this.getConditionNation == nation.value" style="display:flex; align-items: center;">
+                  <p class="head_title">{{ nation.text }}</p>
+                  <div v-if="this.getConditionNation==1"><img class="nationFlag" src="../../../public/datalab/us.png"></div>
+                  <div v-else-if="this.getConditionNation==2"><img class="nationFlag" src="../../../public/datalab/uk.png"></div>
+                  <div v-else-if="this.getConditionNation==3"><img class="nationFlag" src="../../../public/datalab/jp.png"></div>
+                  <div v-else-if="this.getConditionNation==4"><img class="nationFlag" src="../../../public/datalab/vi.png"></div>
+                  <div v-else-if="this.getConditionNation==5"><img class="nationFlag" src="../../../public/datalab/in.png"></div>
+                  <div v-else-if="this.getConditionNation==6"><img class="nationFlag" src="../../../public/datalab/br.png"></div>
+                </div>
+              </div>
             </div>
             <button class="backbtn" @click="overlayoff()">
               <img class="backbtnimg" src="../../assets/exit.png" />
             </button>
           </div>
-          <div><DataInfo /></div>
+          <div><DataInfo/></div>
           <div><KeywordRank /></div>
           <div class="doughnut-container"><KeywordDonutGraph /></div>
         </div>
@@ -103,6 +109,16 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'RixInooAriDuriR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+.head_title{
+  font-family: 'RixInooAriDuriR';
+  font-size: 4rem;
+}
 h6 {
   font-size: 1.2em;
   width: 258px;
@@ -114,7 +130,11 @@ h6 {
   animation: slide 2s ease-out;
   text-align: start;
 }
-
+.nationFlag{
+  width: 3rem;
+  height: 3rem;
+  margin-top: 1rem;
+}
 .headTitle {
   font-size: 4em;
   width: 500px;
@@ -206,8 +226,8 @@ h6 {
 
 .head_box {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
+  height: 110px;
 }
 .nation {
   margin-right: 3rem;

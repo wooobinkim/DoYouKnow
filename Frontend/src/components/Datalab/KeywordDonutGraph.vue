@@ -109,7 +109,7 @@ export default {
         },
       ];
 
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 8; i++) {
         // console.log(res[i]);
         // if(i<8){
         lineChart.data.labels[i] = res[i].name;

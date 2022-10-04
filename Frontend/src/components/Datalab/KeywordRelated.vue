@@ -67,7 +67,7 @@ export default {
         datasets: [
           {
             label: "",
-            data: data.map((d, index) => 40 - index * 3),
+            data: data.map((d, index) => 45 - index * 2),
             color: data.map((d) => color[d[1] % 8]),
           },
         ],
