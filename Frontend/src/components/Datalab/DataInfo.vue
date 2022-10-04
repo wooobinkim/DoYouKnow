@@ -60,6 +60,7 @@ export default {
 .total-container {
   display: flex;
   flex-direction: column;
+  margin-left: 6rem;
 }
 .sub1-box {
   display: flex;
@@ -72,7 +73,7 @@ export default {
   font-family: "SF_IceLemon";
 }
 .half-highlight {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 80%, #edf23e 50%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 80%, #ebf2f7 50%);
 }
 .first_box {
   font-size: 2rem;
