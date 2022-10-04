@@ -65,7 +65,6 @@
 </template>
 
 <script>
-
 import { useStore, mapGetters } from "vuex";
 import { onMounted } from "@vue/runtime-core";
 import MainGlobe from "@/components/Main/MainGlobe.vue";
@@ -323,5 +322,4 @@ h6 {
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
   border-radius: 20px;
 }; */
-
 </style>
