@@ -30,6 +30,13 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .photo {
   position: absolute;
   top: 200px;
@@ -58,14 +65,17 @@ export default {
 }
 
 .more {
+  font-family: "KOTRA_BOLD-Bold";
   color: red;
 }
 
 .less {
+  font-family: "KOTRA_BOLD-Bold";
   color: blue;
 }
 
 .game-content {
+  font-family: "KOTRA_BOLD-Bold";
   color: black;
   font-size: 1.2em;
   margin-top: 30px;

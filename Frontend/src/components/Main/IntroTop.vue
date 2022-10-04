@@ -30,14 +30,47 @@
           <div class="head_box">
             <div class="nation">
               <div v-for="nation in this.getNation" :key="nation">
-                <div v-if="this.getConditionNation == nation.value" style="display:flex; align-items: center;">
+                <div
+                  v-if="this.getConditionNation == nation.value"
+                  style="display: flex; align-items: center"
+                >
                   <p class="head_title">{{ nation.text }}</p>
-                  <div v-if="this.getConditionNation==1"><img class="nationFlag" src="../../../public/datalab/us.png"></div>
-                  <div v-else-if="this.getConditionNation==2"><img class="nationFlag" src="../../../public/datalab/uk.png"></div>
-                  <div v-else-if="this.getConditionNation==3"><img class="nationFlag" src="../../../public/datalab/jp.png"></div>
-                  <div v-else-if="this.getConditionNation==4"><img class="nationFlag" src="../../../public/datalab/vi.png"></div>
-                  <div v-else-if="this.getConditionNation==5"><img class="nationFlag" src="../../../public/datalab/in.png"></div>
-                  <div v-else-if="this.getConditionNation==6"><img class="nationFlag" src="../../../public/datalab/br.png"></div>
+                  <div v-if="this.getConditionNation == 1">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/us.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 2">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/uk.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 3">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/jp.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 4">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/vi.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 5">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/in.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 6">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/br.png"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -45,7 +78,7 @@
               <img class="backbtnimg" src="../../assets/exit.png" />
             </button>
           </div>
-          <div><DataInfo/></div>
+          <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div class="doughnut-container"><KeywordDonutGraph /></div>
         </div>
@@ -110,13 +143,15 @@ export default {
 
 <style scoped>
 @font-face {
-    font-family: 'RixInooAriDuriR';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "RixInooAriDuriR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
-.head_title{
-  font-family: 'RixInooAriDuriR';
+
+.head_title {
+  font-family: "KOTRA_BOLD-Bold";
   font-size: 4rem;
 }
 h6 {
@@ -130,7 +165,7 @@ h6 {
   animation: slide 2s ease-out;
   text-align: start;
 }
-.nationFlag{
+.nationFlag {
   width: 3rem;
   height: 3rem;
   margin-top: 1rem;
@@ -146,14 +181,19 @@ h6 {
   top: 190px;
   left: 300px;
   text-align: start;
-  height: 15%;
 }
-
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .content-msg {
+  font-family: "KOTRA_BOLD-Bold";
   font-size: 1em;
   width: 450px;
   color: white;
-  font-family: sans-serif;
   font-weight: 400;
   position: absolute;
   top: 350px;
