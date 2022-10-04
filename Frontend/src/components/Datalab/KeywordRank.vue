@@ -1,23 +1,25 @@
 <template>
   <div>
-    <div class="keyword-container">
-      <template v-for="nation in this.getNation" :key="nation.value">
+    <div class="keyword-container" style="text-align: left;">
+      <!-- <template v-for="nation in this.getNation" :key="nation.value">
         <button @click="setNation(nation.value)" :class="{'btn-common': true, 'btn-nation-active' : ActiveNation[nation.value-1] === true}">
           {{ nation.text }}
         </button>
-      </template>
+      </template> -->
       <br />
       <template v-for="category in this.getCategory" :key="category.value">
         <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
-        <button @click="setCategory(category.value)" :class="{'btn-common': true, 'btn-category-active' : CategoryNo === category.value}">
+        <button @click="setCategory(category.value)" :class="{'btn-common': true, 'btn-category-active' : CategoryNo === category.value} ">
           {{ category.text }}
         </button>
       </template>
       <br />
-      <template v-for="period in this.getPeriod" :key="period.value">
-        <button @click="setPeriod(period.value)" :class="{'btn-common': true, 'btn-period-active' : PeriodNo === period.value}">{{ period.text }}</button>
-      </template>
+          <template v-for="period in this.getPeriod" :key="period.value">
+            <div>
+              <button @click="setPeriod(period.value)" :class="{'btn-common': true, 'btn-period-active' : PeriodNo === period.value}" style="all: unset; display:flex; float:right;">{{ period.text }}</button>
+            </div>
+          </template>
 
       <!-- <section id="content1"> -->
       <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
@@ -134,12 +136,12 @@ export default {
 .keyword-container {
   width: 27.75rem;
   height: 15rem;
-  background-color: #e4e8ef;
+  /* background-color: #e4e8ef; */
   margin-left: 1.5rem;
   /* min-width: 320px;
   max-width: 800px; */
   padding: 0;
-  background: #ffffff;
+  /* background: #ffffff; */
   border-radius: 15px;
 }
 p {

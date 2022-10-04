@@ -16,7 +16,7 @@
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
         >
-          <p>한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?</p>
+          <p>한 눈에 세계속의 한국을 알아보고 싶은 당신!</p>
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
       </div>
@@ -29,7 +29,7 @@
             <div class="nation">
               <template v-for="nation in this.getNation" :key="nation">
                 <template v-if="this.getConditionNation == nation.value">
-                  <h1 class="title">{{ nation.text }}</h1>
+                  <h1 class="title" style="margin-bottom: 0;">{{ nation.text }}</h1>
                 </template>
               </template>
             </div>
