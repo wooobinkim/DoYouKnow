@@ -290,7 +290,7 @@ h2 {
 .img-container {
   margin-top: 8rem;
   margin-right: 5rem;
-  margin-left: 11rem;
+  margin-left: 8rem;
 }
 .card-img {
   margin: auto;
@@ -308,13 +308,13 @@ h2 {
   background: url("@/assets/cg-0.jpg") no-repeat center center fixed;
   background-size: cover;
   width: 50%;
-  height: 60rem;
+  height: 54rem;
 }
 .card-right {
   background: url("@/assets/cg-3.jpg") no-repeat center center fixed;
   background-size: cover;
   width: 50%;
-  height: 60rem;
+  height: 54rem;
 }
 .card-img:hover {
   transform: scale(1.05);
@@ -326,13 +326,13 @@ h2 {
 }
 .ans-container {
   position: absolute;
-  top: 65%;
+  top: 72%;
   left: 23%;
   text-align: center;
 }
 .qus-container {
   position: absolute;
-  top: 65%;
+  top: 72%;
   left: 61%;
   justify-content: center;
   text-align: center;
