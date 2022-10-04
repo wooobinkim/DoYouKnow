@@ -11,7 +11,7 @@
         >홈</a
       >
       <router-link to="/game" class="nav-menu-item" style="color: #eb7132"
-        >더 많이 더 적게</router-link
+        >더많이더적게</router-link
       >
     </div>
   </div>
