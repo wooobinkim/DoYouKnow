@@ -17,8 +17,9 @@
         </button>
       </template>
       <br />
-      <div style="margin-top:2rem;">
+      <div style="margin-top:1rem">
         <div style="display:flex; flex-direction: column; float: right;">
+
           <div v-for="period in this.getPeriod" :key="period.value">
             <button
               @click="setPeriod(period.value)"
@@ -32,12 +33,18 @@
           </div>
         </div>
 
-        <!-- <section id="content1"> -->
-        <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
-          <div class="rankkeyword" v-if="index < 5">
-            <div @click="setOneKeyword(keyword.name)">{{index+1}}. {{ keyword.name }}</div>
-          </div>
-        </template>
+
+        <div class="leaderboard">
+          <ol>
+            <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
+              <li data-aos="fade-right" v-if="index<5">
+                <mark class="rankkeyword" @click="setOneKeyword(keyword.name)">
+                  {{ keyword.name }}
+                </mark>
+              </li>
+            </template>
+          </ol>
+        </div>
       </div>
       <!-- </section> -->
     </div>
@@ -270,7 +277,7 @@ input:checked + label {
  /* 랭킹 아이템 */
 .leaderboard {
     position: absolute;
-    top: 40%;
+    top: 38%;
     left: 45%;
     transform: translate(-50%, -50%);
     width: 350px;
