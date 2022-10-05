@@ -40,37 +40,37 @@
                   <div v-if="this.getConditionNation == 1">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/us.png"
+                      src="../../../public/texture/us.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 2">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/uk.png"
+                      src="../../../public/texture/uk.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 3">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/jp.png"
+                      src="../../../public/texture/jp.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 4">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/vi.png"
+                      src="../../../public/texture/vi.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 5">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/in.png"
+                      src="../../../public/texture/in.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 6">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/br.png"
+                      src="../../../public/texture/br.png"
                     />
                   </div>
                 </div>
@@ -261,7 +261,6 @@ h6 {
   float: left;
   z-index: 10;
   animation: fadeInLeft 2s;
-  
 }
 .right_section {
   position: fixed;
