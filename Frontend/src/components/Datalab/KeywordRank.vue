@@ -386,9 +386,9 @@ label {
 .leaderboard {
   position: absolute;
   top: 35%;
-  left: 69%;
+  left: 63%;
   transform: translate(-50%, -50%);
-  width: 356px;
+  width: 114%;
   height: auto;
   background: transparent;
   border-radius: 10px;
@@ -440,7 +440,7 @@ label {
   left: 0;
   width: 85%;
   height: 100%;
-  padding: 5px 10px 0px 50px;
+  padding: 5px 10px 0px 60px;
   margin: 0;
   background: none;
   color: black;
@@ -472,7 +472,8 @@ label {
 }
 
 .leaderboard ol li:nth-child(1) {
-  background: #f5d658;
+  /* background: #f0d155 */
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .leaderboard ol li:nth-child(1)::before {
@@ -485,7 +486,8 @@ label {
 }
 
 .leaderboard ol li:nth-child(2) {
-  background: #cacaca;
+  /* background: #cacaca; */
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .leaderboard ol li:nth-child(2)::before {
@@ -494,7 +496,7 @@ label {
 }
 
 .leaderboard ol li:nth-child(2)::after {
-  background: #fffffe;
+  background: #feeca5;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
 }
 
@@ -505,7 +507,8 @@ label {
 }
 
 .leaderboard ol li:nth-child(3) {
-  background: #b6a86d;
+  /* background: #b6a86d; */
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .leaderboard ol li:nth-child(3)::before {
@@ -514,7 +517,7 @@ label {
 }
 
 .leaderboard ol li:nth-child(3)::after {
-  background: #b2aa8a;
+  background: #feeca5;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
 }
 
@@ -525,7 +528,8 @@ label {
 }
 
 .leaderboard ol li:nth-child(4) {
-  background: white;
+  /* background: white; */
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .leaderboard ol li:nth-child(4)::before {
@@ -533,7 +537,7 @@ label {
 }
 
 .leaderboard ol li:nth-child(4)::after {
-  background: white;
+  background: #feeca5;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -546,7 +550,8 @@ label {
 }
 
 .leaderboard ol li:nth-child(5) {
-  background: white;
+  /* background: white; */
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .leaderboard ol li:nth-child(5)::before {
@@ -554,7 +559,7 @@ label {
 }
 
 .leaderboard ol li:nth-child(5)::after {
-  background: white;
+  background: #feeca5;
   box-shadow: 0 -2.5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 20px;
 }

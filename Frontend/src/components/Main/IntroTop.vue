@@ -83,7 +83,7 @@
           <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div><KeywordDonutGraph /></div>
-          <div class="test"><KeywordLineGraph /></div>
+          <div class="line-graph"><KeywordLineGraph /></div>
         </div>
       </transition>
       <transition name="right">
@@ -375,9 +375,9 @@ h6 {
   border-radius: 20px;
 }; */
 
-.test {
+.line-graph {
   position: absolute;
   top: 63%;
-  left: 100%;
+  left: 80%;
 }
 </style>

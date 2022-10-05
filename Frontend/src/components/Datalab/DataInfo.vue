@@ -60,12 +60,13 @@ export default {
 .total-container {
   display: flex;
   flex-direction: column;
-  margin-left: 6rem;
+  margin-left: 5%;
   background: white;
   border-radius: 30px;
   opacity: 71%;
   padding: 0.75rem;
   margin-top: -1.5rem;
+  width: 110%;
 }
 .sub1-box {
   display: flex;
