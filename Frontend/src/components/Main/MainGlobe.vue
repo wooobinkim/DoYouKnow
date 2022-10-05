@@ -264,7 +264,7 @@ export default {
             divElement.innerHTML =
               '<img src="/texture/us.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 57) {
+          if (hoveredObj.id == 59) {
             divElement.innerHTML =
               '<img src="/texture/uk.png" style="width: 100%; height: 100%;">';
           }
@@ -272,7 +272,7 @@ export default {
             divElement.innerHTML =
               '<img src="/texture/jp.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 71) {
+          if (hoveredObj.id == 69) {
             divElement.innerHTML =
               '<img src="/texture/vi.png" style="width: 100%; height: 100%;">';
           }
@@ -364,7 +364,7 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 57) {
+          if (intersects[0].object.id == 59) {
             // alert(intersects[0].object.id + "영국클릭");
             // local 59
             // 배포 57
@@ -386,7 +386,7 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 71) {
+          if (intersects[0].object.id == 69) {
             //local 71
             //배포 69
             const nation = 4;

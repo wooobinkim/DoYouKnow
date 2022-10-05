@@ -1,6 +1,7 @@
 <template>
   <section>
     <div v-if="this.getIsOverlay == false">
+    <img src="@/assets/intro-arrow.png" class="intro-arrow">
       <div class="title-container">
         <h6
           data-aos="fade-right"
@@ -19,9 +20,7 @@
           <p>한 눈에 세계속의 한국을 알아보고 싶은 당신!</p>
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
-        <div class="intro-arrow">
-          <img src="@/assets/intro-arrow.png" alt=""/>
-        </div>
+        
       </div>
     </div>
     <div v-else>
@@ -157,16 +156,15 @@ export default {
 .wordcloud-container {
   width: 400px;
   height: 200px;
+  margin-top: 20%;
 }
 .nation-container {
-  width: auto;
+  width: 210px;
 }
 .head_title {
   font-family: "KOTRA_BOLD-Bold";
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  margin-left: 2rem;
-  text-align: start;
 }
 h6 {
   font-size: 1.2em;
@@ -180,11 +178,9 @@ h6 {
   text-align: start;
 }
 .nationFlag {
-  width: 5rem;
-  height: 5rem;
+  width: 3rem;
+  height: 3rem;
   margin-top: 1rem;
-  margin-left: 0.5rem;
-  margin-bottom: 1rem;
 }
 .headTitle {
   font-size: 4em;
@@ -219,12 +215,12 @@ h6 {
   text-align: start;
 }
 .intro-arrow {
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   position: absolute;
-  /* left: -70%; */
-  margin-left: 81rem;
-  margin-top: 28rem;
+  left: 70%;
+  top: 70%;
+  
 }
 .content-msg p {
   margin: 20px 0;
@@ -272,7 +268,7 @@ h6 {
   height: 80%;
   top: 0%;
   bottom: 0;
-  right: 2%;
+  right: 3%;
   display: flex;
   flex-direction: column;
   width: 27%;
@@ -286,13 +282,10 @@ h6 {
   display: flex;
   align-items: center;
   height: 110px;
-  margin-bottom: 1rem;
-  width: 450px;
-  justify-content: space-between;
-  align-items: center;
 }
 .nation {
   margin-right: 3rem;
+  margin-left: 3rem;
   font-size: 2rem;
 }
 .backbtn {

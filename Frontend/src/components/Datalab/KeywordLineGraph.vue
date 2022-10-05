@@ -33,6 +33,7 @@ export default {
     const chartRef = ref(null);
 
     const lineChart = {
+      display: false,
       type: "line",
       data: {
         labels: [],
@@ -43,7 +44,9 @@ export default {
         ],
       },
       options: {
+        display: false,
         animations: {
+          display: false,
           y: {
             easing: "easeInOutElastic",
             from: (ctx) => {
@@ -59,6 +62,7 @@ export default {
         responsive: false,
         maintainAspectRatio: false,
         plugins: {
+          display: false,
           labels: false,
           legend: {
             display: false,
@@ -108,9 +112,16 @@ export default {
     };
 
     const updateChart = (res) => {
+      console.log(res, "여길잘봐!!");
       lineChart.options.plugins.title = {
         text: "날짜별 검색량",
         display: true,
+        font: {
+          size: 14,
+          family: "KOTRA_BOLD-Bold",
+          weight: "bold",
+          color: "rgb(255, 255, 255)",
+        },
       };
       lineChart.labels = res[0].name;
       lineChart.data.labels = [];
@@ -123,10 +134,10 @@ export default {
       ];
 
       for (let i = 0; i < res.length; i++) {
-        // console.log(res[i]);
-        lineChart.data.labels[i] = res[i].date
-          .toLocaleDateString()
-          .substring(6);
+        lineChart.data.labels[i] =
+          res[i].date.toLocaleDateString().split(".")[1] +
+          "/" +
+          res[i].date.toLocaleDateString().split(".")[2];
         lineChart.data.datasets[0].data[i] = res[i].count;
       }
       chartRef.value.update(250);
@@ -175,8 +186,15 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .chart-container {
-  background: rgb(255, 255, 255, 0.1);
+  background: rgb(255, 255, 255, 0.6);
   /* opacity: 60%; */
   border-radius: 15px;
   margin-left: -1.3rem;
