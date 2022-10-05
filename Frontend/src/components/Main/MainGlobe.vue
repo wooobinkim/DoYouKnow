@@ -258,6 +258,7 @@ export default {
           // divElement.style.left = `${tooltipPosition.x - tootipWidth / 2}px`;
           divElement.style.left = `${tooltipPosition.x}px`;
           divElement.style.top = `${tooltipPosition.y}px`;
+          console.log(hoveredObj, "hoveredObj")
 
           if (hoveredObj.id == 53) {
             divElement.innerHTML =
@@ -349,8 +350,8 @@ export default {
         pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
         pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
         raycaster.setFromCamera(pointer, camera);
-
         const intersects = raycaster.intersectObjects(scene.children);
+        console.log(intersects, 'inter감지')
         if (intersects.length >= 2) {
           if (intersects[0].object.id == 53) {
             // alert(intersects[0].object.id + "미국클릭");
@@ -405,7 +406,7 @@ export default {
           }
         }
       };
-      window.addEventListener("click", onMouseMove);
+      window.addEventListener("mousemove", onMouseMove);
       // 절대 수정하지 마세용 ==================================================
 
       // plane model
