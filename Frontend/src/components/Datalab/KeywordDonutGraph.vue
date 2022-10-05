@@ -100,6 +100,12 @@ export default {
       lineChart.options.plugins.title = {
         text: "탑10 검색어",
         display: true,
+        font: {
+          size: 14,
+          family: "KOTRA_BOLD-Bold",
+          weight: "bold",
+          color: "rgb(255, 255, 255)",
+        },
       };
       lineChart.data.labels = [];
       lineChart.data.datasets = [

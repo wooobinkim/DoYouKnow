@@ -10,15 +10,15 @@
     </div>
   </div> -->
   <div class="navbar-container">
-    <img src="@/assets/logo.png" class="logo" @click.prevent="moveSlide(0)">
+    <img src="@/assets/logo.png" class="logo" @click.prevent="moveSlide(0)" />
     <div class="menu-container">
-      <div class="background-one" >
+      <div class="background-one">
         <div class="link-container">
           <a class="link-one" @click.prevent="moveSlide(0)">DataLab</a>
         </div>
       </div>
       <div class="background-two link-container">
-        <a class="link-two" @click.prevent="moveSlide(1)">Hall Of Fame</a>
+        <a class="link-two" @click.prevent="moveSlide(1)">DYKClub</a>
       </div>
       <div class="background-three link-container">
         <a class="link-three" @click.prevent="moveSlide(2)">Game</a>
@@ -28,21 +28,20 @@
 </template>
 
 <script>
-
 export default {
   props: {
     swiper: Object, // swiper 인스턴스 받기
   },
 
-  setup(props){
+  setup(props) {
     const moveSlide = (index) => {
-      props.swiper.slideTo(index, 1000, false)
-    }
+      props.swiper.slideTo(index, 1000, false);
+    };
 
     return {
       moveSlide,
-    }
-  }
+    };
+  },
 };
 </script>
 
@@ -73,7 +72,6 @@ body {
 .menu-container {
   display: flex;
   margin: 0 3% 0 0;
-  
 }
 
 .background-one {
@@ -99,7 +97,6 @@ body {
   position: relative;
   z-index: 0;
   margin: 0 30px;
-  
 }
 
 a {
@@ -202,7 +199,7 @@ a {
 
 .link-two-active {
   text-decoration: underline;
-  text-decoration-style: wavy;  
+  text-decoration-style: wavy;
 }
 
 .link-three-active {

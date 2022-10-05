@@ -129,13 +129,22 @@ export const datalab = {
     SET_TTS: (state, TTS) => {
       state.TTS = TTS;
     },
+    SET_OVERLAYRESET: (state) => {
+      state.condition.nation = null;
+      state.condition.category = null;
+      state.condition.period = null;
+      state.isoverlay = false;
+    },
     // (state.graphkeyword = graphkeyword),
   },
   actions: {
     async setIsOverlay({ commit }, { data }) {
       await commit("SET_ISOVERLAY", data);
     },
-
+    async OverlayReset({ commit }) {
+      console.log("리셋");
+      await commit("SET_OVERLAYRESET");
+    },
     async getNationRate({ commit }, { nation }) {
       await axios
         .get(`https://j7b208.p.ssafy.io/api/keyword/searchcount/${nation}`)

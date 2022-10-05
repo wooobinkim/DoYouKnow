@@ -2,7 +2,7 @@
   <div class="word-container">
     <loading-spinner v-if="this.getRelatedKewordLoading" />
     <div class="canvas-container">
-      <canvas id="canvas"></canvas>
+      <canvas id="canvas" style="width:600px; height:300px;"></canvas>
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
         ],
       },
       options: {
-        // responsive: true,
+        responsive: false,
         maintainAspectRatio: false,
         plugins: {
           labels: false,
@@ -44,9 +44,6 @@ export default {
           datalabels: {
             display: false,
           },
-          font: {
-                  family: "KOTRA_BOLD-Bold"
-              },
         },
       },
     };
@@ -54,24 +51,61 @@ export default {
     const updatewordcloud = (data) => {
       console.log(data);
       const color = [
-        "#004B6B",
+        // "#004B6B",
         // '#255D7E',
-        "#3C6F8E",
+        // "#3C6F8E",
         // '#5483A1',
-        "#6996B3",
+        // "#6996B3",
         // '#7EAAC7',
-        "#94BDD9",
+        // "#94BDD9",
         // '#ABD3EC',
-        "#C1E6FF",
-        "#EBF2F7",
+        // "#C1E6FF",
+        // "#EBF2F7",
+
+        "#88BCEE",
+        '#90ED7D',
+        "#8085E9",
+        '#F7A35C',
+        "#2B908F",
+        '#F15C80',
+        "#E4D354",
+        '#FD0541',
+        "#9EEAE4",
+        "#4247C0",
+        "#6D8DFF",
+
+        "#CAFDC0",
+        '#D1D3FC',
+        "#FCD8BA",
+        '#BEEEEE',
+        "#CFE4F9",
+        '#FCD6DF',
+        '#E4F5CF',
+        "#8160C6",
+        "#794C57",
       ];
+
+      console.log(data);
+
+      var arr = [];
+      for(let i=0; i<data.length; i++){
+        if(data[i][0].length<9){
+          arr.push(data[i]);
+        }
+      }
+      let max = arr[0][1];
+      let min = arr[arr.length-1][1];
       const data1 = {
-        labels: data.map((d) => d[0]),
+        labels: arr.map((d) => d[0]),
         datasets: [
           {
             label: "",
-            data: data.map((d, index) => 30 - index * 2),
-            color: data.map((d) => color[d[1] % 6]),
+            // data: data.map((d, index) => 30 - index * 2),
+            data: arr.map((d) => ((d[1] - min)/ (max-min))*13+17),
+            // data: arr.map((d) => ((d[1] - min)/ (max-min ))*10+20),
+            color: arr.map((d, index) => color[index % 20]),
+            family: "KOTRA_BOLD-Bold",
+            pointHoverBackgroundColor: "#FD943C",
           },
         ],
       };
@@ -88,13 +122,6 @@ export default {
           type: WordCloudController.id,
           data: data1,
           options: {
-            title: {
-              display: false,
-              text: "Chart.js Word Cloud",
-              font: {
-                  family: "KOTRA_BOLD-Bold"
-              },
-            },
             plugins: {
               labels: false,
               legend: {
