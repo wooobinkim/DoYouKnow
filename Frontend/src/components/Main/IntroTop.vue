@@ -20,7 +20,7 @@
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
         <div class="intro-arrow">
-          <img src="@/assets/intro_arrow.png" />
+          <img src="@/assets/intro-arrow.png" alt=""/>
         </div>
       </div>
     </div>

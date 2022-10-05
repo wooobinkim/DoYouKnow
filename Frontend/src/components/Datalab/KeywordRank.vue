@@ -420,7 +420,7 @@ label {
 }
 
 .leaderboard ol li::before {
-  content: counter(leaderboard);
+  content: '';
   position: absolute;
   z-index: 2;
   top: 10px;
@@ -429,7 +429,6 @@ label {
   height: 20px;
   line-height: 20px;
   color: #c24448;
-  background: #fff;
   border-radius: 20px;
   text-align: center;
 }
@@ -457,6 +456,8 @@ label {
 
 .leaderboard ol li::after {
   content: "";
+  background-image: url("@/assets/gold-medal.png");
+  background-size: 20px 20px;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -474,12 +475,22 @@ label {
   background: #f5d658;
 }
 
+.leaderboard ol li:nth-child(1)::before {
+  background-image: url("@/assets/gold-medal.png");
+  background-size: 20px 20px;
+}
+
 .leaderboard ol li:nth-child(1)::after {
   background: #feeca5;
 }
 
 .leaderboard ol li:nth-child(2) {
-  background: #e7e7e5;
+  background: #cacaca;
+}
+
+.leaderboard ol li:nth-child(2)::before {
+  background-image: url("@/assets/silver-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(2)::after {
@@ -495,6 +506,11 @@ label {
 
 .leaderboard ol li:nth-child(3) {
   background: #b6a86d;
+}
+
+.leaderboard ol li:nth-child(3)::before {
+  background-image: url("@/assets/bronze-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(3)::after {
