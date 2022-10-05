@@ -528,6 +528,10 @@ label {
   background: white;
 }
 
+.leaderboard ol li:nth-child(4)::before {
+  content: '4'
+}
+
 .leaderboard ol li:nth-child(4)::after {
   background: white;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
@@ -543,6 +547,10 @@ label {
 
 .leaderboard ol li:nth-child(5) {
   background: white;
+}
+
+.leaderboard ol li:nth-child(5)::before {
+  content: '5'
 }
 
 .leaderboard ol li:nth-child(5)::after {
