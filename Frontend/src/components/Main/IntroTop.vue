@@ -19,8 +19,10 @@
           <p>한 눈에 세계속의 한국을 알아보고 싶은 당신!</p>
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
+        <div class="intro-arrow">
+          <img src="@/assets/intro_arrow.png" />
+        </div>
       </div>
-      <img class="intro-arrow" src="@/assets/intro_arrow.png" />
     </div>
     <div v-else>
       <transition name="left">
@@ -32,7 +34,9 @@
                   v-if="this.getConditionNation == nation.value"
                   style="display: flex; align-items: center"
                 >
-                  <p class="head_title">{{ nation.text }}</p>
+                  <div class="nation-container">
+                    <p class="head_title">{{ nation.text }}</p>
+                  </div>
                   <div v-if="this.getConditionNation == 1">
                     <img
                       class="nationFlag"
@@ -147,10 +151,13 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
-
+.nation-container {
+  width: 210px;
+}
 .head_title {
   font-family: "KOTRA_BOLD-Bold";
-  font-size: 4rem;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 h6 {
   font-size: 1.2em;
@@ -198,7 +205,14 @@ h6 {
   left: 300px;
   text-align: start;
 }
-
+.intro-arrow {
+  width: 15rem;
+  height: 15rem;
+  position: absolute;
+  /* left: -70%; */
+  margin-left: 81rem;
+  margin-top: 28rem;
+}
 .content-msg p {
   margin: 20px 0;
   font-size: 1.2em;
@@ -224,17 +238,10 @@ h6 {
   left: -13rem;
 }
 
-.intro-arrow {
-  width: 12%;
-  height: 25%;
-  position: absolute;
-  top: 65%;
-  right: 19%;
-}
 .left_section {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 77%;
   /* top: -6%; */
   left: 0;
   bottom: 0;
@@ -249,7 +256,7 @@ h6 {
 .right_section {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 80%;
   top: 0%;
   bottom: 0;
   right: 2%;
@@ -338,22 +345,22 @@ h6 {
     transform: translate3d(100%, 0, 0);
   }
 }
-/* .news-container{
+.news-container {
   width: 340px;
   height: 320px;
-  background: rgba(255, 255, 255, 0.53);
+  /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
-  border-radius: 17px;
+  border-radius: 17px; */
 }
-.chart-container{
+.chart-container {
   width: 340px;
   height: 160px;
-  background: rgba(255, 255, 255, 0.53);
+  /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
-  border-radius: 17px;
-};
+  border-radius: 17px; */
+}
 
-.doughnut-container{
+/* .doughnut-container{
   width: 320px;
   height: 320px;
   background: rgba(255, 255, 255, 0.53);

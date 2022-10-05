@@ -1,19 +1,23 @@
 <template>
-    <div class="chart-container">
-    <vue3-chart-js
-      :id="lineChart.id"
-      ref="chartRef"
-      :type="lineChart.type"
-      :data="lineChart.data"
-      :options="lineChart.options"
-    ></vue3-chart-js>
+  <div class="chart-container">
+    <div v-show="this.test.getGraphKeyword != null">
+      <vue3-chart-js
+        :id="lineChart.id"
+        ref="chartRef"
+        :type="lineChart.type"
+        :data="lineChart.data"
+        :options="lineChart.options"
+      ></vue3-chart-js>
+    </div>
+
+    <!-- {{lineChart.data.datasets[0].data.length}} -->
 
     <!-- <button @click="updateChart">Update Chart</button> -->
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { mapGetters, mapActions } from "vuex";
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import { useStore } from "vuex";
@@ -27,38 +31,36 @@ export default {
     const chartRef = ref(null);
 
     const lineChart = {
-      id: "line",
       type: "line",
       data: {
-        labels: "",
+        labels: [],
         datasets: [
           {
-            backgroundColor: "#f87979",
             data: [],
           },
         ],
       },
       options: {
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: false,
         plugins: {
           labels: false,
           legend: {
-            display: false
+            display: false,
           },
-          title: {
-            text: "검색량 추이",
-            display: true,
-          },
+          // title: {
+          //   text: "검색량 추이",
+          //   display: true,
+          // },
         },
       },
     };
 
     const updateChart = (res) => {
-      // lineChart.options.plugins.title = {
-      //   text: res[0].name,
-      //   display: true,
-      // };
+      lineChart.options.plugins.title = {
+        text: "검색량 추이",
+        display: true,
+      };
       lineChart.labels = res[0].name;
       lineChart.data.labels = [];
       lineChart.data.datasets = [
@@ -77,18 +79,24 @@ export default {
       chartRef.value.update(250);
     };
     const store = useStore();
+    const test = computed(() => store.getters);
     return {
       keywordlist,
       lineChart,
       updateChart,
       chartRef,
-      store
+      store,
+      test,
     };
   },
-  computed:{
-      ...mapGetters(["getCurrentRank","getConditionNation",
+  computed: {
+    ...mapGetters([
+      "getCurrentRank",
+      "getConditionNation",
       "getConditionCategory",
-      "getConditionPeriod", "getGraphKeyword"])
+      "getConditionPeriod",
+      "getGraphKeyword",
+    ]),
   },
   methods: {
     ...mapActions(["getGraphKeyword"]),
@@ -106,7 +114,6 @@ export default {
       }
     },
     getGraphKeyword: function (data) {
-      console.log("변했다.");
       console.log(data);
       this.keywordlist = data;
       this.updateChart(data);
@@ -116,7 +123,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* .chart-container {
   width: 20rem;
   height: 16rem;

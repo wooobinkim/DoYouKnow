@@ -6,7 +6,7 @@
       :type="lineChart.type"
       :data="lineChart.data"
       :options="lineChart.options"
-      :width="440"
+      :width="270"
     ></vue3-chart-js>
   </div>
 </template>
@@ -16,8 +16,8 @@ import { ref } from "vue";
 import { mapGetters } from "vuex";
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import { useStore } from "vuex";
-import {Chart} from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Chart } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 export default {
   components: {
     Vue3ChartJs,
@@ -25,33 +25,33 @@ export default {
   setup() {
     Chart.register(ChartDataLabels);
     var COLORS = [
-      '#004B6B',
-      '#255D7E',
-      '#3C6F8E',
-      '#5483A1',
-      '#6996B3',
-      '#7EAAC7',
-      '#94BDD9',
-      '#ABD3EC',
-      '#C1E6FF',
-      '#EBF2F7'
-        // '#B3CBF5',
-        // '#BAD0F6',
-        // '#C0D4F5',
-        // '#C7D8F6',
-        // '#CDDCF5',
-        // '#D4E1F6',
-        // '#DBE4F5',
-        // '#E2E9F6',
-        // '#E8EDF5',
-        // '#EFF1F6'
+      "#004B6B",
+      "#255D7E",
+      "#3C6F8E",
+      "#5483A1",
+      "#6996B3",
+      "#7EAAC7",
+      "#94BDD9",
+      "#ABD3EC",
+      "#C1E6FF",
+      "#EBF2F7",
+      // '#B3CBF5',
+      // '#BAD0F6',
+      // '#C0D4F5',
+      // '#C7D8F6',
+      // '#CDDCF5',
+      // '#D4E1F6',
+      // '#DBE4F5',
+      // '#E2E9F6',
+      // '#E8EDF5',
+      // '#EFF1F6'
     ];
 
     const keywordlist = ref([]);
     const chartRef = ref(null);
 
     const lineChart = {
-      type: 'doughnut',
+      type: "doughnut",
       data: {
         labels: [],
         datasets: [
@@ -66,7 +66,7 @@ export default {
         plugins: {
           labels: false,
           legend: {
-            display: false
+            display: false,
           },
           datalabels: {
             display: true,
@@ -75,19 +75,18 @@ export default {
               const label = ctx.chart.data.labels[ctx.dataIndex];
 
               // Format the number with 2 decimal places
-              const formattedVal = Intl.NumberFormat('en-US', {
+              const formattedVal = Intl.NumberFormat("en-US", {
                 // minimumFractionDigits: 2,
               }).format(val);
 
               // Put them together
-              if(ctx.dataIndex >= 8){
+              if (ctx.dataIndex >= 8) {
                 return "";
-              }else{
+              } else {
                 return `${label} \n\t ${formattedVal}`;
               }
-              
             },
-            color: '#fff',
+            color: "#fff",
             // backgroundColor: '#404040',
           },
         },
@@ -109,17 +108,9 @@ export default {
         },
       ];
 
-      for (let i = 0; i < 8; i++) {
-        // console.log(res[i]);
-        // if(i<8){
+      for (let i = 0; i < 10; i++) {
         lineChart.data.labels[i] = res[i].name;
         lineChart.data.datasets[0].data[i] = res[i].count;
-        // }else{
-        //   lineChart.data.labels[i] = "";
-        //   lineChart.data.datasets[0].data[i] = res[i].count;
-        // }
-        
-        
         lineChart.data.datasets[0].backgroundColor[i] = COLORS[i];
       }
       chartRef.value.update(250);
@@ -130,31 +121,31 @@ export default {
       lineChart,
       updateChart,
       chartRef,
-      store
+      store,
     };
-
   },
   computed: {
     ...mapGetters(["getCurrentRank", "getKeywordRank"]),
   },
   watch: {
-    getKeywordRank: function(data){
+    getKeywordRank: function (data) {
       this.keywordlist = data;
       this.updateChart(data);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.doughnut-container{
+.doughnut-container {
   width: 90%;
-  height: 450px;
-  margin-left: 1.5rem;
+  height: 478px;
+  margin-left: 8.5rem;
+  margin-top: 4rem;
   /* background: rgba(255, 255, 255, 0.70);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
   border-radius: 20px; */
-};
+}
 
 /* .cloud-container {
   width: 30rem;
