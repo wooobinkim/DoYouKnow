@@ -85,12 +85,12 @@
           <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div class="doughnut-container"><KeywordDonutGraph /></div>
+          <div class="chart-container"><KeywordLineGraph /></div>
         </div>
       </transition>
       <transition name="right">
         <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
-          <div class="chart-container"><KeywordLineGraph /></div>
           <div class="news-container"><KeywordNews /></div>
         </div>
       </transition>
@@ -152,6 +152,10 @@ export default {
     format("woff2");
   font-weight: normal;
   font-style: normal;
+}
+.wordcloud-container {
+  width: 400px;
+  height: 200px;
 }
 .nation-container {
   width: 210px;
@@ -264,7 +268,7 @@ h6 {
   right: 2%;
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 27%;
   float: right;
   z-index: 10;
   justify-content: space-around;
@@ -348,7 +352,7 @@ h6 {
   }
 }
 .news-container {
-  width: 340px;
+  width: 400px;
   height: 320px;
   /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);

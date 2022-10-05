@@ -1,7 +1,7 @@
 <template>
-  <div style="height: 320px; width: 480px">
+  <div class="word-container">
     <loading-spinner v-if="this.getRelatedKewordLoading" />
-    <div style="height: 320px; width: 480px">
+    <div class="canvas-container">
       <canvas id="canvas"></canvas>
     </div>
   </div>
@@ -51,24 +51,24 @@ export default {
     const updatewordcloud = (data) => {
       console.log(data);
       const color = [
-        '#004B6B',
+        "#004B6B",
         // '#255D7E',
-        '#3C6F8E',
+        "#3C6F8E",
         // '#5483A1',
-        '#6996B3',
+        "#6996B3",
         // '#7EAAC7',
-        '#94BDD9',
+        "#94BDD9",
         // '#ABD3EC',
-        '#C1E6FF',
-        '#EBF2F7',
+        "#C1E6FF",
+        "#EBF2F7",
       ];
       const data1 = {
         labels: data.map((d) => d[0]),
         datasets: [
           {
             label: "",
-            data: data.map((d, index) => 45 - index * 2),
-            color: data.map((d) => color[d[1] % 8]),
+            data: data.map((d, index) => 30 - index * 2),
+            color: data.map((d) => color[d[1] % 6]),
           },
         ],
       };
@@ -130,7 +130,7 @@ export default {
       this.store.dispatch("relatedkeyword", { data });
     },
     getRelatedKeyword: function (data) {
-      const data1 = data.splice(0, 30);
+      const data1 = data.splice(0, 25);
       this.updatewordcloud(data1);
     },
   },
@@ -138,19 +138,29 @@ export default {
 </script>
 
 <style scoped>
-.trend-container {
-  height: 15rem;
-  width: 20rem;
+/* .word-container {
+  height: 220px;
+  width: 400px;
   background: white;
-  margin-left: 1rem;
-  margin-right: 1.5rem;
-  border-radius: 15px;
-}
+  opacity: 81%;
+  border-radius: 30px;
+} */
 .chartvue {
   visibility: hidden;
 }
-#canvas{
-  height: 320px;
-  width: 480px;
+.canvas-container {
+  height: 185px;
+  width: 394px;
+  /* position: absolute;
+  top: 3rem;
+  right: -3rem; */
+  margin-right: 4rem;
+  /* background: white;
+  opacity: 81%;
+  border-radius: 30px; */
+}
+#canvas {
+  height: 100%;
+  width: 100%;
 }
 </style>
