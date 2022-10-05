@@ -3,34 +3,40 @@
     <div class="button-container">
       <br />
       <div class="btn-group1">
-      <template v-for="category in this.getCategory" :key="category.value">
-        <!-- <input id="tab1" type="radio" name="tabs" checked />
+        <template v-for="category in this.getCategory" :key="category.value">
+          <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
-            <div
-              @click="setCategory(category.value)"
-              :class="{'btn1 btn-three1' : true,  'btn1 btn-active1': getConditionCategory === category.value,}"
-              style="margin-right: 5px"
-            >
-              {{ category.text }}
-            </div>
-      </template>
-    </div>
-    <div class="btn-group2">
-          <template v-for="period in this.getPeriod" :key="period.value">
-            <!-- <div
+          <div
+            @click="setCategory(category.value)"
+            :class="{
+              'btn1 btn-three1': true,
+              'btn1 btn-active1': getConditionCategory === category.value,
+            }"
+            style="margin-right: 5px"
+          >
+            {{ category.text }}
+          </div>
+        </template>
+      </div>
+      <div class="btn-group2">
+        <template v-for="period in this.getPeriod" :key="period.value">
+          <!-- <div
               @click="setPeriod(period.value)"
               :class="{'btn2 btn-three2' : true,  'btn2 btn-active2': getConditionPeriod === period.value,}"
             > -->
-            <div
-              @click="setPeriod(period.value)"
-              :class="{'btn-common' : true,  'btn-period-active': getConditionPeriod === period.value,}"
-            >
-              {{ period.text }}
-            </div>
-          </template>
-        </div>
+          <div
+            @click="setPeriod(period.value)"
+            :class="{
+              'btn-common': true,
+              'btn-period-active': getConditionPeriod === period.value,
+            }"
+          >
+            {{ period.text }}
+          </div>
+        </template>
+      </div>
       <br />
-      <div >
+      <div>
         <!-- <div class="btn-group2">
           <template v-for="period in this.getPeriod" :key="period.value">
             <div
@@ -41,7 +47,6 @@
             </div>
           </template>
         </div> -->
-
 
         <div class="leaderboard">
           <ol>
@@ -54,7 +59,7 @@
                   {{ keyword.name }}
                 </mark>
               </li>
-              <!-- <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button> -->
+
             </template>
           </ol>
         </div>
@@ -98,31 +103,7 @@ export default {
     const setOneKeyword = function setOneKeyword(keyword) {
       store.dispatch("currentRank", { keyword });
     };
-    const tts = async function tts(keyword) {
-      let nation = null;
-      let lang = null;
-      if(store.getters.getConditionNation == 1) {nation="en";lang="en-US"}
-      if(store.getters.getConditionNation == 2) {nation="en";lang="en-UK"}
-      if(store.getters.getConditionNation == 3) {nation="ja";lang="ja-JP"}
-      if(store.getters.getConditionNation == 4) {nation="vi";lang="vi-VN"}
-      if(store.getters.getConditionNation == 5) {nation="id";lang="id-ID"}
-      if(store.getters.getConditionNation == 6) {nation="pt";lang="pt-BR"}
 
-      const condition = {
-          keyword : keyword+" 아세요",
-          nation : nation
-      }
-      await store.dispatch("TTSTranslate",  condition );
-
-      // utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
-      // utterThis.voice = speechSynthesis.getVoices()[8]
-      utterThis.text = store.getters.getTTS+"?"
-      utterThis.voice = speechSynthesis.getVoices()[8]
-      utterThis.lang = lang;
-      speechSynthesis.speak(utterThis);
-      
-      
-    };
     return {
       // rank1,
       setNation,
@@ -130,7 +111,6 @@ export default {
       setPeriod,
       setOneKeyword,
       store,
-      tts,
       utterThis,
       // data,
       ActiveNation,
@@ -145,7 +125,7 @@ export default {
       "getCategory",
       "getPeriod",
       "getKeywordRank",
-      "getTTS"
+      "getTTS",
     ]),
   },
   watch: {
@@ -209,7 +189,6 @@ export default {
 }
 .button-container {
   margin-top: -1rem;
-  
 }
 .rankkeyword {
   text-align: left;
@@ -249,8 +228,8 @@ label {
   border: 1px solid transparent;
   /* width: 35px; */
 }
-.btn-group1{
-  display :flex;
+.btn-group1 {
+  display: flex;
   margin-bottom: 10px;
 }
 .btn1 {
@@ -267,22 +246,22 @@ label {
   font-size: 15px;
 }
 .btn-three1::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   transition: all 0.3s;
 }
 .btn-three1:hover::before {
-  opacity: 0 ;
-  transform: scale(0.5,0.5);
+  opacity: 0;
+  transform: scale(0.5, 0.5);
 }
 .btn-three1::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -291,18 +270,18 @@ label {
   z-index: 1;
   opacity: 0;
   transition: all 0.3s;
-  border: 1px solid rgba(255,255,255,0.5);
-  transform: scale(1.2,1.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transform: scale(1.2, 1.2);
 }
 .btn-three1:hover::after {
   opacity: 1;
-  transform: scale(1,1);
+  transform: scale(1, 1);
 }
 .btn-active1 {
   background-color: rgb(255, 190, 84);
 }
-.btn-group2{
-  display :flex;
+.btn-group2 {
+  display: flex;
   justify-content: flex-end;
   margin-right: 5px;
 }
@@ -320,22 +299,22 @@ label {
   font-size: 11px;
 }
 .btn-three2::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   transition: all 0.3s;
 }
 .btn-three2:hover::before {
-  opacity: 0 ;
-  transform: scale(0.5,0.5);
+  opacity: 0;
+  transform: scale(0.5, 0.5);
 }
 .btn-three2::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -344,12 +323,12 @@ label {
   z-index: 1;
   opacity: 0;
   transition: all 0.3s;
-  border: 1px solid rgba(255,255,255,0.5);
-  transform: scale(1.2,1.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transform: scale(1.2, 1.2);
 }
 .btn-three2:hover::after {
   opacity: 1;
-  transform: scale(1,1);
+  transform: scale(1, 1);
 }
 .btn-active2 {
   background-color: #9f9467;
@@ -377,26 +356,26 @@ label {
 .btn-nation-active {
   /* background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
   color: white; */
-  background-color: rgb(119, 175, 156,0.7);
+  background-color: rgb(119, 175, 156, 0.7);
   color: #d7fff1;
 }
 
 .btn-category-active {
-  background-color: rgb(119, 175, 156,0.7);
+  background-color: rgb(119, 175, 156, 0.7);
   color: #d7fff1;
 }
 
 .btn-period-active {
-  background-color: rgb(119, 175, 156,0.7);
+  background-color: rgb(119, 175, 156, 0.7);
   color: #d7fff1;
 }
 /* 랭킹 아이템 */
 .leaderboard {
   position: absolute;
   top: 35%;
-  left: 69%;
+  left: 63%;
   transform: translate(-50%, -50%);
-  width: 356px;
+  width: 114%;
   height: auto;
   background: transparent;
   border-radius: 10px;
@@ -428,7 +407,7 @@ label {
 }
 
 .leaderboard ol li::before {
-  content: counter(leaderboard);
+  content: '';
   position: absolute;
   z-index: 2;
   top: 10px;
@@ -437,7 +416,6 @@ label {
   height: 20px;
   line-height: 20px;
   color: #c24448;
-  background: #fff;
   border-radius: 20px;
   text-align: center;
 }
@@ -449,7 +427,7 @@ label {
   left: 0;
   width: 85%;
   height: 100%;
-  padding: 5px 10px 0px 50px;
+  padding: 5px 10px 0px 60px;
   margin: 0;
   background: none;
   color: black;
@@ -465,6 +443,8 @@ label {
 
 .leaderboard ol li::after {
   content: "";
+  background-image: url("@/assets/gold-medal.png");
+  background-size: 20px 20px;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -479,7 +459,13 @@ label {
 }
 
 .leaderboard ol li:nth-child(1) {
-  background: #f5d658;
+  /* background: #f0d155 */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(1)::before {
+  background-image: url("@/assets/gold-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(1)::after {
@@ -487,11 +473,17 @@ label {
 }
 
 .leaderboard ol li:nth-child(2) {
-  background: #e7e7e5;
+  /* background: #cacaca; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(2)::before {
+  background-image: url("@/assets/silver-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(2)::after {
-  background: #fffffe;
+  background: #feeca5;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
 }
 
@@ -502,11 +494,17 @@ label {
 }
 
 .leaderboard ol li:nth-child(3) {
-  background: #b6a86d;
+  /* background: #b6a86d; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(3)::before {
+  background-image: url("@/assets/bronze-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(3)::after {
-  background: #b2aa8a;
+  background: #feeca5;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
 }
 
@@ -517,11 +515,16 @@ label {
 }
 
 .leaderboard ol li:nth-child(4) {
-  background: white;
+  /* background: white; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(4)::before {
+  content: '4'
 }
 
 .leaderboard ol li:nth-child(4)::after {
-  background: white;
+  background: #feeca5;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -534,11 +537,16 @@ label {
 }
 
 .leaderboard ol li:nth-child(5) {
-  background: white;
+  /* background: white; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(5)::before {
+  content: '5'
 }
 
 .leaderboard ol li:nth-child(5)::after {
-  background: white;
+  background: #feeca5;
   box-shadow: 0 -2.5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 20px;
 }

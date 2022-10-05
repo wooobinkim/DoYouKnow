@@ -44,6 +44,9 @@ export default {
           datalabels: {
             display: false,
           },
+          font: {
+                  family: "KOTRA_BOLD-Bold"
+              },
         },
       },
     };
@@ -88,6 +91,9 @@ export default {
             title: {
               display: false,
               text: "Chart.js Word Cloud",
+              font: {
+                  family: "KOTRA_BOLD-Bold"
+              },
             },
             plugins: {
               labels: false,
@@ -162,5 +168,12 @@ export default {
 #canvas {
   height: 100%;
   width: 100%;
+}
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 </style>

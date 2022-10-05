@@ -20,7 +20,7 @@
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
         <div class="intro-arrow">
-          <img src="@/assets/intro_arrow.png" />
+          <img src="@/assets/intro-arrow.png" alt=""/>
         </div>
       </div>
     </div>
@@ -40,37 +40,37 @@
                   <div v-if="this.getConditionNation == 1">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/us.png"
+                      src="../../../public/texture/us.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 2">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/uk.png"
+                      src="../../../public/texture/uk.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 3">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/jp.png"
+                      src="../../../public/texture/jp.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 4">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/vi.png"
+                      src="../../../public/texture/vi.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 5">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/in.png"
+                      src="../../../public/texture/in.png"
                     />
                   </div>
                   <div v-else-if="this.getConditionNation == 6">
                     <img
                       class="nationFlag"
-                      src="../../../public/datalab/br.png"
+                      src="../../../public/texture/br.png"
                     />
                   </div>
                 </div>
@@ -83,7 +83,7 @@
           <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div><KeywordDonutGraph /></div>
-          <div class="test"><KeywordLineGraph /></div>
+          <div class="line-graph"><KeywordLineGraph /></div>
         </div>
       </transition>
       <transition name="right">
@@ -106,7 +106,7 @@ import { onMounted } from "@vue/runtime-core";
 import MainGlobe from "@/components/Main/MainGlobe.vue";
 
 import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
-// import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
 import KeywordNews from "@/components/Datalab/KeywordNews.vue";
 import KeywordRank from "@/components/Datalab/KeywordRank.vue";
 import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
@@ -121,7 +121,7 @@ export default {
     KeywordRelated,
     KeywordRank,
     KeywordNews,
-    // KeywordLineGraph,
+    KeywordLineGraph,
     KeywordDonutGraph,
     KeywordTts,
   },
@@ -261,7 +261,6 @@ h6 {
   float: left;
   z-index: 10;
   animation: fadeInLeft 2s;
-  
 }
 .right_section {
   position: fixed;
@@ -378,9 +377,11 @@ h6 {
   border-radius: 20px;
 }; */
 
-.test {
+.line-graph {
   position: absolute;
+  /* width: 400px; */
+  height: 500px;
   top: 63%;
-  left: 100%;
+  left: 80%;
 }
 </style>

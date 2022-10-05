@@ -7,6 +7,8 @@
         :type="lineChart.type"
         :data="lineChart.data"
         :options="lineChart.options"
+        width="470"
+        height="200"
       ></vue3-chart-js>
     </div>
 
@@ -52,10 +54,14 @@ export default {
             //   text: "검색량 추이",
           //   display: true,
           // },
+          datalabels: {
+            display: false,
+          }
         },
         borderColor: 'rgb(75, 192, 192)',
         borderJoinStyle: 'round',
-        
+        borderwidth: 30,
+
         scales: {
             yAxes: [{
               ticks: {
@@ -141,12 +147,19 @@ export default {
 </script>
 
 <style scoped>
-/* .chart-container {
-  width: 20rem;
-  height: 16rem;
-  background: #ffffff;
+.chart-container {
+  background: rgb(255, 255, 255,0.5);
+  /* opacity: 60%; */
   border-radius: 15px;
-  margin-left: 1.5rem;
-  margin-top: 1rem;
-} */
+  margin-left: -1.3rem;
+  margin-top: -0.8rem;
+}
+
+.line-graph {
+  position: absolute;
+  /* width: 400px; */
+  height: 500px;
+  top: 63%;
+  left: 80%;
+}
 </style>
