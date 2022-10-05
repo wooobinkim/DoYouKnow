@@ -43,6 +43,19 @@ export default {
         ],
       },
       options: {
+        animations: {
+          y: {
+            easing: "easeInOutElastic",
+            from: (ctx) => {
+              if (ctx.type === "data") {
+                if (ctx.mode === "default" && !ctx.dropped) {
+                  ctx.dropped = true;
+                  return 0;
+                }
+              }
+            },
+          },
+        },
         responsive: false,
         maintainAspectRatio: false,
         plugins: {
@@ -51,38 +64,52 @@ export default {
             display: false,
           },
           // title: {
-            //   text: "검색량 추이",
+          //   text: "검색량 추이",
           //   display: true,
           // },
           datalabels: {
             display: false,
-          }
+          },
         },
-        borderColor: 'rgb(75, 192, 192)',
-        borderJoinStyle: 'round',
-        borderwidth: 30,
+        borderColor: "rgb(0, 75, 107)",
+        borderJoinStyle: "round",
+        // spanGaps: true,
+        // borderwidth: 30,
+        // lineTension: 0,
 
         scales: {
-            yAxes: [{
+          x: {
+            grid: {
+              display: false,
+              drawBorder: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+            },
+          },
+          yAxes: [
+            {
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
               },
               gridLines: {
-                display: true
-              }
-            }],
-            xAxes: [ {
+                display: false,
+              },
+            },
+          ],
+          xAxes: [
+            {
               gridLines: {
-                display: false
-              }
-            }]
-          },
+                display: false,
+              },
+            },
+          ],
+        },
       },
     };
 
     const updateChart = (res) => {
       lineChart.options.plugins.title = {
-        text: "검색량 추이",
+        text: "날짜별 검색량",
         display: true,
       };
       lineChart.labels = res[0].name;
@@ -97,7 +124,9 @@ export default {
 
       for (let i = 0; i < res.length; i++) {
         // console.log(res[i]);
-        lineChart.data.labels[i] = res[i].date.toLocaleDateString().substring(6);
+        lineChart.data.labels[i] = res[i].date
+          .toLocaleDateString()
+          .substring(6);
         lineChart.data.datasets[0].data[i] = res[i].count;
       }
       chartRef.value.update(250);
@@ -138,7 +167,6 @@ export default {
       }
     },
     getGraphKeyword: function (data) {
-      console.log(data);
       this.keywordlist = data;
       this.updateChart(data);
     },
@@ -148,7 +176,7 @@ export default {
 
 <style scoped>
 .chart-container {
-  background: rgb(255, 255, 255,0.5);
+  background: rgb(255, 255, 255, 0.1);
   /* opacity: 60%; */
   border-radius: 15px;
   margin-left: -1.3rem;

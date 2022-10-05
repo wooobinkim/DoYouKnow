@@ -60,7 +60,8 @@ export default {
 .total-container {
   display: flex;
   flex-direction: column;
-  margin-left: 5%;
+  margin-left: 1rem;
+  margin-right: 1rem;
   background: white;
   border-radius: 30px;
   opacity: 71%;
