@@ -22,7 +22,7 @@ export const game = {
   actions: {
     setGameData({ commit }) {
       axios
-        .get(`http://j7b208.p.ssafy.io:8080/api/higherlower`)
+        .get(`https://j7b208.p.ssafy.io/api/higherlower`)
         .then((res) => {
           console.log(res, "res");
           commit("SET_GAMEDATA", res.data);
@@ -32,7 +32,7 @@ export const game = {
         });
     },
     setGameData1() {
-      return axios.get(`http://j7b208.p.ssafy.io:8080/api/higherlower`);
+      return axios.get(`https://j7b208.p.ssafy.io/api/higherlower`);
     },
   },
 };
