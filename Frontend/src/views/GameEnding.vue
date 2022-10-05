@@ -1,6 +1,8 @@
 <template>
   <div class="ending-background">
-    <img @click="gohome" src="@/assets/logo.png" alt="logo" class="logo" />
+    <a href="https://j7b208.p.ssafy.io/">
+      <img src="@/assets/logo.png" alt="logo" class="logo" />
+    </a>
     <div>
       <div>
         <img
@@ -21,7 +23,7 @@
           id="myAudio"
           autoplay="autoplay"
           loop
-          onloadstart="this.volume=0.05"
+          onloadstart="this.volume=0.1"
         >
           <source src="@/assets/higherlower/ending-bgm.mp3" type="audio/mp3" />
         </audio>
@@ -34,10 +36,13 @@
         alt=""
       /> -->
       <div class="ending-info">
-        <h2 style="color: white">🎯당신의 점수는🎯</h2>
-        <h1 class="score">{{ score }}점 !</h1>
-        <h3 style="color: white">아이쿠 손이 미끄러졌네~~🔨</h3>
-        <h3 style="margin-top: 0rem">유저 평균 점수 6.3점</h3>
+        <h2 style="color: white; margin-top: 0">🎯당신의 점수는🎯</h2>
+        <transition class="animate__animated animate__bounceInDown">
+          <h1 class="score">{{ score }}점 !</h1>
+        </transition>
+        <h3 style="color: white; margin-top: 0; margin-bottom: 4rem">
+          아이쿠 손이 미끄러졌네~~🔨
+        </h3>
         <div class="button-container">
           <button class="w-btn-neon2" @click="gamestart">다시할래</button>
         </div>
@@ -120,7 +125,7 @@ export default {
 .score {
   color: yellow;
   font-size: 5rem;
-  margin-top: 1rem;
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 .ending-info {
@@ -128,6 +133,7 @@ export default {
   flex-direction: column;
   align-items: center;
   position: absolute;
+  margin-top: 9rem;
 }
 .button-container {
   display: flex;

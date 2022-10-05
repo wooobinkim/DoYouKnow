@@ -8,29 +8,35 @@
     <div class="game-content">
       <p>총 검색량으로 K-culture의 힘을 알아봅시다!</p>
       <p>어떤 것이 최고의 DoYouKnow 지수를 갖고 있을지 궁금하다면?</p>
-      <div class="game-router" @click="gogame">플레이 하러 가기 >></div>
+      <div class="game-router" @click="goToGamePage">플레이 하러 가기 >></div>
     </div>
   </div>
-  <img class="photo" src="@/assets/hilow.png">
+  <img class="photo" src="@/assets/highlow.jpg" />
 </template>
 
 <script>
 import { useRouter } from "vue-router";
-
-export default{
-  setup(){
+export default {
+  setup() {
     const router = useRouter();
-    const gogame = function () {
+    const goToGamePage = () => {
       router.push({ name: "GamePage" });
     };
-    return{
-      gogame,
-    }
-  }
-}
+    return {
+      goToGamePage,
+    };
+  },
+};
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .photo {
   position: absolute;
   top: 200px;
@@ -56,22 +62,23 @@ export default{
 .game-title p {
   margin: 0;
   font-weight: bold;
-  
 }
 
 .more {
+  font-family: "KOTRA_BOLD-Bold";
   color: red;
 }
 
 .less {
+  font-family: "KOTRA_BOLD-Bold";
   color: blue;
 }
 
 .game-content {
+  font-family: "KOTRA_BOLD-Bold";
   color: black;
   font-size: 1.2em;
   margin-top: 30px;
-
 }
 
 .game-content p {

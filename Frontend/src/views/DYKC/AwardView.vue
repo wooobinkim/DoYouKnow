@@ -363,6 +363,7 @@ export default {
   }
   .main{
     display: flex;
+    margin-top: 3rem;
   }
   ul{
     list-style:none;
@@ -389,6 +390,7 @@ export default {
     justify-content: space-evenly;
     align-items: center;
     margin-left: 2rem;
+    margin-top: 3rem;
   }
 
   li > button:hover {
@@ -404,7 +406,8 @@ export default {
     letter-spacing: 1rem;
     color: #ffdfaed6;
     text-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffdfaed6,
-    0 0 25px #ffdfaed6, 0 0 35px #ffdfaed6, 0 0 55px #ffdfaed6, 0 0 70px #ffdfaed6
+    0 0 25px #ffdfaed6, 0 0 35px #ffdfaed6, 0 0 55px #ffdfaed6, 0 0 70px #ffdfaed6;
+    margin-bottom:3rem;
   }
 
 
