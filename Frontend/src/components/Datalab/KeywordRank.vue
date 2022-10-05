@@ -5,6 +5,7 @@
       <template v-for="category in this.getCategory" :key="category.value">
         <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
+
         <button
           @click="setCategory(category.value)"
           :class="{
@@ -15,6 +16,7 @@
         >
           {{ category.text }}
         </button>
+        
       </template>
       <br />
       <div style="margin-top: 1rem; margin-left: 5rem">
@@ -32,6 +34,7 @@
           </div>
         </div>
 
+
         <div class="leaderboard">
           <ol>
             <template
@@ -43,6 +46,7 @@
                   {{ keyword.name }}
                 </mark>
               </li>
+              <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button>
             </template>
           </ol>
         </div>
@@ -82,14 +86,28 @@ export default {
     const setOneKeyword = function setOneKeyword(keyword) {
       store.dispatch("currentRank", { keyword });
     };
+    const tts = async function tts(keyword) {
+      let nation = null;
+      let lang = null;
+      if(store.getters.getConditionNation == 1) {nation="en";lang="en-US"}
+      if(store.getters.getConditionNation == 2) {nation="en";lang="en-UK"}
+      if(store.getters.getConditionNation == 3) {nation="ja";lang="ja-JP"}
+      if(store.getters.getConditionNation == 4) {nation="vi";lang="vi-VN"}
+      if(store.getters.getConditionNation == 5) {nation="id";lang="id-ID"}
+      if(store.getters.getConditionNation == 6) {nation="pt";lang="pt-BR"}
 
-    // const rank1 = function (e) {
-    //   e = rankDrama[0].title;
-    //   // console.log(e, "eeeee");
-    //   const keyword = e;
-    //   store.dispatch("currentRank", { keyword });
-    // };
+      const condition = {
+          keyword : keyword+" 아세요",
+          nation : nation
+      }
+      await store.dispatch("TTSTranslate",  condition );
 
+      let utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
+      utterThis.voice = speechSynthesis.getVoices()[8];
+      utterThis.lang = lang;
+      window.speechSynthesis.speak(utterThis);
+      
+    };
     return {
       // rank1,
       setNation,
@@ -97,6 +115,7 @@ export default {
       setPeriod,
       setOneKeyword,
       store,
+      tts,
       // data,
       ActiveNation,
     };
@@ -110,6 +129,7 @@ export default {
       "getCategory",
       "getPeriod",
       "getKeywordRank",
+      "getTTS"
     ]),
   },
   watch: {
@@ -162,10 +182,12 @@ export default {
 .keyword-container {
   width: 27.75rem;
   height: 15rem;
+
   margin-left: 1.5rem;
   /* min-width: 320px;
   max-width: 800px; */
   padding: 0;
+
   border-radius: 15px;
   font-family: "KOTRA_BOLD-Bold";
 }
