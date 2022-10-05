@@ -1,16 +1,6 @@
 <template>
-<<<<<<< HEAD
-  <div>
-    <div class="keyword-container" style="text-align: left;">
-      <!-- <template v-for="nation in this.getNation" :key="nation.value">
-        <button @click="setNation(nation.value)" :class="{'btn-common': true, 'btn-nation-active' : ActiveNation[nation.value-1] === true}">
-          {{ nation.text }}
-        </button>
-      </template> -->
-=======
   <div class="keyword-container">
     <div class="button-container">
->>>>>>> c3c48efb9c1c61dc3853f80b2ba08973e2a899dc
       <br />
       <template v-for="category in this.getCategory" :key="category.value">
         <!-- <input id="tab1" type="radio" name="tabs" checked />
@@ -44,20 +34,7 @@
           </div>
         </div>
 
-<<<<<<< HEAD
-        <!-- <section id="content1"> -->
-        <template
-          v-for="(keyword, index) in this.getKeywordRank"
-          :key="keyword"
-        >
-          <div class="rankkeyword" v-if="index < 5">
-            <div @click="setOneKeyword(keyword.name)">
-              {{ index + 1 }}. {{ keyword.name }}
-            </div>
-          </div>
-          <button @click="tts(keyword.name)">두유노?</button>
-        </template>
-=======
+
         <div class="leaderboard">
           <ol>
             <template
@@ -69,10 +46,10 @@
                   {{ keyword.name }}
                 </mark>
               </li>
+              <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button>
             </template>
           </ol>
         </div>
->>>>>>> c3c48efb9c1c61dc3853f80b2ba08973e2a899dc
       </div>
       <!-- </section> -->
     </div>
@@ -126,6 +103,7 @@ export default {
       await store.dispatch("TTSTranslate",  condition );
 
       let utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
+      utterThis.voice = speechSynthesis.getVoices()[8];
       utterThis.lang = lang;
       window.speechSynthesis.speak(utterThis);
       
@@ -185,18 +163,6 @@ export default {
         this.store.dispatch("getKeywordData", { condition });
       }
     },
-    // getTTS:function (data) {
-    //   let utterThis = new SpeechSynthesisUtterance(data);
-    //   let lang = null
-    //   if(this.store.getters.getConditionNation == 1) lang="en-US"
-    //   if(this.store.getters.getConditionNation == 2) lang="en-UK"
-    //   if(this.store.getters.getConditionNation == 3) lang="ja-JP"
-    //   if(this.store.getters.getConditionNation == 4) lang="vi-VN"
-    //   if(this.store.getters.getConditionNation == 5) lang="id-ID"
-    //   if(this.store.getters.getConditionNation == 6) lang="pt-BR"
-    //   utterThis.lang = lang;
-    //   window.speechSynthesis.speak(utterThis);
-    // }
   },
   // methods: {
   //   ...mapActions(["setNation", "setCategory", "setPeriod"]),
