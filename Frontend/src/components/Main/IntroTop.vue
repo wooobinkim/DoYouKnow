@@ -16,9 +16,7 @@
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
         >
-          <p>
-            한 눈에 세계속의 한국을 알아보고 싶은 당신! DoYouKnow를 아시나요?
-          </p>
+          <p>한 눈에 세계속의 한국을 알아보고 싶은 당신!</p>
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
         <div class="intro-arrow">
@@ -153,6 +151,10 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
+.wordcloud-container {
+  width: 400px;
+  height: 200px;
+}
 .nation-container {
   width: 210px;
 }
@@ -267,7 +269,7 @@ h6 {
   right: 2%;
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 27%;
   float: right;
   z-index: 10;
   justify-content: space-around;
@@ -351,7 +353,7 @@ h6 {
   }
 }
 .news-container {
-  width: 340px;
+  width: 400px;
   height: 320px;
   /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
