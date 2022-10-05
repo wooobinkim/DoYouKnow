@@ -13,6 +13,7 @@ export const datalab = {
     relatedkeywordnews: [],
     relatedkewordloading: false,
     graphkeyword: null,
+    TTS:null,
     category: [
       { value: 1, text: "운동선수" },
       { value: 2, text: "드라마" },
@@ -87,9 +88,11 @@ export const datalab = {
       return state.graphkeyword;
     },
     getRelatedKewordLoading(state) {
-      console.log(state.relatedkewordloading);
       return state.relatedkewordloading;
     },
+    getTTS(state){
+      return state.TTS;
+    }
   },
   mutations: {
     SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
@@ -117,6 +120,9 @@ export const datalab = {
       // console.log(relatedkewordloading);
       state.relatedkewordloading = relatedkewordloading;
     },
+    SET_TTS:(state,TTS)=>{
+      state.TTS=TTS
+    }
     // (state.graphkeyword = graphkeyword),
   },
   actions: {
@@ -147,8 +153,8 @@ export const datalab = {
       await commit("SET_PERIOD", period);
     },
 
-    resetKeyword({ commit }) {
-      commit("RESET_KEYWORDRANK");
+    async resetKeyword({ commit }) {
+      await commit("RESET_KEYWORDRANK");
     },
 
     async getKeywordData({ commit }, { condition }) {
@@ -166,7 +172,6 @@ export const datalab = {
     },
 
     async getGraphKeyword({ commit }, { condition }) {
-      console.log(condition);
       await axios
         .get(
           `http://j7b208.p.ssafy.io:8080/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
@@ -190,6 +195,21 @@ export const datalab = {
         .then((res) => {
           commit("SET_RELATEDKEYWORDLOADING", false);
           commit("SET_RELATEDKEWORD", res.data);
+        })
+        .catch((err) => {
+          console.error(err.response);
+        });
+    },
+
+    async TTSTranslate({ commit }, condition) {
+      // console.log(condition.condition);
+      // console.log(condition.keyword, condition.nation);
+      await axios({
+        url: `https://j7b208.p.ssafy.io/api2/pytranslate/detail/${condition.keyword}/${condition.nation}/`,
+        method: "get",
+      })
+        .then((res) => {
+          commit("SET_TTS", res.data);
         })
         .catch((err) => {
           console.error(err.response);
