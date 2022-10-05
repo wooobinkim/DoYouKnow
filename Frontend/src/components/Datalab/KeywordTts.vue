@@ -4,7 +4,15 @@
         <div class="slide-group">
             <div @click="Speak()" class="bubble">
                 <em></em>
-                <template v-if="this.getTTS"><p><span>{{this.getTTS.replace("?", "")}}?</span></p></template>
+                <template v-if="this.getTTS">
+                    <p><span>
+                    <!-- <div style="display:inline-block; position:center"> -->
+                        <!-- <img src="@/assets/sound-icon.png" style="width:20px;display:inline-block; padding-bottom:px"> -->
+                    <!-- </div> -->
+                          {{this.getTTS.replace("?", "")}}?
+                    </span></p>
+                </template>
+                
                 <!-- <template v-else><p><span>bubble left text </span></p></template> -->
                 <em></em>
             </div>
@@ -21,6 +29,10 @@ export default {
     setup(){
         const store = useStore();
 
+        let utterThis = new SpeechSynthesisUtterance();
+        utterThis.voice = speechSynthesis.getVoices()[8];
+        speechSynthesis.speak(utterThis);
+
         const Speak = function Speak() {
             let lang = null;
             if(store.getters.getConditionNation == 1) {lang="en-US"}
@@ -30,12 +42,13 @@ export default {
             if(store.getters.getConditionNation == 5) {lang="id-ID"}
             if(store.getters.getConditionNation == 6) {lang="pt-BR"}
 
-            let utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
+            // let utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
+            utterThis.text = store.getters.getTTS+"?"
             utterThis.voice = speechSynthesis.getVoices()[8];
             utterThis.lang = lang;
             window.speechSynthesis.speak(utterThis);
         };
-        return {store,Speak};
+        return {store,Speak,utterThis};
     },
     computed: {
     ...mapGetters([

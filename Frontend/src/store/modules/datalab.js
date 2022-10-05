@@ -167,7 +167,7 @@ export const datalab = {
       // console.log(condition);
       await axios
         .get(
-          `https://j7b208.p.ssafy.io/api/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
+          `https://j7b208.p.ssafy.io/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
           commit("SET_KEYWORDRANK", res.data);
@@ -180,7 +180,7 @@ export const datalab = {
     async getGraphKeyword({ commit }, { condition }) {
       await axios
         .get(
-          `https://j7b208.p.ssafy.io/api/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
+          `https://j7b208.p.ssafy.io/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
           console.log(res.data);
