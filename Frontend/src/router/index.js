@@ -1,10 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import MainPage from "../views/MainPage.vue";
-import DatalabPage from "../views/DatalabPage.vue";
 import GamePage from "../views/GamePage.vue";
 import GamePlay from "../views/GamePlay.vue";
 import GameEnding from "../views/GameEnding.vue";
-import DatalabView from "../views/DatalabView.vue";
 
 // DYKC
 import DYKCView from "../views/DYKC/DYKCView.vue";
@@ -16,20 +14,6 @@ const routes = [
     path: "/",
     name: "MainPage",
     component: MainPage,
-  },
-  {
-    path: "/datalab",
-    name: "DatalabPage",
-    component: DatalabPage,
-
-    props: true,
-  },
-  {
-    path: "/datalabview",
-    name: "DatalabView",
-    component: DatalabView,
-
-    props: true,
   },
   {
     path: "/game",

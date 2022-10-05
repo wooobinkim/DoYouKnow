@@ -8,10 +8,12 @@
       <img class="img" src="../../assets/DYKC/leftleaf.png" style="transform: rotate(330deg);">
     </div>
     <div class="main">
-      <div class="title">
-        <h1 style="margin:0;">DoYouKnow</h1>
-        <h1 style="margin:0;">Club</h1>
-      </div>
+        <transition class="animate__animated animate__zoomIn">
+          <div class="title">
+              <h1 style="margin:0;">DoYouKnow</h1>
+              <h1 style="margin:0;">Club</h1>
+          </div>
+        </transition>
       <button class="button" @click="Award()">
         <img class="btn_img" src="../../assets/DYKC/trophy.png"/>
       </button>
@@ -24,6 +26,11 @@
 
 <script>
 export default {
+  data(){
+    return{
+      show:true,
+    }
+  },
   methods: {
     Award() {
       this.$router.push('/awardintro');
@@ -57,10 +64,7 @@ export default {
     color: bisque;
     font-size: xxx-large;
     text-align : center;
-    /* font-family: 'Bungee Spice', cursive; */
     font-family: 'Lobster', cursive;
-    /* font-family: 'Rowdies', cursive; */
-    /* font-family: 'Supermercado One', cursive; */
   }
   .button{
     background-color: unset;

@@ -2,7 +2,7 @@
   <div>
     <div class="keyword-container">
       <template v-for="nation in this.getNation" :key="nation.value">
-        <button @click="setNation(nation.value)">
+        <button @click="setNation(nation.value)" :class="{'btn-common': true, 'btn-nation-active' : ActiveNation[nation.value-1] === true}">
           {{ nation.text }}
         </button>
       </template>
@@ -10,13 +10,13 @@
       <template v-for="category in this.getCategory" :key="category.value">
         <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
-        <button @click="setCategory(category.value)">
+        <button @click="setCategory(category.value)" :class="{'btn-common': true, 'btn-category-active' : CategoryNo === category.value}">
           {{ category.text }}
         </button>
       </template>
       <br />
       <template v-for="period in this.getPeriod" :key="period.value">
-        <button @click="setPeriod(period.value)">{{ period.text }}</button>
+        <button @click="setPeriod(period.value)" :class="{'btn-common': true, 'btn-period-active' : PeriodNo === period.value}">{{ period.text }}</button>
       </template>
 
       <!-- <section id="content1"> -->
@@ -36,10 +36,19 @@ import { onMounted } from "vue";
 // import { useRoute } from "vue-router";
 export default {
   setup() {
+    let ActiveNation = [false, false, false, false, false, false]
+    // let ActiveCategory = [false, false, false, false, false, false]
+    // let ActivePeriod = [false, false, false, false, false, false]
+
     const store = useStore();
     onMounted(() => {});
 
     const setNation = function setNation(nation) {
+      if (ActiveNation[nation-1] === false){
+        ActiveNation[nation-1] = true
+      } else {
+        ActiveNation[nation-1] = false
+      }
       store.dispatch("setNation", { nation });
     };
     const setCategory = function setCategory(category) {
@@ -52,13 +61,14 @@ export default {
       store.dispatch("currentRank", { keyword });
     };
 
+    
     // const rank1 = function (e) {
     //   e = rankDrama[0].title;
     //   // console.log(e, "eeeee");
     //   const keyword = e;
     //   store.dispatch("currentRank", { keyword });
     // };
-
+  
     return {
       // rank1,
       setNation,
@@ -67,6 +77,7 @@ export default {
       setOneKeyword,
       store,
       // data,
+      ActiveNation,
     };
   },
   computed: {
@@ -119,6 +130,7 @@ export default {
 </script>
 
 <style scoped>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 .keyword-container {
   width: 27.75rem;
   height: 15rem;
@@ -185,5 +197,41 @@ input:checked + label {
   padding: 0;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.btn-common {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-family: 'Jeju Gothic', sans-serif;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+  margin: 5px 2px;
+  background-color: aliceblue;
+  color: #1e6b7b;
+}
+
+.btn-common:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.btn-nation-active {
+  /* background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
+  color: white; */
+  background-color: #77af9c;
+  color: #d7fff1;
+}
+
+.btn-category-active {
+  background-color: #77af9c;
+  color: #d7fff1;
+}
+
+.btn-period-active {
+  background-color: #77af9c;
+  color: #d7fff1;
 }
 </style>
