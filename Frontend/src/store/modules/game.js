@@ -24,6 +24,7 @@ export const game = {
       axios
         .get(`http://j7b208.p.ssafy.io:8080/api/higherlower`)
         .then((res) => {
+          console.log(res, "res");
           commit("SET_GAMEDATA", res.data);
         })
         .catch((err) => {
