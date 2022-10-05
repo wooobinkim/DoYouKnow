@@ -32,7 +32,7 @@ public class HigherLowerCustomRepositoryImpl implements HigherLowerCustomReposit
         QKeyword i = new QKeyword("i");
 
         List<Tuple> fetch = jpaQueryFactory
-                .select(k.name, k.imgUrl, i.count())
+                .select(k.name, k.imgUrl, i.count.sum())
                 .from(k)
                 .innerJoin(i)
                 .on(i.name.eq(k.name))
@@ -41,7 +41,7 @@ public class HigherLowerCustomRepositoryImpl implements HigherLowerCustomReposit
 
         List<HigherLowerResponse> higherLowerResponseList = fetch.stream().map(
                 h ->HigherLowerResponse.response(
-                        h.get(k.name), S3Url+h.get(k.imgUrl), h.get(i.count())
+                        h.get(k.name), S3Url+h.get(k.imgUrl), h.get(i.count.sum())
         )).collect(Collectors.toList());
 
         Collections.shuffle(higherLowerResponseList);
