@@ -272,7 +272,7 @@ export default {
             divElement.innerHTML =
               '<img src="/texture/jp.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 69) {
+          if (hoveredObj.id == 71) {
             divElement.innerHTML =
               '<img src="/texture/vi.png" style="width: 100%; height: 100%;">';
           }
@@ -386,7 +386,7 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 69) {
+          if (intersects[0].object.id == 71) {
             //local 71
             //배포 69
             const nation = 4;
