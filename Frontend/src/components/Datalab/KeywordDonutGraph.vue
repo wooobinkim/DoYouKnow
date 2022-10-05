@@ -70,7 +70,7 @@ export default {
           },
           datalabels: {
             display: true,
-            font:{
+            font: {
               size: 11,
               family: "KOTRA_BOLD-Bold",
             },
@@ -96,13 +96,11 @@ export default {
         },
       },
     };
-
     const updateChart = (res) => {
       lineChart.options.plugins.title = {
-        text: "검색량 추이",
+        text: "탑10 검색어",
         display: true,
       };
-
       lineChart.data.labels = [];
       lineChart.data.datasets = [
         {
@@ -112,6 +110,7 @@ export default {
         },
       ];
 
+      // console.log(lineChart.data.datasets[0].data.font);
       for (let i = 0; i < 10; i++) {
         lineChart.data.labels[i] = res[i].name;
         lineChart.data.datasets[0].data[i] = res[i].count;
@@ -149,7 +148,8 @@ export default {
   font-style: normal;
 }
 .doughnut-container {
-  width: 90%;
+  /* background: rgb(255, 255, 255, 0.1); */
+  width: 70%;
   height: 478px;
   margin-left: 5%;
   margin-top: 4rem;

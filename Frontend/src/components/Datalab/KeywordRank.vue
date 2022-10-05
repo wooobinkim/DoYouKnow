@@ -77,6 +77,10 @@ export default {
     let ActiveNation = [false, false, false, false, false, false];
     // let ActiveCategory = [false, false, false, false, false, false]
     // let ActivePeriod = [false, false, false, false, false, false]
+    let utterThis = new SpeechSynthesisUtterance();
+    utterThis.voice = speechSynthesis.getVoices()[8];
+    speechSynthesis.speak(utterThis);
+    // utterThis.lang
 
     const store = useStore();
     onMounted(() => {});
@@ -98,6 +102,7 @@ export default {
     const setOneKeyword = function setOneKeyword(keyword) {
       store.dispatch("currentRank", { keyword });
     };
+
     return {
       // rank1,
       setNation,
@@ -105,7 +110,7 @@ export default {
       setPeriod,
       setOneKeyword,
       store,
-      // tts,
+      utterThis,
       // data,
       ActiveNation,
     };
@@ -238,8 +243,10 @@ label {
   transition: all 0.5s;
   position: relative;
   font-size: 15px;
+  border-radius: 10px;
 }
 .btn-three1::before {
+  border-radius: 10px;
   content: "";
   position: absolute;
   top: 0;
@@ -251,10 +258,12 @@ label {
   transition: all 0.3s;
 }
 .btn-three1:hover::before {
+  border-radius: 10px;
   opacity: 0;
   transform: scale(0.5, 0.5);
 }
 .btn-three1::after {
+  border-radius: 10px;
   content: "";
   position: absolute;
   top: 0;
@@ -268,64 +277,13 @@ label {
   transform: scale(1.2, 1.2);
 }
 .btn-three1:hover::after {
+  border-radius: 10px;
   opacity: 1;
   transform: scale(1, 1);
 }
 .btn-active1 {
+  border-radius: 10px;
   background-color: rgb(255, 190, 84);
-}
-.btn-group2 {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 5px;
-}
-.btn2 {
-  line-height: 32px;
-  height: 28px;
-  text-align: center;
-  width: 85px;
-  cursor: pointer;
-}
-.btn-three2 {
-  color: rgb(0, 0, 0);
-  transition: all 0.5s;
-  position: relative;
-  font-size: 11px;
-}
-.btn-three2::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-color: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s;
-}
-.btn-three2:hover::before {
-  opacity: 0;
-  transform: scale(0.5, 0.5);
-}
-.btn-three2::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0;
-  transition: all 0.3s;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transform: scale(1.2, 1.2);
-}
-.btn-three2:hover::after {
-  opacity: 1;
-  transform: scale(1, 1);
-}
-.btn-active2 {
-  background-color: #9f9467;
 }
 .btn-common {
   font-size: 13px;
@@ -401,7 +359,7 @@ label {
 }
 
 .leaderboard ol li::before {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 2;
   top: 10px;
@@ -514,7 +472,7 @@ label {
 }
 
 .leaderboard ol li:nth-child(4)::before {
-  content: '4'
+  content: "4";
 }
 
 .leaderboard ol li:nth-child(4)::after {
@@ -536,7 +494,7 @@ label {
 }
 
 .leaderboard ol li:nth-child(5)::before {
-  content: '5'
+  content: "5";
 }
 
 .leaderboard ol li:nth-child(5)::after {
