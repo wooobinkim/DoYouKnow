@@ -1,6 +1,7 @@
 <template>
   <section>
     <div v-if="this.getIsOverlay == false">
+    <img src="@/assets/intro-arrow.png" class="intro-arrow">
       <div class="title-container">
         <h6
           data-aos="fade-right"
@@ -19,9 +20,7 @@
           <p>한 눈에 세계속의 한국을 알아보고 싶은 당신!</p>
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
-        <div class="intro-arrow">
-          <img src="@/assets/intro-arrow.png" alt=""/>
-        </div>
+        
       </div>
     </div>
     <div v-else>
@@ -157,6 +156,7 @@ export default {
 .wordcloud-container {
   width: 400px;
   height: 200px;
+  margin-top: 15%;
 }
 .nation-container {
   width: auto;
@@ -219,12 +219,12 @@ h6 {
   text-align: start;
 }
 .intro-arrow {
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   position: absolute;
-  /* left: -70%; */
-  margin-left: 81rem;
-  margin-top: 28rem;
+  left: 70%;
+  top: 70%;
+  
 }
 .content-msg p {
   margin: 20px 0;
