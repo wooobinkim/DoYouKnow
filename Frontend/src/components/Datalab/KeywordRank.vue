@@ -367,9 +367,9 @@ label {
 .leaderboard {
   position: absolute;
   top: 35%;
-  left: 69%;
+  left: 63%;
   transform: translate(-50%, -50%);
-  width: 356px;
+  width: 114%;
   height: auto;
   background: transparent;
   border-radius: 10px;
@@ -401,7 +401,7 @@ label {
 }
 
 .leaderboard ol li::before {
-  content: counter(leaderboard);
+  content: '';
   position: absolute;
   z-index: 2;
   top: 10px;
@@ -410,7 +410,6 @@ label {
   height: 20px;
   line-height: 20px;
   color: #c24448;
-  background: #fff;
   border-radius: 20px;
   text-align: center;
 }
@@ -422,7 +421,7 @@ label {
   left: 0;
   width: 85%;
   height: 100%;
-  padding: 5px 10px 0px 50px;
+  padding: 5px 10px 0px 60px;
   margin: 0;
   background: none;
   color: black;
@@ -438,6 +437,8 @@ label {
 
 .leaderboard ol li::after {
   content: "";
+  background-image: url("@/assets/gold-medal.png");
+  background-size: 20px 20px;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -452,7 +453,13 @@ label {
 }
 
 .leaderboard ol li:nth-child(1) {
-  background: #f5d658;
+  /* background: #f0d155 */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(1)::before {
+  background-image: url("@/assets/gold-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(1)::after {
@@ -460,11 +467,17 @@ label {
 }
 
 .leaderboard ol li:nth-child(2) {
-  background: #e7e7e5;
+  /* background: #cacaca; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(2)::before {
+  background-image: url("@/assets/silver-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(2)::after {
-  background: #fffffe;
+  background: #feeca5;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
 }
 
@@ -475,11 +488,17 @@ label {
 }
 
 .leaderboard ol li:nth-child(3) {
-  background: #b6a86d;
+  /* background: #b6a86d; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(3)::before {
+  background-image: url("@/assets/bronze-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(3)::after {
-  background: #b2aa8a;
+  background: #feeca5;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
 }
 
@@ -490,11 +509,16 @@ label {
 }
 
 .leaderboard ol li:nth-child(4) {
-  background: white;
+  /* background: white; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(4)::before {
+  content: '4'
 }
 
 .leaderboard ol li:nth-child(4)::after {
-  background: white;
+  background: #feeca5;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -507,11 +531,16 @@ label {
 }
 
 .leaderboard ol li:nth-child(5) {
-  background: white;
+  /* background: white; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(5)::before {
+  content: '5'
 }
 
 .leaderboard ol li:nth-child(5)::after {
-  background: white;
+  background: #feeca5;
   box-shadow: 0 -2.5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 20px;
 }
