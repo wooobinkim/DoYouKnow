@@ -14,7 +14,7 @@ export const datalab = {
     relatedkeywordnews: [],
     relatedkewordloading: false,
     graphkeyword: null,
-    TTS:null,
+    TTS: null,
     category: [
       { value: 1, text: "운동선수" },
       { value: 2, text: "드라마" },
@@ -46,7 +46,7 @@ export const datalab = {
     getCurrentRank(state) {
       return state.currentrank;
     },
-    getCurrentTrans(state){
+    getCurrentTrans(state) {
       return state.currentRankTrans;
     },
     getKeywordRank(state) {
@@ -94,9 +94,9 @@ export const datalab = {
     getRelatedKewordLoading(state) {
       return state.relatedkewordloading;
     },
-    getTTS(state){
+    getTTS(state) {
       return state.TTS;
-    }
+    },
   },
   mutations: {
     SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
@@ -104,7 +104,8 @@ export const datalab = {
       state.datalabviewloading = datalabviewloading;
     },
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
-    SET_CURRENTRANKTRANS : (state, keyword) => (state.currentRankTrans = keyword),
+    SET_CURRENTRANKTRANS: (state, keyword) =>
+      (state.currentRankTrans = keyword),
     SET_KEYWORDRANK: (state, data) => (state.keywordrank = data),
     RESET_KEYWORDRANK: (state) => (state.keywordrank = null),
     SET_RELATEDKEWORD: (state, keywords) => (state.relatedkeword = keywords),
@@ -125,9 +126,9 @@ export const datalab = {
       // console.log(relatedkewordloading);
       state.relatedkewordloading = relatedkewordloading;
     },
-    SET_TTS:(state,TTS)=>{
-      state.TTS=TTS
-    }
+    SET_TTS: (state, TTS) => {
+      state.TTS = TTS;
+    },
     // (state.graphkeyword = graphkeyword),
   },
   actions: {
@@ -137,7 +138,7 @@ export const datalab = {
 
     async getNationRate({ commit }, { nation }) {
       await axios
-        .get(`http://j7b208.p.ssafy.io:8080/api/keyword/searchcount/${nation}`)
+        .get(`https://j7b208.p.ssafy.io/api/keyword/searchcount/${nation}`)
         .then((res) => {
           commit("SET_NATIONRATE", res.data);
         })
@@ -166,7 +167,7 @@ export const datalab = {
       // console.log(condition);
       await axios
         .get(
-          `http://j7b208.p.ssafy.io:8080/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
+          `https://j7b208.p.ssafy.io/api/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
           commit("SET_KEYWORDRANK", res.data);
@@ -179,7 +180,7 @@ export const datalab = {
     async getGraphKeyword({ commit }, { condition }) {
       await axios
         .get(
-          `http://j7b208.p.ssafy.io:8080/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
+          `https://j7b208.p.ssafy.io/api/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
           console.log(res.data);
@@ -221,10 +222,11 @@ export const datalab = {
         });
     },
 
-    async getTranslateKeyword({commit, state}, data){
+    async getTranslateKeyword({ commit, state }, data) {
       console.log(data);
       await axios({
-        url: BackendAPI2.datalab.relatedkeywordtranslate(data[1],
+        url: BackendAPI2.datalab.relatedkeywordtranslate(
+          data[1],
           state.nation[data[0].nation - 1].lang
         ),
         method: "get",
