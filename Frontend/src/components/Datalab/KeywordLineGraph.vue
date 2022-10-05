@@ -49,10 +49,28 @@ export default {
             display: false,
           },
           // title: {
-          //   text: "검색량 추이",
+            //   text: "검색량 추이",
           //   display: true,
           // },
         },
+        borderColor: 'rgb(75, 192, 192)',
+        borderJoinStyle: 'round',
+        
+        scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              },
+              gridLines: {
+                display: true
+              }
+            }],
+            xAxes: [ {
+              gridLines: {
+                display: false
+              }
+            }]
+          },
       },
     };
 
@@ -66,14 +84,14 @@ export default {
       lineChart.data.datasets = [
         {
           label: res[0].name,
-          backgroundColor: "#f87979",
+          backgroundColor: "rgb(75, 192, 192)",
           data: [],
         },
       ];
 
       for (let i = 0; i < res.length; i++) {
         // console.log(res[i]);
-        lineChart.data.labels[i] = res[i].date.toLocaleDateString();
+        lineChart.data.labels[i] = res[i].date.toLocaleDateString().substring(6);
         lineChart.data.datasets[0].data[i] = res[i].count;
       }
       chartRef.value.update(250);

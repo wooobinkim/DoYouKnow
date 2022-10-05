@@ -140,7 +140,7 @@ export default {
 .doughnut-container {
   width: 90%;
   height: 478px;
-  margin-left: 8.5rem;
+  margin-left: 4.5rem;
   margin-top: 4rem;
   /* background: rgba(255, 255, 255, 0.70);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);

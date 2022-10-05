@@ -77,11 +77,19 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .tts-container{
     position: float;
 }
 
-* {margin:0; padding:0; box-sizing:border-box;}
+* {margin:0; padding:0; box-sizing:border-box; top:20px;}
 
 
 .wrapper {width:100%;}
@@ -107,6 +115,8 @@ export default {
   box-shadow:inset -3px -3px 8px rgba(0, 0, 0, 0.3);
   filter:drop-shadow(3px 3px 5px rgba(0, 0, 0, 20%));
   z-index:2;
+  font-family: "KOTRA_BOLD-Bold";
+  opacity: 75%;
   font-size:20px;
 }
 .bubble p::before {

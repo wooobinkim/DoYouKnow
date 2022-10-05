@@ -2,37 +2,45 @@
   <div class="keyword-container">
     <div class="button-container">
       <br />
+      <div class="btn-group1">
       <template v-for="category in this.getCategory" :key="category.value">
         <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
-
-        <button
-          @click="setCategory(category.value)"
-          :class="{
-            'btn-common': true,
-            'btn-category-active': CategoryNo === category.value,
-          }"
-          style="margin-right: 5px"
-        >
-          {{ category.text }}
-        </button>
-        
+            <div
+              @click="setCategory(category.value)"
+              :class="{'btn1 btn-three1' : true,  'btn1 btn-active1': getConditionCategory === category.value,}"
+              style="margin-right: 5px"
+            >
+              {{ category.text }}
+            </div>
       </template>
-      <br />
-      <div style="margin-top: 1rem; margin-left: 5rem">
-        <div style="display: flex; margin-left: 4rem">
-          <div v-for="period in this.getPeriod" :key="period.value">
-            <button
+    </div>
+    <div class="btn-group2">
+          <template v-for="period in this.getPeriod" :key="period.value">
+            <!-- <div
               @click="setPeriod(period.value)"
-              :class="{
-                'btn-common': true,
-                'btn-period-active': PeriodNo === period.value,
-              }"
+              :class="{'btn2 btn-three2' : true,  'btn2 btn-active2': getConditionPeriod === period.value,}"
+            > -->
+            <div
+              @click="setPeriod(period.value)"
+              :class="{'btn-common' : true,  'btn-period-active': getConditionPeriod === period.value,}"
             >
               {{ period.text }}
-            </button>
-          </div>
+            </div>
+          </template>
         </div>
+      <br />
+      <div >
+        <!-- <div class="btn-group2">
+          <template v-for="period in this.getPeriod" :key="period.value">
+            <div
+              @click="setPeriod(period.value)"
+              :class="{'btn2 btn-three2' : true,  'btn2 btn-active2': getConditionPeriod === period.value,}"
+            >
+              {{ period.text }}
+            </div>
+          </template>
+        </div> -->
 
 
         <div class="leaderboard">
@@ -45,8 +53,8 @@
                 <mark class="rankkeyword" @click="setOneKeyword(keyword.name)">
                   {{ keyword.name }}
                 </mark>
+                <!-- <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button> -->
               </li>
-              <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button>
             </template>
           </ol>
         </div>
@@ -193,6 +201,7 @@ export default {
 }
 .button-container {
   margin-top: -1rem;
+  
 }
 .rankkeyword {
   text-align: left;
@@ -232,8 +241,113 @@ label {
   border: 1px solid transparent;
   /* width: 35px; */
 }
-
+.btn-group1{
+  display :flex;
+  margin-bottom: 10px;
+}
+.btn1 {
+  line-height: 45px;
+  height: 40px;
+  text-align: center;
+  width: 120px;
+  cursor: pointer;
+}
+.btn-three1 {
+  color: rgb(0, 0, 0);
+  transition: all 0.5s;
+  position: relative;
+  font-size: 15px;
+}
+.btn-three1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(255,255,255,0.3);
+  transition: all 0.3s;
+}
+.btn-three1:hover::before {
+  opacity: 0 ;
+  transform: scale(0.5,0.5);
+}
+.btn-three1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border: 1px solid rgba(255,255,255,0.5);
+  transform: scale(1.2,1.2);
+}
+.btn-three1:hover::after {
+  opacity: 1;
+  transform: scale(1,1);
+}
+.btn-active1 {
+  background-color: rgb(255, 190, 84);
+}
+.btn-group2{
+  display :flex;
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+.btn2 {
+  line-height: 32px;
+  height: 28px;
+  text-align: center;
+  width: 85px;
+  cursor: pointer;
+}
+.btn-three2 {
+  color: rgb(0, 0, 0);
+  transition: all 0.5s;
+  position: relative;
+  font-size: 11px;
+}
+.btn-three2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(255,255,255,0.3);
+  transition: all 0.3s;
+}
+.btn-three2:hover::before {
+  opacity: 0 ;
+  transform: scale(0.5,0.5);
+}
+.btn-three2::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border: 1px solid rgba(255,255,255,0.5);
+  transform: scale(1.2,1.2);
+}
+.btn-three2:hover::after {
+  opacity: 1;
+  transform: scale(1,1);
+}
+.btn-active2 {
+  background-color: #9f9467;
+}
 .btn-common {
+  font-size: 13px;
   display: inline-block;
   padding: 5px 10px;
   border-radius: 15px;
@@ -243,7 +357,7 @@ label {
   font-weight: 600;
   transition: 0.25s;
   margin: 0px 2px;
-  background-color: aliceblue;
+  background-color: rgba(240, 248, 255, 0.4);
   color: black;
 }
 
@@ -255,17 +369,17 @@ label {
 .btn-nation-active {
   /* background: linear-gradient(-45deg, #33ccff 0%, #ff99cc 100%);
   color: white; */
-  background-color: #77af9c;
+  background-color: rgb(119, 175, 156,0.7);
   color: #d7fff1;
 }
 
 .btn-category-active {
-  background-color: #77af9c;
+  background-color: rgb(119, 175, 156,0.7);
   color: #d7fff1;
 }
 
 .btn-period-active {
-  background-color: #77af9c;
+  background-color: rgb(119, 175, 156,0.7);
   color: #d7fff1;
 }
 /* 랭킹 아이템 */

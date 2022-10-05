@@ -1,11 +1,12 @@
 <template>
   <swiper :slides-per-view="1" :navigation="true">
     <swiper-slide v-for="news in test.getRelatedKeywordNews" :key="news">
-      <div style="">
-        <div>
+      <div class="card-container">
+        <h4 style="margin: -18.5px 0px 6px">관련 뉴스</h4>
+        <div class="news-container" style="height: 80%">
           <a :href="news.url" target="_blank">
-            <img :src="news.urlToImage" width="80" />
-            <h3>{{ news.title }}</h3>
+            <img class="news-img" :src="news.urlToImage" width="80" />
+            <h3 class="news-title">{{ news.title }}</h3>
             <!-- <p style="font-size:5px">{{ ((news.publishedAt.split("T"))[0].split("-"))[0] }}.
           {{ ((news.publishedAt.split("T"))[0].split("-"))[1] }}.
           {{ ((news.publishedAt.split("T"))[0].split("-"))[2] }}</p> -->
@@ -81,16 +82,48 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+h4 {
+  font-family: "KOTRA_BOLD-Bold";
+  background: none;
+  font-size: 1.25rem;
+  padding-top: 3px;
+}
+.card-container {
+  border-radius: 30px;
+  height: 240px;
+  width: 100%;
+}
+.news-container {
+  width: 400px;
+  height: 290px;
+}
+.news-img {
+  width: 100%;
+}
+.news-title {
+  font-size: 1rem;
+  margin: 0;
+}
 .swiper-slide {
   display: flex;
   height: 300px;
+  height: 285px;
   /* justify-content: center; */
   /* align-items: center; */
   /* width: 50%; */
   /* margin: 0 25%; */
   font-size: 24px;
   font-weight: 700;
+  border-radius: 30px;
+  opacity: 81%;
 }
 .swiper-slide:nth-child(1n) {
   /* background-color: palevioletred; */
