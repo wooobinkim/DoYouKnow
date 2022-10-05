@@ -3,7 +3,7 @@
     <div class="text-area">
       <h1 class="awards-title">DYK Club</h1>
       <div class="awards-content">
-        <p>우리 나라를 빛낸 수많은 K-culture 중 최고봉은 과연?</p>
+        <p>우리 나라를 빛낸 수많은 K-culture 중 최고봉은?</p>
         <p>영광의 순간을 맛보러 GO GO~</p>
         <p class="awards-router" @click="goToAwardsPage">
           두유노클럽 입장하기 >>

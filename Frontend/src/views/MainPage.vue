@@ -1,6 +1,5 @@
 <template>
-
-  <NavBar v-if="this.getIsOverlay==false" :swiper="swiper"/>
+  <NavBar v-if="this.getIsOverlay == false" :swiper="swiper" />
 
   <swiper
     class="mySwiper"
@@ -10,7 +9,7 @@
     :speed="1000"
     :allowTouchMove="false"
     :lazy="{ loadPrevNext: true }"
-    :pagination="{ clickable: true }"
+    :pagination="!this.getIsOverlay"
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="third"><IntroAwards /></swiper-slide>
@@ -46,15 +45,15 @@ export default {
     IntroGame,
     NavBar,
   },
-  data (){
+  data() {
     return {
-      swiper : null
-    }
+      swiper: null,
+    };
   },
 
-  mounted(){
-    const swiper = document.querySelector('.swiper').swiper //swiper 인스턴스
-    this.swiper = swiper
+  mounted() {
+    const swiper = document.querySelector(".swiper").swiper; //swiper 인스턴스
+    this.swiper = swiper;
   },
 
   setup() {
@@ -129,7 +128,7 @@ body {
   background: linear-gradient(#f1c56c, #dab097);
 }
 .forth {
-  background: linear-gradient(#9d7eb8,#ddbdfc, #96c8fb);
+  background: linear-gradient(#9d7eb8, #ddbdfc, #96c8fb);
 }
 
 /* .swiper-container { width: 100%; height: 100%; }
@@ -140,23 +139,22 @@ body {
   align-items: center;
 }
 .swiper-pagination-bullet {
-   width: 12px; 
-   height: 12px; 
-   background: transparent; 
-   border: 1px solid #007aff; 
-   opacity: 1; 
-   }
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border: 1px solid #007aff;
+  opacity: 1;
+}
 
 .swiper-pagination-bullet-active {
   width: 20px;
-  height: 20px; 
-  transition: width .5s height .5s; 
-  border-radius: 100%s; 
-  background: #007aff; 
-  border: 1px solid transparent; 
+  height: 20px;
+  transition: width 0.5s height 0.5s;
+  border-radius: 100%s;
+  background: #007aff;
+  border: 1px solid transparent;
   outline: none;
   border-color: #9ecaed;
   box-shadow: 0 0 10px #9ecaed;
-  }
-  
+}
 </style>

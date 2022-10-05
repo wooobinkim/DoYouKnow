@@ -1,5 +1,8 @@
 <template>
   <div class="game-background">
+    <a href="https://j7b208.p.ssafy.io/">
+      <img src="@/assets/logo.png" alt="logo" class="logo" />
+    </a>
     <div class="game-container">
       <div class="card-left">
         <div class="img-container">
@@ -276,6 +279,13 @@ h2 {
   width: 100px;
   height: 100px;
   z-index: 2;
+}
+.logo {
+  border: 0;
+  width: 5vw;
+  height: auto;
+  margin: 10px 0 0 10px;
+  position: absolute;
 }
 .game-container {
   display: flex;
