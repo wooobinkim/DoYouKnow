@@ -386,6 +386,8 @@ h6 {
 
 .line-graph {
   position: absolute;
+  /* width: 400px; */
+  height: 500px;
   top: 63%;
   left: 80%;
 }

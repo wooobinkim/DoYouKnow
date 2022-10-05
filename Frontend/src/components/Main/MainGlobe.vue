@@ -258,28 +258,29 @@ export default {
           // divElement.style.left = `${tooltipPosition.x - tootipWidth / 2}px`;
           divElement.style.left = `${tooltipPosition.x}px`;
           divElement.style.top = `${tooltipPosition.y}px`;
+          // console.log(hoveredObj, "hoveredObj");
 
-          if (hoveredObj.id == 53) {
+          if (hoveredObj.id == 51) {
             divElement.innerHTML =
               '<img src="/texture/us.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 59) {
+          if (hoveredObj.id == 57) {
             divElement.innerHTML =
               '<img src="/texture/uk.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 65) {
+          if (hoveredObj.id == 63) {
             divElement.innerHTML =
               '<img src="/texture/jp.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 71) {
+          if (hoveredObj.id == 69) {
             divElement.innerHTML =
               '<img src="/texture/vi.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 77) {
+          if (hoveredObj.id == 75) {
             divElement.innerHTML =
               '<img src="/texture/in.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 83) {
+          if (hoveredObj.id == 81) {
             divElement.innerHTML =
               '<img src="/texture/br.png" style="width: 100%; height: 100%;">';
           }
@@ -349,11 +350,13 @@ export default {
         pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
         pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
         raycaster.setFromCamera(pointer, camera);
-
         const intersects = raycaster.intersectObjects(scene.children);
+        // console.log(intersects, "inter감지");
         if (intersects.length >= 2) {
-          if (intersects[0].object.id == 53) {
+          if (intersects[0].object.id == 51) {
             // alert(intersects[0].object.id + "미국클릭");
+            // local 53
+            // 배포 51
             const nation = 1;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -361,8 +364,10 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 59) {
+          if (intersects[0].object.id == 57) {
             // alert(intersects[0].object.id + "영국클릭");
+            // local 59
+            // 배포 57
 
             const nation = 2;
             store.dispatch("setNation", { nation });
@@ -371,7 +376,9 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 65) {
+          if (intersects[0].object.id == 63) {
+            // local 65
+            // 배포 63
             const nation = 3;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -379,7 +386,9 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 71) {
+          if (intersects[0].object.id == 69) {
+            //local 71
+            //배포 69
             const nation = 4;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -387,7 +396,9 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 77) {
+          if (intersects[0].object.id == 75) {
+            // local 77
+            // 배포 75
             const nation = 5;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
@@ -395,7 +406,9 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 83) {
+          if (intersects[0].object.id == 81) {
+            // local 83
+            // 배포 81
             const nation = 6;
             store.dispatch("setNation", { nation });
             store.dispatch("getNationRate", { nation });
