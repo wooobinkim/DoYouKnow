@@ -33,7 +33,7 @@ import IntroTop from "@/components/Main/IntroTop.vue";
 import IntroAwards from "@/components/Main/IntroAwards.vue";
 import IntroGame from "@/components/Main/IntroGame.vue";
 import NavBar from "@/components/Main/NavBar.vue";
-import { mapGetters } from "vuex";
+import { mapGetters, useStore } from "vuex";
 
 export default {
   components: {
@@ -57,6 +57,9 @@ export default {
   },
 
   setup() {
+    const store = useStore();
+    store.dispatch("OverlayReset");
+
     return {
       modules: [Navigation, Pagination, Mousewheel, Scrollbar],
     };

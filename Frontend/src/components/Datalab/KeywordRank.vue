@@ -55,7 +55,14 @@
               :key="keyword"
             >
               <li data-aos="fade-right" v-if="index < 5">
-                <mark class="rankkeyword" @click="setOneKeyword(keyword.name)">
+                <mark
+                  :class="{
+                    rankkeyword: true,
+                    'rankkeyword-active': getCurrentRank === keyword.name,
+                  }"
+                  @click="setOneKeyword(keyword.name)"
+                >
+                  <!-- <mark class="rankkeyword" @click="setOneKeyword(keyword.name)"> -->
                   {{ keyword.name }}
                 </mark>
               </li>
@@ -125,6 +132,7 @@ export default {
       "getPeriod",
       "getKeywordRank",
       "getTTS",
+      "getCurrentRank",
     ]),
   },
   watch: {
@@ -237,6 +245,7 @@ label {
   text-align: center;
   width: 120px;
   cursor: pointer;
+  border-radius: 10px;
 }
 .btn-three1 {
   color: rgb(0, 0, 0);
@@ -283,8 +292,15 @@ label {
 }
 .btn-active1 {
   border-radius: 10px;
-  background-color: rgb(255, 190, 84);
+  /* background-color: rgb(255, 190, 84); */
+  background-color: rgb(119, 175, 156, 0.7);
 }
+.btn-group2 {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+
 .btn-common {
   font-size: 13px;
   display: inline-block;
@@ -519,6 +535,12 @@ label {
 .leaderboard ol li:hover::after {
   opacity: 1;
   transform: scaleX(1.06) scaleY(1.03);
+}
+
+.leaderboard ol li > .rankkeyword-active {
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  background-color: rgb(254, 236, 140);
 }
 
 .leaderboard ol li:hover mark::before,
