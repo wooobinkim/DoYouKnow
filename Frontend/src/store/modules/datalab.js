@@ -5,6 +5,7 @@ export const datalab = {
   state: {
     rank: null,
     currentrank: null,
+    currentRankTrans: null,
     keywordrank: null,
     // relatedkeword: [],
     isoverlay: false,
@@ -44,6 +45,9 @@ export const datalab = {
   getters: {
     getCurrentRank(state) {
       return state.currentrank;
+    },
+    getCurrentTrans(state){
+      return state.currentRankTrans;
     },
     getKeywordRank(state) {
       return state.keywordrank;
@@ -100,6 +104,7 @@ export const datalab = {
       state.datalabviewloading = datalabviewloading;
     },
     SET_CURRENTRANK: (state, keyword) => (state.currentrank = keyword),
+    SET_CURRENTRANKTRANS : (state, keyword) => (state.currentRankTrans = keyword),
     SET_KEYWORDRANK: (state, data) => (state.keywordrank = data),
     RESET_KEYWORDRANK: (state) => (state.keywordrank = null),
     SET_RELATEDKEWORD: (state, keywords) => (state.relatedkeword = keywords),
@@ -202,7 +207,7 @@ export const datalab = {
     },
 
     async TTSTranslate({ commit }, condition) {
-      // console.log(condition.condition);
+      console.log(condition.condition);
       // console.log(condition.keyword, condition.nation);
       await axios({
         url: `https://j7b208.p.ssafy.io/api2/pytranslate/detail/${condition.keyword}/${condition.nation}/`,
@@ -213,6 +218,23 @@ export const datalab = {
         })
         .catch((err) => {
           console.error(err.response);
+        });
+    },
+
+    async getTranslateKeyword({commit, state}, data){
+      console.log(data);
+      await axios({
+        url: BackendAPI2.datalab.relatedkeywordtranslate(data[1],
+          state.nation[data[0].nation - 1].lang
+        ),
+        method: "get",
+      })
+        .then((res) => {
+          commit("SET_CURRENTRANKTRANS", res.data);
+        })
+        .catch((err) => {
+          console.error(err.response);
+          // lang = 'ko';
         });
     },
 

@@ -53,8 +53,8 @@
                 <mark class="rankkeyword" @click="setOneKeyword(keyword.name)">
                   {{ keyword.name }}
                 </mark>
-                <!-- <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button> -->
               </li>
+              <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button>
             </template>
           </ol>
         </div>
@@ -111,9 +111,10 @@ export default {
       await store.dispatch("TTSTranslate",  condition );
 
       let utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
-      utterThis.voice = speechSynthesis.getVoices()[8];
+      utterThis.voice = speechSynthesis.getVoices()[8]
       utterThis.lang = lang;
-      window.speechSynthesis.speak(utterThis);
+      speechSynthesis.speak(utterThis);
+      
       
     };
     return {

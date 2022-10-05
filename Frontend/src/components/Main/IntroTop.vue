@@ -90,6 +90,7 @@
         <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
           <div class="news-container"><KeywordNews /></div>
+          <div><KeywordTts/></div>
         </div>
       </transition>
     </div>
@@ -105,11 +106,12 @@ import { onMounted } from "@vue/runtime-core";
 import MainGlobe from "@/components/Main/MainGlobe.vue";
 
 import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
-import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+// import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
 import KeywordNews from "@/components/Datalab/KeywordNews.vue";
 import KeywordRank from "@/components/Datalab/KeywordRank.vue";
 import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
 import DataInfo from "@/components/Datalab/DataInfo.vue";
+import KeywordTts from "@/components/Datalab/KeywordTts.vue";
 import AOS from "aos";
 
 export default {
@@ -119,8 +121,9 @@ export default {
     KeywordRelated,
     KeywordRank,
     KeywordNews,
-    KeywordLineGraph,
+    // KeywordLineGraph,
     KeywordDonutGraph,
+    KeywordTts,
   },
   setup() {
     onMounted(() => {
