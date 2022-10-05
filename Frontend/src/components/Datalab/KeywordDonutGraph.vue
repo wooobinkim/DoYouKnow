@@ -67,8 +67,10 @@ export default {
           labels: false,
           legend: {
             display: false,
+            
           },
           datalabels: {
+            
             display: true,
             font:{
               size: 11,
@@ -96,13 +98,11 @@ export default {
         },
       },
     };
-
     const updateChart = (res) => {
       lineChart.options.plugins.title = {
         text: "검색량 추이",
         display: true,
       };
-
       lineChart.data.labels = [];
       lineChart.data.datasets = [
         {
@@ -111,7 +111,8 @@ export default {
           backgroundColor: [],
         },
       ];
-
+      
+      // console.log(lineChart.data.datasets[0].data.font);
       for (let i = 0; i < 10; i++) {
         lineChart.data.labels[i] = res[i].name;
         lineChart.data.datasets[0].data[i] = res[i].count;
@@ -141,9 +142,11 @@ export default {
 </script>
 
 <style scoped>
+
 @font-face {
   font-family: "KOTRA_BOLD-Bold";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+
     format("woff");
   font-weight: normal;
   font-style: normal;

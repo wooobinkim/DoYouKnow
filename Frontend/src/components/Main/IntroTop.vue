@@ -106,7 +106,7 @@ import { onMounted } from "@vue/runtime-core";
 import MainGlobe from "@/components/Main/MainGlobe.vue";
 
 import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
-// import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
 import KeywordNews from "@/components/Datalab/KeywordNews.vue";
 import KeywordRank from "@/components/Datalab/KeywordRank.vue";
 import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
@@ -121,7 +121,7 @@ export default {
     KeywordRelated,
     KeywordRank,
     KeywordNews,
-    // KeywordLineGraph,
+    KeywordLineGraph,
     KeywordDonutGraph,
     KeywordTts,
   },
@@ -379,6 +379,8 @@ h6 {
 
 .line-graph {
   position: absolute;
+  /* width: 400px; */
+  height: 500px;
   top: 63%;
   left: 80%;
 }

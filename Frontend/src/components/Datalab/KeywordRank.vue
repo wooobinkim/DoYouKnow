@@ -59,6 +59,7 @@
                   {{ keyword.name }}
                 </mark>
               </li>
+
             </template>
           </ol>
         </div>
@@ -77,6 +78,10 @@ export default {
     let ActiveNation = [false, false, false, false, false, false];
     // let ActiveCategory = [false, false, false, false, false, false]
     // let ActivePeriod = [false, false, false, false, false, false]
+    let utterThis = new SpeechSynthesisUtterance();
+    utterThis.voice = speechSynthesis.getVoices()[8]
+    speechSynthesis.speak(utterThis);
+    // utterThis.lang
 
     const store = useStore();
     onMounted(() => {});
@@ -98,6 +103,7 @@ export default {
     const setOneKeyword = function setOneKeyword(keyword) {
       store.dispatch("currentRank", { keyword });
     };
+
     return {
       // rank1,
       setNation,
@@ -105,7 +111,7 @@ export default {
       setPeriod,
       setOneKeyword,
       store,
-      // tts,
+      utterThis,
       // data,
       ActiveNation,
     };
