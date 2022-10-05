@@ -18,6 +18,6 @@ export default{
 
   // DataLab
   datalab: {
-    relatedkeyword : (keyword) => BE2 + "pytrend/relativetopkeyword/" + keyword,
+    relatedkeyword : (keyword) => BE2 + "pytrend/relativerisingkeyword/" + keyword,
   }
 }

@@ -82,8 +82,8 @@
           </div>
           <div><DataInfo /></div>
           <div><KeywordRank /></div>
-          <div class="doughnut-container"><KeywordDonutGraph /></div>
-          <div class="chart-container"><KeywordLineGraph /></div>
+          <div><KeywordDonutGraph /></div>
+          <div class="test"><KeywordLineGraph /></div>
         </div>
       </transition>
       <transition name="right">
@@ -202,7 +202,9 @@ h6 {
   font-family: "KOTRA_BOLD-Bold";
   font-size: 1em;
   width: 450px;
-  color: white;
+  background: -webkit-linear-gradient(#09203f, #537895);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 400;
   position: absolute;
   top: 350px;
@@ -256,6 +258,7 @@ h6 {
   float: left;
   z-index: 10;
   animation: fadeInLeft 2s;
+  
 }
 .right_section {
   position: fixed;
@@ -357,8 +360,8 @@ h6 {
   border-radius: 17px; */
 }
 .chart-container {
-  width: 340px;
-  height: 160px;
+  /* width: 340px;
+  height: 200px; */
   /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
   border-radius: 17px; */
@@ -371,4 +374,10 @@ h6 {
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
   border-radius: 20px;
 }; */
+
+.test {
+  position: absolute;
+  top: 63%;
+  left: 100%;
+}
 </style>
