@@ -261,27 +261,27 @@ export default {
 
           if (hoveredObj.id == 53) {
             divElement.innerHTML =
-              '<img src="/datalab/us.png" style="width: 100%; height: 100%;">';
+              '<img src="/texture/us.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 59) {
             divElement.innerHTML =
-              '<img src="/datalab/uk.png" style="width: 100%; height: 100%;">';
+              '<img src="/texture/uk.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 65) {
             divElement.innerHTML =
-              '<img src="/datalab/jp.png" style="width: 100%; height: 100%;">';
+              '<img src="/texture/jp.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 71) {
             divElement.innerHTML =
-              '<img src="/datalab/vi.png" style="width: 100%; height: 100%;">';
+              '<img src="/texture/vi.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 77) {
             divElement.innerHTML =
-              '<img src="/datalab/in.png" style="width: 100%; height: 100%;">';
+              '<img src="/texture/in.png" style="width: 100%; height: 100%;">';
           }
           if (hoveredObj.id == 83) {
             divElement.innerHTML =
-              '<img src="/datalab/br.png" style="width: 100%; height: 100%;">';
+              '<img src="/texture/br.png" style="width: 100%; height: 100%;">';
           }
 
           // divElement.innerText = hoveredObj.userData.name;
