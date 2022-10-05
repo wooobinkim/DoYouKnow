@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow: auto; width: 340px; height: 320px;" >
+  <div style="overflow: auto; width: auto; height: 320px;" >
     <ul class="uiui">
       <!-- <li v-for="news in test.getRelatedKeywordNews" :key="news">{{ news.title }}</li> -->
       <li v-for="news in test.getRelatedKeywordNews" :key="news">

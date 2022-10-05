@@ -6,6 +6,7 @@
       :type="lineChart.type"
       :data="lineChart.data"
       :options="lineChart.options"
+      :width="440"
     ></vue3-chart-js>
   </div>
 </template>
@@ -24,15 +25,26 @@ export default {
   setup() {
     Chart.register(ChartDataLabels);
     var COLORS = [
-        '#4dc9f6',
-        '#f67019',
-        '#f53794',
-        '#537bc4',
-        '#acc236',
-        '#166a8f',
-        '#00a950',
-        '#58595b',
-        '#8549ba'
+      '#004B6B',
+      '#255D7E',
+      '#3C6F8E',
+      '#5483A1',
+      '#6996B3',
+      '#7EAAC7',
+      '#94BDD9',
+      '#ABD3EC',
+      '#C1E6FF',
+      '#EBF2F7'
+        // '#B3CBF5',
+        // '#BAD0F6',
+        // '#C0D4F5',
+        // '#C7D8F6',
+        // '#CDDCF5',
+        // '#D4E1F6',
+        // '#DBE4F5',
+        // '#E2E9F6',
+        // '#E8EDF5',
+        // '#EFF1F6'
     ];
 
     const keywordlist = ref([]);
@@ -49,7 +61,7 @@ export default {
         ],
       },
       options: {
-        // responsive: true,
+        responsive: false,
         // maintainAspectRatio: false,
         plugins: {
           labels: false,
@@ -68,7 +80,12 @@ export default {
               }).format(val);
 
               // Put them together
-              return `${label} : ${formattedVal}`;
+              if(ctx.dataIndex >= 8){
+                return "";
+              }else{
+                return `${label} \n\t ${formattedVal}`;
+              }
+              
             },
             color: '#fff',
             // backgroundColor: '#404040',
@@ -92,11 +109,18 @@ export default {
         },
       ];
 
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 8; i++) {
         // console.log(res[i]);
+        // if(i<8){
         lineChart.data.labels[i] = res[i].name;
         lineChart.data.datasets[0].data[i] = res[i].count;
-        lineChart.data.datasets[0].backgroundColor[i] = COLORS[i%5];
+        // }else{
+        //   lineChart.data.labels[i] = "";
+        //   lineChart.data.datasets[0].data[i] = res[i].count;
+        // }
+        
+        
+        lineChart.data.datasets[0].backgroundColor[i] = COLORS[i];
       }
       chartRef.value.update(250);
     };
@@ -124,12 +148,12 @@ export default {
 
 <style scoped>
 .doughnut-container{
-  width: 320px;
-  height: 320px;
+  width: 90%;
+  height: 450px;
   margin-left: 1.5rem;
-  background: rgba(255, 255, 255, 0.70);
+  /* background: rgba(255, 255, 255, 0.70);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
-  border-radius: 20px;
+  border-radius: 20px; */
 };
 
 /* .cloud-container {

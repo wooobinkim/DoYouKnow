@@ -1,14 +1,14 @@
 <template>
-  <section >
-    <div v-if="this.getIsOverlay==false">
+  <section>
+    <div v-if="this.getIsOverlay == false">
       <div class="title-container">
         <h6
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
         >
-        Introduce
-      </h6>
+          Introduce
+        </h6>
         <h1 class="headTitle" data-aos="fade">DoYouKnow</h1>
         <div
           class="content-msg"
@@ -20,29 +20,69 @@
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
       </div>
-      <img class="intro-arrow" src="@/assets/intro_arrow.png">
+      <img class="intro-arrow" src="@/assets/intro_arrow.png" />
     </div>
-    <div v-else >
+    <div v-else>
       <transition name="left">
-        <div class="left_section" v-if="this.getIsOverlay" >
+        <div class="left_section" v-if="this.getIsOverlay">
           <div class="head_box">
             <div class="nation">
-              <template v-for="nation in this.getNation" :key="nation">
-                <template v-if="this.getConditionNation == nation.value">
-                  <h1 class="title" style="margin-bottom: 0;">{{ nation.text }}</h1>
-                </template>
-              </template>
+              <div v-for="nation in this.getNation" :key="nation">
+                <div
+                  v-if="this.getConditionNation == nation.value"
+                  style="display: flex; align-items: center"
+                >
+                  <p class="head_title">{{ nation.text }}</p>
+                  <div v-if="this.getConditionNation == 1">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/us.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 2">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/uk.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 3">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/jp.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 4">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/vi.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 5">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/in.png"
+                    />
+                  </div>
+                  <div v-else-if="this.getConditionNation == 6">
+                    <img
+                      class="nationFlag"
+                      src="../../../public/datalab/br.png"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <button class="backbtn" @click="overlayoff()">
               <img class="backbtnimg" src="../../assets/exit.png" />
             </button>
           </div>
+          <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div class="doughnut-container"><KeywordDonutGraph /></div>
         </div>
       </transition>
       <transition name="right">
-        <div class="right_section" v-if="this.getIsOverlay" >
+        <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
           <div class="chart-container"><KeywordLineGraph /></div>
           <div class="news-container"><KeywordNews /></div>
@@ -50,25 +90,27 @@
       </transition>
     </div>
     <div class="globe-area">
-      <MainGlobe class="top-globe"/>
+      <MainGlobe class="top-globe" />
     </div>
   </section>
 </template>
 
 <script>
-  import { useStore, mapGetters } from "vuex";
-  import { onMounted } from "@vue/runtime-core";
-  import MainGlobe from "@/components/Main/MainGlobe.vue";
-  
-  import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
-  import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
-  import KeywordNews from "@/components/Datalab/KeywordNews.vue";
-  import KeywordRank from "@/components/Datalab/KeywordRank.vue";
-  import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
-  import AOS from "aos";
+import { useStore, mapGetters } from "vuex";
+import { onMounted } from "@vue/runtime-core";
+import MainGlobe from "@/components/Main/MainGlobe.vue";
+
+import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
+import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+import KeywordNews from "@/components/Datalab/KeywordNews.vue";
+import KeywordRank from "@/components/Datalab/KeywordRank.vue";
+import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
+import DataInfo from "@/components/Datalab/DataInfo.vue";
+import AOS from "aos";
 
 export default {
   components: {
+    DataInfo,
     MainGlobe,
     KeywordRelated,
     KeywordRank,
@@ -86,6 +128,7 @@ export default {
       const data = false;
       store.dispatch("setIsOverlay", { data });
     };
+
     return {
       overlayoff,
     };
@@ -97,6 +140,18 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "RixInooAriDuriR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.head_title {
+  font-family: "KOTRA_BOLD-Bold";
+  font-size: 4rem;
+}
 h6 {
   font-size: 1.2em;
   width: 258px;
@@ -105,10 +160,14 @@ h6 {
   position: absolute;
   top: 180px;
   left: 300px;
-  /* animation: slide 2s ease-out; */
+  animation: slide 2s ease-out;
   text-align: start;
 }
-
+.nationFlag {
+  width: 3rem;
+  height: 3rem;
+  margin-top: 1rem;
+}
 .headTitle {
   font-size: 4em;
   width: 500px;
@@ -121,12 +180,18 @@ h6 {
   left: 300px;
   text-align: start;
 }
-
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .content-msg {
+  font-family: "KOTRA_BOLD-Bold";
   font-size: 1em;
   width: 450px;
   color: white;
-  font-family: sans-serif;
   font-weight: 400;
   position: absolute;
   top: 350px;
@@ -170,7 +235,7 @@ h6 {
   position: fixed;
   width: 100%;
   height: 100%;
-  top: -6%;
+  /* top: -6%; */
   left: 0;
   bottom: 0;
   display: flex;
@@ -187,31 +252,31 @@ h6 {
   height: 100%;
   top: 0%;
   bottom: 0;
-  right: 0;
+  right: 2%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   width: 25%;
   float: right;
   z-index: 10;
+  justify-content: space-around;
   animation: fadeInRight 2s;
 }
 
 .head_box {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
+  height: 110px;
 }
 .nation {
   margin-right: 3rem;
   margin-left: 3rem;
-  font-size : 2rem;
+  font-size: 2rem;
 }
 .backbtn {
   all: unset;
   width: 25px;
   height: 25px;
-  margin-top: 1.2rem
+  margin-top: 1.2rem;
 }
 .backbtnimg {
   width: 100%;
@@ -273,4 +338,26 @@ h6 {
     transform: translate3d(100%, 0, 0);
   }
 }
+/* .news-container{
+  width: 340px;
+  height: 320px;
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 17px;
+}
+.chart-container{
+  width: 340px;
+  height: 160px;
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 17px;
+};
+
+.doughnut-container{
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 255, 255, 0.53);
+  box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
+  border-radius: 20px;
+}; */
 </style>

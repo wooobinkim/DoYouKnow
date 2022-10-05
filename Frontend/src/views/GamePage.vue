@@ -1,6 +1,8 @@
 <template>
   <div class="game-background">
-    <img @click="gohome" src="@/assets/logo.png" alt="logo" class="logo" />
+    <a href="https://j7b208.p.ssafy.io/">
+      <img src="@/assets/logo.png" alt="logo" class="logo" />
+    </a>
     <div>
       <div>
         <img
@@ -21,30 +23,29 @@
           id="myAudio"
           autoplay="autoplay"
           loop
-          onloadstart="this.volume=0.1"
+          onloadstart="this.volume=0.4"
         >
           <source src="@/assets/higherlower/bg-music.mp3" type="audio/mp3" />
         </audio>
       </div>
     </div>
-      <div class="game-container">
-        <transition class="animate__animated animate__heartBeat">
-          <img class="game-logo" src="@/assets/hilow.png" alt="game-logo" />
-        </transition>
-        <div class="intro-container">
-          <div class="sub-intro">
-            <h3>(그런데 국뽕을 곁들인)</h3>
-          </div>
-          <div class="main-intro">
-            <h1>어떤 키워드들이 더 많이 검색됐을까?</h1>
-            <h2 class="intro-h2">전 세계 한국 키워드 검색량 기준</h2>
-          </div>
+    <div class="game-container">
+      <transition class="animate__animated animate__heartBeat">
+        <img class="game-logo" src="@/assets/hilow.png" alt="game-logo" />
+      </transition>
+      <div class="intro-container">
+        <div class="sub-intro">
+          <h3>(그런데 국뽕을 곁들인)</h3>
         </div>
-        <div class="button-container">
-          <button class="w-btn-neon2" @click="gamestart">시이작 !</button>
+        <div class="main-intro">
+          <h1>어떤 키워드들이 더 많이 검색됐을까?</h1>
+          <h2 class="intro-h2">전 세계 한국 키워드 검색량 기준</h2>
         </div>
       </div>
-    
+      <div class="button-container">
+        <button class="w-btn-neon2" @click="gamestart">시이작 !</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -59,14 +60,13 @@ export default {
       router.push({ name: "GamePlay" });
     };
     const gohome = function () {
-      router.push({ name: "MainPage" });
+      router.go(-1);
     };
     let data = reactive({
       isSound: true,
     });
     const onOffSound = function () {
       data.isSound = !data.isSound;
-      console.log(data.isSound);
     };
 
     return {
@@ -81,7 +81,7 @@ export default {
 
 <style scoped>
 .game-background {
-  overflow:hidden;
+  overflow: hidden;
   background-color: rgba(137, 156, 255, 75%);
   background: url("@/assets/bg-2.png") no-repeat center center fixed;
   background-size: cover;
@@ -104,7 +104,6 @@ export default {
 .game-logo {
   height: 700px;
   width: 700px;
-  margin-top: -7rem;
 }
 .game-logo:hover {
   transform: scale(1.05);

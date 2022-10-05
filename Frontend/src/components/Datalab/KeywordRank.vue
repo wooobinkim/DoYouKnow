@@ -10,23 +10,48 @@
       <template v-for="category in this.getCategory" :key="category.value">
         <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
-        <button @click="setCategory(category.value)" :class="{'btn-common': true, 'btn-category-active' : CategoryNo === category.value} ">
+
+        <button
+          @click="setCategory(category.value)"
+          :class="{
+            'btn-common': true,
+            'btn-category-active': CategoryNo === category.value,
+          }"
+          style="margin-right: 1rem; margin-left: 1rem"
+        >
           {{ category.text }}
         </button>
+        
       </template>
       <br />
-          <template v-for="period in this.getPeriod" :key="period.value">
-            <div>
-              <button @click="setPeriod(period.value)" :class="{'btn-common': true, 'btn-period-active' : PeriodNo === period.value}" style="all: unset; display:flex; float:right;">{{ period.text }}</button>
-            </div>
-          </template>
+      <div style="margin-top: 2rem">
+        <div style="display: flex; flex-direction: column; float: right">
+          <div v-for="period in this.getPeriod" :key="period.value">
+            <button
+              @click="setPeriod(period.value)"
+              :class="{
+                'btn-common': true,
+                'btn-period-active': PeriodNo === period.value,
+              }"
+            >
+              {{ period.text }}
+            </button>
+          </div>
+        </div>
 
-      <!-- <section id="content1"> -->
-      <template v-for="(keyword, index) in this.getKeywordRank" :key="keyword">
-        <template v-if="index < 5">
-          <div @click="setOneKeyword(keyword.name)">{{ keyword.name }}</div>
+        <!-- <section id="content1"> -->
+        <template
+          v-for="(keyword, index) in this.getKeywordRank"
+          :key="keyword"
+        >
+          <div class="rankkeyword" v-if="index < 5">
+            <div @click="setOneKeyword(keyword.name)">
+              {{ index + 1 }}. {{ keyword.name }}
+            </div>
+          </div>
+          <button @click="tts(keyword.name)">두유노?</button>
         </template>
-      </template>
+      </div>
       <!-- </section> -->
     </div>
   </div>
@@ -38,7 +63,7 @@ import { onMounted } from "vue";
 // import { useRoute } from "vue-router";
 export default {
   setup() {
-    let ActiveNation = [false, false, false, false, false, false]
+    let ActiveNation = [false, false, false, false, false, false];
     // let ActiveCategory = [false, false, false, false, false, false]
     // let ActivePeriod = [false, false, false, false, false, false]
 
@@ -46,10 +71,10 @@ export default {
     onMounted(() => {});
 
     const setNation = function setNation(nation) {
-      if (ActiveNation[nation-1] === false){
-        ActiveNation[nation-1] = true
+      if (ActiveNation[nation - 1] === false) {
+        ActiveNation[nation - 1] = true;
       } else {
-        ActiveNation[nation-1] = false
+        ActiveNation[nation - 1] = false;
       }
       store.dispatch("setNation", { nation });
     };
@@ -62,15 +87,27 @@ export default {
     const setOneKeyword = function setOneKeyword(keyword) {
       store.dispatch("currentRank", { keyword });
     };
+    const tts = async function tts(keyword) {
+      let nation = null;
+      let lang = null;
+      if(store.getters.getConditionNation == 1) {nation="en";lang="en-US"}
+      if(store.getters.getConditionNation == 2) {nation="en";lang="en-UK"}
+      if(store.getters.getConditionNation == 3) {nation="ja";lang="ja-JP"}
+      if(store.getters.getConditionNation == 4) {nation="vi";lang="vi-VN"}
+      if(store.getters.getConditionNation == 5) {nation="id";lang="id-ID"}
+      if(store.getters.getConditionNation == 6) {nation="pt";lang="pt-BR"}
 
-    
-    // const rank1 = function (e) {
-    //   e = rankDrama[0].title;
-    //   // console.log(e, "eeeee");
-    //   const keyword = e;
-    //   store.dispatch("currentRank", { keyword });
-    // };
-  
+      const condition = {
+          keyword : keyword+" 아세요",
+          nation : nation
+      }
+      await store.dispatch("TTSTranslate",  condition );
+
+      let utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
+      utterThis.lang = lang;
+      window.speechSynthesis.speak(utterThis);
+      
+    };
     return {
       // rank1,
       setNation,
@@ -78,6 +115,7 @@ export default {
       setPeriod,
       setOneKeyword,
       store,
+      tts,
       // data,
       ActiveNation,
     };
@@ -91,6 +129,7 @@ export default {
       "getCategory",
       "getPeriod",
       "getKeywordRank",
+      "getTTS"
     ]),
   },
   watch: {
@@ -124,6 +163,18 @@ export default {
         this.store.dispatch("getKeywordData", { condition });
       }
     },
+    // getTTS:function (data) {
+    //   let utterThis = new SpeechSynthesisUtterance(data);
+    //   let lang = null
+    //   if(this.store.getters.getConditionNation == 1) lang="en-US"
+    //   if(this.store.getters.getConditionNation == 2) lang="en-UK"
+    //   if(this.store.getters.getConditionNation == 3) lang="ja-JP"
+    //   if(this.store.getters.getConditionNation == 4) lang="vi-VN"
+    //   if(this.store.getters.getConditionNation == 5) lang="id-ID"
+    //   if(this.store.getters.getConditionNation == 6) lang="pt-BR"
+    //   utterThis.lang = lang;
+    //   window.speechSynthesis.speak(utterThis);
+    // }
   },
   // methods: {
   //   ...mapActions(["setNation", "setCategory", "setPeriod"]),
@@ -132,17 +183,30 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 .keyword-container {
   width: 27.75rem;
   height: 15rem;
-  /* background-color: #e4e8ef; */
+
   margin-left: 1.5rem;
   /* min-width: 320px;
   max-width: 800px; */
   padding: 0;
-  /* background: #ffffff; */
+
   border-radius: 15px;
+  font-family: "KOTRA_BOLD-Bold";
+}
+.rankkeyword {
+  text-align: left;
+  margin-left: 1rem;
+  font-weight: bold;
 }
 p {
   margin: 0;
@@ -205,7 +269,7 @@ input:checked + label {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 15px;
-  font-family: 'Jeju Gothic', sans-serif;
+  font-family: "Jeju Gothic", sans-serif;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   font-weight: 600;
