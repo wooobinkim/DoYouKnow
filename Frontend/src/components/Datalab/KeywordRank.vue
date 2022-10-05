@@ -54,7 +54,7 @@
                   {{ keyword.name }}
                 </mark>
               </li>
-              <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button>
+              <!-- <button @click="tts(keyword.name)" style="width:30px ;height:10px"></button> -->
             </template>
           </ol>
         </div>
@@ -73,6 +73,10 @@ export default {
     let ActiveNation = [false, false, false, false, false, false];
     // let ActiveCategory = [false, false, false, false, false, false]
     // let ActivePeriod = [false, false, false, false, false, false]
+    let utterThis = new SpeechSynthesisUtterance();
+    utterThis.voice = speechSynthesis.getVoices()[8]
+    speechSynthesis.speak(utterThis);
+    // utterThis.lang
 
     const store = useStore();
     onMounted(() => {});
@@ -110,7 +114,9 @@ export default {
       }
       await store.dispatch("TTSTranslate",  condition );
 
-      let utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
+      // utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
+      // utterThis.voice = speechSynthesis.getVoices()[8]
+      utterThis.text = store.getters.getTTS+"?"
       utterThis.voice = speechSynthesis.getVoices()[8]
       utterThis.lang = lang;
       speechSynthesis.speak(utterThis);
@@ -125,6 +131,7 @@ export default {
       setOneKeyword,
       store,
       tts,
+      utterThis,
       // data,
       ActiveNation,
     };
