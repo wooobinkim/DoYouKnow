@@ -1,50 +1,78 @@
 <template>
 <div class="tts-container">
-    <!-- <div class="bubble">
-        <p>하이루 방가방가</p>
-    </div> -->
     <div class="wrapper">
         <div class="slide-group">
-            <div class="bubble">
-            <em></em>
-            <p><span>bubble left text</span></p>
-            <em></em>
+            <div @click="Speak()" class="bubble">
+                <em></em>
+                <template v-if="this.getTTS"><p><span>{{this.getTTS.replace("?", "")}}?</span></p></template>
+                <!-- <template v-else><p><span>bubble left text </span></p></template> -->
+                <em></em>
             </div>
-
-            <!-- <div class="bubble right no-q">
-            <em></em>
-            <p><span>bubble right text</span></p>
-            <em></em>
-            </div>
-            <div class="bubble center">  
-            <em></em>
-            <p><span>bubble center</span></p>
-            <em></em>
-            </div>
-            <div class="bubble">
-            <em></em>
-            <p><span>bubble left text</span></p>
-            <em></em>
-            </div>
-            <div class="bubble right no-q">
-            <em></em>
-            <p><span>bubble right text</span></p>
-            <em></em>
-            </div>
-            <div class="bubble center">  
-            <em></em>
-            <p><span>bubble center</span></p>
-            <em></em>
-            </div> -->
         </div>
-        </div>
-    <!-- <img src="@/assets/tts.png" style="width:100px; height:100px" /> -->
+    </div>
 </div>
 
 </template>
 
 <script>
+import { useStore } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
+    setup(){
+        const store = useStore();
+
+        const Speak = function Speak() {
+            let lang = null;
+            if(store.getters.getConditionNation == 1) {lang="en-US"}
+            if(store.getters.getConditionNation == 2) {lang="en-UK"}
+            if(store.getters.getConditionNation == 3) {lang="ja-JP"}
+            if(store.getters.getConditionNation == 4) {lang="vi-VN"}
+            if(store.getters.getConditionNation == 5) {lang="id-ID"}
+            if(store.getters.getConditionNation == 6) {lang="pt-BR"}
+
+            let utterThis = new SpeechSynthesisUtterance(store.getters.getTTS+"?");
+            utterThis.voice = speechSynthesis.getVoices()[8];
+            utterThis.lang = lang;
+            window.speechSynthesis.speak(utterThis);
+        };
+        return {store,Speak};
+    },
+    computed: {
+    ...mapGetters([
+      "getCurrentRank",
+      "getConditionNation",
+      "getGraphKeyword",
+      "getCurrentTrans",
+      "getTTS"
+    ]),
+  },
+  methods: {
+    ...mapActions(["getTranslateKeyword", "TTSTranslate"]),
+  },
+  watch: {
+    getCurrentRank: function(keyword){
+        let nation = null;
+    //   let lang = null;
+      if(this.store.getters.getConditionNation == 1) {nation="en"}
+      if(this.store.getters.getConditionNation == 2) {nation="en"}
+      if(this.store.getters.getConditionNation == 3) {nation="ja"}
+      if(this.store.getters.getConditionNation == 4) {nation="vi"}
+      if(this.store.getters.getConditionNation == 5) {nation="id"}
+      if(this.store.getters.getConditionNation == 6) {nation="pt"}
+
+      const condition = {
+          keyword : keyword+" 아세요",
+          nation : nation
+      }
+      this.store.dispatch("TTSTranslate",  condition );
+
+    //   let utterThis = new SpeechSynthesisUtterance(this.store.getters.getTTS+"?");
+    //   utterThis.voice = speechSynthesis.getVoices()[8];
+    //   utterThis.lang = lang;
+    //   window.speechSynthesis.speak(utterThis);
+       
+    },
+  },
 };
 </script>
 
@@ -52,38 +80,13 @@ export default {
 .tts-container{
     position: float;
 }
-/* .bubble
-{
-position: relative;
-width: 300px;
-height: 60px;
-padding: 0px;
-background: #BAD0F6;
--webkit-border-radius: 17px;
--moz-border-radius: 17px;
-border-radius: 17px;
-box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.25);
-}
 
-
-.bubble:after
-{
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 7px 0 7px 15px;
-border-color: transparent #BAD0F6;
-display: block;
-width: 0;
-z-index: 1;
-right: -15px;
-top: 26px;
-} */
 * {margin:0; padding:0; box-sizing:border-box;}
-/* html, body {width:100%;}
-body {background:#6495ED;} */
+
+
 .wrapper {width:100%;}
 .slide-group {height:100%; /*animation:slideup 5s infinite linear;*/ }
+
 @keyframes slideup {
   0% {transform:translateY(0%);}
   100% {transform:translateY(-100%);}
@@ -104,7 +107,7 @@ body {background:#6495ED;} */
   box-shadow:inset -3px -3px 8px rgba(0, 0, 0, 0.3);
   filter:drop-shadow(3px 3px 5px rgba(0, 0, 0, 20%));
   z-index:2;
-  font-size:30px;
+  font-size:20px;
 }
 .bubble p::before {
   content:'';
@@ -130,9 +133,9 @@ body {background:#6495ED;} */
   /* content:url("https://dyk.s3.ap-northeast-2.amazonaws.com/gookbon1.png"); */
   content:"";
   background-image: url("https://dyk.s3.ap-northeast-2.amazonaws.com/gookbon1.png");
-  background-size:100px 100px;
-  width:100px;
-  height:100px;
+  background-size:80px 80px;
+  width:80px;
+  height:80px;
   left:60%;
   top:80%;
   font-size:80px;
