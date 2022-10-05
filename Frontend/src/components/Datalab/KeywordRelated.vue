@@ -44,6 +44,9 @@ export default {
           datalabels: {
             display: false,
           },
+          font: {
+                  family: "KOTRA_BOLD-Bold"
+              },
         },
       },
     };

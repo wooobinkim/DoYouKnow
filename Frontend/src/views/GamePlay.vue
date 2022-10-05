@@ -94,7 +94,7 @@ export default {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.right.name;
             document.getElementById("count-h2").innerText =
-              game.right.count + " 회";
+              game.right.count.toLocaleString("ko-KR") + " 회";
             document.getElementById("url-img").src = game.right.imgUrl;
             game.left = game.right;
             // 오른쪽에 새로운 데이터 받기
@@ -160,7 +160,7 @@ export default {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.right.name;
             document.getElementById("count-h2").innerText =
-              game.right.count + " 회";
+              game.right.count.toLocaleString("ko-KR") + " 회";
             document.getElementById("url-img").src = game.right.imgUrl;
             game.left = game.right;
             // 오른쪽에 새로운 데이터 받기
@@ -190,7 +190,7 @@ export default {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.data[1].name;
             document.getElementById("count-h2").innerText =
-              game.data[1].count + " 회";
+              game.data[1].count.toLocaleString("ko-KR") + " 회";
             document.getElementById("url-img").src = game.data[1].imgUrl;
             game.left = game.data[1];
             // 오른쪽에 새로운 데이터 받기
