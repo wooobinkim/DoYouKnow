@@ -10,7 +10,7 @@
     :speed="1000"
     :allowTouchMove="false"
     :lazy="{ loadPrevNext: true }"
-    :pagination="{ clickable: true }"
+    :pagination="!this.getIsOverlay"
   >
     <swiper-slide class="first"><IntroTop /></swiper-slide>
     <swiper-slide class="third"><IntroAwards /></swiper-slide>

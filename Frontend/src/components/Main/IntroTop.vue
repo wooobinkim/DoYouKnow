@@ -156,7 +156,7 @@ export default {
 .wordcloud-container {
   width: 400px;
   height: 200px;
-  margin-top: 15%;
+  margin-top: 20%;
 }
 .nation-container {
   width: auto;
@@ -272,7 +272,7 @@ h6 {
   height: 80%;
   top: 0%;
   bottom: 0;
-  right: 2%;
+  right: 3%;
   display: flex;
   flex-direction: column;
   width: 27%;
