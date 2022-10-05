@@ -6,7 +6,7 @@
       :type="lineChart.type"
       :data="lineChart.data"
       :options="lineChart.options"
-      :width="300"
+      :width="270"
     ></vue3-chart-js>
   </div>
 </template>
@@ -108,16 +108,9 @@ export default {
         },
       ];
 
-      for (let i = 0; i < 8; i++) {
-        // console.log(res[i]);
-        // if(i<8){
+      for (let i = 0; i < 10; i++) {
         lineChart.data.labels[i] = res[i].name;
         lineChart.data.datasets[0].data[i] = res[i].count;
-        // }else{
-        //   lineChart.data.labels[i] = "";
-        //   lineChart.data.datasets[0].data[i] = res[i].count;
-        // }
-
         lineChart.data.datasets[0].backgroundColor[i] = COLORS[i];
       }
       chartRef.value.update(250);
@@ -146,8 +139,9 @@ export default {
 <style scoped>
 .doughnut-container {
   width: 90%;
-  height: 450px;
-  margin-left: 6.5rem;
+  height: 478px;
+  margin-left: 8.5rem;
+  margin-top: 4rem;
   /* background: rgba(255, 255, 255, 0.70);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
   border-radius: 20px; */

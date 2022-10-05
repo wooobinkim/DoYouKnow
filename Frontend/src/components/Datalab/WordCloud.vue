@@ -15,8 +15,8 @@ import { ref } from "vue";
 import { mapGetters } from "vuex";
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import { useStore } from "vuex";
-import {Chart} from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Chart } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 export default {
   components: {
     Vue3ChartJs,
@@ -24,22 +24,22 @@ export default {
   setup() {
     Chart.register(ChartDataLabels);
     var COLORS = [
-        '#4dc9f6',
-        '#f67019',
-        '#f53794',
-        '#537bc4',
-        '#acc236',
-        '#166a8f',
-        '#00a950',
-        '#58595b',
-        '#8549ba'
+      "#4dc9f6",
+      "#f67019",
+      "#f53794",
+      "#537bc4",
+      "#acc236",
+      "#166a8f",
+      "#00a950",
+      "#58595b",
+      "#8549ba",
     ];
 
     const keywordlist = ref([]);
     const chartRef = ref(null);
 
     const lineChart = {
-      type: 'doughnut',
+      type: "doughnut",
       data: {
         labels: [],
         datasets: [
@@ -54,7 +54,7 @@ export default {
         plugins: {
           labels: false,
           legend: {
-            display: false
+            display: false,
           },
           datalabels: {
             display: true,
@@ -63,14 +63,14 @@ export default {
               const label = ctx.chart.data.labels[ctx.dataIndex];
 
               // Format the number with 2 decimal places
-              const formattedVal = Intl.NumberFormat('en-US', {
+              const formattedVal = Intl.NumberFormat("en-US", {
                 // minimumFractionDigits: 2,
               }).format(val);
 
               // Put them together
               return `${label} : ${formattedVal}`;
             },
-            color: '#fff',
+            color: "#fff",
             // backgroundColor: '#404040',
           },
         },
@@ -96,7 +96,7 @@ export default {
         // console.log(res[i]);
         lineChart.data.labels[i] = res[i].name;
         lineChart.data.datasets[0].data[i] = res[i].count;
-        lineChart.data.datasets[0].backgroundColor[i] = COLORS[i%5];
+        lineChart.data.datasets[0].backgroundColor[i] = COLORS[i % 5];
       }
       chartRef.value.update(250);
     };
@@ -106,19 +106,18 @@ export default {
       lineChart,
       updateChart,
       chartRef,
-      store
+      store,
     };
-
   },
   computed: {
     ...mapGetters(["getCurrentRank", "getKeywordRank"]),
   },
   watch: {
-    getKeywordRank: function(data){
+    getKeywordRank: function (data) {
       this.keywordlist = data;
       this.updateChart(data);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -61,6 +61,11 @@ export default {
   display: flex;
   flex-direction: column;
   margin-left: 6rem;
+  background: white;
+  border-radius: 30px;
+  opacity: 71%;
+  padding: 0.75rem;
+  margin-top: -1.5rem;
 }
 .sub1-box {
   display: flex;
@@ -69,18 +74,17 @@ export default {
   margin-bottom: 1rem;
 }
 .sub2-box {
-  font-size: 2.5rem;
-  font-family: "SF_IceLemon";
+  font-size: 2rem;
+  font-family: "KOTRA_BOLD-Bold";
 }
 .half-highlight {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 80%, #ebf2f7 50%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 80%, #6495ed 50%);
 }
 .first_box {
-  font-size: 2rem;
-  font-family: "HS-Regular";
+  font-size: 1.5rem;
+  font-family: "KOTRA_BOLD-Bold";
 }
 .second_box {
-  padding: 0.5rem;
   background-color: white;
   border-radius: 15px;
   font-family: "establishRoomNo703OTF";

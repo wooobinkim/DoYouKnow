@@ -159,6 +159,7 @@ export default {
 .head_title {
   font-family: "KOTRA_BOLD-Bold";
   font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 h6 {
   font-size: 1.2em;
@@ -242,7 +243,7 @@ h6 {
 .left_section {
   position: fixed;
   width: 100%;
-  height: 80%;
+  height: 77%;
   /* top: -6%; */
   left: 0;
   bottom: 0;
@@ -257,7 +258,7 @@ h6 {
 .right_section {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 80%;
   top: 0%;
   bottom: 0;
   right: 2%;
@@ -346,22 +347,22 @@ h6 {
     transform: translate3d(100%, 0, 0);
   }
 }
-/* .news-container{
+.news-container {
   width: 340px;
   height: 320px;
-  background: rgba(255, 255, 255, 0.53);
+  /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
-  border-radius: 17px;
+  border-radius: 17px; */
 }
-.chart-container{
+.chart-container {
   width: 340px;
   height: 160px;
-  background: rgba(255, 255, 255, 0.53);
+  /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
-  border-radius: 17px;
-};
+  border-radius: 17px; */
+}
 
-.doughnut-container{
+/* .doughnut-container{
   width: 320px;
   height: 320px;
   background: rgba(255, 255, 255, 0.53);
