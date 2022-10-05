@@ -70,6 +70,10 @@ export default {
           },
           datalabels: {
             display: true,
+            font:{
+              size: 11,
+              family: "KOTRA_BOLD-Bold",
+            },
             formatter: (val, ctx) => {
               // Grab the label for this value
               const label = ctx.chart.data.labels[ctx.dataIndex];
@@ -83,7 +87,7 @@ export default {
               if (ctx.dataIndex >= 8) {
                 return "";
               } else {
-                return `${label} \n\t ${formattedVal}`;
+                return `${label} \n ${formattedVal}`;
               }
             },
             color: "#fff",
@@ -137,6 +141,13 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .doughnut-container {
   width: 90%;
   height: 478px;
