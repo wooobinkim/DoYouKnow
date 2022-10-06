@@ -297,7 +297,7 @@ h2 {
 .img-container {
   margin-top: 8rem;
   margin-right: 5rem;
-  margin-left: 8rem;
+  margin-left: 15rem;
 }
 .card-img {
   margin: auto;
@@ -339,8 +339,8 @@ h2 {
 }
 .qus-container {
   position: absolute;
-  top: 72%;
-  left: 61%;
+  top: 70%;
+  left: 64%;
   justify-content: center;
   text-align: center;
 }
@@ -366,5 +366,20 @@ button:hover {
   position: fixed;
   bottom: 10px;
   right: 25px;
+}
+
+@media (min-width: 1920px) {
+  .card-left {
+    background: url("@/assets/cg-0.jpg") no-repeat center center fixed;
+    background-size: cover;
+    width: 50%;
+    height: 60.55rem;
+  }
+  .card-right {
+    background: url("@/assets/cg-3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    width: 50%;
+    height: 60.55rem;
+  }
 }
 </style>

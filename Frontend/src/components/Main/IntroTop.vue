@@ -3,13 +3,7 @@
     <div v-if="this.getIsOverlay == false">
       <img src="@/assets/intro-arrow.png" class="intro-arrow" v-show="!this.getDatalabViewLoading"/>
       <div class="title-container">
-        <h6
-          data-aos="fade-right"
-          data-aos-offset="300"
-          data-aos-easing="ease-in-sine"
-        >
-          Introduce
-        </h6>
+        
         <h1 class="headTitle" data-aos="fade">DoYouKnow</h1>
         <div
           class="content-msg"
@@ -388,4 +382,8 @@ h6 {
   top: 68%;
   right: -90%;
 }
+
+/* @media screen {
+  
+} */
 </style>
