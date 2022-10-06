@@ -264,7 +264,7 @@ export default {
             divElement.innerHTML =
               '<img src="/texture/us.png" style="width: 100%; height: 100%;">';
           }
-          if (hoveredObj.id == 59) {
+          if (hoveredObj.id == 57) {
             divElement.innerHTML =
               '<img src="/texture/uk.png" style="width: 100%; height: 100%;">';
           }
@@ -351,7 +351,7 @@ export default {
         pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
         raycaster.setFromCamera(pointer, camera);
         const intersects = raycaster.intersectObjects(scene.children);
-        console.log(intersects, "inter감지");
+        // console.log(intersects, "inter감지");
         if (intersects.length >= 2) {
           if (intersects[0].object.id == 51) {
             // alert(intersects[0].object.id + "미국클릭");
@@ -364,7 +364,7 @@ export default {
             const data = true;
             store.dispatch("setIsOverlay", { data });
           }
-          if (intersects[0].object.id == 59) {
+          if (intersects[0].object.id == 57) {
             // alert(intersects[0].object.id + "영국클릭");
             // local 59
             // 배포 57
