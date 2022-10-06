@@ -144,7 +144,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  top: 20px;
+  top: 65px;
 }
 .sound {
   margin-bottom: -8px;

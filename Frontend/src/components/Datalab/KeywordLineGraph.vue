@@ -195,9 +195,10 @@ export default {
 }
 .chart-container {
   background: rgb(255, 255, 255, 0.6);
+
   /* opacity: 60%; */
   border-radius: 15px;
-  margin-left: -1.3rem;
+  margin-left:-25.3rem;
   margin-top: -2.8rem;
 }
 

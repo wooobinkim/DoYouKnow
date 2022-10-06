@@ -82,13 +82,14 @@
           <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div><KeywordDonutGraph /></div>
-          <div class="line-graph"><KeywordLineGraph /></div>
+          
         </div>
       </transition>
       <transition name="right">
         <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
-          <div class="news-container"><KeywordNews /></div>
+          <div class="line-graph"><KeywordLineGraph /></div>
+          <!-- <div class="news-container"><KeywordNews /></div> -->
           <div><KeywordTts/></div>
         </div>
       </transition>
@@ -106,7 +107,7 @@ import MainGlobe from "@/components/Main/MainGlobe.vue";
 
 import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
 import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
-import KeywordNews from "@/components/Datalab/KeywordNews.vue";
+// import KeywordNews from "@/components/Datalab/KeywordNews.vue";
 import KeywordRank from "@/components/Datalab/KeywordRank.vue";
 import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
 import DataInfo from "@/components/Datalab/DataInfo.vue";
@@ -119,7 +120,7 @@ export default {
     MainGlobe,
     KeywordRelated,
     KeywordRank,
-    KeywordNews,
+    // KeywordNews,
     KeywordLineGraph,
     KeywordDonutGraph,
     KeywordTts,
@@ -383,7 +384,6 @@ h6 {
 
 .line-graph {
   position: absolute;
-  /* width: 400px; */
   height: 500px;
   top: 63%;
   left: 80%;
