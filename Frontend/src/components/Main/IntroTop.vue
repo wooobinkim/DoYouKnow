@@ -1,7 +1,7 @@
 <template>
   <section>
     <div v-if="this.getIsOverlay == false">
-      <img src="@/assets/intro-arrow.png" class="intro-arrow" />
+      <img src="@/assets/intro-arrow.png" class="intro-arrow" v-show="!this.getDatalabViewLoading"/>
       <div class="title-container">
         <h6
           data-aos="fade-right"
@@ -140,7 +140,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getIsOverlay", "getNation", "getConditionNation"]),
+    ...mapGetters(["getIsOverlay", "getNation", "getConditionNation", "getDatalabViewLoading"]),
   },
 };
 </script>
