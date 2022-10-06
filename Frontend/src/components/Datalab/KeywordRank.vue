@@ -353,7 +353,7 @@ label {
   height: auto;
   background: transparent;
   border-radius: 10px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .leaderboard h1 {
