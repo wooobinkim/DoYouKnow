@@ -1,6 +1,6 @@
 <template>
   <div class="keyword-container">
-    <loading-spinner v-if="this.getIsTopFive" />
+    <loading-spinner v-if="this.getIsTopFive" class="kw-rank-spinner" />
     <template v-else>
       <div class="button-container">
         <br />
@@ -554,5 +554,51 @@ label {
 .leaderboard ol li:hover mark::after {
   opacity: 1;
   transition: all 0.35s ease-in-out;
+}
+
+@media (min-width: 1920px){
+  .btn-group1 {
+    display: flex;
+    margin-bottom: 10px;
+    width: 125%;
+  }
+  .btn-group2 {
+    display: flex;
+    justify-content: flex-end;
+    width: 123%
+  }
+  .leaderboard {
+    position: absolute;
+    top: 37%;
+    left: 63%;
+    transform: translate(-50%, -50%);
+    width: 114%;
+    height: auto;
+    background: transparent;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  .leaderboard ol li {
+    position: relative;
+    z-index: 1;
+    font-size: 14px;
+    counter-increment: leaderboard;
+    padding: 18px 10px 18px 50px;
+    cursor: pointer;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0) scale(1, 1);
+    border-radius: 20px;
+    margin-top: 5px;
+  }
+  .leaderboard ol li > .rankkeyword-active {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    background-color: rgb(254, 236, 140);
+    width: 87%;
+  }
+  .kw-rank-spinner {
+    width: 120%;
+  }
 }
 </style>

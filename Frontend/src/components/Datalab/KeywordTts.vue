@@ -251,4 +251,11 @@ export default {
   margin-left: -10%;
   margin-top: -24%;
 }
+
+@media (min-width: 1920px){
+  .bubble:nth-child(1) {
+    margin-left: -10%;
+    margin-top: -15%;
+  }
+}
 </style>

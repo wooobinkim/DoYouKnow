@@ -171,4 +171,14 @@ export default {
   margin-left: 1rem;
   margin-bottom: 1.5rem;
 } */
+@media (min-width: 1920px) {
+  .doughnut-container {
+
+    width: 100%;
+    height: 360px;
+    margin-left: 5%;
+    margin-top: 12rem;
+    
+  }
+}
 </style>

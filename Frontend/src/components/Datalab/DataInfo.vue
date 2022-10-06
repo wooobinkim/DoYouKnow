@@ -1,5 +1,5 @@
 <template>
-  <loading-spinner v-if="this.getIsRate" style="width: 110%;"/>
+  <loading-spinner v-if="this.getIsRate" class="data-info-spinner"/>
   <template v-else>
     <div class="total-container" v-if="this.getNationRate">
       <div class="sub1-box">
@@ -99,5 +99,13 @@ export default {
   background-color: white;
   border-radius: 15px;
   font-family: "establishRoomNo703OTF";
+}
+.data-info-spinner {
+  width: 110%;
+}
+@media (min-width: 1920px){
+  .data-info-spinner {
+    width: 125%;
+  }
 }
 </style>

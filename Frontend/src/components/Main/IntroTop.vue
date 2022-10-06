@@ -292,6 +292,7 @@ h6 {
   width: 25px;
   height: 25px;
   margin-top: 1.2rem;
+  cursor: pointer;
 }
 .backbtnimg {
   width: 100%;
@@ -383,7 +384,49 @@ h6 {
   right: -90%;
 }
 
-/* @media screen {
-  
-} */
+@media (min-width: 1920px) {
+  .left_section {
+    position: fixed;
+    width: 100%;
+    height: 77%;
+    top: 12%;
+    left: 1%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 25%;
+    float: left;
+    z-index: 10;
+    animation: fadeInLeft 2s;
+  }
+  .line-graph {
+    position: absolute;
+    top: 78%;
+    right: -58%;
+  }
+  .right_section {
+    position: fixed;
+    width: 100%;
+    height: 80%;
+    top: 0%;
+    bottom: 0;
+    right: 0.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 27%;
+    float: right;
+    z-index: 10;
+    justify-content: flex-start;
+    animation: fadeInRight 2s;
+    margin-top: 8%;
+  }
+  .news-container {
+    width: 500px;
+    height: 400px;
+    margin-top: 14%;
+    
+  }
+}
 </style>
