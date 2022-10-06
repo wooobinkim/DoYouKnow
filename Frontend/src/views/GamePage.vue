@@ -39,7 +39,10 @@
         </div>
         <div class="main-intro">
           <h1>어떤 키워드들이 더 많이 검색됐을까?</h1>
-          <h2 class="intro-h2">전 세계 한국 키워드 검색량 기준</h2>
+          <h2 class="intro-h2">
+            세계 6개국 Google News 한국관련 키워드 수집량
+          </h2>
+          <h3 class="intro-h2">(2022년 10월기준 3개월)</h3>
         </div>
       </div>
       <div class="button-container">
