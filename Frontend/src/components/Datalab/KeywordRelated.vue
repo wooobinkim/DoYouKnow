@@ -1,5 +1,8 @@
 <template>
   <div class="word-container">
+    <template v-if="this.getIsErrormsg && !this.getRelatedKewordLoading">
+        <p class="ptag">다시 한 번 선택해 주세요.</p>
+    </template>
     <loading-spinner v-if="this.getRelatedKewordLoading" />
     <div class="canvas-container">
       <canvas id="canvas" style="width: 600px; height: 500px"></canvas>
@@ -159,6 +162,7 @@ export default {
       "getCurrentRank",
       "getRelatedKeyword",
       "getRelatedKewordLoading",
+      "getIsErrormsg",
     ]),
   },
   // methods: {
@@ -219,5 +223,12 @@ export default {
     format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+
+.ptag {
+  /* font-size: 2rem; */
+  font-family: "KOTRA_BOLD-Bold";
+   opacity: 71%;
 }
 </style>

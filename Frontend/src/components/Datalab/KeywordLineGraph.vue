@@ -204,8 +204,8 @@ export default {
 
   /* opacity: 60%; */
   border-radius: 15px;
-  margin-left: -21rem;
-  margin-top: -2.8rem;
+  margin-left: -20.5rem;
+  margin-top: -6.8rem;
 }
 
 .line-graph {
