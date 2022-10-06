@@ -13,8 +13,8 @@ DoYouKnow_db= pymysql.connect(
 cursor = DoYouKnow_db.cursor(pymysql.cursors.DictCursor)
 sql = "insert into news (link,image,title,keyword,nation_id) values (%s,%s,%s,%s,%s)"
 
-keyword = "방탄소년단"
-searchkeyword = ["bts","bts","bts","bts","bts","bts"]
+keyword = "손흥민"
+searchkeyword = ["sonny","sonny","ソン・フンミン","sonny","sonny","sonny"]
 language = ["en","en","jp","vi","id","pt"]
 
 for _ in range(len(searchkeyword)):
