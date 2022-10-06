@@ -424,9 +424,13 @@ h6 {
   }
   .news-container {
     width: 500px;
-    height: 400px;
+    height: 415px;
     margin-top: 14%;
-    
+  }
+  .wordcloud-container {
+    width: 500px;
+    height: 200px;
+    margin-top: -13%;
   }
 }
 </style>

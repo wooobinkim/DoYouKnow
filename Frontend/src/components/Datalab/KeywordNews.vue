@@ -2,8 +2,8 @@
   <swiper :slides-per-view="1" :navigation="true">
     <swiper-slide v-for="news in test.getRelatedKeywordNews" :key="news">
       <div class="card-container">
-        <h4 style="margin: -18.5px 0px 6px">관련 뉴스</h4>
-        <div class="news-container" style="height: 80%">
+        <h4>관련 뉴스</h4>
+        <div class="news-container">
           <a :href="news.link" target="_blank">
             <img class="news-img" :src="news.image" width="80" />
             <h3 class="news-title">{{ news.title }}</h3>
@@ -88,6 +88,7 @@ h4 {
   background: none;
   font-size: 1.25rem;
   padding-top: 3px;
+  margin: -18.5px 0px 6px
 }
 .card-container {
   border-radius: 30px;
@@ -97,6 +98,7 @@ h4 {
 .news-container {
   width: 400px;
   height: 290px;
+  height: 80%
 }
 .news-img {
   width: 100%;
@@ -108,7 +110,7 @@ h4 {
 .swiper-slide {
   display: flex;
   height: 300px;
-  height: 285px;
+  /* height: 285px; */
   /* justify-content: center; */
   /* align-items: center; */
   /* width: 50%; */
@@ -142,5 +144,39 @@ h4 {
 a {
   text-decoration: none;
   color: black;
+}
+
+@media (min-width: 1920px) {
+  .swiper-slide {
+    display: flex;
+    height: 500px;
+    font-size: 24px;
+    font-weight: 700;
+    border-radius: 30px;
+    opacity: 81%;
+  }
+  .card-container {
+    border-radius: 30px;
+    height: 415px;
+    width: 100%;
+  }
+  h4 {
+    font-family: "KOTRA_BOLD-Bold";
+    background: none;
+    font-size: 1.25rem;
+    padding-top: 3px;
+    margin: -37.5px 0px 6px
+  }
+  .news-img {
+    width: 125%;
+    height: 85%;
+    object-fit: contain;
+  }
+  
+  .news-title {
+  font-size: 1.2rem;
+  width: 125%;
+  margin-top: 3%;
+}
 }
 </style>

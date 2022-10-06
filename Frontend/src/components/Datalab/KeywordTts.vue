@@ -113,7 +113,7 @@ export default {
       }
 
       const condition = {
-        keyword: keyword + " 아세요",
+        keyword: keyword + "를 아십니까",
         nation: nation,
       };
       this.store.dispatch("TTSTranslate", condition);
@@ -183,7 +183,7 @@ export default {
   box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.3);
   filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 20%));
   z-index: 2;
-  font-family: "KOTRA_BOLD-Bold";
+  /* font-family: "KOTRA_BOLD-Bold"; */
   opacity: 75%;
   font-size: 20px;
 }
