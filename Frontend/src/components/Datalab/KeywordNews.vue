@@ -4,8 +4,8 @@
       <div class="card-container">
         <h4 style="margin: -18.5px 0px 6px">관련 뉴스</h4>
         <div class="news-container" style="height: 80%">
-          <a :href="news.url" target="_blank">
-            <img class="news-img" :src="news.urlToImage" width="80" />
+          <a :href="news.link" target="_blank">
+            <img class="news-img" :src="news.image" width="80" />
             <h3 class="news-title">{{ news.title }}</h3>
             <!-- <p style="font-size:5px">{{ ((news.publishedAt.split("T"))[0].split("-"))[0] }}.
           {{ ((news.publishedAt.split("T"))[0].split("-"))[1] }}.

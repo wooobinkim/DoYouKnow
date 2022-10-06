@@ -278,52 +278,27 @@ export const datalab = {
         });
     },
 
-    async relatedkeywordnews({ commit, state }, data) {
+    async relatedkeywordnews({ commit }, data) {
       // console.log(data[0].category, data[0].nation);
       var keyword = data[1];
-      console.log(data);
-      await axios({
-        url: BackendAPI2.datalab.relatedkeywordtranslate(
-          "한국 " +
-            data[1] +
-            ".한국 " +
-            state.category[data[0].category - 1].text,
-          state.nation[data[0].nation - 1].lang
-        ),
-        method: "get",
-      })
-        .then((res) => {
-          keyword = res.data.split(".");
-          console.log(keyword);
-        })
-        .catch((err) => {
-          console.error(err.response);
-          // lang = 'ko';
-        });
-
+      console.log("news--------------------------");
+      var nation_id =data[0].nation;
+      //console.log(data[]);
+      
+      console.log(nation_id);
+      console.log(keyword);
       await axios({
         // &language=${lang}
-        url: `https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[0]}&sortBy=relevancy&pageSize=5`,
+        url: `https://j7b208.p.ssafy.io/api2/pytranslate/news/${keyword}/${nation_id}/`,
         method: "get",
       })
         .then((res) => {
           // console.log(res.data.articles.length)
-          if (res.data.articles.length == 0) {
-            axios({
-              // &language=${lang}
-              url: `https://newsapi.org/v2/everything?apiKey=${process.env.VUE_APP_NEWS_API_KEY}&q=${keyword[1]}&sortBy=relevancy&pageSize=5`,
-              method: "get",
-            })
-              .then((res) => {
-                // console.log(res.data.articles.length)
-                commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
-              })
-              .catch((err) => {
-                console.error(err.response);
-              });
-          } else {
-            commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
-          }
+          console.log("어디까지 갔니");
+          console.log(res);
+          console.log(res.data);
+          commit("SET_RELATEDKEYWORDNEWS", res.data);
+          
           // commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
         })
         .catch((err) => {
