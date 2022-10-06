@@ -55,7 +55,7 @@
 
 ## 🏛 아키텍쳐
 
-<img src="exec/images/아키텍쳐.png" alt="logo" style="zoom:60%;" />
+<img src="exec/images/arc.png" alt="logo" style="zoom:60%;" />
 
 
 
