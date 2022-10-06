@@ -65,5 +65,4 @@ def detailview(request, keyword, nation_code):
 @api_view(['GET'])
 def newslistview(requrst,keyword,nation_code):
     key = News.objects.filter(Q(key=keyword) & Q(nation_id=nation_code)).values()
-    print(key[0])
-    return Response(key[0])
+    return Response(key)
