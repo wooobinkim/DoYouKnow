@@ -148,6 +148,7 @@ export default {
 }
 .sound {
   margin-bottom: -8px;
+  cursor: pointer;
 }
 .wrapper {
   width: 100%;

@@ -270,7 +270,7 @@ h6 {
   height: 80%;
   top: 0%;
   bottom: 0;
-  right: 3%;
+  right: 0.5%;
   display: flex;
   flex-direction: column;
   width: 27%;
@@ -289,7 +289,7 @@ h6 {
 }
 .nation {
   margin-right: 3rem;
-  margin-left: 3rem;
+  margin-left: 2rem;
   font-size: 2rem;
 }
 .backbtn {

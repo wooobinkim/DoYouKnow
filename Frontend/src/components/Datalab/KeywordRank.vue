@@ -340,7 +340,7 @@ label {
 /* 랭킹 아이템 */
 .leaderboard {
   position: absolute;
-  top: 35%;
+  top: 37%;
   left: 63%;
   transform: translate(-50%, -50%);
   width: 114%;
@@ -538,7 +538,7 @@ label {
 }
 
 .leaderboard ol li > .rankkeyword-active {
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   background-color: rgb(254, 236, 140);
 }
