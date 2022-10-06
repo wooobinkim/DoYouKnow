@@ -9,6 +9,10 @@ export const datalab = {
     keywordrank: null,
     // relatedkeword: [],
     isoverlay: false,
+    isRate: false,
+    isTopFive: false,
+    isLineGraph: false,
+
     datalabviewloading: true,
     relatedkeword: [],
     relatedkeywordnews: [],
@@ -61,6 +65,15 @@ export const datalab = {
     getIsOverlay(state) {
       return state.isoverlay;
     },
+    getIsRate(state) {
+      return state.isRate;
+    },
+    getIsTopFive(state) {
+      return state.isTopFive;
+    },
+    getIsLineGraph(state) {
+      return state.isLineGraph;
+    },
     getDatalabViewLoading(state) {
       return state.datalabviewloading;
     },
@@ -100,6 +113,10 @@ export const datalab = {
   },
   mutations: {
     SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
+    SET_ISRATE: (state, isRate) => (state.isRate = isRate),
+    SET_ISTOPFIVE: (state, isTopFive) => (state.isTopFive = isTopFive),
+    SET_ISLINEGRAPH: (state, isLineGraph) => (state.isLineGraph = isLineGraph),
+
     SET_DATALABVIEWLOADING: (state, datalabviewloading) => {
       state.datalabviewloading = datalabviewloading;
     },
@@ -146,9 +163,11 @@ export const datalab = {
       await commit("SET_OVERLAYRESET");
     },
     async getNationRate({ commit }, { nation }) {
+      await commit("SET_ISRATE", true);
       await axios
         .get(`https://j7b208.p.ssafy.io/api/keyword/searchcount/${nation}`)
         .then((res) => {
+          commit("SET_ISRATE", false);
           commit("SET_NATIONRATE", res.data);
         })
         .catch((err) => {
@@ -173,12 +192,14 @@ export const datalab = {
     },
 
     async getKeywordData({ commit }, { condition }) {
+      await commit("SET_ISTOPFIVE", true);
       // console.log(condition);
       await axios
         .get(
           `https://j7b208.p.ssafy.io/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
+          commit("SET_ISTOPFIVE", false);
           commit("SET_KEYWORDRANK", res.data);
         })
         .catch((err) => {
@@ -187,13 +208,14 @@ export const datalab = {
     },
 
     async getGraphKeyword({ commit }, { condition }) {
+      await commit("SET_ISLINEGRAPH", true);
       await axios
         .get(
           `https://j7b208.p.ssafy.io/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
-          console.log(res.data);
-          console.log("WWW");
+          console.log("결과왐?????????????");
+          commit("SET_ISLINEGRAPH", false);
           commit("SET_GRAPHKEYWORD", res.data);
         })
         .catch((err) => {

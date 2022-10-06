@@ -6,7 +6,7 @@
       :type="lineChart.type"
       :data="lineChart.data"
       :options="lineChart.options"
-      :width="270"
+      :width="300"
     ></vue3-chart-js>
   </div>
 </template>
@@ -155,9 +155,9 @@ export default {
 }
 .doughnut-container {
   /* background: rgb(255, 255, 255, 0.1); */
-  width: 70%;
+  width: 100%;
   height: 478px;
-  margin-left: 5%;
+  margin-left: 24%;
   margin-top: 4rem;
   /* background: rgba(255, 255, 255, 0.70);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
