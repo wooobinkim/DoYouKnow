@@ -159,12 +159,13 @@ export default {
   margin-top: 20%;
 }
 .nation-container {
-  width: 210px;
+  width: auto;
 }
 .head_title {
   font-family: "KOTRA_BOLD-Bold";
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  text-align: start;
 }
 h6 {
   font-size: 1.2em;
@@ -178,9 +179,10 @@ h6 {
   text-align: start;
 }
 .nationFlag {
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   margin-top: 1rem;
+  margin-bottom: 0.75rem;
 }
 .headTitle {
   font-size: 4em;
@@ -282,6 +284,8 @@ h6 {
   display: flex;
   align-items: center;
   height: 110px;
+  justify-content: space-between;
+  width: 115%;
 }
 .nation {
   margin-right: 3rem;
