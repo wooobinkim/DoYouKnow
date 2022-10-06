@@ -5,7 +5,7 @@
     class="mySwiper"
     :modules="modules"
     :direction="'vertical'"
-    mousewheel
+    :mousewheel="this.getIsOverlay"
     :speed="1000"
     :allowTouchMove="false"
     :lazy="{ loadPrevNext: true }"
