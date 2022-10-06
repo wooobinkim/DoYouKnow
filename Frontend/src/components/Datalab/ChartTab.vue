@@ -81,7 +81,7 @@ export default {
       ];
 
       for (let i = 0; i < res.length; i++) {
-        // console.log(res[i]);
+        
         lineChart.data.labels[i] = res[i].date.toLocaleDateString();
         lineChart.data.datasets[0].data[i] = res[i].count;
       }
@@ -121,8 +121,6 @@ export default {
       }
     },
     getGraphKeyword: function (data) {
-      // console.log("변했다.");
-      // console.log(data);
       this.keywordlist = data;
       this.updateChart(data);
     },

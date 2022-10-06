@@ -92,29 +92,12 @@ export default {
               drawTicks: false,
             },
           },
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-              gridLines: {
-                display: false,
-              },
-            },
-          ],
-          xAxes: [
-            {
-              gridLines: {
-                display: false,
-              },
-            },
-          ],
         },
       },
     };
 
     const updateChart = (res) => {
-      console.log(res, "여길잘봐!!");
+      
       lineChart.options.plugins.title = {
         text: "날짜별 검색량",
         display: true,
@@ -169,9 +152,7 @@ export default {
     ...mapActions(["getGraphKeyword"]),
   },
   watch: {
-    getIsLineGraph: function (data) {
-      console.log(data, "로딩상태어때");
-    },
+    
     getCurrentRank: function () {
       if (this.getConditionCategory && this.getConditionPeriod) {
         const condition = {

@@ -65,7 +65,7 @@ export default {
     let getScore = function () {
       score = window.localStorage.getItem("korea-score");
       window.localStorage.removeItem("korea-score");
-      console.log(window.localStorage);
+      
     };
     getScore();
 
@@ -80,7 +80,7 @@ export default {
     });
     const onOffSound = function () {
       data.isSound = !data.isSound;
-      console.log(data.isSound);
+      
     };
 
     return {

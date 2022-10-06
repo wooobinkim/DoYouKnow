@@ -53,7 +53,7 @@ export default {
     };
 
     const updatewordcloud = (data) => {
-      console.log(data);
+      
       const color = [
         // "#004B6B",
         // '#255D7E',
@@ -89,7 +89,7 @@ export default {
         "#794C57",
       ];
 
-      console.log(data);
+      
 
       var arr = [];
       for (let i = 0; i < data.length; i++) {
@@ -113,7 +113,7 @@ export default {
           },
         ],
       };
-      console.log(data1);
+      
 
       {
         let chartStatus = Chart.getChart("canvas"); // <canvas> id
