@@ -1,17 +1,21 @@
 <template>
   <!-- <loading-spinner v-if="this.getIsLineGraph" /> -->
   <div class="chart-container">
-    <!-- <div> -->
-    <vue3-chart-js
-      :id="lineChart.id"
-      ref="chartRef"
-      :type="lineChart.type"
-      :data="lineChart.data"
-      :options="lineChart.options"
-      width="470"
-      height="200"
-    ></vue3-chart-js>
-    <!-- </div> -->
+    <div v-show="this.test.getGraphKeyword != null">
+      <vue3-chart-js
+        :id="lineChart.id"
+        ref="chartRef"
+        :type="lineChart.type"
+        :data="lineChart.data"
+        :options="lineChart.options"
+        width="470"
+        height="250"
+      ></vue3-chart-js>
+    </div>
+
+    <!-- {{lineChart.data.datasets[0].data.length}} -->
+
+    <!-- <button @click="updateChart">Update Chart</button> -->
   </div>
 </template>
 
@@ -197,10 +201,11 @@ export default {
 }
 .chart-container {
   background: rgb(255, 255, 255, 0.6);
+
   /* opacity: 60%; */
   border-radius: 15px;
-  margin-left: -1.3rem;
-  margin-top: -0.8rem;
+  margin-left: -25.3rem;
+  margin-top: -2.8rem;
 }
 
 .line-graph {

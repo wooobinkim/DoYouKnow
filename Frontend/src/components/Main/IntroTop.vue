@@ -82,13 +82,14 @@
           <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div><KeywordDonutGraph /></div>
-          <div class="line-graph"><KeywordLineGraph /></div>
+          
         </div>
       </transition>
       <transition name="right">
         <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
-          <div class="news-container"><KeywordNews /></div>
+          <div class="line-graph"><KeywordLineGraph /></div>
+          <!-- <div class="news-container"><KeywordNews /></div> -->
           <div><KeywordTts/></div>
         </div>
       </transition>
@@ -106,7 +107,7 @@ import MainGlobe from "@/components/Main/MainGlobe.vue";
 
 import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
 import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
-import KeywordNews from "@/components/Datalab/KeywordNews.vue";
+// import KeywordNews from "@/components/Datalab/KeywordNews.vue";
 import KeywordRank from "@/components/Datalab/KeywordRank.vue";
 import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
 import DataInfo from "@/components/Datalab/DataInfo.vue";
@@ -119,7 +120,7 @@ export default {
     MainGlobe,
     KeywordRelated,
     KeywordRank,
-    KeywordNews,
+    // KeywordNews,
     KeywordLineGraph,
     KeywordDonutGraph,
     KeywordTts,
@@ -159,12 +160,13 @@ export default {
   margin-top: 20%;
 }
 .nation-container {
-  width: 210px;
+  width: auto;
 }
 .head_title {
   font-family: "KOTRA_BOLD-Bold";
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  text-align: start;
 }
 h6 {
   font-size: 1.2em;
@@ -178,9 +180,10 @@ h6 {
   text-align: start;
 }
 .nationFlag {
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   margin-top: 1rem;
+  margin-bottom: 0.75rem;
 }
 .headTitle {
   font-size: 4em;
@@ -268,7 +271,7 @@ h6 {
   height: 80%;
   top: 0%;
   bottom: 0;
-  right: 3%;
+  right: 0.5%;
   display: flex;
   flex-direction: column;
   width: 27%;
@@ -282,10 +285,12 @@ h6 {
   display: flex;
   align-items: center;
   height: 110px;
+  justify-content: space-between;
+  width: 115%;
 }
 .nation {
   margin-right: 3rem;
-  margin-left: 3rem;
+  margin-left: 2rem;
   font-size: 2rem;
 }
 .backbtn {
@@ -379,7 +384,6 @@ h6 {
 
 .line-graph {
   position: absolute;
-  /* width: 400px; */
   height: 500px;
   top: 63%;
   left: 80%;
