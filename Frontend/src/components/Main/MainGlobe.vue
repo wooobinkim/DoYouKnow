@@ -418,7 +418,7 @@ export default {
           }
         }
       };
-      window.addEventListener("mousemove", onMouseMove);
+      window.addEventListener("click", onMouseMove);
       // 절대 수정하지 마세용 ==================================================
 
       // plane model
