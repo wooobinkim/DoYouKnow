@@ -72,13 +72,10 @@ export default {
     getIsOverlay: function(){
       if (this.getIsOverlay){
         this.swiper.mousewheel.disable()
-        console.log(this.swiper)
       } else{
         this.swiper.mousewheel.enable()
-        console.log(this.swiper)
-
       }
-    }
+    },
   }
 };
 </script>

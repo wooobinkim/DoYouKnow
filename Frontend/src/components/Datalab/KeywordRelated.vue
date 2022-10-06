@@ -1,9 +1,11 @@
 <template>
   <div class="word-container">
+    <div v-if="!this.getRelatedKewordLoading && this.getCurrentRank" class="wordcloud-title">연관검색어</div>
     <template v-if="this.getIsErrormsg && !this.getRelatedKewordLoading">
         <p class="ptag">다시 한 번 선택해 주세요.</p>
     </template>
     <loading-spinner v-if="this.getRelatedKewordLoading" />
+    <div v-if="this.getRelatedKewordLoading">로딩 중...</div>
     <div class="canvas-container">
       <canvas id="canvas" style="width: 600px; height: 500px"></canvas>
     </div>
@@ -23,7 +25,6 @@ export default {
     //const keywordlist = ref([]);
     const chartRef = ref(null);
     const store = useStore();
-
     const barChart = {
       id: "bar",
       type: "bar",
@@ -52,7 +53,7 @@ export default {
     };
 
     const updatewordcloud = (data) => {
-      console.log(data);
+      
       const color = [
         // "#004B6B",
         // '#255D7E',
@@ -88,7 +89,7 @@ export default {
         "#794C57",
       ];
 
-      console.log(data);
+      
 
       var arr = [];
       for (let i = 0; i < data.length; i++) {
@@ -112,7 +113,7 @@ export default {
           },
         ],
       };
-      console.log(data1);
+      
 
       {
         let chartStatus = Chart.getChart("canvas"); // <canvas> id
@@ -126,16 +127,18 @@ export default {
           data: data1,
           options: {
             plugins: {
-              title: {
-                text: "연관검색어",
-                display: true,
-                font: {
-                  size: 14,
-                  family: "KOTRA_BOLD-Bold",
-                  weight: "bold",
-                  color: "rgb(255, 255, 255)",
-                },
-              },
+              // title: {
+              //   text: "연관검색어",
+              //   display: true,
+              //   font: {
+              //     size: '36',
+              //     family: 'KOTRA_BOLD-Bold',
+              //     weight: "bold",
+              //     color: "#ff6384",
+                  
+              //   },
+                
+              // },
               labels: false,
               legend: {
                 display: false,
@@ -199,6 +202,12 @@ export default {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+    font-family: 'GyeonggiTitleM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiTitleM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .cha .chartvue {
   visibility: hidden;
 }
@@ -230,5 +239,12 @@ export default {
   /* font-size: 2rem; */
   font-family: "KOTRA_BOLD-Bold";
    opacity: 71%;
+}
+
+.wordcloud-title {
+  text-align: start;
+  font-size: 35px;
+  font-weight: bolder;
+  font-family: 'GyeonggiTitleM';
 }
 </style>

@@ -144,7 +144,6 @@ export const datalab = {
       // state.graphkeyword = graphkeyword;
     },
     SET_RELATEDKEYWORDLOADING: (state, relatedkewordloading) => {
-      // console.log(relatedkewordloading);
       state.relatedkewordloading = relatedkewordloading;
     },
     SET_TTS: (state, TTS) => {
@@ -163,7 +162,6 @@ export const datalab = {
       await commit("SET_ISOVERLAY", data);
     },
     async OverlayReset({ commit }) {
-      console.log("리셋");
       await commit("SET_OVERLAYRESET");
     },
     async getNationRate({ commit }, { nation }) {
@@ -197,7 +195,7 @@ export const datalab = {
 
     async getKeywordData({ commit }, { condition }) {
       await commit("SET_ISTOPFIVE", true);
-      // console.log(condition);
+      
       await axios
         .get(
           `https://j7b208.p.ssafy.io/api/keyword/${condition.nation}/${condition.category}/${condition.period}`
@@ -218,7 +216,7 @@ export const datalab = {
           `https://j7b208.p.ssafy.io/api/keyword/keywordgraph/${condition.keyword}/${condition.nation}/${condition.category}/${condition.period}`
         )
         .then((res) => {
-          console.log("결과왐?????????????");
+          
           commit("SET_ISLINEGRAPH", false);
           commit("SET_GRAPHKEYWORD", res.data);
         })
@@ -246,8 +244,7 @@ export const datalab = {
     },
 
     async TTSTranslate({ commit }, condition) {
-      console.log(condition.condition);
-      // console.log(condition.keyword, condition.nation);
+      
       await axios({
         url: `https://j7b208.p.ssafy.io/api2/pytranslate/detail/${condition.keyword}/${condition.nation}/`,
         method: "get",
@@ -261,7 +258,7 @@ export const datalab = {
     },
 
     async getTranslateKeyword({ commit, state }, data) {
-      console.log(data);
+      
       await axios({
         url: BackendAPI2.datalab.relatedkeywordtranslate(
           data[1],
@@ -278,6 +275,7 @@ export const datalab = {
         });
     },
 
+
     async relatedkeywordnews({ commit }, data) {
       // console.log(data[0].category, data[0].nation);
       var keyword = data[1];
@@ -287,18 +285,21 @@ export const datalab = {
       
       console.log(nation_id);
       console.log(keyword);
+
       await axios({
         // &language=${lang}
         url: `https://j7b208.p.ssafy.io/api2/pytranslate/news/${keyword}/${nation_id}/`,
         method: "get",
       })
         .then((res) => {
+
           // console.log(res.data.articles.length)
           console.log("어디까지 갔니");
           console.log(res);
           console.log(res.data);
           commit("SET_RELATEDKEYWORDNEWS", res.data);
           
+
           // commit("SET_RELATEDKEYWORDNEWS", res.data.articles);
         })
         .catch((err) => {

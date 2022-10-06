@@ -77,9 +77,6 @@ export default {
       if (game.data.length == 0) {
         game.data;
       }
-      console.log(score, "score");
-      console.log(game.data, "gamedata");
-      console.log(game.data[score.value], "게임데이터i");
       return game.data[score.value + 1];
     };
     // game.left = randomData();
@@ -92,7 +89,7 @@ export default {
         if (game.left.count <= game.right.count) {
           score.value++;
           //TODO: 중앙버튼 바뀌기
-          console.log(score, "score");
+          
           setTimeout(() => {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.right.name;
@@ -122,7 +119,7 @@ export default {
       } else {
         if (game.data[0].count <= game.data[1].count) {
           score.value++;
-          console.log(score, "최초");
+          
           setTimeout(() => {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.data[1].name;
@@ -158,7 +155,7 @@ export default {
         if (game.left.count >= game.right.count) {
           score.value++;
           //TODO: 중앙버튼 바뀌기
-          console.log(score, "score");
+          
           setTimeout(() => {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.right.name;
@@ -188,7 +185,7 @@ export default {
       } else {
         if (game.data[0].count >= game.data[1].count) {
           score.value++;
-          console.log(score, "최초");
+          
           setTimeout(() => {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.data[1].name;
