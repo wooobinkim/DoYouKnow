@@ -88,7 +88,7 @@
       <transition name="right">
         <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
-          <div class="news-container"><KeywordNews /></div>
+          <!-- <div class="news-container"><KeywordNews /></div> -->
           <div><KeywordTts/></div>
         </div>
       </transition>
@@ -106,7 +106,7 @@ import MainGlobe from "@/components/Main/MainGlobe.vue";
 
 import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
 import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
-import KeywordNews from "@/components/Datalab/KeywordNews.vue";
+// import KeywordNews from "@/components/Datalab/KeywordNews.vue";
 import KeywordRank from "@/components/Datalab/KeywordRank.vue";
 import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
 import DataInfo from "@/components/Datalab/DataInfo.vue";
@@ -119,7 +119,7 @@ export default {
     MainGlobe,
     KeywordRelated,
     KeywordRank,
-    KeywordNews,
+    // KeywordNews,
     KeywordLineGraph,
     KeywordDonutGraph,
     KeywordTts,
