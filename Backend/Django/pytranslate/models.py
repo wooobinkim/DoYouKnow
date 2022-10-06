@@ -45,7 +45,7 @@ class News(models.Model):
     link = models.CharField(max_length=2000, blank=True, null=True)
     image = models.CharField(max_length=2000, blank=True, null=True)
     title = models.CharField(max_length=2000, blank=True, null=True)
-    key = models.CharField(max_length=255, blank=True, null=True)
+    keyword = models.CharField(max_length=255, blank=True, null=True)
     nation=  models.ForeignKey(Nation, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
