@@ -5,7 +5,8 @@ from googletrans import Translator
 from rest_framework.response import Response
 
 from .models import DykclubTwitter
-
+from .models import News
+from django.db.models import Q
 
 @api_view(['GET'])
 def usallyview(request, keyword, num):
@@ -57,3 +58,12 @@ def detailview(request, keyword, nation_code):
     elif nation_code == 'pt':
         result = translator.translate(keyword, src='ko', dest='pt').text
     return Response(result)
+
+
+
+
+@api_view(['GET'])
+def newslistview(requrst,keyword,nation_code):
+    key = News.objects.filter(Q(key=keyword) & Q(nation_id=nation_code)).values()
+    print(key)
+    return Response(key)
