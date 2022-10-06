@@ -88,7 +88,6 @@
       <transition name="right">
         <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
-          <div class="line-graph"><KeywordLineGraph /></div>
           <!-- <div class="news-container"><KeywordNews /></div> -->
           <div><KeywordTts/></div>
         </div>
