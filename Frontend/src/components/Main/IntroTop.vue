@@ -80,16 +80,17 @@
           </div>
           <div><DataInfo /></div>
           <div><KeywordRank /></div>
-          <div><KeywordDonutGraph /></div>
+          <div class="graphs">
+            <KeywordDonutGraph />
+            <KeywordLineGraph class="line-graph"/>
+          </div>
         </div>
       </transition>
       <transition name="right">
         <div class="right_section" v-if="this.getIsOverlay">
           <div class="wordcloud-container"><KeywordRelated /></div>
           <div class="news-container"><KeywordNews /></div> 
-
-          <div class="line-graph"><KeywordLineGraph /></div>
-          <div><KeywordTts /></div>
+          <KeywordTts />
         </div>
       </transition>
     </div>
@@ -275,8 +276,9 @@ h6 {
   width: 27%;
   float: right;
   z-index: 10;
-  justify-content: space-around;
+  justify-content: flex-start;
   animation: fadeInRight 2s;
+  margin-top: 8%;
 }
 
 .head_box {
@@ -360,6 +362,7 @@ h6 {
 .news-container {
   width: 400px;
   height: 320px;
+  margin-top: 8%;
   /* background: rgba(255, 255, 255, 0.53);
   box-shadow: 0px 4px 10px rgba(81, 77, 77, 0.25);
   border-radius: 17px; */
@@ -382,8 +385,7 @@ h6 {
 
 .line-graph {
   position: absolute;
-  height: 500px;
-  top: 63%;
-  left: 80%;
+  top: 68%;
+  right: -90%;
 }
 </style>

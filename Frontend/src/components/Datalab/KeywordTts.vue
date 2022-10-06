@@ -136,10 +136,6 @@ export default {
   font-style: normal;
 }
 
-.tts-container {
-  position: float;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -252,7 +248,7 @@ export default {
 }
 
 .bubble:nth-child(1) {
-  margin-left: 8%;
-  margin-top: 7px;
+  margin-left: -10%;
+  margin-top: -24%;
 }
 </style>

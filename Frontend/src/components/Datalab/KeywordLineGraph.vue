@@ -9,7 +9,7 @@
         :data="lineChart.data"
         :options="lineChart.options"
         width="400"
-        height="250"
+        height="280"
       ></vue3-chart-js>
     </div>
 
@@ -182,18 +182,10 @@ export default {
 }
 .chart-container {
   background: rgb(255, 255, 255, 0.4);
-
+  height: 300px;
   /* opacity: 60%; */
   border-radius: 15px;
   margin-left: -20.5rem;
   margin-top: -6.8rem;
-}
-
-.line-graph {
-  position: absolute;
-  /* width: 400px; */
-  height: 500px;
-  top: 63%;
-  left: 80%;
 }
 </style>
