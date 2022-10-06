@@ -1,6 +1,7 @@
 <template>
   <section>
     <div v-if="this.getIsOverlay == false">
+    <img src="@/assets/intro-arrow.png" class="intro-arrow">
       <div class="title-container">
         <h6
           data-aos="fade-right"
@@ -19,9 +20,7 @@
           <p>한 눈에 세계속의 한국을 알아보고 싶은 당신!</p>
           <div class="catch-phrase">Do you Know 'DoYouKnow'?</div>
         </div>
-        <div class="intro-arrow">
-          <img src="@/assets/intro_arrow.png" />
-        </div>
+        
       </div>
     </div>
     <div v-else>
@@ -83,7 +82,7 @@
           <div><DataInfo /></div>
           <div><KeywordRank /></div>
           <div><KeywordDonutGraph /></div>
-          <div class="test"><KeywordLineGraph /></div>
+          <div class="line-graph"><KeywordLineGraph /></div>
         </div>
       </transition>
       <transition name="right">
@@ -106,7 +105,7 @@ import { onMounted } from "@vue/runtime-core";
 import MainGlobe from "@/components/Main/MainGlobe.vue";
 
 import KeywordDonutGraph from "@/components/Datalab/KeywordDonutGraph.vue";
-// import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
+import KeywordLineGraph from "@/components/Datalab/KeywordLineGraph.vue";
 import KeywordNews from "@/components/Datalab/KeywordNews.vue";
 import KeywordRank from "@/components/Datalab/KeywordRank.vue";
 import KeywordRelated from "@/components/Datalab/KeywordRelated.vue";
@@ -121,7 +120,7 @@ export default {
     KeywordRelated,
     KeywordRank,
     KeywordNews,
-    // KeywordLineGraph,
+    KeywordLineGraph,
     KeywordDonutGraph,
     KeywordTts,
   },
@@ -157,6 +156,7 @@ export default {
 .wordcloud-container {
   width: 400px;
   height: 200px;
+  margin-top: 20%;
 }
 .nation-container {
   width: 210px;
@@ -215,12 +215,12 @@ h6 {
   text-align: start;
 }
 .intro-arrow {
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   position: absolute;
-  /* left: -70%; */
-  margin-left: 81rem;
-  margin-top: 28rem;
+  left: 70%;
+  top: 70%;
+  
 }
 .content-msg p {
   margin: 20px 0;
@@ -268,7 +268,7 @@ h6 {
   height: 80%;
   top: 0%;
   bottom: 0;
-  right: 2%;
+  right: 3%;
   display: flex;
   flex-direction: column;
   width: 27%;
@@ -377,9 +377,11 @@ h6 {
   border-radius: 20px;
 }; */
 
-.test {
+.line-graph {
   position: absolute;
+  /* width: 400px; */
+  height: 500px;
   top: 63%;
-  left: 100%;
+  left: 80%;
 }
 </style>

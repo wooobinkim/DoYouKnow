@@ -55,7 +55,14 @@
               :key="keyword"
             >
               <li data-aos="fade-right" v-if="index < 5">
-                <mark class="rankkeyword" @click="setOneKeyword(keyword.name)">
+                <mark
+                  :class="{
+                    rankkeyword: true,
+                    'rankkeyword-active': getCurrentRank === keyword.name,
+                  }"
+                  @click="setOneKeyword(keyword.name)"
+                >
+                  <!-- <mark class="rankkeyword" @click="setOneKeyword(keyword.name)"> -->
                   {{ keyword.name }}
                 </mark>
               </li>
@@ -77,6 +84,10 @@ export default {
     let ActiveNation = [false, false, false, false, false, false];
     // let ActiveCategory = [false, false, false, false, false, false]
     // let ActivePeriod = [false, false, false, false, false, false]
+    let utterThis = new SpeechSynthesisUtterance();
+    utterThis.voice = speechSynthesis.getVoices()[8];
+    speechSynthesis.speak(utterThis);
+    // utterThis.lang
 
     const store = useStore();
     onMounted(() => {});
@@ -98,6 +109,7 @@ export default {
     const setOneKeyword = function setOneKeyword(keyword) {
       store.dispatch("currentRank", { keyword });
     };
+
     return {
       // rank1,
       setNation,
@@ -105,7 +117,7 @@ export default {
       setPeriod,
       setOneKeyword,
       store,
-      // tts,
+      utterThis,
       // data,
       ActiveNation,
     };
@@ -120,6 +132,7 @@ export default {
       "getPeriod",
       "getKeywordRank",
       "getTTS",
+      "getCurrentRank",
     ]),
   },
   watch: {
@@ -232,14 +245,17 @@ label {
   text-align: center;
   width: 120px;
   cursor: pointer;
+  border-radius: 10px;
 }
 .btn-three1 {
   color: rgb(0, 0, 0);
   transition: all 0.5s;
   position: relative;
   font-size: 15px;
+  border-radius: 10px;
 }
 .btn-three1::before {
+  border-radius: 10px;
   content: "";
   position: absolute;
   top: 0;
@@ -251,10 +267,12 @@ label {
   transition: all 0.3s;
 }
 .btn-three1:hover::before {
+  border-radius: 10px;
   opacity: 0;
   transform: scale(0.5, 0.5);
 }
 .btn-three1::after {
+  border-radius: 10px;
   content: "";
   position: absolute;
   top: 0;
@@ -268,65 +286,21 @@ label {
   transform: scale(1.2, 1.2);
 }
 .btn-three1:hover::after {
+  border-radius: 10px;
   opacity: 1;
   transform: scale(1, 1);
 }
 .btn-active1 {
-  background-color: rgb(255, 190, 84);
+  border-radius: 10px;
+  /* background-color: rgb(255, 190, 84); */
+  background-color: rgb(119, 175, 156, 0.7);
 }
 .btn-group2 {
   display: flex;
   justify-content: flex-end;
   margin-right: 5px;
 }
-.btn2 {
-  line-height: 32px;
-  height: 28px;
-  text-align: center;
-  width: 85px;
-  cursor: pointer;
-}
-.btn-three2 {
-  color: rgb(0, 0, 0);
-  transition: all 0.5s;
-  position: relative;
-  font-size: 11px;
-}
-.btn-three2::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-color: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s;
-}
-.btn-three2:hover::before {
-  opacity: 0;
-  transform: scale(0.5, 0.5);
-}
-.btn-three2::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0;
-  transition: all 0.3s;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transform: scale(1.2, 1.2);
-}
-.btn-three2:hover::after {
-  opacity: 1;
-  transform: scale(1, 1);
-}
-.btn-active2 {
-  background-color: #9f9467;
-}
+
 .btn-common {
   font-size: 13px;
   display: inline-block;
@@ -367,9 +341,9 @@ label {
 .leaderboard {
   position: absolute;
   top: 35%;
-  left: 69%;
+  left: 63%;
   transform: translate(-50%, -50%);
-  width: 356px;
+  width: 114%;
   height: auto;
   background: transparent;
   border-radius: 10px;
@@ -401,7 +375,7 @@ label {
 }
 
 .leaderboard ol li::before {
-  content: counter(leaderboard);
+  content: "";
   position: absolute;
   z-index: 2;
   top: 10px;
@@ -410,7 +384,6 @@ label {
   height: 20px;
   line-height: 20px;
   color: #c24448;
-  background: #fff;
   border-radius: 20px;
   text-align: center;
 }
@@ -422,7 +395,7 @@ label {
   left: 0;
   width: 85%;
   height: 100%;
-  padding: 5px 10px 0px 50px;
+  padding: 5px 10px 0px 60px;
   margin: 0;
   background: none;
   color: black;
@@ -438,6 +411,8 @@ label {
 
 .leaderboard ol li::after {
   content: "";
+  background-image: url("@/assets/gold-medal.png");
+  background-size: 20px 20px;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -452,7 +427,13 @@ label {
 }
 
 .leaderboard ol li:nth-child(1) {
-  background: #f5d658;
+  /* background: #f0d155 */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(1)::before {
+  background-image: url("@/assets/gold-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(1)::after {
@@ -460,11 +441,17 @@ label {
 }
 
 .leaderboard ol li:nth-child(2) {
-  background: #e7e7e5;
+  /* background: #cacaca; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(2)::before {
+  background-image: url("@/assets/silver-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(2)::after {
-  background: #fffffe;
+  background: #feeca5;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
 }
 
@@ -475,11 +462,17 @@ label {
 }
 
 .leaderboard ol li:nth-child(3) {
-  background: #b6a86d;
+  /* background: #b6a86d; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(3)::before {
+  background-image: url("@/assets/bronze-medal.png");
+  background-size: 20px 20px;
 }
 
 .leaderboard ol li:nth-child(3)::after {
-  background: #b2aa8a;
+  background: #feeca5;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.11);
 }
 
@@ -490,11 +483,16 @@ label {
 }
 
 .leaderboard ol li:nth-child(4) {
-  background: white;
+  /* background: white; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(4)::before {
+  content: "4";
 }
 
 .leaderboard ol li:nth-child(4)::after {
-  background: white;
+  background: #feeca5;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -507,11 +505,16 @@ label {
 }
 
 .leaderboard ol li:nth-child(5) {
-  background: white;
+  /* background: white; */
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard ol li:nth-child(5)::before {
+  content: "5";
 }
 
 .leaderboard ol li:nth-child(5)::after {
-  background: white;
+  background: #feeca5;
   box-shadow: 0 -2.5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 20px;
 }
@@ -532,6 +535,12 @@ label {
 .leaderboard ol li:hover::after {
   opacity: 1;
   transform: scaleX(1.06) scaleY(1.03);
+}
+
+.leaderboard ol li > .rankkeyword-active {
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  background-color: rgb(254, 236, 140);
 }
 
 .leaderboard ol li:hover mark::before,

@@ -7,6 +7,8 @@
         :type="lineChart.type"
         :data="lineChart.data"
         :options="lineChart.options"
+        width="470"
+        height="200"
       ></vue3-chart-js>
     </div>
 
@@ -31,6 +33,7 @@ export default {
     const chartRef = ref(null);
 
     const lineChart = {
+      display: false,
       type: "line",
       data: {
         labels: [],
@@ -41,43 +44,84 @@ export default {
         ],
       },
       options: {
+        display: false,
+        animations: {
+          display: false,
+          y: {
+            easing: "easeInOutElastic",
+            from: (ctx) => {
+              if (ctx.type === "data") {
+                if (ctx.mode === "default" && !ctx.dropped) {
+                  ctx.dropped = true;
+                  return 0;
+                }
+              }
+            },
+          },
+        },
         responsive: false,
         maintainAspectRatio: false,
         plugins: {
+          display: false,
           labels: false,
           legend: {
             display: false,
           },
           // title: {
-            //   text: "검색량 추이",
+          //   text: "검색량 추이",
           //   display: true,
           // },
+          datalabels: {
+            display: false,
+          },
         },
-        borderColor: 'rgb(75, 192, 192)',
-        borderJoinStyle: 'round',
-        
+        borderColor: "rgb(0, 75, 107)",
+        borderJoinStyle: "round",
+        // spanGaps: true,
+        // borderwidth: 30,
+        // lineTension: 0,
+
         scales: {
-            yAxes: [{
+          x: {
+            grid: {
+              display: false,
+              drawBorder: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+            },
+          },
+          yAxes: [
+            {
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
               },
               gridLines: {
-                display: true
-              }
-            }],
-            xAxes: [ {
+                display: false,
+              },
+            },
+          ],
+          xAxes: [
+            {
               gridLines: {
-                display: false
-              }
-            }]
-          },
+                display: false,
+              },
+            },
+          ],
+        },
       },
     };
 
     const updateChart = (res) => {
+      console.log(res, "여길잘봐!!");
       lineChart.options.plugins.title = {
-        text: "검색량 추이",
+        text: "날짜별 검색량",
         display: true,
+        font: {
+          size: 14,
+          family: "KOTRA_BOLD-Bold",
+          weight: "bold",
+          color: "rgb(255, 255, 255)",
+        },
       };
       lineChart.labels = res[0].name;
       lineChart.data.labels = [];
@@ -90,8 +134,10 @@ export default {
       ];
 
       for (let i = 0; i < res.length; i++) {
-        // console.log(res[i]);
-        lineChart.data.labels[i] = res[i].date.toLocaleDateString().substring(6);
+        lineChart.data.labels[i] =
+          res[i].date.toLocaleDateString().split(".")[1] +
+          "/" +
+          res[i].date.toLocaleDateString().split(".")[2];
         lineChart.data.datasets[0].data[i] = res[i].count;
       }
       chartRef.value.update(250);
@@ -132,7 +178,6 @@ export default {
       }
     },
     getGraphKeyword: function (data) {
-      console.log(data);
       this.keywordlist = data;
       this.updateChart(data);
     },
@@ -141,12 +186,26 @@ export default {
 </script>
 
 <style scoped>
-/* .chart-container {
-  width: 20rem;
-  height: 16rem;
-  background: #ffffff;
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.chart-container {
+  background: rgb(255, 255, 255, 0.6);
+  /* opacity: 60%; */
   border-radius: 15px;
-  margin-left: 1.5rem;
-  margin-top: 1rem;
-} */
+  margin-left: -1.3rem;
+  margin-top: -0.8rem;
+}
+
+.line-graph {
+  position: absolute;
+  /* width: 400px; */
+  height: 500px;
+  top: 63%;
+  left: 80%;
+}
 </style>

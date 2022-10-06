@@ -1,5 +1,8 @@
 <template>
   <div class="game-background">
+    <a href="https://j7b208.p.ssafy.io/">
+      <img src="@/assets/logo.png" alt="logo" class="logo" />
+    </a>
     <div class="game-container">
       <div class="card-left">
         <div class="img-container">
@@ -94,7 +97,7 @@ export default {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.right.name;
             document.getElementById("count-h2").innerText =
-              game.right.count + " 회";
+              game.right.count.toLocaleString("ko-KR") + " 회";
             document.getElementById("url-img").src = game.right.imgUrl;
             game.left = game.right;
             // 오른쪽에 새로운 데이터 받기
@@ -160,7 +163,7 @@ export default {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.right.name;
             document.getElementById("count-h2").innerText =
-              game.right.count + " 회";
+              game.right.count.toLocaleString("ko-KR") + " 회";
             document.getElementById("url-img").src = game.right.imgUrl;
             game.left = game.right;
             // 오른쪽에 새로운 데이터 받기
@@ -190,7 +193,7 @@ export default {
             // 오른쪽 데이터를 왼쪽으로 보내기
             document.getElementById("name-h2").innerText = game.data[1].name;
             document.getElementById("count-h2").innerText =
-              game.data[1].count + " 회";
+              game.data[1].count.toLocaleString("ko-KR") + " 회";
             document.getElementById("url-img").src = game.data[1].imgUrl;
             game.left = game.data[1];
             // 오른쪽에 새로운 데이터 받기
@@ -276,6 +279,13 @@ h2 {
   width: 100px;
   height: 100px;
   z-index: 2;
+}
+.logo {
+  border: 0;
+  width: 5vw;
+  height: auto;
+  margin: 10px 0 0 10px;
+  position: absolute;
 }
 .game-container {
   display: flex;
