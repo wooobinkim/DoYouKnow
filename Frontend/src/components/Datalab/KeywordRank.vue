@@ -1,43 +1,45 @@
 <template>
   <div class="keyword-container">
-    <div class="button-container">
-      <br />
-      <div class="btn-group1">
-        <template v-for="category in this.getCategory" :key="category.value">
-          <!-- <input id="tab1" type="radio" name="tabs" checked />
+    <loading-spinner v-if="this.getIsTopFive" />
+    <template v-else>
+      <div class="button-container">
+        <br />
+        <div class="btn-group1">
+          <template v-for="category in this.getCategory" :key="category.value">
+            <!-- <input id="tab1" type="radio" name="tabs" checked />
         <label for="tab1">{{ category.text }}</label> -->
-          <div
-            @click="setCategory(category.value)"
-            :class="{
-              'btn1 btn-three1': true,
-              'btn1 btn-active1': getConditionCategory === category.value,
-            }"
-            style="margin-right: 5px"
-          >
-            {{ category.text }}
-          </div>
-        </template>
-      </div>
-      <div class="btn-group2">
-        <template v-for="period in this.getPeriod" :key="period.value">
-          <!-- <div
+            <div
+              @click="setCategory(category.value)"
+              :class="{
+                'btn1 btn-three1': true,
+                'btn1 btn-active1': getConditionCategory === category.value,
+              }"
+              style="margin-right: 5px"
+            >
+              {{ category.text }}
+            </div>
+          </template>
+        </div>
+        <div class="btn-group2">
+          <template v-for="period in this.getPeriod" :key="period.value">
+            <!-- <div
               @click="setPeriod(period.value)"
               :class="{'btn2 btn-three2' : true,  'btn2 btn-active2': getConditionPeriod === period.value,}"
             > -->
-          <div
-            @click="setPeriod(period.value)"
-            :class="{
-              'btn-common': true,
-              'btn-period-active': getConditionPeriod === period.value,
-            }"
-          >
-            {{ period.text }}
-          </div>
-        </template>
-      </div>
-      <br />
-      <div>
-        <!-- <div class="btn-group2">
+            <div
+              @click="setPeriod(period.value)"
+              :class="{
+                'btn-common': true,
+                'btn-period-active': getConditionPeriod === period.value,
+              }"
+            >
+              {{ period.text }}
+            </div>
+          </template>
+        </div>
+        <br />
+        <div>
+          <!-- <div class="btn-group2">
           <template v-for="period in this.getPeriod" :key="period.value">
             <div
               @click="setPeriod(period.value)"
@@ -48,38 +50,41 @@
           </template>
         </div> -->
 
-        <div class="leaderboard">
-          <ol>
-            <template
-              v-for="(keyword, index) in this.getKeywordRank"
-              :key="keyword"
-            >
-              <li data-aos="fade-right" v-if="index < 5">
-                <mark
-                  :class="{
-                    rankkeyword: true,
-                    'rankkeyword-active': getCurrentRank === keyword.name,
-                  }"
-                  @click="setOneKeyword(keyword.name)"
-                >
-                  <!-- <mark class="rankkeyword" @click="setOneKeyword(keyword.name)"> -->
-                  {{ keyword.name }}
-                </mark>
-              </li>
-            </template>
-          </ol>
+          <div class="leaderboard">
+            <ol>
+              <template
+                v-for="(keyword, index) in this.getKeywordRank"
+                :key="keyword"
+              >
+                <li data-aos="fade-right" v-if="index < 5">
+                  <mark
+                    :class="{
+                      rankkeyword: true,
+                      'rankkeyword-active': getCurrentRank === keyword.name,
+                    }"
+                    @click="setOneKeyword(keyword.name)"
+                  >
+                    <!-- <mark class="rankkeyword" @click="setOneKeyword(keyword.name)"> -->
+                    {{ keyword.name }}
+                  </mark>
+                </li>
+              </template>
+            </ol>
+          </div>
         </div>
+        <!-- </section> -->
       </div>
-      <!-- </section> -->
-    </div>
+    </template>
   </div>
 </template>
 
 <script>
 import { useStore, mapGetters } from "vuex";
 import { onMounted } from "vue";
+import LoadingSpinner from "@/components/Datalab/LoadingSpinner.vue";
 // import { useRoute } from "vue-router";
 export default {
+  components: { LoadingSpinner },
   setup() {
     let ActiveNation = [false, false, false, false, false, false];
     // let ActiveCategory = [false, false, false, false, false, false]
@@ -133,6 +138,7 @@ export default {
       "getKeywordRank",
       "getTTS",
       "getCurrentRank",
+      "getIsTopFive",
     ]),
   },
   watch: {
@@ -340,13 +346,14 @@ label {
 /* 랭킹 아이템 */
 .leaderboard {
   position: absolute;
-  top: 35%;
+  top: 37%;
   left: 63%;
   transform: translate(-50%, -50%);
   width: 114%;
   height: auto;
   background: transparent;
   border-radius: 10px;
+  margin-top: 30px;
 }
 
 .leaderboard h1 {
@@ -538,7 +545,7 @@ label {
 }
 
 .leaderboard ol li > .rankkeyword-active {
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   background-color: rgb(254, 236, 140);
 }

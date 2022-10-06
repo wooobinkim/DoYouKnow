@@ -1,23 +1,27 @@
 <template>
-  <div class="total-container" v-if="this.getNationRate">
-    <div class="sub1-box">
-      <div class="first_box">총 데이터</div>
-      <div class="second_box">
-        전체 데이터의 {{ this.getNationRate.nationRate }}%
+  <loading-spinner v-if="this.getIsRate" />
+  <template v-else>
+    <div class="total-container" v-if="this.getNationRate">
+      <div class="sub1-box">
+        <div class="first_box">총 데이터</div>
+        <div class="second_box">
+          전체 데이터의 {{ this.getNationRate.nationRate }}%
+        </div>
+      </div>
+      <div class="sub2-box">
+        <span class="half-highlight"
+          >{{ this.getNationRate.nationCount.toLocaleString("ko-KR") }}개</span
+        >
       </div>
     </div>
-    <div class="sub2-box">
-      <span class="half-highlight"
-        >{{ this.getNationRate.nationCount.toLocaleString("ko-KR") }}개</span
-      >
-    </div>
-  </div>
+  </template>
 </template>
 
 <script>
 import { mapGetters, useStore } from "vuex";
-
+import LoadingSpinner from "@/components/Datalab/LoadingSpinner.vue";
 export default {
+  components: { LoadingSpinner },
   setup() {
     const store = useStore();
     return {
@@ -25,7 +29,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getConditionNation", "getNation", "getNationRate"]),
+    ...mapGetters([
+      "getConditionNation",
+      "getNation",
+      "getNationRate",
+      "getIsRate",
+    ]),
   },
   watch: {
     getConditionNation: function (nation) {
