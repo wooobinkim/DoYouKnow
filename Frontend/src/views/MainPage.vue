@@ -5,8 +5,8 @@
     class="mySwiper"
     :modules="modules"
     :direction="'vertical'"
-    mousewheel
     :speed="1000"
+    mousewheel
     :allowTouchMove="false"
     :lazy="{ loadPrevNext: true }"
     :pagination="!this.getIsOverlay"
@@ -67,6 +67,19 @@ export default {
   computed: {
     ...mapGetters(["getIsOverlay", "getNation", "getConditionNation"]),
   },
+
+  watch: {
+    getIsOverlay: function(){
+      if (this.getIsOverlay){
+        this.swiper.mousewheel.disable()
+        console.log(this.swiper)
+      } else{
+        this.swiper.mousewheel.enable()
+        console.log(this.swiper)
+
+      }
+    }
+  }
 };
 </script>
 <style>

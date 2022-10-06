@@ -1,4 +1,5 @@
 <template>
+  <!-- <loading-spinner v-if="this.getIsLineGraph" /> -->
   <div class="chart-container">
     <div v-show="this.test.getGraphKeyword != null">
       <vue3-chart-js
@@ -7,8 +8,8 @@
         :type="lineChart.type"
         :data="lineChart.data"
         :options="lineChart.options"
-        width="470"
-        height="200"
+        width="400"
+        height="250"
       ></vue3-chart-js>
     </div>
 
@@ -23,10 +24,11 @@ import { ref, computed } from "vue";
 import { mapGetters, mapActions } from "vuex";
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import { useStore } from "vuex";
-
+// import LoadingSpinner from "@/components/Datalab/LoadingSpinner.vue";
 export default {
   components: {
     Vue3ChartJs,
+    // LoadingSpinner,
   },
   setup() {
     const keywordlist = ref([]);
@@ -160,12 +162,16 @@ export default {
       "getConditionCategory",
       "getConditionPeriod",
       "getGraphKeyword",
+      "getIsLineGraph",
     ]),
   },
   methods: {
     ...mapActions(["getGraphKeyword"]),
   },
   watch: {
+    getIsLineGraph: function (data) {
+      console.log(data, "로딩상태어때");
+    },
     getCurrentRank: function () {
       if (this.getConditionCategory && this.getConditionPeriod) {
         const condition = {
@@ -194,11 +200,12 @@ export default {
   font-style: normal;
 }
 .chart-container {
-  background: rgb(255, 255, 255, 0.6);
+  background: rgb(255, 255, 255, 0.4);
+
   /* opacity: 60%; */
   border-radius: 15px;
-  margin-left: -1.3rem;
-  margin-top: -0.8rem;
+  margin-left: -20.5rem;
+  margin-top: -6.8rem;
 }
 
 .line-graph {

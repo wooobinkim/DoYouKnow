@@ -1,8 +1,11 @@
 <template>
   <div class="word-container">
+    <template v-if="this.getIsErrormsg && !this.getRelatedKewordLoading">
+        <p class="ptag">다시 한 번 선택해 주세요.</p>
+    </template>
     <loading-spinner v-if="this.getRelatedKewordLoading" />
     <div class="canvas-container">
-      <canvas id="canvas" style="width:600px; height:300px;"></canvas>
+      <canvas id="canvas" style="width: 600px; height: 500px"></canvas>
     </div>
   </div>
 </template>
@@ -63,24 +66,24 @@ export default {
         // "#EBF2F7",
 
         "#88BCEE",
-        '#90ED7D',
+        "#90ED7D",
         "#8085E9",
-        '#F7A35C',
+        "#F7A35C",
         "#2B908F",
-        '#F15C80',
+        "#F15C80",
         "#E4D354",
-        '#FD0541',
+        "#FD0541",
         "#9EEAE4",
         "#4247C0",
         "#6D8DFF",
 
         "#CAFDC0",
-        '#D1D3FC',
+        "#D1D3FC",
         "#FCD8BA",
-        '#BEEEEE',
+        "#BEEEEE",
         "#CFE4F9",
-        '#FCD6DF',
-        '#E4F5CF',
+        "#FCD6DF",
+        "#E4F5CF",
         "#8160C6",
         "#794C57",
       ];
@@ -88,20 +91,20 @@ export default {
       console.log(data);
 
       var arr = [];
-      for(let i=0; i<data.length; i++){
-        if(data[i][0].length<9){
+      for (let i = 0; i < data.length; i++) {
+        if (data[i][0].length < 9) {
           arr.push(data[i]);
         }
       }
       let max = arr[0][1];
-      let min = arr[arr.length-1][1];
+      let min = arr[arr.length - 1][1];
       const data1 = {
         labels: arr.map((d) => d[0]),
         datasets: [
           {
             label: "",
             // data: data.map((d, index) => 30 - index * 2),
-            data: arr.map((d) => ((d[1] - min)/ (max-min))*13+17),
+            data: arr.map((d) => ((d[1] - min) / (max - min)) * 13 + 17),
             // data: arr.map((d) => ((d[1] - min)/ (max-min ))*10+20),
             color: arr.map((d, index) => color[index % 20]),
             family: "KOTRA_BOLD-Bold",
@@ -123,6 +126,16 @@ export default {
           data: data1,
           options: {
             plugins: {
+              title: {
+                text: "연관검색어",
+                display: true,
+                font: {
+                  size: 14,
+                  family: "KOTRA_BOLD-Bold",
+                  weight: "bold",
+                  color: "rgb(255, 255, 255)",
+                },
+              },
               labels: false,
               legend: {
                 display: false,
@@ -149,6 +162,7 @@ export default {
       "getCurrentRank",
       "getRelatedKeyword",
       "getRelatedKewordLoading",
+      "getIsErrormsg",
     ]),
   },
   // methods: {
@@ -178,7 +192,14 @@ export default {
   opacity: 81%;
   border-radius: 30px;
 } */
-.chartvue {
+@font-face {
+  font-family: "KOTRA_BOLD-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.cha .chartvue {
   visibility: hidden;
 }
 .canvas-container {
@@ -202,5 +223,12 @@ export default {
     format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+
+.ptag {
+  /* font-size: 2rem; */
+  font-family: "KOTRA_BOLD-Bold";
+   opacity: 71%;
 }
 </style>
