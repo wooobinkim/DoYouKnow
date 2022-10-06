@@ -12,7 +12,7 @@ export const datalab = {
     isRate: false,
     isTopFive: false,
     isLineGraph: false,
-
+    iserrormsg: false,
     datalabviewloading: true,
     relatedkeword: [],
     relatedkeywordnews: [],
@@ -47,6 +47,9 @@ export const datalab = {
     },
   },
   getters: {
+    getIsErrormsg(state){
+      return state.iserrormsg;
+    },
     getCurrentRank(state) {
       return state.currentrank;
     },
@@ -112,6 +115,7 @@ export const datalab = {
     },
   },
   mutations: {
+    SET_ISERRORMSG: (state, iserrormsg) => (state.iserrormsg = iserrormsg),
     SET_ISOVERLAY: (state, isoverlay) => (state.isoverlay = isoverlay),
     SET_ISRATE: (state, isRate) => (state.isRate = isRate),
     SET_ISTOPFIVE: (state, isTopFive) => (state.isTopFive = isTopFive),
@@ -225,6 +229,7 @@ export const datalab = {
 
     async relatedkeyword({ commit }, keyword) {
       commit("SET_RELATEDKEYWORDLOADING", true);
+      commit("SET_ISERRORMSG", false);
       await axios({
         url: BackendAPI2.datalab.relatedkeyword(keyword.data),
         method: "get",
@@ -234,6 +239,8 @@ export const datalab = {
           commit("SET_RELATEDKEWORD", res.data);
         })
         .catch((err) => {
+          commit("SET_RELATEDKEYWORDLOADING", false);
+          commit("SET_ISERRORMSG", true);
           console.error(err.response);
         });
     },

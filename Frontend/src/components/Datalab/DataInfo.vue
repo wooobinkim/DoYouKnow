@@ -1,5 +1,5 @@
 <template>
-  <loading-spinner v-if="this.getIsRate" />
+  <loading-spinner v-if="this.getIsRate" style="width: 110%;"/>
   <template v-else>
     <div class="total-container" v-if="this.getNationRate">
       <div class="sub1-box">
