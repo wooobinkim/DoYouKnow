@@ -102,7 +102,7 @@ def np_tag(text):
     news_desc = ""
     date_time_str = str(start_year).zfill(2)+"-"+str(start_month).zfill(2)+"-"+str(start_day).zfill(2)
     date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d')
-
+    print(start_month,start_day,category)
     for doc in list:
         #if doc[1] == 'NNP' or doc[1] == 'NNG':
         flag = True
@@ -110,14 +110,14 @@ def np_tag(text):
             for i in range(len(exceptkeyword)) :
                 if exceptkeyword[i] in doc[0] :
                     flag = False
-                    print("doc[0] : ",doc[0],", exceptkeyword : ", exceptkeyword[i])
+                    # print("doc[0] : ",doc[0],", exceptkeyword : ", exceptkeyword[i])
 
                     val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
-                    for i in range(3) : 
+                    for i in range(6) : 
                         cursor.execute(sql,val)
                         DoYouKnow_db.commit()
             if(flag):
-                print("doc[0] : ",doc[0])
+                # print("doc[0] : ",doc[0])
                 val = (doc[0].replace(" ", ""),date_time_obj,nation,category)
                 cursor.execute(sql,val)
                 DoYouKnow_db.commit()
@@ -202,7 +202,7 @@ def crawling_category(searches, category_id, month, nation_id):
     global exceptkeyword
 
     print(searches, category_id, month, nation_id)
-    day =[32, 29, 32, 31, 32, 31, 32, 32, 24, 32, 31, 32]
+    day =[32, 29, 32, 31, 32, 31, 32, 32, 31, 6, 31, 32]
     
     start = time.time()
     start_year=2022
@@ -302,11 +302,11 @@ def cawrling_month(search, category_id, nation_id):
     global driver
     global category
     global nation
-    days =[32, 29, 32, 31, 32, 31, 32, 32, 27, 32, 31, 32]
+    days =[32, 29, 32, 31, 32, 31, 32, 32, 31, 32, 31, 32]
     for month in range(9, 3, -1):
         start_month = month
         end_month=month
-        for day in range(1,days[month-1]):
+        for day in range(24,days[month-1]):
             print('month, day', month, day)
             chrome_options = webdriver.ChromeOptions()
             # chrome_options.add_argument('--headless')
